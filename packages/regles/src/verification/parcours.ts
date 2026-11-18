@@ -5,7 +5,7 @@
 // Ce n'est PAS une preuve d'impossibilité : une fin non trouvée l'est « avec ces hypothèses et ce budget » (voir `arret` et
 // `hypotheses` du rapport). Hypothèses : les combats sont gagnés, les achats et l'équipement ne sont pas simulés, la saisie
 // libre n'est pas jouée, les repos courts sont ignorés, les points de vie ne comptent pas dans l'identité d'un état.
-import { evaluerCondition, type EtatMonde } from '../monde/etat';
+import { evaluerCondition, momentDe, type EtatMonde } from '../monde/etat';
 import { grapheDependancesFin } from '../monde/graphes';
 import { indexerReferences } from '../monde/references';
 import type { Condition } from '../monde/schemas';
@@ -115,7 +115,8 @@ function stable(x: unknown): string {
 
 /**
  * L'identité logique d'un état : où l'on est, ce que l'on sait, ce que l'on porte, ce qui est fait. Elle ignore ce qui change
- * à chaque pas sans rien décider (journal, points de vie, XP, narrations, heure exacte : seulement la tranche du jour).
+ * à chaque pas sans rien décider (journal, points de vie, XP, narrations, heure exacte : seulement le moment de la journée, celui que lit le moteur,
+ * `momentDe` : jour, soir ou nuit ; avant, 0 h à 5 h comptaient pour du jour).
  */
 export function cleEtat(p: Partie): string {
   const e = p.etat;
@@ -126,7 +127,7 @@ export function cleEtat(p: Partie): string {
     e.niveauGroupe,
     e.fin ?? '',
     Math.min(e.jour, 8),
-    (e.heure ?? 8) < 18 ? 'j' : (e.heure ?? 8) < 22 ? 's' : 'n',
+    momentDe(e.heure),
     Object.entries(e.flags).filter(([, v]) => v).map(([k]) => k),
     e.faits,
     e.jauges,
@@ -330,11 +331,17 @@ export function rejouer(moteur: Moteur, groupe: Personnage[], graine: number, ni
 
 const maintenant = () => (typeof performance !== 'undefined' ? performance.now() : Date.now());
 
+/** Le groupe que joue le parcours : celui des options, sinon le groupe conseillé au niveau du monde (ou de l'option `niveau`). */
+export function groupeDuParcours(ctx: ContexteJeu, opts: Pick<OptionsParcours, 'groupe' | 'niveau'>): Personnage[] {
+  if (opts.groupe) return opts.groupe;
+  if (!ctx.srd) throw new Error('explorerParcours : il faut le SRD (ctx.srd) ou un groupe.');
+  return groupeDeTest(ctx.srd, opts.niveau ?? ctx.dm.monde.niveaux.min);
+}
+
 export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): RapportExploration {
   const moteur = creerMoteur(ctx, MODULES_STANDARD);
   const { dm } = ctx;
-  if (!opts.groupe && !ctx.srd) throw new Error('explorerParcours : il faut le SRD (ctx.srd) ou un groupe.');
-  const groupe = opts.groupe ?? groupeDeTest(ctx.srd!);
+  const groupe = groupeDuParcours(ctx, opts);
   const niveau = opts.niveau ?? dm.monde.niveaux.min;
   const graines = opts.graines ?? [7, 21];
   const poidsAncetres = opts.poidsAncetres ?? graines.map((_, i) => (i === 0 ? 0 : 4));

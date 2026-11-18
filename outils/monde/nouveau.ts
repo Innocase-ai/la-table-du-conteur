@@ -19,8 +19,11 @@ function remplacer(texte: string, id: string, nom: string): string {
   return texte.replaceAll('{{ID}}', id).replaceAll('{{NOM}}', nom);
 }
 
-/** Crée packages/mondes/<id>/ avec un monde en brouillon, la bible à remplir et le guide des zones. */
-export function creerSquelette(racineMondes: string, id: string, nom: string, modeles: Modeles): string {
+/**
+ * Crée packages/mondes/<id>/ avec un monde en brouillon, la bible à remplir et le guide des zones. `lieuxDeDepart: false` : sans les deux
+ * lieux de départ (l'importateur de la Forge écrit les siens).
+ */
+export function creerSquelette(racineMondes: string, id: string, nom: string, modeles: Modeles, options: { lieuxDeDepart?: boolean } = {}): string {
   if (!/^[a-z0-9][a-z0-9-]*$/.test(id)) throw new Error(`Identifiant invalide « ${id} » : kebab-case ASCII sans accents (ex. marche-d-ombrefiel).`);
   if (!nom.trim()) throw new Error('Donne un nom au monde.');
   const dossier = join(racineMondes, id);
@@ -52,6 +55,14 @@ export function creerSquelette(racineMondes: string, id: string, nom: string, mo
     auteurs: [],
   };
   writeFileSync(join(dossier, 'monde.json'), JSON.stringify(monde, null, 2) + '\n');
+  // Deux lieux pour que le squelette soit un monde valide dès le départ : la région que cite le chapitre et le lieu de départ qui s'y trouve
+  // (audit du 18/11/2026, O5). Leurs textes sont des « À écrire » : `pnpm monde manque` les compte comme manques tant qu'ils restent.
+  const aEcrire = { description: 'À écrire : ce qu’on y trouve, factuel (pour le MJ).', visuel: 'À écrire : ce qu’on voit, sans nommer les personnages.' };
+  const lieux = [
+    { id, nom, type: 'region', resume: 'À écrire : la région où se déroule l’histoire.', ...aEcrire },
+    { id: `${id}-hub`, nom: 'Lieu de départ', type: 'village', parent: id, resume: 'À écrire : le lieu où commence l’aventure.', ...aEcrire, repos: 'sur' },
+  ];
+  if (options.lieuxDeDepart !== false) writeFileSync(join(dossier, 'lieux', 'lieux.json'), JSON.stringify(lieux, null, 2) + '\n');
   writeFileSync(join(dossier, 'BIBLE.md'), remplacer(readFileSync(join(modeles.dossier, 'BIBLE.modele.md'), 'utf8'), id, nom));
   writeFileSync(join(dossier, 'GUIDE-ZONE.md'), remplacer(readFileSync(join(modeles.dossier, 'GUIDE-ZONE.modele.md'), 'utf8'), id, nom));
   // Le canon à la machine (secrets, mots tabou, personnages) : vide, à remplir après la BIBLE (skill creer-monde, étape 2). Sans lui, la

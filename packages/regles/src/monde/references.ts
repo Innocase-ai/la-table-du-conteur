@@ -49,7 +49,8 @@ export function refsEffet(e: EffetMonde, f: (genre: string, id: string, extra?: 
   else if ('deplacer' in e) {
     f('pnj', e.deplacer.pnj);
     f('lieu', e.deplacer.lieu);
-  } else if ('rencontre' in e) f('rencontre', e.rencontre);
+  } else if ('debloquer' in e) f('lieu', e.debloquer);
+  else if ('rencontre' in e) f('rencontre', e.rencontre);
   else if ('fin' in e) f('fin', e.fin);
 }
 

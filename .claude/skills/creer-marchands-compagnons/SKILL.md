@@ -23,7 +23,9 @@ Pendant une conversation avec un PNJ qui a une boutique, ses articles, ce qu'il 
 
 ## Les services (`Pnj.services`)
 
-`{ id, nom, resume, prix, condition?, effets? }` : le prix est payé, le `resume` raconté, les `effets` appliqués. **L'id décide de l'effet en jeu** (`modules/commerce.ts`) :
+`{ id, nom, resume, prix, type?, condition?, effets? }` : le prix est payé, le `resume` raconté, les `effets` appliqués. **Le `type` décide de l'effet en jeu** (`soins`, `nuit` ou `identification` ; `modules/commerce.ts`). **Écris toujours le `type`** d'un service qui doit soigner, loger ou identifier : sans lui, le moteur devine d'après l'identifiant (repli, tableau ci-dessous), et un identifiant comme `gite-fort` ou `identifier-elara` n'est pas reconnu : le joueur paie pour rien (c'était le cas de trois services de la Tombe avant le 18/11/2026). Le validateur donne un avis « sans effet en jeu » pour un service sans `type`, sans identifiant reconnu et sans effet autre qu'un texte.
+
+À défaut de `type`, l'id décide :
 
 | L'id contient | Effet |
 | --- | --- |

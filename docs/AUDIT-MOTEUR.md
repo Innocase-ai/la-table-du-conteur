@@ -6,6 +6,12 @@ Audit en lecture seule de `packages/regles` : noyau à modules, moteur de monde 
 - M1, M2 et M3 (rangs 1 à 3 du §7), test `packages/regles/tests/audit-moteur-correctifs.test.ts` (13 tests, dont 10 qui échouaient avant la correction).
 - M4 et M5 (rangs 4 et 5, combat touché avec l'accord de l'utilisateur), test `packages/regles/tests/audit-moteur-combat.test.ts` (5 tests, dont 4 qui échouaient avant). Comparaison des simulations au §8.
 
+- M17, M18 et M19 (lot 1, groupe 1, fiches J2 et J3 de `docs/FICHES-LOT-1.md`), test `packages/regles/tests/lot1-moteur.test.ts` (20 tests, dont 11 qui échouaient avant la correction).
+
+- M12, M13 et M23 (lot 1, groupe 3, fiches J1, J6 et J5), test `packages/regles/tests/lot1-horloge-parcours.test.ts` (18 tests). **M13 : D4 appliquée, mais la preuve automatique des fins de la Tombe n’est plus possible** (voir M13).
+
+- M22 (lot 1, groupe 4, fiche J4), test `packages/regles/tests/lot1-garde-fous.test.ts`.
+
 Les autres constats restent à faire.
 
 **Méthode.** Quatre relectures menées en parallèle (Opus) : exploration et monde ; dialogues, objets et économie ; combat ; noyau, création et vérification. Chaque constat est reproduit par un petit script jetable, placé hors du dépôt. Les constats graves ont été relancés et relus dans le code par l'auteur du rapport. Les points déjà connus (`AUDIT-MOTEUR-JEU.md`, `AUDIT-COMBAT.md`, `AUDIT-REGLES-SRD.md`, `AUDIT-DIALOGUES-PNJ.md`, `AUDIT-CREATION.md`, dépendances de la fiche F3 dans `PRD-SAGA.md`) ne sont pas repris. Ils sont seulement revérifiés au §6.
@@ -135,7 +141,7 @@ En résumé, le noyau transactionnel et le combat sont solides : ni plantage ni 
 
 ### Monde et exploration
 
-**M12. Dormir après minuit contourne l'horloge, et dormir à 6 h ou 7 h saute encore une journée.**
+**M12. Dormir après minuit contourne l'horloge, et dormir à 6 h ou 7 h saute encore une journée.** · **corrigé le 18/11/2026** (couché avant 8 h : huit heures de sommeil, jauges « repos-long », événements de repos et fouille rouverte ; le soir, inchangé)
 - **Où** : `monde/exploration.ts:1050-1067`. C'est un reste du constat X6.
 - **Ce qui se passe** :
   - Couché entre 0 h et 5 h, le groupe ne passe pas par `nouveauJour`. La jauge « repos-long » de la Dîme et de la Tombe n'avance pas, et la fouille du jour reste consommée, alors que le message dit « revenir après un repos ».
@@ -145,7 +151,7 @@ En résumé, le noyau transactionnel et le combat sont solides : ni plantage ni 
 - **Gravité** : gênant. Bug, reproduit.
 - **Correction** : appliquer les évolutions « repos-long » et les événements de repos à toute nuit complète, compter la fouille par repos plutôt que par jour civil, et calculer le réveil à heure + 8 entre 6 h et 8 h.
 
-**M13. La Tombe : le niveau 3 est accessible dès le 5e pas.**
+**M13. La Tombe : le niveau 3 est accessible dès le 5e pas.** · **corrigé le 18/11/2026** (texte `retour` à la découverte, avis « Passage caché », passage des racines à sens unique) ; **mais** le parcours automatique ne prouve plus les 4 fins qui suivent le retour au bivouac (540 s, 7 530 états ; le niveau 3 est atteint en 101 pas, le cœur de la tombe en 120) : `verifier` de la Tombe échoue, accepté par l'utilisateur jusqu'à une amélioration du parcours
 - **Où** : données (`tombe-des-rois-serpents/lieux/z3-niveau3.json`, lien `n3-escalier-surface` ↔ `bivouac-entree`) et `monde/exploration.ts:418`.
 - **Ce qui se passe** :
   - Le passage secret est à double sens (`sens: double`) avec un DD de Perception de 15. La Perception passive du groupe conseillé vaut 16 : le passage est trouvé dès l'arrivée au bivouac, sans jet.
@@ -183,20 +189,20 @@ En résumé, le noyau transactionnel et le combat sont solides : ni plantage ni 
 
 ### Dialogue, objets, progression
 
-**M17. Une quête échouée peut encore être terminée, et elle verse alors ses récompenses.**
+**M17. Une quête échouée peut encore être terminée, et elle verse alors ses récompenses.** · **corrigé le 18/11/2026** (`terminerQuete` ignore aussi `echouee`)
 - **Où** : `monde/etat.ts:313`. `terminerQuete` teste seulement `terminee`, alors que `echouerQuete` (`:326`) teste les deux statuts.
 - **Reproduire** : `audit-dialogue-objets/06-quete-echouee-puis-terminee.ts` : `q-contrat-eau-du-fort : echouee → terminee ; PX 0 → 40 ; or 120 → 150`. Voir aussi `audit-exploration/e3-quete-echouee-puis-terminee.ts`.
 - **Gravité** : gênant. Bug, reproduit au niveau de la fonction. Aucune donnée actuelle ne le déclenche à coup sûr.
 - **Correction** : une ligne, `if (q.statut === 'terminee' || q.statut === 'echouee' || !def) return;`.
 
-**M18. Un secret à jet propre se retente trois fois par 24 h en changeant seulement de manière.**
+**M18. Un secret à jet propre se retente trois fois par 24 h en changeant seulement de manière.** · **corrigé le 18/11/2026** (clé `pnj:secret:<fait>` pour un secret à jet propre ; orateur choisi dans la compétence testée)
 - **Où** : `monde/dialogue.ts:136`, `:158` et `:182-184`.
 - **Ce qui se passe** : le délai est rangé sous la clé `pnj:manière:secret`, alors que le jet utilise la compétence et le DD du secret. Persuasion, intimidation puis tromperie donnent donc trois fois le même jet. De plus, l'orateur choisi est le meilleur du groupe dans la manière, pas dans la compétence testée.
 - **Reproduire** : `audit-dialogue-objets/04-secret-trois-manieres.ts` (Dîme, Anselme Roux, `f-pacte-du-meunier`) : `persuasion … 7 raté / intimidation … 2 raté / tromperie … 20 réussi`.
 - **Gravité** : gênant. Bug, reproduit.
 - **Correction** : quand le secret a son propre jet, utiliser la clé `pnj:secret`, et choisir l'orateur selon la compétence testée.
 
-**M19. Des services ne sont reconnus qu'à un mot de leur identifiant : trois services de la Tombe sont payés sans effet.**
+**M19. Des services ne sont reconnus qu'à un mot de leur identifiant : trois services de la Tombe sont payés sans effet.** · **corrigé le 18/11/2026** (champ `type` des services, repli par l'identifiant gardé, avis « sans effet en jeu », `type` posé sur les 3 services de la Tombe ; reste vrai : « fabrication » contient « abri » pour un service sans `type`)
 - **Où** : `modules/commerce.ts:33-35`. Le type d'un service est deviné par des expressions régulières sur l'identifiant (`/soin|…/`, `/chambre|dortoir|…|abri|refuge/`, `/identification/`).
 - **Ce qui se passe** : dans la Tombe, `identifier-elara` (15 po), `gite-fort` (« Chambres propres ») et `benediction-chapelain` (« soins légers ») sont payés sans rien faire. À l'inverse, « abri » reconnaît aussi « fabrication », et « soin » reconnaît « besoin ».
 - **Reproduire** : `audit-dialogue-objets/09-services-tombe.ts` : `identifier-elara : payé ; or 200 → 185 ; … anneau-griffe-croc identifié : false` / `gite-fort : payé ; or 200 → 198 ; heure 10 → 10 ; PV 1 → 1/32`.
@@ -218,7 +224,7 @@ En résumé, le noyau transactionnel et le combat sont solides : ni plantage ni 
 
 ### Validateur et parcours (les garde-fous des futurs épisodes)
 
-**M22. Le validateur accepte des mondes cassés.**
+**M22. Le validateur accepte des mondes cassés.** · **corrigé le 18/11/2026** (`debloquer` en erreur ; avis « lieu sans chemin de retour », « condition impossible » et verrou au-delà de DD 30 ; « quête sautable » évaluée sur la condition du passage ; aucun avis ni erreur nouveau sur les trois histoires publiées ; trois `debloquer` morts du jeu d'essai Val des Cendres retirés)
 - **Où** : `monde/validation.ts`, `monde/references.ts:37-53` et `monde/quete-sautable.ts:12-16, 51`.
 - **Ce qui se passe** :
   - `refsEffet` ne visite pas l'effet `debloquer` : une cible inexistante passe sans erreur.
@@ -234,7 +240,7 @@ En résumé, le noyau transactionnel et le combat sont solides : ni plantage ni 
   - Ajouter des contrôles statiques : bornes des jauges, `niveauGroupe`, DD au-delà de 30.
   - Évaluer la condition du passage sur un état où la quête n'est pas active pour décider s'il est vraiment protégé.
 
-**M23. Le parcours automatique confond 0 h-5 h avec le jour, et joue toujours un groupe de niveau 3 qui ne monte jamais.**
+**M23. Le parcours automatique confond 0 h-5 h avec le jour, et joue toujours un groupe de niveau 3 qui ne monte jamais.** · **corrigé le 18/11/2026** (clé par `momentDe`, groupe de test au niveau du monde avec ses `choix` ; mémoire ×1,4 à 1,96 sur la Marche, états ×1,4, durée ×1,8 à 1,9)
 - **Où** : `verification/parcours.ts:129`, `verification/enigmes.ts:41-45`, `parcours.ts:337` et `:433`.
 - **Ce qui se passe** :
   - La clé d'un état range 0 h-5 h en « jour », alors que le moteur y voit la nuit (`momentDe`, `monde/etat.ts:13`). Deux états qui n'offrent pas les mêmes choix passent pour identiques, et le second est jeté. La Marche a 2 conditions « nuit ».
@@ -321,14 +327,14 @@ En résumé, le noyau transactionnel et le combat sont solides : ni plantage ni 
 | S3 filet de sécurité, S5 sauvegarde abîmée | **en partie corrigés** au moment de l'audit : voir M3 (corrigé le 18/11/2026) |
 | S6 journal affiché non borné | toujours vrai, et il coûte aussi au moteur (§5) |
 | X1 à X5, X7 | corrigés (X7 : reste la vieille sauvegarde à 0 PV, L6) |
-| X6 repos long qui saute un jour | **en partie corrigé** : voir M12 |
+| X6 repos long qui saute un jour | corrigé le 18/11/2026 (M12) |
 | X8 fuite sans repli, X9 événement non unique ×10 | toujours vrais |
 | O1, O2, O3 | corrigés |
-| O4 service payé sans effet | corrigé pour les services reconnus, mais toujours vrai pour les autres : voir M19 |
+| O4 service payé sans effet | corrigé pour les services reconnus ; pour les autres, champ `type` et avis du validateur depuis le 18/11/2026 (M19) |
 | O5 objets magiques génériques | toujours vrai pour « Arme +1 » ; « Armure +1 » s'équipe désormais, mais mal (M21) |
 | O6 objet équipé invisible aux conditions `{objet}` | toujours vrai (`etat.ts:197`) |
 | Dialogues M1, M2, M4, M5 | corrigés |
-| Dialogues M3 délai par secret | corrigé, mais contourné en changeant de manière (M18) |
+| Dialogues M3 délai par secret | corrigé, et plus contourné en changeant de manière depuis le 18/11/2026 (M18) |
 | Combat : les 8 bugs du 11/11 | aucune régression |
 | F3 : `quete: active` ignore `prerequis` ; étape supprimée qui bloque une quête ; `recompensesDeQuete` additionne des branches exclusives ; `completion` insatisfiable non détectée | les quatre toujours vrais |
 | Migrations 1 → 4 | correctes : des sauvegardes v1, v2 et v3 fabriquées se rechargent et se jouent |

@@ -186,6 +186,26 @@ export function revoirMonde(dm: DonneesMonde, canon: Canon): Diagnostic[] {
     }
   }
 
+  const fichesDeSavoir = new Map(savoirsDe(dm).savoirs.map((x) => [x.pnj, x]));
+  // 4. Un fait de secret n'est détenu que par les PNJ que le canon autorise (leur fiche, leur fiche de savoir) : sinon le secret circule sans que
+  // l'auteur l'ait voulu (le secret d'Elara, relevé à la relecture de la Tombe du 18/11/2026).
+  for (const s of canon.secrets) {
+    if (!s.fait) continue;
+    for (const p of dm.pnj.values()) {
+      // Il le détient par un de ses `secrets`, ou par sa fiche de savoir (dossier `savoirs/`) : pas par sa simple liste `savoir`, que beaucoup de PNJ partagent.
+      const detient = p.secrets.some((x) => x.fait === s.fait) || (fichesDeSavoir.get(p.id)?.sait ?? []).some((x) => x.fait === s.fait);
+      if (!detient || autorise(s, { type: 'pnj', id: p.id }) || autorise(s, { type: 'savoirs', id: p.id })) continue;
+      res.push({
+        code: 'revue.fait-non-autorise',
+        gravite: 'avis',
+        message: `Canon : le PNJ « ${p.id} » détient le fait « ${s.fait} » (secret « ${s.id} »), que le canon ne lui autorise pas ; autorisez-le dans canon.json (« pnj:${p.id} ») ou retirez ce fait de sa fiche.`,
+        entite: { type: 'pnj', id: p.id },
+        source: 'revue',
+        donnees: { secret: s.id, fait: s.fait, mot: s.fait },
+      });
+    }
+  }
+
   res.push(...nomsInconnus(dm, canon, libres));
   return res;
 }

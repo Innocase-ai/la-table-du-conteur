@@ -23,7 +23,9 @@ describe("estimation de durée : la lecture compte", () => {
     expect(b.tours).toBe(a.tours); // même contenu
     expect(b.motsLus).toBeGreaterThan(a.motsLus + 3000 * court.lieux.size * RYTHME.lieuxVisites * 0.9);
     expect(b.heures.recit).toBeGreaterThan(a.heures.recit);
-    expect(b.heures.combats).toBe(a.heures.combats); // le temps de combat ne dépend pas des textes
+    // Le temps de combat ne dépend pas des textes. Seul le pas d'arrondi en dépend (quart d'heure sous 2 h au total, demi-heure au-delà, fiche C4
+    // du lot 1) : il peut déplacer l'arrondi d'un quart d'heure au plus.
+    expect(Math.abs(b.heures.combats - a.heures.combats)).toBeLessThanOrEqual(0.25);
   });
 
   it('compte les mots des arrivées pour la part des lieux que le groupe visite', () => {

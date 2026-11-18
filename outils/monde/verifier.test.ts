@@ -31,7 +31,7 @@ const rubrique = (b: BilanVerification, nom: string) => b.rubriques.find((x) => 
 describe('pnpm monde verifier : les rubriques', () => {
   it('rend les cinq rubriques du bilan, dans l\'ordre, et saute le parcours à la demande', () => {
     const b = verifierMonde('port-sillage', dossierEssai, dm, srd, { parcours: false });
-    expect(b.rubriques.map((x) => x.nom)).toEqual(['Validation', 'Complétude', 'Estimation', 'Revue de secrets', 'Parcours']);
+    expect(b.rubriques.map((x) => x.nom)).toEqual(['Validation', 'Défauts de jeu', 'Complétude', 'Estimation', 'Revue de secrets', 'Parcours']);
     expect(rubrique(b, 'Parcours')).toMatchObject({ statut: 'saute' });
     // Port-Sillage a un canon.json : la revue a eu lieu et surveille ses secrets.
     expect(rubrique(b, 'Revue de secrets').resume).toMatch(/^secrets du canon : \d+ \(\d+ avec mots tabou\) ; /);

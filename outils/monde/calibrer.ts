@@ -53,7 +53,8 @@ export function calibrer(texteExport: string, estimations: Map<string, Estimatio
       sessions: typeof o.sessions === 'number' ? o.sessions : 0,
       heuresEstimees: e.heures.total,
       toursEstimes: e.tours,
-      rapport: heures / e.heures.total,
+      // Une estimation à 0 h (un monde minuscule) ne doit pas donner un rapport infini : on la compte pour un quart d'heure.
+      rapport: heures / Math.max(e.heures.total, 0.25),
       secondesParAction: o.actions > 0 ? o.secondes / o.actions : undefined,
       // La lecture et les combats sont comptés à part dans l'estimation : on les retire du temps mesuré pour retrouver le temps par action.
       secondesParActionConseille: Math.max(1, Math.round((o.secondes - (e.motsLus / RYTHME.motsParMinute) * 60 - e.heures.combats * 3600) / Math.max(1, e.tours))),

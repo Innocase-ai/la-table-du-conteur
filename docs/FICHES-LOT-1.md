@@ -1,6 +1,6 @@
 # Fiches du lot 1 — corrections de fond du moteur et de l'outillage de création (18/11/2026)
 
-**Statut : proposition, rien n'est implémenté.** Les fiches reprennent le format de `docs/PRD-SAGA.md` (objectif, aujourd'hui, changements, critères d'acceptation, effort, risque). Elles sont à valider une par une avant tout code (P7).
+**Statut au 18/11/2026 : les quatre groupes sont implémentés, non commités (J1 à J6, C1 à C5). Restent ouverts : l'amélioration du parcours pour prouver les fins de la Tombe (J6, D4), la décision D7 (secret d'Elara) et la relecture du site (C4).** Les fiches reprennent le format de `docs/PRD-SAGA.md` (objectif, aujourd'hui, changements, critères d'acceptation, effort, risque). Elles sont à valider une par une avant tout code (P7).
 
 **Origine** : `docs/AUDIT-MOTEUR.md` (M12, M13, M17, M18, M19, M22, M23, rangs 6 à 10 du §7), `docs/AUDIT-CREATION-HISTOIRE.md` (rangs 7 à 10 du §5) et la relecture des textes de PNJ de la Tombe du 18/11/2026.
 
@@ -35,6 +35,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 
 ## J1 — Une nuit complète compte toujours pour l'horloge (M12)
 
+**Fait le 18/11/2026** (journal « suite 8 »). Écart avec la fiche : le seuil est « avant 8 h » (6 h et 7 h comprises) ; couché à 6 h, le réveil est à 14 h.
+
 - **Objectif :** que dormir à 1 h, à 6 h ou à 22 h ait le même effet sur l'horloge du monde et sur la fouille.
 - **Aujourd'hui :** `seReposer` (`monde/exploration.ts`) ne passe par `nouveauJour` que si le groupe se couche avant minuit. Couché entre 0 h et 5 h : la jauge « repos-long » de la Dîme et de la Tombe n'avance pas, et la fouille du jour reste consommée alors que le message dit « revenir après un repos ». Couché à 6 h ou 7 h : le groupe dort 25 ou 26 h. Seize haltes d'une heure suffisent pour atteindre minuit.
 - **Changements :** (a) appliquer les évolutions « repos-long » et les événements de repos à toute nuit complète ; (b) compter la fouille par repos plutôt que par jour civil ; (c) calculer le réveil à heure + 8 pour un coucher entre 6 h et 8 h.
@@ -46,6 +48,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 
 ## J2 — Deux corrections d'une ligne : quête échouée, secret retenté (M17, M18)
 
+**Fait le 18/11/2026** (journal « suite 6 », `tests/lot1-moteur.test.ts`). Écart avec la fiche : la clé du délai est `pnj:secret:<fait>` (et non `pnj:secret`), pour que rater un secret n'en ferme pas un autre du même PNJ.
+
 - **Objectif :** qu'une quête échouée ne verse plus de récompenses, et qu'un secret à jet propre ne se retente pas trois fois en changeant de manière.
 - **Aujourd'hui :** `terminerQuete` (`monde/etat.ts`) teste seulement `terminee`, alors que `echouerQuete` teste les deux statuts : une quête échouée peut être terminée et verse alors ses PX et son or (reproduit : `q-contrat-eau-du-fort`, PX 0 → 40, or 120 → 150). Dans `monde/dialogue.ts`, le délai d'un secret est rangé sous `pnj:manière:secret` alors que le jet est celui du secret : persuasion, intimidation puis tromperie donnent trois jets identiques (reproduit sur Anselme Roux, `f-pacte-du-meunier` : raté, raté, réussi). L'orateur est le meilleur du groupe dans la manière, pas dans la compétence testée.
 - **Changements :** (a) `terminerQuete` ignore aussi `echouee` ; (b) un secret qui a son propre jet utilise la clé `pnj:secret` et choisit l'orateur selon la compétence testée.
@@ -53,6 +57,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 - **Effort :** très petit. **Risque :** faible. M18 réduit le nombre de tentatives possibles : vérifier que la Dîme ne comptait pas dessus.
 
 ## J3 — Des services typés (M19)
+
+**Fait le 18/11/2026**, données de la Tombe comprises (décision D3). Écart avec la fiche : l'avis ne compte pas une `narration` comme un effet (les trois services de la Tombe en ont une) ; il signale donc aussi 7 services d'ambiance ou à promesse non tenue (voir le journal, « suite 6 »).
 
 - **Objectif :** qu'un service payé fasse toujours ce que son nom promet.
 - **Aujourd'hui :** `modules/commerce.ts` devine le type d'un service par des expressions régulières sur son identifiant (`SOINS`, `NUIT`, `IDENTIFICATION`). Dans la Tombe, `identifier-elara` (15 po), `gite-fort` (« Chambres propres ») et `benediction-chapelain` (« soins légers ») sont payés sans rien faire. À l'inverse, « abri » reconnaît « fabrication » et « soin » reconnaît « besoin ».
@@ -62,6 +68,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 
 ## J4 — Garde-fous du validateur pour les futurs épisodes (M22)
 
+**Fait le 18/11/2026** (groupe 4, journal « suite 9 »).
+
 - **Objectif :** que le validateur refuse ou signale les mondes cassés que les auteurs d'épisodes risquent d'écrire.
 - **Aujourd'hui :** `refsEffet` (`monde/references.ts`) ne visite pas `debloquer` : une cible inexistante passe. Un lieu sans retour (lien à sens unique vers un cul-de-sac) n'est pas signalé. Les conditions impossibles passent (jauge au-delà de son maximum, `et` contradictoire, `niveauGroupe` au-delà du maximum du monde, verrou DD 40 sans clé). « Quête sautable » (`monde/quete-sautable.ts`) ne fait que chercher le nom de la quête dans la condition. Les quatre vrais mondes n'ont aucune cible de `debloquer` cassée : le défaut est latent.
 - **Changements :** (a) `debloquer` entre dans `refsEffet` (**erreur** : une cible inexistante est toujours un défaut) ; (b) avis « lieu sans chemin de retour vers un lieu sûr » ; (c) avis pour les conditions statiquement impossibles ; (d) « quête sautable » évalue la condition du passage sur un état où la quête n'est pas active.
@@ -70,6 +78,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 
 ## J5 — Un parcours automatique fidèle au moteur (M23)
 
+**Fait le 18/11/2026**, mémoire et durée mesurées avant et après (journal « suite 8 ») : seuil « pas plus du double » tenu de justesse sur la Marche.
+
 - **Objectif :** que la preuve des fins ne se trompe plus ni sur la nuit ni sur le niveau du groupe.
 - **Aujourd'hui :** la clé d'un état de `verification/parcours.ts` range 0 h à 5 h en « jour », alors que `momentDe` (`monde/etat.ts`) y voit la nuit : deux états qui n'offrent pas les mêmes choix passent pour identiques et le second est jeté (la Marche a 2 conditions « nuit »). `groupeDeTest` (`verification/enigmes.ts`) crée toujours un groupe de niveau 3 sans choix : il ne monte jamais, quel que soit le niveau du monde.
 - **Changements :** (a) la clé d'état utilise `momentDe(e.heure)` ; (b) le groupe de test est construit avec `groupeConseille(niveau du monde)` et peut monter.
@@ -77,6 +87,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 - **Effort :** petit. **Risque :** moyen, côté mémoire seulement.
 
 ## J6 — Tombe : le niveau 3 ne doit plus s'atteindre dès le 5e pas (M13) — *à ne faire que sur décision*
+
+**Fait le 18/11/2026, D4 appliquée** (sens unique, texte `retour` corrigé dans le moteur, avis du validateur). **Critère non tenu : les 5 fins ne sont plus prouvées** par le parcours automatique de la Tombe (4 fins sur 5 non trouvées en 540 s ; le niveau 3 est atteint en 101 pas par les niveaux 1 et 2). L'utilisateur a accepté que `verifier` de la Tombe échoue jusqu'à une amélioration du parcours (journal « suite 8 »).
 
 - **Objectif :** que les niveaux 1 et 2 ne se sautent pas.
 - **Aujourd'hui :** le passage secret `n3-escalier-surface` ↔ `bivouac-entree` est à double sens avec un DD de Perception de 15, et la Perception passive du groupe conseillé vaut 16 : il est trouvé à l'arrivée au bivouac, sans jet. Le parcours atteint `fin-partage-honnete` en 72 pas. Au passage, le texte de découverte reprend `lien.description` (des marches « qui montent vers l'air libre ») au lieu de `retour`, quand on le découvre depuis l'autre côté.
@@ -90,6 +102,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 
 ## C1 — Les défauts de jeu font échouer `verifier` (G9, rang 7)
 
+**Fait le 18/11/2026** (groupe 4) : rubrique « Défauts de jeu » ; défauts de la Marche (D1) acceptés dans `revue.json` avec leur raison, pas corrigés (suite de l'histoire non écrite) ; la Dîme (quête sautable) et les faits hors canon des trois histoires acceptés de même.
+
 - **Objectif :** qu'une histoire qui a de vrais défauts de jeu ne puisse plus finir sur « Rien ne bloque ».
 - **Aujourd'hui :** seules les erreurs mettent `verifier` en échec (`outils/monde/verifier.ts`). La Marche est publiée avec 31 avis, dont deux vrais défauts de jeu (`flacon-de-toxine-x44` exigé par une quête mais introuvable, drapeau `z2-davor-neutralise` lu mais jamais posé), noyés parmi 13 avis « Richesse ».
 - **Changements :** trier les avis en deux familles. **Défauts de jeu** (objet exigé introuvable, drapeau jamais posé, quête sautable, lieu sans retour, et les contrôles de J4) : rubrique `Défauts de jeu` de `verifier`, en échec pour un monde publié. **Conseils d'écriture** (richesse, longueurs) : ils restent des avis.
@@ -99,6 +113,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 
 ## C2 — Le `lieu` d'une quête : une règle, un avis, des données justes (G7, rang 8)
 
+**Fait le 18/11/2026** : documentation, avis (règle stricte : le lieu du donneur ou l'une de ses présences) et données des **18** quêtes (les 14 de D2 et les 4 de la Dîme, décision de l'utilisateur).
+
 - **Objectif :** que le parchemin d'une quête annonce d'où elle vient, pas où elle mène.
 - **Aujourd'hui :** `Quete.lieu` n'est documenté nulle part, mais le jeu l'affiche (« Confiée par X, métier — lieu de la quête »). Dans la Marche, 4 quêtes ont pour `lieu` celui de l'objectif (exemple : `q-la-prime-sur-demi-dent`) ; dans la Tombe, 10 quêtes sur 15 ont un `lieu` qui n'est pas celui du donneur (exemple : `q-tombe-des-rois-serpents`, donneur au bivouac, `lieu` au fort ; et depuis le découpage du Fort, `q-contrat-eau-du-fort` annonce la cour alors que le donneur est à l'auberge).
 - **Changements :** (a) documenter `Quete.lieu` comme « le lieu où la quête est confiée » (`docs/MONDES.md`, skill `creer-intrigue`) ; (b) avis quand il diffère du lieu, ou d'une présence, du donneur ; (c) **données** : corriger les 14 quêtes concernées (décision D2).
@@ -106,6 +122,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 - **Effort :** petit pour le code, moyen pour les données (14 quêtes, chacune relue). **Risque :** faible ; texte visible par le joueur, donc relu avec vous.
 
 ## C3 — Un CLI qui ne ment pas (O1 à O5, rang 9)
+
+**Fait le 18/11/2026** (journal « suite 7 »), O6 à O9 comprises.
 
 - **Objectif :** que `pnpm monde` ne dise jamais « tout va bien » quand on a mal tapé ou quand un fichier est cassé.
 - **Aujourd'hui :** une commande inconnue (`verifie`, `manquee`) lance la validation en code 0 ; `verifier` plante sur un `estimation.json`, `manifeste.json` ou `revue.json` mal formé ; `--sans-parcours` finit sur « ✅ Rien ne bloque » sans avoir joué aucune fin ; la revue de secrets passe en ✅ avec un canon vide ; le squelette de `nouveau` ne valide pas et fait sortir `pnpm monde valider` en code 1 tant qu'il existe.
@@ -115,6 +133,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 
 ## C4 — La Forge, l'estimation et le PRD à l'échelle d'un épisode (G8, S8, S6, C1 ; rang 10)
 
+**Fait le 18/11/2026** (journal « suite 7 »), sauf le site : `outils/site/contenu.json` reste à relire avec l'utilisateur (durées et coûts changés).
+
 - **Objectif :** que les outils produisent et mesurent un épisode court sans fausser les chiffres.
 - **Aujourd'hui :** l'importateur de la Forge écrit des journaux de quête qui nomment le lieu (« Rendez-vous à X. ») et qui n'entrent pas dans le brief d'écriture. L'estimation arrondit le total à l'heure alors que ses parties le sont à la demi-heure (le Médaillon affiche récit 1, combats 0,5, total 1) ; sous 0,5 h le total vaut 0 et `calibrer` diviserait par zéro ; les fiches `savoirs/`, `codex/` et `interjections/` ne comptent ni dans les tours ni dans le coût. Le PRD (F3) demande un `lieu` d'étape, contre la règle du 16/11. Trois cibles différentes pour la longueur des arrivées.
 - **Changements :** (a) importateur : textes d'étape en `À écrire : ce que le joueur cherche (sans nommer le lieu)`, qui entrent dans le brief ; (b) estimation : total arrondi à la demi-heure (au quart d'heure sous 2 h), garde contre la division par zéro dans `calibrer.ts`, tours de conteur pour chaque PNJ qui a une fiche de savoir ; (c) amender F3 du PRD (« lieu d'étape seulement si l'auteur le demande ») ; (d) aligner les trois cibles de longueur d'arrivée sur la décision D6.
@@ -122,6 +142,8 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 - **Effort :** petit. **Risque :** faible, mais les durées et coûts affichés au joueur changent : à relire.
 
 ## C5 — Des contrôles pour les défauts de texte de PNJ trouvés le 18/11 (nouveau)
+
+**Fait le 18/11/2026** (groupe 4). Écart avec la fiche : (e) regarde les `secrets` du PNJ et sa fiche de savoir (pas sa simple liste `savoir`) ; sur la Tombe il remonte deux PNJ pour le même fait (Elara et frère Balthazar), et sur la Marche et la Dîme 3 et 7 PNJ : acceptés dans `revue.json` avec raison.
 
 - **Objectif :** que les défauts de la relecture de la Tombe soient détectés avant publication, pas à la main.
 - **Aujourd'hui :** aucun contrôle ne voit ces cinq défauts réels : un renvoi « demandez à X » vers un personnage qui n'a pas de sujet là-dessus ; une interjection de compagnon qui en nomme un autre sans condition de présence ; une variante hostile sur un sujet fermé aux hostiles (texte mort) ; un drapeau lu qui diffère d'un seul caractère d'un drapeau posé (`mireille-recrute` / `mireille-recruite`) ; un PNJ qui détient un fait que `canon.json` ne lui autorise pas (le secret d'Elara). Le test `tombe-textes-pnj.test.ts` les garde sur la Tombe seule.

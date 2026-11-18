@@ -54,7 +54,9 @@ export function Revue({ lu, dm, diag: _diag, recharger }: { lu: MondeLu; dm: Don
     }
   };
   const sauverCanon = (c: unknown) => ecrireDocument({ monde: lu.id, nom: 'canon', contenu: c, empreinteAttendue: lu.canon?.empreinte ?? null });
-  const sauverRevue = (r: string[]) => ecrireDocument({ monde: lu.id, nom: 'revue', contenu: { rejets: r }, empreinteAttendue: lu.revue?.empreinte ?? null });
+  // Les raisons déjà écrites (défauts acceptés à la main dans revue.json) sont gardées : l'atelier ne réécrit que la liste des rejets.
+  const raisons = RevueDoc.safeParse(lu.revue?.contenu ?? {}).success ? RevueDoc.parse(lu.revue?.contenu ?? {}).raisons : {};
+  const sauverRevue = (r: string[]) => ecrireDocument({ monde: lu.id, nom: 'revue', contenu: { rejets: r, ...(Object.keys(raisons).length ? { raisons } : {}) }, empreinteAttendue: lu.revue?.empreinte ?? null });
 
   const rejeter = (d: Diagnostic) => agir(() => sauverRevue([...rejets, cleDeRevue(d)]), 'Alerte rejetée (revue.json).');
   const retablir = (d: Diagnostic) => agir(() => sauverRevue(rejets.filter((k) => k !== cleDeRevue(d))), 'Alerte rétablie.');

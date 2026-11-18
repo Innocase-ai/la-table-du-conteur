@@ -29,8 +29,9 @@ describe('échafaudage d\'un monde', () => {
     expect(r.ok).toBe(true);
     if (r.ok) {
       expect(r.monde.monde.statut).toBe('brouillon');
-      // Le monde vide n'est pas jouable : le validateur le dit (lieu de départ inconnu).
-      expect(validerMonde(r.monde, chargerDonneesSrd()).erreurs.join('\n')).toMatch(/lieu inconnu « ile-aux-brumes-hub »/);
+      // Depuis le lot 1 (O5 de l'audit du 18/11/2026), le squelette est valide : un lieu de départ et sa région existent, leurs textes sont des « À écrire ».
+      expect(validerMonde(r.monde, chargerDonneesSrd()).erreurs).toEqual([]);
+      expect(r.monde.lieux.get('ile-aux-brumes-hub')?.parent).toBe('ile-aux-brumes');
     }
   });
 

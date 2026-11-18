@@ -6,6 +6,7 @@
 //     joueur peut y aller sans l'avoir prise.
 //  2. Un sujet de PNJ (effet `debloquer`) ouvre un passage protégé par la quête sans la démarrer : `debloquer` contourne la condition
 //     du passage, la protection ne vaut alors plus rien.
+import { ouvrableSansQuete } from './garde-fous';
 import { refsCondition } from './references';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
 
@@ -28,7 +29,10 @@ export function lieuxObjectif(dm: DonneesMonde, quete: string): Set<string> {
   return res;
 }
 
-/** Les lieux joignables depuis le départ sans quête active : on ignore les passages dont la condition nomme la quête. */
+/** Une condition protège le passage si elle ne peut pas être vraie quand la quête n'est pas active (`{ non: quête active }` ou un `ou` qu'un drapeau ouvre ne protègent rien : audit du 18/11/2026, M22). */
+const protege = (c: Condition | undefined, quete: string): boolean => !!c && !ouvrableSansQuete(c, quete);
+
+/** Les lieux joignables depuis le départ sans quête active : on ignore les passages que la condition protège. */
 function joignablesSans(dm: DonneesMonde, quete: string): Set<string> {
   const depart = dm.monde.depart.lieu;
   const vus = new Set<string>([depart]);
@@ -48,8 +52,8 @@ function joignablesSans(dm: DonneesMonde, quete: string): Set<string> {
     const suivants: string[] = [];
     if (ici?.parent) suivants.push(ici.parent);
     for (const e of dm.lieux.values()) if (e.parent === a && !fermeParLiens(e.id)) suivants.push(e.id);
-    for (const l of ici?.liens ?? []) if (!nomme(l.condition, quete)) suivants.push(l.vers);
-    for (const o of dm.lieux.values()) for (const l of o.liens) if (l.vers === a && l.sens === 'double' && !nomme(l.condition, quete)) suivants.push(o.id);
+    for (const l of ici?.liens ?? []) if (!protege(l.condition, quete)) suivants.push(l.vers);
+    for (const o of dm.lieux.values()) for (const l of o.liens) if (l.vers === a && l.sens === 'double' && !protege(l.condition, quete)) suivants.push(o.id);
     for (const s of suivants) if (!vus.has(s) && dm.lieux.has(s)) (vus.add(s), file.push(s));
   }
   return vus;

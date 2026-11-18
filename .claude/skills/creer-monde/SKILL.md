@@ -188,7 +188,7 @@ Ses conseils de recette signalent les pièces vides, les quêtes injouables, les
    - `RAPPORT-FORGE.md` (devinettes, écarts) ;
    - `BRIEF-ECRITURE.md`, le brief des agents d'écriture, qui liste chaque champ à écrire avec son chemin.
 
-   Le convertisseur ne met pas de `lieu` sur les étapes. Par contre, il écrit des étapes de journal qui nomment le lieu (« Rendez-vous à … ») : à réécrire comme le reste.
+   Le convertisseur ne met pas de `lieu` sur les étapes. Depuis le 18/11/2026, ses étapes de but (rejoindre un lieu, vaincre, trouver, libérer, apporter) sont des champs « À écrire : ce que le joueur cherche à cette étape (… ne nommez pas ce lieu) » : ils entrent dans le brief d'écriture et `pnpm monde manque` les compte tant qu'ils restent. L'étape de retour au donneur (« Retournez voir X. ») est gardée.
 3. **Sans la Forge** : `pnpm monde nouveau <id> "<Nom>"` crée `packages/mondes/<id>/` avec :
    - `monde.json` en brouillon ;
    - `BIBLE.md` et `GUIDE-ZONE.md` modèles ;

@@ -10,6 +10,8 @@ Aucun fichier du dépôt n'a été modifié (ce rapport mis à part), rien n'a �
 
 **Corrigés le 18/11/2026 (accord de l'utilisateur : « rangs 1 à 4 »)** : rangs 1 à 4 du §5, soit S1, S2 (en partie), G1 à G6. Tests : `outils/monde/audit-creation-histoire.test.ts` (15 tests, dont 14 qui échouaient avant la correction) ; installateur essayé sur une copie dans un dossier temporaire (le dépôt n'a pas de test Python ; essai décrit dans `docs/JOURNAL.md`). **Corrigés le 18/11/2026 (accord de l'utilisateur : « go pour les rangs 5 et 6 »)** : rangs 5 et 6, soit S3, S4, S5 et C4 à C7, plus une partie de C8 (influence, ce que lit le joueur, longueur des descriptions, accents des contenants, `decouverte`). La ligne `CLAUDE.md:71` reste à aligner : le texte proposé est dans `docs/JOURNAL.md`. Les autres constats restent à faire.
 
+**Corrigés le 18/11/2026 (lot 1, groupe 2, `docs/FICHES-LOT-1.md`)** : O1 à O9 (fiche C3 : commande inconnue refusée, options strictes, fichiers JSON mal formés rapportés, `--sans-parcours` et canon vide dits, squelette de `nouveau` valide, `doc` en code 1, conseil `--ms`, « 0 fin » en avis), G8, S6, S8, C1 (fiche C4), et le code de G7 (fiche C2). Tests : `outils/monde/lot1-cli.test.ts` (17), `outils/monde/lot1-forge.test.ts` (5), `packages/regles/tests/lot1-creation.test.ts` (7). Restent : O10 à O12, G9 (fiche C1, groupe 4) et les données de G7.
+
 **Ce qui n'est pas repris.** `docs/AUDIT-MOTEUR.md` (moteur de jeu) n'est pas refait. Ses constats M22 (`debloquer`, lieux sans retour, conditions impossibles, quête sautable approximative), M23 (clé de nuit et groupe de test du parcours) et §5 (mémoire du parcours) restent valables ; ils ne sont pas répétés ici. `docs/AUDIT-MOTEUR-HISTOIRE.md`, un plan d'écriture plus ancien, n'est pas non plus repris.
 
 **Méthode.**
@@ -96,7 +98,7 @@ Aucun fichier du dépôt n'a été modifié (ce rapport mis à part), rien n'a �
 - **Reproduire** : le monde d'essai importé compte **34** « À écrire » dans ses lieux et PNJ. `verifierMonde(…, { parcours: false })` donne `Validation 0 erreur, 30 avis`, et aucune rubrique ne les nomme. Ici, la complétude échoue pour d'autres raisons : sans scène d'ouverture ni images, un monde reste bloqué. Un monde qui aurait ses images et ses scènes passerait donc, avec ses « À écrire ».
 - **Correction** : une rubrique `textes` de `manque`, « N champs encore à écrire », avec la liste (chemin, id). C'est un manque bloquant dès que le monde est publié ou qu'on lance `verifier`.
 
-### G7. Le `lieu` d'une quête s'affiche sur le parchemin, sans règle ni documentation · gênant · lu et mesuré
+### G7. Le `lieu` d'une quête s'affiche sur le parchemin, sans règle ni documentation · gênant · lu et mesuré · **corrigé le 18/11/2026** (lot 1 : `Quete.lieu` documenté, avis « pas le lieu du donneur », et les données des 18 quêtes : Marche 4, Dîme 4, Tombe 10)
 - **Où** : `Quete.lieu` (`schemas.ts`, quêtes) n'est documenté ni dans `docs/MONDES.md` ni dans un skill : `creer-intrigue:24` ne parle que du `lieu` d'une **étape**. Le jeu l'affiche pourtant (`apps/jeu/src/quete-regles.ts:70-72`) : « Confiée par **<PNJ>, <métier> — <lieu de la quête>** » (`aventure/EcranQuete.tsx:63-67`).
 - **Ce qui se passe** :
   - Dans la Marche, 4 quêtes ont pour `lieu` celui de l'**objectif**, pas celui du donneur. Exemple : `q-la-prime-sur-demi-dent` → `ald-carriere-huttes-et-poste-de-commandement`, alors que le donneur est à l'auberge. Le parchemin annonce donc la destination, contre la règle du 16/11.
@@ -108,13 +110,13 @@ Aucun fichier du dépôt n'a été modifié (ce rapport mis à part), rien n'a �
   - Donner un avis quand il diffère du lieu (ou d'une présence) du donneur.
   - Les données de la Marche et de la Tombe sont à corriger à part (hors de cet audit).
 
-### G8. L'importateur de la Forge écrit des journaux de quête qui nomment le lieu · gênant · reproduit
+### G8. L'importateur de la Forge écrit des journaux de quête qui nomment le lieu · gênant · reproduit · **corrigé le 18/11/2026** (lot 1, groupe 2 : textes d’étape « À écrire … ne nommez pas ce lieu », dans le brief)
 - **Où** : `outils/monde/importer-forge.ts:486`, `texte: \`Rendez-vous à ${nom(l)}.\``. Viennent ensuite « Vainquez Goule des cryptes. » et « Trouvez Médaillon de sainte Odile. » (l. 499, 528), sans article. Ces textes ne commencent pas par « À écrire », donc ils **ne figurent pas dans l'inventaire du brief** (`inventaireAEcrire`, l. 718-732), et l'agent d'écriture ne les reprend pas.
 - **Ce qui se passe** : l'option `reperes` retire bien le `lieu` des étapes (l. 580), mais le texte du journal dit encore « Rendez-vous à Ruines de la chapelle brûlée. ». C'est contraire à `creer-intrigue:24` (« le journal ne nomme un lieu que si un PNJ l'a dit »). Le Médaillon a été réécrit à la main pour cette raison (journal du 16/11, suite 9).
 - **Reproduire** : sur le monde d'essai, les 7 étapes importées, dont `le-medaillon-vole/aller-ruines-de-la-chapelle-brulee: « Rendez-vous à Ruines de la chapelle brûlée. »`.
 - **Correction** : écrire `À écrire : ce que le joueur cherche à cette étape (sans nommer <lieu>)`. Ces champs entrent alors dans le brief.
 
-### G9. Toutes les règles de forme sont des avis : rien ne fait échouer `verifier` · gênant · lu
+### G9. Toutes les règles de forme sont des avis : rien ne fait échouer `verifier` · gênant · lu · **corrigé le 18/11/2026** (rubrique « Défauts de jeu » de `verifier` ; défauts acceptés dans `revue.json` avec leur raison)
 - **Où** : `outils/monde/verifier.ts:80`. Seul `diag.erreurs` met la validation en échec. Les avis du validateur, nombreux, ne bloquent jamais : textes secs, quête sautable, sans retour au donneur, « Richesse »…
 - **Ce qui se passe** : la Marche est publiée avec 30 avis. Parmi eux, deux sont de vrais défauts de jeu : `flacon-de-toxine-x44` est exigé par une quête mais ne se trouve nulle part, et le drapeau `z2-davor-neutralise` est lu mais jamais posé. Ils se trouvent noyés parmi 13 avis « Richesse », et `verifier` dit « Rien ne bloque ».
 - **Correction** : trier les avis en deux familles.
@@ -177,7 +179,7 @@ Aucun fichier du dépôt n'a été modifié (ce rapport mis à part), rien n'a �
   - Ce sous-agent ne sait pas contrôler ce qui a cassé dans la Tombe : un PNJ cité au mauvais endroit, des titres qui trahissent, trop de PNJ dans un lieu.
 - **Correction** : réécrire l'auditeur pour un épisode (sources : `BIBLE.md`, `LIEUX.md`, `canon.json`, les données). Lui donner pour contrôles explicites G1 à G3, le chemin le plus court et les règles du 16/11. Aligner `CLAUDE.md:71`. Ranger `auditer-coherence-monde` avec les skills d'Ombresang.
 
-### S6. Le PRD-SAGA contredit la règle du 16/11 · gênant · lu
+### S6. Le PRD-SAGA contredit la règle du 16/11 · gênant · lu · **corrigé le 18/11/2026** (F3 de `PRD-SAGA.md` amendée)
 - **Où** : `docs/PRD-SAGA.md:55`, fiche F3 : « chaque quête a un `lieu` d'étape ». Or `CLAUDE.md:58` et `creer-intrigue:24` disent : « aucun `lieu` sur les étapes de quête par défaut ».
 - **Risque** : qui implémentera F3 en suivant le PRD remettra les marqueurs.
 - **Correction** : amender F3 (« lieu d'étape seulement si l'auteur le demande ; le validateur avertit d'un `lieu` d'étape »).
@@ -187,7 +189,7 @@ Aucun fichier du dépôt n'a été modifié (ce rapport mis à part), rien n'a �
 - **Le parcours, la revue de secrets, l'audit des énigmes, `manque` et `estimer`** servent tels quels.
 - **F1** (`chercherPiege`), **F2** (densité), **F3** (grammaire validée), **F4** (plafond au tirage) et **F8** (`commun:lieux`) ne sont pas implémentées. Conclusion : on peut écrire un épisode pilote **à la main**, comme le Médaillon, mais rien ne garantit qu'il tienne le cap.
 
-### S8. L'estimation est imprécise à l'échelle d'un épisode · gênant · reproduit (données) et lu
+### S8. L'estimation est imprécise à l'échelle d'un épisode · gênant · reproduit (données) et lu · **corrigé le 18/11/2026** (total = somme des parties, demi-heure ou quart d’heure sous 2 h ; garde de `calibrer` ; tours de conteur des fiches de savoir)
 - **Où** : `monde/estimation.ts:139`, `total: Math.round(recit + enCombat)` : le total est arrondi à l'heure, tandis que récit et combats le sont à la demi-heure.
 - **Ce qui se passe** :
   - Le Médaillon affiche `recit 1`, `combats 0.5`, `total 1` (`estimation.json`). Le total n'est pas la somme de ses parties, et l'écart de l'arrondi atteint 50 % pour un épisode d'une à deux heures.
@@ -199,7 +201,7 @@ Aucun fichier du dépôt n'a été modifié (ce rapport mis à part), rien n'a �
 
 ## 3. Cohérence entre skills, documents et code
 
-### C1. Trois cibles différentes pour le récit d'arrivée · cosmétique · lu
+### C1. Trois cibles différentes pour le récit d'arrivée · cosmétique · lu · **corrigé le 18/11/2026** (130 à 170 partout ; l’avis « hors de » passe de 40-220 à 40-200 mots)
 - `schemas.ts:502` : « 60 à 150 mots ». `validation.ts:48` : « la cible est de 60 à 150 mots ». Le code, lui, avertit hors de 40 à 220 et sous 110.
 - `docs/MONDES.md:39`, `creer-monde/references/textes-en-serie.md:13`, `decrire-lieux/references/brief-agent-lieu.md:29`, `importer-forge.ts:699` et l'assistant de l'atelier : 130 à 170.
 - `creer-monde/SKILL.md:63` : « lis `schemas.ts` (le schéma qui fait foi) » : un agent qui suit cette consigne lit 60-150.
@@ -253,6 +255,8 @@ Un constat de la relecture déléguée a été écarté après vérification : �
 
 ## 4. Fiabilité des outils
 
+*O1 à O9 : corrigés le 18/11/2026 (lot 1, groupe 2). O10 à O12 restent à faire.*
+
 | # | Constat | Où | Reproduire | Gravité | Correction |
 |---|---|---|---|---|---|
 | O1 | **Une commande inconnue lance la validation**, code 0 : `pnpm monde verifie <monde>` ou `manquee` font croire qu'on a vérifié | `outils/monde/cli.ts:216-231` | `pnpm monde frobnicate tombe-des-rois-serpents` affiche le bilan de `valider`, code 0 | gênant | refuser une commande inconnue (liste des commandes, code 1) |
@@ -284,10 +288,10 @@ Hors de ce tableau, déjà dans `AUDIT-MOTEUR.md` §5 : la mémoire du parcours 
 | 4 | ✅ 18/11 (réplique : en partie) · **Contrôles de lieu et de PNJ** : plus de 6 PNJ dans un lieu, titre ou nom qui trahit (parenthèses, « compagnon »), réplique qui cite un lieu où le PNJ n'est jamais | G1, G2, G3 | moyen | non |
 | 5 | ✅ 18/11 · **`creer-monde` réécrit** autour du chemin « épisode » (Forge, V1 à V8 adaptés, règles du 16/11, réglages `signesDeQuete` et `orMax`, longueurs, bibliothèque commune, Haiku pour les textes) ; Ombresang retiré ; « par chapitre » → « par épisode » dans les skills d'appui ; `GUIDE-ZONE.modele.md` à 4 sujets ; une seule longueur de réponse (75-115) | S3, S4, C4 à C7 | moyen (texte) | non |
 | 6 | ✅ 18/11 (sauf `CLAUDE.md:71`) · **Auditeur de cohérence d'épisode** à la place de l'auditeur d'Ombresang, avec G1 à G3 et le chemin le plus court comme contrôles ; `CLAUDE.md:71` aligné | S5 | petit (texte) | non |
-| 7 | **Avis classés** : les défauts de jeu (objet exigé introuvable, drapeau jamais posé, quête sautable, sans retour) passent en échec de `verifier` pour un monde publié | G9 | petit | non |
-| 8 | **`Quete.lieu` documenté** (« où la quête est confiée ») avec un avis quand il diffère du lieu du donneur ; puis correction des données de la Marche (4 quêtes) et de la Tombe (10) | G7 | petit | non (données à part) |
-| 9 | **CLI fiable** : commande inconnue refusée, fichiers JSON mal formés rapportés au lieu de planter, `--sans-parcours` et canon vide dits comme tels, squelette de `nouveau` valide | O1 à O5 | petit | non |
-| 10 | **Importateur de la Forge et estimation à l'échelle d'un épisode** : textes d'étape en « À écrire » sans nom de lieu ; total arrondi à la demi-heure ; savoirs comptés dans le coût ; PRD F3 amendé ; commentaires de longueur alignés | G8, S8, S6, C1 | petit | non |
+| 7 | ✅ 18/11 · **Avis classés** : les défauts de jeu (objet exigé introuvable, drapeau jamais posé, quête sautable, sans retour) passent en échec de `verifier` pour un monde publié | G9 | petit | non |
+| 8 | ✅ 18/11 · **`Quete.lieu` documenté** (« où la quête est confiée ») avec un avis quand il diffère du lieu du donneur ; puis correction des données de la Marche (4 quêtes) et de la Tombe (10) | G7 | petit | non (données à part) |
+| 9 | ✅ 18/11 · **CLI fiable** : commande inconnue refusée, fichiers JSON mal formés rapportés au lieu de planter, `--sans-parcours` et canon vide dits comme tels, squelette de `nouveau` valide | O1 à O5 | petit | non |
+| 10 | ✅ 18/11 · **Importateur de la Forge et estimation à l'échelle d'un épisode** : textes d'étape en « À écrire » sans nom de lieu ; total arrondi à la demi-heure ; savoirs comptés dans le coût ; PRD F3 amendé ; commentaires de longueur alignés | G8, S8, S6, C1 | petit | non |
 
 Aucune de ces corrections ne touche `packages/regles/src/combat/` ni l'état d'une partie (P3, P4). Elles sont toutes additives au sens de P1 : un monde sans le profil « épisode » garde ses avis actuels.
 

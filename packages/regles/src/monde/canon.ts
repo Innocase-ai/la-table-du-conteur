@@ -29,7 +29,8 @@ export const Canon = z.object({
 export type Canon = z.infer<typeof Canon>;
 
 /** Les décisions de revue : une clé par alerte jugée sans objet (voir `cleDeRevue`). */
-export const Revue = z.object({ rejets: z.array(z.string()).default([]) });
+// `rejets` : les clés des alertes et des avis jugés sans objet, ou des défauts acceptés ; `raisons` (facultatif) : pourquoi, une phrase par clé.
+export const Revue = z.object({ rejets: z.array(z.string()).default([]), raisons: z.record(z.string(), z.string()).default({}) });
 export type Revue = z.infer<typeof Revue>;
 
 export const CANON_VIDE: Canon = { secrets: [], noms: { lexique: [] }, personnages: [] };

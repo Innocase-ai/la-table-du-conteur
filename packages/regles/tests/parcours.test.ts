@@ -91,7 +91,7 @@ describe('explorer les parcours', () => {
     expect(p.etapes.length).toBeLessThan(10);
     // Rejouer les ordres depuis le début mène à la même fin.
     const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);
-    const r = rejouer(moteur, groupeDeTest(srd), p.graine, p.niveau, p.etapes.map((e) => e.ordre));
+    const r = rejouer(moteur, groupeDeTest(srd, p.niveau), p.graine, p.niveau, p.etapes.map((e) => e.ordre));
     expect(r.refus).toBeUndefined();
     expect(r.partie.etat.fin).toBe('fin-paix');
   });
@@ -171,7 +171,7 @@ describe.skipIf(!process.env['PARCOURS_LENTS'])('les mondes réels', () => {
     for (const fin of fins) {
       const p = rap.parcours.find((x) => x.fin === fin);
       expect(p, `fin « ${fin} » non atteinte`).toBeDefined();
-      const r = rejouer(moteur, groupeDeTest(srd), p!.graine, p!.niveau, p!.etapes.map((e) => e.ordre));
+      const r = rejouer(moteur, groupeDeTest(srd, p!.niveau), p!.graine, p!.niveau, p!.etapes.map((e) => e.ordre));
       expect(r.refus, `rejeu de « ${fin} »`).toBeUndefined();
       expect(r.partie.etat.fin, `rejeu de « ${fin} »`).toBe(fin);
     }

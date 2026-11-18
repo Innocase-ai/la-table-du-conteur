@@ -7,7 +7,7 @@ description: Vérifier ce qui MANQUE dans une histoire de « La Table du Conteur
 
 Le validateur (`pnpm monde valider`) dit si ce qui **existe** est juste. Ce skill cherche ce qui **n'existe pas encore** : le joueur le voit tout de suite (tuile vide, icône par défaut, carte en anneau de pastilles, voix de synthèse). Un monde peut valider à 0 erreur et rester à moitié nu.
 
-> **Le bilan complet en une commande** : `pnpm monde verifier <monde>` enchaîne la validation, cette complétude (`manque`), l'estimation à jour, la revue de secrets du `canon.json` et la preuve des fins (`--sans-parcours` pour aller vite). Les rubriques ci-dessous restent celles de `manque`.
+> **Le bilan complet en une commande** : `pnpm monde verifier <monde>` enchaîne la validation (erreurs et conseils d'écriture), les **défauts de jeu** (objet ou fait introuvable, drapeau jamais posé, quête sautable, lieu sans retour, condition impossible, texte mort, fait hors canon : ils font échouer un monde publié, sauf s'ils sont acceptés dans `revue.json` avec leur raison), cette complétude (`manque`), l'estimation à jour, la revue de secrets du `canon.json` et la preuve des fins (`--sans-parcours` pour aller vite). Les rubriques ci-dessous restent celles de `manque`.
 
 ## Étape 1 : la commande (automatique, gratuite)
 

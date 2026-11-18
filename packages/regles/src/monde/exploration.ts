@@ -415,7 +415,8 @@ function cachettes(p: PartieMonde, lieu: string): { cle: string; dd: number; com
   const res: ReturnType<typeof cachettes> = [];
   for (const { sortie: s, lien } of passages(p, lieu)) {
     if (!s.cache || !lien?.cache) continue;
-    res.push({ cle: s.cle, dd: lien.cache.dd, competence: lien.cache.competence, libelle: `un passage caché vers ${s.nom}${lien.description ? ` (${lien.description})` : ''}`, reveler: () => ex.decouverts.push(s.cle) });
+    // `s.description` : le texte vu d'ici, `retour` quand le lien est déclaré de l'autre côté (audit du 18/11/2026, M13).
+    res.push({ cle: s.cle, dd: lien.cache.dd, competence: lien.cache.competence, libelle: `un passage caché vers ${s.nom}${s.description ? ` (${s.description})` : ''}`, reveler: () => ex.decouverts.push(s.cle) });
   }
   for (const t of p.dm.tresors.values()) {
     const cle = `tresor:${t.id}`;
@@ -601,6 +602,17 @@ function nouveauJour(p: PartieMonde, r: CompteRendu, repos: boolean): void {
   consommerVivres(p, r);
   for (const j of p.dm.jauges.values()) for (const ev of j.evolution) if ((repos && ev.declencheur === 'repos-long') || ev.declencheur === 'jour') changerJauge(p, r, j.id, ev.delta);
   for (const ev of p.dm.evenements.values()) if (((repos && ev.declencheur === 'repos') || ev.declencheur === 'jour') && (!ev.lieu || ev.lieu === p.etat.lieu) && jouable(p, ev.id, ev.unique, ev.condition)) jouerEvenement(p, r, ev.id);
+}
+
+/**
+ * Une nuit complète dormie sans passer minuit (couché entre minuit et 8 h) : le jour civil ne change pas, mais la nuit compte comme
+ * un repos long. Les jauges « repos-long » avancent, les événements de repos se jouent, et la fouille du jour se rouvre (elle se compte
+ * par repos, pas par jour civil). Les évolutions « jour » ont eu lieu à minuit : on ne les rejoue pas (audit du 18/11/2026, M12).
+ */
+function nuitSansMinuit(p: PartieMonde, r: CompteRendu): void {
+  p.etat.exploration.fouilles = p.etat.exploration.fouilles.filter((f) => !f.endsWith(`:${p.etat.jour}`));
+  for (const j of p.dm.jauges.values()) for (const ev of j.evolution) if (ev.declencheur === 'repos-long') changerJauge(p, r, j.id, ev.delta);
+  for (const ev of p.dm.evenements.values()) if (ev.declencheur === 'repos' && (!ev.lieu || ev.lieu === p.etat.lieu) && jouable(p, ev.id, ev.unique, ev.condition)) jouerEvenement(p, r, ev.id);
 }
 
 // ---------------------------------------------------------------------------
@@ -1045,10 +1057,10 @@ export function seReposer(p: PartieMonde, duree: 'court' | 'long', options: { ab
       if (changes.length) r.constats.push(`${a.nom} récupère : ${changes.join(', ')}.`);
     }
   };
-  // Couché de jour ou le soir, le groupe se lève le lendemain à 8 h ; couché en pleine nuit, après minuit (la journée a déjà
-  // changé), il dort ses 8 heures et se lève le même jour : dormir à 2 h ne fait plus sauter une journée entière.
+  // Couché de jour ou le soir, le groupe se lève le lendemain à 8 h ; couché entre minuit et 8 h (la journée a déjà changé, ou le matin
+  // commence), il dort ses 8 heures et se lève le même jour : dormir à 2 h, à 6 h ou à 7 h ne fait plus sauter une journée entière.
   const heure = p.etat.heure ?? 8;
-  const apresMinuit = heure < 6;
+  const apresMinuit = heure < 8;
   if (duree === 'long' && interrompu) {
     const nuit = apresMinuit ? 8 : 24 - heure + 8;
     const heures = Math.max(1, Math.floor(nuit / 2));
@@ -1060,6 +1072,7 @@ export function seReposer(p: PartieMonde, duree: 'court' | 'long', options: { ab
     if (apresMinuit) {
       p.etat.heure = Math.round(heure + 8);
       r.constats.push(`Le groupe dort huit heures. Il se lève à ${p.etat.heure} h.`);
+      nuitSansMinuit(p, r);
     } else {
       p.etat.jour += 1;
       p.etat.heure = 8;

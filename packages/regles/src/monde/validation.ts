@@ -17,6 +17,10 @@ import { conseilsEpisode, RARETE_NIVEAU_MIN } from './episode';
 import { avisLieuxEtPnj } from './lieux-pnj';
 import { etatInitial, evaluerCondition } from './etat';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
+import { conditionsImpossibles, lieuxSansRetour } from './garde-fous';
+import { avisPassagesCaches } from './passages-caches';
+import { avisCompagnonsNommes, avisRenvoisVersPnj, avisVariantesMortes, drapeauVoisin } from './textes-pnj';
+import { typeDeService } from './services';
 
 export interface BilanMonde {
   erreurs: string[];
@@ -48,8 +52,8 @@ export { BUDGET_PX } from '../budget';
 /** Une réponse de PNJ qui commence par « Il dit que », « Elle explique que »… : du style indirect, pas une parole (« Il dit : « … » » en est une). */
 export const STYLE_INDIRECT = /^\s*(il|elle|ils|elles)\s+(dit|disent|explique|expliquent|raconte|racontent|demande|demandent|répond|répondent|repond|avoue|avouent|confie|confient|murmure|ajoute|admet|affirme|prévient|previent|propose|rappelle|jure|précise|précisent|souligne|insiste)\b(?!\s*[:«"“])/i;
 
-/** Longueur d'un récit d'arrivée avant l'avis (la cible est de 60 à 150 mots). */
-export const ARRIVEE_MOTS = { min: 40, max: 220 };
+/** Longueur d'un récit d'arrivée avant l'avis : la cible est de 130 à 170 mots (décision du 18/11/2026), l'avis ne vient qu'au-delà d'une marge. */
+export const ARRIVEE_MOTS = { min: 40, max: 200 };
 
 /** Les mots de la mécanique, qui n'ont rien à faire dans un texte que le joueur lit. */
 export const MOTS_MECANIQUE = /\b(jauge|DD|jet de (dés|sauvegarde|perception)|points? de vie|PV|emplacements? de sort|test de)\b/;
@@ -107,7 +111,12 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   const verifierRef = (ou: string, genre: string, id: string, extra?: string) => {
     if (!existe(genre, id, extra)) err(`${ou} : ${genre} inconnu « ${id}${extra ? `/${extra}` : ''} ».`);
   };
-  const cond = (ou: string, c: Condition | undefined) => c && refsCondition(c, (g, id, x) => verifierRef(ou, g, id, x));
+  const cond = (ou: string, c: Condition | undefined) => {
+    if (!c) return;
+    refsCondition(c, (g, id, x) => verifierRef(ou, g, id, x));
+    // Une condition qu'aucun état ne peut remplir (jauge au-delà de son maximum, une chose et son contraire, niveau hors du monde).
+    for (const m of conditionsImpossibles(c, dm)) avis(`${ou} : condition impossible (${m}).`);
+  };
   const effets = (ou: string, es: EffetMonde[] | undefined) => es?.forEach((e) => refsEffet(e, (g, id, x) => verifierRef(ou, g, id, x)));
 
   // --- Lieux : arbre et liens ---
@@ -122,6 +131,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     for (const lien of l.liens) {
       if (!lien.absent) verifierRef(`${ou}, lien`, 'lieu', lien.vers);
       if (lien.verrou?.cle) verifierRef(`${ou}, lien vers « ${lien.vers} » (clé)`, 'objet', lien.verrou.cle);
+      if (lien.verrou && lien.verrou.dd > 30 && !lien.verrou.cle) avis(`${ou}, lien vers « ${lien.vers} » : verrou DD ${lien.verrou.dd} sans clé (au-delà de 30, aucun héros ne le crochète ; ajoutez une clé ou baissez le DD).`);
       cond(`${ou}, lien vers « ${lien.vers} »`, lien.condition);
     }
     for (const r of l.rencontres) {
@@ -315,6 +325,10 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     for (const s of p.services) {
       cond(`${ou}, service « ${s.id} »`, s.condition);
       effets(`${ou}, service « ${s.id} »`, s.effets);
+      // Un service payé qui ne ferait rien : ni `type`, ni identifiant reconnu, ni effet autre qu'un texte (audit du 18/11/2026, M19).
+      if (!typeDeService(s) && !s.effets.some((x) => !('narration' in x))) {
+        avis(`${ou}, service « ${s.id} » : sans effet en jeu (ni \`type\` soins, nuit ou identification, ni effet autre qu'un texte) ; le joueur le paie pour rien. Ajoutez \`type\` ou des effets.`);
+      }
     }
     if (p.boutique) {
       for (const s of p.boutique.stock) verifierRef(`${ou}, boutique`, 'objet', s.objet);
@@ -456,8 +470,12 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     effets(`${ou}`, q.etapes.flatMap((e) => e.effets));
   }
 
+  // Un lieu d'où l'on ne revient à aucun lieu sûr (où l'on dort, ou le départ) : le groupe y resterait coincé (M22 de l'audit du moteur).
+  for (const id of lieuxSansRetour(dm)) avis(`Lieu « ${id} » : sans chemin de retour vers un lieu sûr (aucune sortie ne ramène à un lieu où l'on dort ni au départ) ; le groupe y resterait coincé.`);
   // Une quête sautable : son objectif s'atteint sans qu'elle soit active (le chef tué et la relique prise avant d'avoir su qu'on la cherchait).
   for (const m of avisQuetesSautables(dm)) avis(m);
+  // Un passage caché entre deux niveaux, trouvé sans jet par le groupe conseillé : les niveaux entre les deux se sautent (M13 de l'audit du moteur).
+  for (const m of avisPassagesCaches(dm, srd)) avis(m);
 
   // Une quête qui a un donneur se RENDORT : sa dernière étape renvoie à lui (« Retournez voir… ») et s'accomplit par un sujet de
   // ce PNJ. Sinon elle se clôt seule, au fond d'une cave, et le joueur cherche vainement où la rendre. Heuristique : le texte d'une
@@ -471,6 +489,14 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     if (finales.some((e) => e.effets.some((x) => 'fin' in x))) continue;
     const prenom = sansAccents(donneur.nom.split(/\s+/)[0] ?? donneur.nom);
     if (!finales.some((e) => sansAccents(e.texte).includes(prenom) || sansAccents(donneur.nom).split(/\s+/).some((m) => m.length > 3 && sansAccents(e.texte).includes(m)))) sansRetour.push(q.id);
+  }
+  // Le `lieu` d'une quête est celui où elle est confiée : le parchemin dit « Confiée par <donneur> — <lieu> ». Un lieu qui n'est ni celui du
+  // donneur ni l'une de ses présences annonce la destination, ou une origine fausse (audit du 18/11/2026, G7).
+  for (const q of dm.quetes.values()) {
+    const donneur = q.donneur ? dm.pnj.get(q.donneur) : undefined;
+    if (!donneur || !q.lieu) continue;
+    const lieuxDuDonneur = [donneur.lieu, ...donneur.presences.map((x) => x.lieu)];
+    if (!lieuxDuDonneur.includes(q.lieu)) avis(`Quête « ${q.id} » : son lieu « ${q.lieu} » n'est pas le lieu du donneur « ${donneur.id} » (${[...new Set(lieuxDuDonneur)].map((l) => `« ${l} »`).join(', ')}) ; le parchemin annonce « Confiée par ${donneur.nom} — ${dm.lieux.get(q.lieu)?.nom ?? q.lieu} » : mettez le lieu où la quête est confiée.`);
   }
   if (sansRetour.length)
     avis(`Quêtes : ${sansRetour.length} quête(s) n'ont pas d'étape de retour à leur donneur (le joueur ne sait pas où ni comment la rendre : ajoutez une dernière étape « Retournez voir <donneur> », accomplie par un sujet de ce PNJ qui pose un drapeau) : ${sansRetour.slice(0, 6).join(', ')}${sansRetour.length > 6 ? '…' : ''}`);
@@ -704,7 +730,14 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     d.options.forEach((o) => toutes(`Dilemme « ${d.id} », option « ${o.id} »`, o.condition));
   }
   for (const j of dm.jauges.values()) j.evolution.forEach((e) => toutes(`Jauge « ${j.id} »`, e.condition));
-  for (const [flag, ou] of lus) if (!poses.has(flag)) avis(`${ou} : le drapeau « ${flag} » est lu mais jamais posé (sauf par le MJ).`);
+  for (const [flag, ou] of lus) {
+    if (poses.has(flag)) continue;
+    // Un drapeau qui diffère d'un ou deux caractères d'un drapeau posé est presque toujours une faute de frappe (`mireille-recrute` / `mireille-recruite`).
+    const voisin = drapeauVoisin(flag, poses);
+    avis(`${ou} : le drapeau « ${flag} » est lu mais jamais posé (sauf par le MJ).${voisin ? ` Vouliez-vous dire « ${voisin} » (drapeau posé) ?` : ''}`);
+  }
+  // Défauts de texte de PNJ relevés à la relecture de la Tombe (fiche C5) : renvoi vers un PNJ muet, compagnon nommé sans présence, variante morte.
+  for (const m of [...avisRenvoisVersPnj(dm), ...avisCompagnonsNommes(dm), ...avisVariantesMortes(dm)]) avis(m);
 
   // --- Enchaînements : une quête principale doit exister, avec un donneur ---
   if (!Array.from(dm.quetes.values()).some((q) => q.type === 'principale')) avis('Aucune quête principale.');

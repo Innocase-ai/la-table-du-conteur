@@ -37,11 +37,14 @@ export function auLieuDe(moteur: Moteur, groupe: ReturnType<typeof groupeDeTest>
   return { ...p, scene: { type: 'exploration' }, etat: { ...p.etat, lieu: e.lieu } };
 }
 
-/** Le groupe conseillé du créateur, de vrais personnages. */
-export function groupeDeTest(donnees: Donnees) {
-  return groupeConseille(3, donnees).emplacements.map((p) => {
+/**
+ * Le groupe conseillé du créateur au niveau demandé (3 par défaut), de vrais personnages avec leurs `choix` : comme dans une vraie partie, ils
+ * peuvent monter de niveau quand le groupe gagne des PX (audit du 18/11/2026, M23 ; avant, aucun choix gardé : ils ne montaient jamais).
+ */
+export function groupeDeTest(donnees: Donnees, niveau = 3) {
+  return groupeConseille(niveau, donnees).emplacements.map((p) => {
     const f = bilanPersonnage(p!, donnees).fiche!;
-    return personnageDepuisFiche(f, { id: f.nom.toLowerCase() });
+    return personnageDepuisFiche(f, { id: f.nom.toLowerCase(), choix: p!.choix });
   });
 }
 

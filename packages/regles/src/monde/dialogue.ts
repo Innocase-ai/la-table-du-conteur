@@ -132,13 +132,18 @@ export const ATTENTE_INFLUENCE_HEURES = 24;
 
 const heureAbsolue = (p: Pick<PartieMonde, 'etat'>) => p.etat.jour * 24 + (p.etat.heure ?? 8);
 
-/** La clé du délai : la manière, et le secret visé s'il y en a un (rater un secret ne ferme pas les autres conversations). */
-const cleInfluence = (pnjId: string, maniere: Influence, secret?: string) => `${pnjId}:${maniere}${secret ? `:${secret}` : ''}`;
+/**
+ * La clé du délai : la manière, et le secret visé s'il y en a un (rater un secret ne ferme pas les autres conversations).
+ * Un secret qui a son propre jet (`jetPropre`) se joue sur sa compétence, pas sur la manière : le délai est alors propre à ce secret
+ * seul, quelle que soit la manière (sinon persuader, intimider puis tromper rejoueraient trois fois le même jet : audit du 18/11/2026, M18).
+ */
+const cleInfluence = (pnjId: string, maniere: Influence, secret?: string, jetPropre = false) =>
+  secret && jetPropre ? `${pnjId}:secret:${secret}` : `${pnjId}:${maniere}${secret ? `:${secret}` : ''}`;
 
-/** Heures (entières, par excès) qu'il reste à attendre avant de retenter cette manière avec ce PNJ ; 0 si c'est possible. */
-export function attenteInfluence(p: Pick<PartieMonde, 'etat'>, pnjId: string, maniere: Influence, secret?: string): number {
+/** Heures (entières, par excès) qu'il reste à attendre avant de retenter cette manière avec ce PNJ ; 0 si c'est possible. `jetPropre` : le secret visé a son propre jet. */
+export function attenteInfluence(p: Pick<PartieMonde, 'etat'>, pnjId: string, maniere: Influence, secret?: string, jetPropre = false): number {
   // `influenceRatee` garde son nom (sauvegardes) : il note aussi les succès d'une influence sans secret.
-  const ratee = p.etat.exploration.influenceRatee?.[cleInfluence(pnjId, maniere, secret)];
+  const ratee = p.etat.exploration.influenceRatee?.[cleInfluence(pnjId, maniere, secret, jetPropre)];
   if (ratee === undefined) return 0;
   return Math.max(0, Math.ceil(ratee + ATTENTE_INFLUENCE_HEURES - heureAbsolue(p)));
 }
@@ -153,15 +158,18 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
   const r = vide();
   r.paroles = 0;
   const a = attitude(p, pnj);
-  const acteur = choisirOrateur(p, maniere, options.personnage);
+  // Un secret à jet propre se joue sur sa compétence : c'est dans celle-là qu'on choisit l'orateur, et le délai lui est propre (M18).
+  const secretVise = options.secret ? pnj.secrets.find((x) => x.fait === options.secret) : undefined;
+  const acteur = choisirOrateur(p, secretVise?.jet?.competence ?? maniere, options.personnage);
   if (!acteur) return { ...vide(), ok: false, refus: 'Personne ne peut le tenter.' };
-  const attente = attenteInfluence(p, pnj.id, maniere, options.secret);
+  const jetPropre = !!secretVise?.jet;
+  const attente = attenteInfluence(p, pnj.id, maniere, options.secret, jetPropre);
   if (attente > 0) return { ...vide(), ok: false, refus: `${pnj.nom} n'écoutera pas deux fois les mêmes arguments : réessayez dans ${attente} h, ou autrement.` };
   const mode = modeInfluence(a);
-  const noter = () => ((p.etat.exploration.influenceRatee ??= {})[cleInfluence(pnj.id, maniere, options.secret)] = heureAbsolue(p));
+  const noter = () => ((p.etat.exploration.influenceRatee ??= {})[cleInfluence(pnj.id, maniere, options.secret, jetPropre)] = heureAbsolue(p));
 
   if (options.secret) {
-    const sec = pnj.secrets.find((x) => x.fait === options.secret);
+    const sec = secretVise;
     if (!sec || p.etat.faits.includes(sec.fait)) return { ...vide(), ok: false, refus: `${pnj.nom} n'a rien de tel à révéler.` };
     if (sec.condition && !evaluerCondition(sec.condition, p.etat)) return { ...vide(), ok: false, refus: `${pnj.nom} ne lâchera pas cela pour l'instant.` };
     if (sec.attitudeMin !== undefined && a < sec.attitudeMin && !sec.jet) return { ...vide(), ok: false, refus: `${pnj.nom} ne fait pas assez confiance au groupe pour en parler.` };
@@ -211,7 +219,7 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
   return r;
 }
 
-function choisirOrateur(p: Pick<PartieMonde, 'groupe'>, comp: Influence, id?: string): Personnage | undefined {
+function choisirOrateur(p: Pick<PartieMonde, 'groupe'>, comp: keyof Personnage['fiche']['competences'], id?: string): Personnage | undefined {
   const vivants = p.groupe.filter((a) => a.pv > 0);
   if (id) return vivants.find((a) => a.id === id);
   return [...vivants].sort((x, y) => y.fiche.competences[comp].bonus - x.fiche.competences[comp].bonus)[0];
@@ -222,7 +230,8 @@ function choisirOrateur(p: Pick<PartieMonde, 'groupe'>, comp: Influence, id?: st
  * debout dans la manière choisie ; le bonus est celui de la compétence réellement testée (celle d'un secret peut être une autre).
  */
 export function meilleurOrateur(p: Pick<PartieMonde, 'groupe'>, maniere: Influence, competence: keyof Personnage['fiche']['competences'] = maniere): { id: string; nom: string; bonus: number } | undefined {
-  const a = choisirOrateur(p, maniere);
+  // Le meilleur dans la compétence réellement testée (celle d'un secret à jet propre peut différer de la manière).
+  const a = choisirOrateur(p, competence);
   return a && { id: a.id, nom: a.nom, bonus: a.fiche.competences[competence].bonus };
 }
 

@@ -310,11 +310,11 @@ export function appliquerEffets(effets: EffetMonde[], e: EtatMonde, dm: DonneesM
   avancerQuetes(e, dm);
 }
 
-/** Termine une quête une seule fois : récompenses, et plus aucune étape active. */
+/** Termine une quête une seule fois : récompenses, et plus aucune étape active. Une quête échouée ne se termine plus (audit du 18/11/2026, M17). */
 export function terminerQuete(id: string, e: EtatMonde, dm: DonneesMonde): void {
   const def = dm.quetes.get(id);
   const q = (e.quetes[id] ??= { statut: 'active', actives: [], accomplies: [] });
-  if (q.statut === 'terminee' || !def) return;
+  if (q.statut === 'terminee' || q.statut === 'echouee' || !def) return;
   q.statut = 'terminee';
   q.actives = [];
   e.xp += def.recompenses.xp;

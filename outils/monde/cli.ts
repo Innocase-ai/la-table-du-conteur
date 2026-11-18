@@ -18,7 +18,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
-import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
+import { chargerMonde, listerMondes, RACINE_MONDES as RACINE_DEPOT } from '../../packages/regles/src/monde/chargeur';
 import { diagnostiquerMonde } from '../../packages/regles/src/monde/diagnostiquer';
 import { resumerCompletude } from '../../packages/regles/src/monde/completude';
 import { problemesDeChargement } from '../../packages/regles/src/monde/assemblage';
@@ -26,34 +26,33 @@ import { estimerCampagne } from '../../packages/regles/src/monde/estimation';
 import { auditerEnigmes, bilanAudit } from '../../packages/regles/src/verification/enigmes';
 import { explorerParcours } from '../../packages/regles/src/verification/parcours';
 import { calibrer, texteCalibrage } from './calibrer';
+import { COMMANDES, lignesParcours, lireOptions, USAGE } from './cli-aide';
 import { genererDocMonde } from './doc';
 import { ecrireMondeForge, messagePourClaude } from './importer-forge';
 import { creerSquelette } from './nouveau';
-import { afficherBilan, completudeDuMonde, verifierMonde } from './verifier';
+import { afficherBilan, classerAvis, completudeDuMonde, lireRevue, verifierMonde } from './verifier';
 
-const args = process.argv.slice(2);
-/** La valeur d'une option `--nom valeur` (et on la retire des arguments positionnels). */
-function option(nom: string): string | undefined {
-  const i = args.indexOf(`--${nom}`);
-  if (i < 0) return undefined;
-  const v = args[i + 1];
-  args.splice(i, 2);
-  return v;
+/** Le dossier des mondes : `MONDES_RACINE` (les tests du CLI travaillent dans un dossier temporaire) ou celui du dépôt. */
+const RACINE_MONDES = process.env['MONDES_RACINE'] ?? RACINE_DEPOT;
+
+// Les options sont lues strictement : une valeur mal écrite est refusée, jamais ignorée en silence (audit du 18/11/2026, O8).
+let lues: ReturnType<typeof lireOptions>;
+try {
+  lues = lireOptions(process.argv.slice(2));
+} catch (e) {
+  console.error(`❌ ${(e as Error).message}
+${USAGE}`);
+  process.exit(1);
 }
-const optEtats = option('etats');
-const optFrontiere = option('frontiere');
-const optMs = option('ms');
-const optGraines = option('graines');
-const optNiveaux = option('niveaux');
-const optHeures = option('heures');
-const optChemin = args.includes('--chemin');
-if (optChemin) args.splice(args.indexOf('--chemin'), 1);
-const optSansParcours = args.includes('--sans-parcours');
-if (optSansParcours) args.splice(args.indexOf('--sans-parcours'), 1);
-const optCouvrir = args.includes('--couvrir');
-if (optCouvrir) args.splice(args.indexOf('--couvrir'), 1);
+const { options: opt, positionnels: args } = lues;
 const [commande, cible, nomMonde] = args;
-const mondes = cible ? [cible] : listerMondes();
+// Une commande inconnue (faute de frappe : `verifie`, `manquee`) ne lance plus la validation : elle est refusée (O1).
+if (commande && !(COMMANDES as readonly string[]).includes(commande)) {
+  console.error(`❌ Commande inconnue « ${commande} ».
+${USAGE}`);
+  process.exit(1);
+}
+const mondes = cible ? [cible] : listerMondes(RACINE_MONDES);
 
 if (commande === 'nouveau') {
   try {
@@ -73,7 +72,6 @@ if (commande === 'importer-forge') {
     process.exit(1);
   }
   try {
-    const m = /^(\d+)-(\d+)$/.exec(optNiveaux ?? '');
     const profils = [...chargerDonneesSrd().monstres.keys()];
     const { dossier, resultat } = ecrireMondeForge(
       RACINE_MONDES,
@@ -81,7 +79,7 @@ if (commande === 'importer-forge') {
       cible,
       JSON.parse(readFileSync(cible, 'utf8')),
       { dossier: join(RACINE_MONDES, '../../.claude/skills/creer-monde/assets'), atlas: join(RACINE_MONDES, '../../.claude/skills/decrire-lieux/assets/ATLAS.modele.md') },
-      { profils, armes: [...chargerDonneesSrd().armes.keys()], ...(m ? { niveaux: { min: Number(m[1]), max: Number(m[2]) } } : {}), ...(optHeures ? { heures: Number(optHeures) } : {}) },
+      { profils, armes: [...chargerDonneesSrd().armes.keys()], ...(opt.niveaux ? { niveaux: opt.niveaux } : {}), ...(opt.heures ? { heures: opt.heures } : {}) },
     );
     const n = (d: string) => resultat.dossiers[d]?.length ?? 0;
     console.log(`Monde brouillon créé : ${dossier}\n  ${n('lieux')} lieux, ${n('pnj')} PNJ, ${n('objets')} objets, ${n('tresors')} trésors, ${n('rencontres')} rencontres, ${n('quetes')} quêtes ; ${resultat.aEcrire} champ(s) « À écrire ».`);
@@ -108,7 +106,7 @@ if (commande === 'calibrer') {
     process.exit(1);
   }
   const estimations = new Map<string, ReturnType<typeof estimerCampagne>>();
-  for (const id of listerMondes()) {
+  for (const id of listerMondes(RACINE_MONDES)) {
     const r = chargerMonde(join(RACINE_MONDES, id));
     if (r.ok) estimations.set(id, estimerCampagne(r.monde));
   }
@@ -118,8 +116,8 @@ if (commande === 'calibrer') {
 }
 
 if (commande === 'lister' || !commande) {
-  for (const id of listerMondes()) console.log(id);
-  if (!commande) console.log('Usage : pnpm monde lister | valider [monde] | verifier [monde] | manque [monde] | parcours [monde] | enigmes [monde] | doc [monde] | estimer [monde] | nouveau <id> "<Nom>"');
+  for (const id of listerMondes(RACINE_MONDES)) console.log(id);
+  if (!commande) console.log(USAGE);
   process.exit(0);
 }
 
@@ -148,7 +146,7 @@ for (const id of mondes) {
     }
   }
   if (commande === 'verifier') {
-    const b = verifierMonde(id, join(RACINE_MONDES, id), r.monde, srd, { parcours: !optSansParcours, ...(optEtats ? { etats: Number(optEtats) } : {}), ...(optMs ? { ms: Number(optMs) } : {}), ...(optGraines ? { graines: optGraines.split(',').map(Number) } : {}) });
+    const b = verifierMonde(id, join(RACINE_MONDES, id), r.monde, srd, { parcours: !opt.sansParcours, ...(opt.etats ? { etats: opt.etats } : {}), ...(opt.ms ? { ms: opt.ms } : {}), ...(opt.graines ? { graines: opt.graines } : {}) });
     for (const l of afficherBilan(b)) console.log(l);
     if (!b.ok) echec = true;
     continue;
@@ -162,7 +160,15 @@ for (const id of mondes) {
     continue;
   }
   if (commande === 'manque') {
-    const ecarts = completudeDuMonde(join(RACINE_MONDES, id), r.monde);
+    let ecarts: ReturnType<typeof completudeDuMonde>;
+    try {
+      ecarts = completudeDuMonde(join(RACINE_MONDES, id), r.monde);
+    } catch (e) {
+      console.error(`
+❌ ${id} — ${(e as Error).message}`);
+      echec = true;
+      continue;
+    }
     const manques = ecarts.filter((x) => x.gravite === 'manque');
     console.log(`\n${manques.length ? '⚠️ ' : '✅'} ${id} — ${manques.length} manque(s), ${ecarts.length - manques.length} avis`);
     for (const [rubrique, n] of resumerCompletude(ecarts)) console.log(`  ${rubrique.padEnd(12)} ${n.manque} manque(s), ${n.avis} avis`);
@@ -174,19 +180,19 @@ for (const id of mondes) {
     const t0 = Date.now();
     const rap = explorerParcours(
       { dm: r.monde, srd },
-      { budgetEtats: optEtats ? Number(optEtats) : 6000, budgetMs: optMs ? Number(optMs) : 120_000, couvrir: optCouvrir, ...(optFrontiere ? { frontiereMax: Number(optFrontiere) } : {}), ...(optGraines ? { graines: optGraines.split(',').map(Number) } : {}) },
+      { budgetEtats: opt.etats ?? 6000, budgetMs: opt.ms ?? 120_000, couvrir: opt.couvrir, ...(opt.frontiere ? { frontiereMax: opt.frontiere } : {}), ...(opt.graines ? { graines: opt.graines } : {}) },
     );
-    const manque = rap.finsNonAtteintes.length > 0;
-    console.log(`
-${manque ? '⚠️ ' : '✅'} ${id} — ${rap.parcours.length}/${r.monde.fins.size} fins atteintes (${rap.etats} états en ${((Date.now() - t0) / 1000).toFixed(1)} s ; arrêt : ${rap.arret})`);
+    const lignes = lignesParcours(id, r.monde.fins.size, rap, (Date.now() - t0) / 1000);
+    const manque = lignes.echec;
+    console.log(lignes.entete);
     for (const p of rap.parcours) {
       console.log(`  ✅ ${p.fin} — ${p.etapes.length} pas (graine ${p.graine})`);
-      if (optChemin) p.etapes.forEach((e, i) => console.log(`       ${String(i + 1).padStart(3)}. ${e.libelle}  → ${e.lieu}`));
+      if (opt.chemin) p.etapes.forEach((e, i) => console.log(`       ${String(i + 1).padStart(3)}. ${e.libelle}  → ${e.lieu}`));
     }
-    for (const f of rap.finsNonAtteintes) console.log(`  ❌ ${f} — non atteinte${rap.arret === 'epuise' ? ' (tous les états ont été explorés)' : ' (budget ou temps épuisé : relancer avec --etats plus grand)'}`);
+    for (const l of lignes.manquantes) console.log(l);
     const c = rap.couverture;
     console.log('  vu : ' + (['lieux', 'pnj', 'rencontres', 'evenements', 'faits', 'enigmes'] as const).map((k) => `${k} ${c[k].vus.length}/${c[k].vus.length + c[k].jamais.length}`).join(' · '));
-    if (optCouvrir) {
+    if (opt.couvrir) {
       // Ce que le joueur automatique n'a jamais vu (pas une preuve d'inaccessibilité : il est limité par son budget). Les rencontres tirées au hasard à l'arrivée (« auto-… ») sont comptées à part.
       for (const k of ['lieux', 'pnj', 'rencontres', 'evenements', 'faits', 'enigmes', 'quetes'] as const) {
         const jamais = c[k].jamais;
@@ -220,11 +226,26 @@ ${manque ? '⚠️ ' : '✅'} ${id} — ${rap.parcours.length}/${r.monde.fins.si
     const chemin = join(RACINE_MONDES, '../../docs/mondes', `${id}.md`);
     writeFileSync(chemin, genererDocMonde(r.monde, srd, bilan));
     console.log(`Document écrit : docs/mondes/${id}.md`);
+    if (bilan.erreurs.length) {
+      for (const e of bilan.erreurs) console.error(`  ERREUR  ${e}`);
+      console.error(`❌ ${id} — ${bilan.erreurs.length} erreur(s) : le document est écrit, mais le monde n'est pas valide.`);
+      echec = true;
+    }
     continue;
   }
-  console.log(`\n${bilan.erreurs.length ? '❌' : '✅'} ${id} — ${bilan.erreurs.length} erreur(s), ${bilan.avertissements.length} avertissement(s)`);
+  // revue.json : les avis jugés sans objet (rejetés) et les défauts acceptés avec leur raison ne sont pas répétés ici ; leur nombre est dit.
+  let revue;
+  try {
+    revue = lireRevue(join(RACINE_MONDES, id));
+  } catch (e) {
+    console.error(`  ⚠️  ${id} — ${(e as Error).message} : ses rejets ne sont pas appliqués.`);
+  }
+  const classes = revue ? classerAvis(bilan, revue) : undefined;
+  const ecartes = classes ? new Set([...classes.rejetes, ...classes.acceptes]) : new Set();
+  const lignes = classes ? classes.lignes.filter((l) => !ecartes.has(l)) : bilan.avertissements.map((texte) => ({ texte }));
+  console.log(`\n${bilan.erreurs.length ? '❌' : '✅'} ${id} — ${bilan.erreurs.length} erreur(s), ${lignes.length} avertissement(s)${ecartes.size ? ` (${ecartes.size} rejeté(s) ou accepté(s) dans revue.json)` : ''}`);
   for (const e of bilan.erreurs) console.log(`  ERREUR  ${e}`);
-  for (const a of bilan.avertissements) console.log(`  avis    ${a}`);
+  for (const l of lignes) console.log(`  avis    ${l.texte}`);
   const s = bilan.stats;
   console.log(`  lieux ${JSON.stringify(s.lieux)} · ${s.pnj} PNJ (${s.sujets} sujets) · quêtes ${JSON.stringify(s.quetes)} · ${s.rencontres} rencontres · ${s.tresors} trésors (≈ ${s.valeurTresorsPo} po) · ${s.enigmes} énigmes · ${s.pieges} pièges · ${s.faits} faits`);
   if (bilan.erreurs.length) echec = true;

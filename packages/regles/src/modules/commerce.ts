@@ -7,14 +7,15 @@
 //   d'art à pleine valeur, comme le SRD), si la boutique
 //   rachète ce genre d'objet (`types` ; vide = tout) et jamais un objet indispensable (quête, clé, objet d'un verrou). `rachat` à 0 : la boutique n'achète rien.
 // - Services : le prix est payé, le résumé raconté, les effets appliqués. Quelques services ont un sens dans les règles,
-//   d'après leur identifiant : soins (les PV du groupe au maximum), chambre ou abri (une nuit de repos, même là où l'on ne
-//   pourrait pas dormir), identification (les objets du sac à étudier sont identifiés).
+//   d'après leur `type` (ou, à défaut, leur identifiant : `monde/services.ts`) : soins (les PV du groupe au maximum), nuit (une nuit
+//   de repos, même là où l'on ne pourrait pas dormir), identification (les objets du sac à étudier sont identifiés).
 import { z } from 'zod';
 import { arrondirPieces, evaluerCondition } from '../monde/etat';
 import { pnjPresents } from '../monde/dialogue';
 import { appliquer, seReposer, suites, type CompteRendu, type PartieMonde } from '../monde/exploration';
 import type { Pnj } from '../monde/schemas';
 import { commande, type ContexteJeu, type Module, type Ordre, type Partie, type Proposition, type Transaction } from '../noyau/types';
+import { typeDeService } from '../monde/services';
 import { objetDe } from './catalogue';
 import { boutiqueComplete, tableDe } from '../monde/butin-commun';
 import { objetIndispensable } from './inventaire';
@@ -36,10 +37,6 @@ export interface EtatCommerce {
 
 const etatDe = (p: Partie): EtatCommerce => (p.modules['commerce'] as EtatCommerce | undefined) ?? { achats: {} };
 const etatPourModifier = (p: Partie): EtatCommerce => (p.modules['commerce'] ??= { achats: {} }) as EtatCommerce;
-
-const SOINS = /soin|guerison|purge|veillee-des-malades/;
-const NUIT = /chambre|dortoir|hospitalite|abri|refuge/;
-const IDENTIFICATION = /identification/;
 
 /** Le prix en pièces d'or, lisible (« 2,5 po », « 5 pa »). */
 export function prixLisible(po: number): string {
@@ -147,8 +144,10 @@ export const moduleCommerce: Module = {
         if (!s) return { refus: `${pnj.nom} ne propose pas ce service.` };
         if (s.condition && !evaluerCondition(s.condition, t.partie.etat)) return { refus: `${pnj.nom} ne peut pas rendre ce service pour l'instant.` };
         if (t.partie.etat.pieces < s.prix) return { refus: `${s.nom} coûte ${prixLisible(s.prix)} : le groupe n'a que ${prixLisible(t.partie.etat.pieces)}.` };
+        // Ce que le service fait dans les règles : son `type`, ou à défaut ce que laisse deviner son identifiant (audit du 18/11/2026, M19).
+        const type = typeDeService(s);
         // Une nuit payée : le repos se fait là, même si le lieu ne permet pas de dormir.
-        if (NUIT.test(s.id)) {
+        if (type === 'nuit') {
           const r = seReposer(pm, 'long', { abri: true });
           if (!r.ok) return verser(t, r);
           if (s.prix) t.partie.etat.pieces = arrondirPieces(Math.max(0, t.partie.etat.pieces - s.prix));
@@ -161,16 +160,16 @@ export const moduleCommerce: Module = {
         // objet inconnu (sauf si le service a d'autres effets, écrits par l'auteur).
         const inventaire = (t.partie.modules['inventaire'] ?? { identifies: [] }) as { identifies: string[] };
         const aIdentifier = Object.keys(t.partie.etat.inventaire).filter((id) => objetDe(t.ctx, id).identification && !inventaire.identifies.includes(id));
-        if (!s.effets.length && SOINS.test(s.id) && t.partie.groupe.every((h) => h.pv >= h.fiche.pvMax)) return { refus: `Personne n'a besoin de soins : ${s.nom} ne servirait à rien.` };
-        if (!s.effets.length && IDENTIFICATION.test(s.id) && !aIdentifier.length) return { refus: "Il n'y a rien à identifier dans le sac." };
+        if (!s.effets.length && type === 'soins' && t.partie.groupe.every((h) => h.pv >= h.fiche.pvMax)) return { refus: `Personne n'a besoin de soins : ${s.nom} ne servirait à rien.` };
+        if (!s.effets.length && type === 'identification' && !aIdentifier.length) return { refus: "Il n'y a rien à identifier dans le sac." };
         const r = vide();
         if (s.prix) appliquer(pm, r, [{ pieces: -s.prix }]);
         r.constats.push(`${s.nom}${s.prix ? ` (${prixLisible(s.prix)})` : ''} : ${s.resume}`);
-        if (SOINS.test(s.id)) {
+        if (type === 'soins') {
           for (const h of t.partie.groupe) h.pv = h.fiche.pvMax;
           r.constats.push('Le groupe est soigné : chacun retrouve tous ses points de vie.');
         }
-        if (IDENTIFICATION.test(s.id)) {
+        if (type === 'identification') {
           const inv = (t.partie.modules['inventaire'] ??= { identifies: [] }) as { identifies: string[] };
           const a = Object.keys(t.partie.etat.inventaire).filter((id) => objetDe(t.ctx, id).identification && !inv.identifies.includes(id));
           inv.identifies.push(...a);

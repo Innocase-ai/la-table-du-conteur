@@ -5,6 +5,7 @@
 // fouiller, ouvrir, prendre…) et les combats ne coûtent rien en API.
 // Ces hypothèses sont PROVISOIRES : elles seront remplacées par les mesures du journal de partie (M4b).
 import { z } from 'zod';
+import { savoirsDe } from './savoirs-donnees';
 import type { DonneesMonde } from './schemas';
 
 /** Tarifs des modèles du conteur, en dollars par million de tokens (relevés le 03/11/2026). */
@@ -46,6 +47,11 @@ export const RYTHME = {
   tresor: { tours: 0.5, conteur: 0 },
   quete: { tours: 3, conteur: 1 / 3 },
   evenement: { tours: 1, conteur: 0 },
+  /**
+   * Un PNJ qui a une fiche de savoir (dossier `savoirs/`) se prête à la conversation libre : des tours en plus, tous racontés par le
+   * conteur (donc payants). Hypothèse provisoire, à calibrer sur les mesures (audit du 18/11/2026, S8).
+   */
+  savoir: { tours: 2, conteur: 1 },
   /** Imprévus, saisie libre, errance, repos, commerce : tours en plus, tous racontés par le conteur. */
   marge: 0.15,
   /**
@@ -123,6 +129,7 @@ export function estimerCampagne(dm: DonneesMonde): Estimation {
     [dm.tresors.size, R.tresor],
     [dm.quetes.size, R.quete],
     [dm.evenements.size, R.evenement],
+    [new Set(savoirsDe(dm).savoirs.map((x) => x.pnj).filter((id) => dm.pnj.has(id))).size, R.savoir],
   ];
   const base = elements.reduce((s, [n, e]) => s + n * e.tours, 0);
   const marge = base * R.marge;
@@ -132,11 +139,15 @@ export function estimerCampagne(dm: DonneesMonde): Estimation {
   const recit = (tours * R.secondesParAction) / 3600 + motsLus / (R.motsParMinute * 60);
   const enCombat = (combats * R.minutesParCombat) / 60;
   const i = R.incertitude;
+  // Le total est la somme de ses parties, arrondies à la demi-heure, ou au quart d'heure pour un épisode de moins de 2 h (audit du 18/11/2026, S8).
+  const pasHeures = recit + enCombat < 2 ? 0.25 : 0.5;
+  const recitArrondi = arrondi(recit, pasHeures);
+  const combatsArrondis = arrondi(enCombat, pasHeures);
   return {
     monde: dm.monde.id,
     tours,
     toursConteur,
-    heures: { recit: arrondi(recit, 0.5), combats: arrondi(enCombat, 0.5), total: Math.round(recit + enCombat) },
+    heures: { recit: recitArrondi, combats: combatsArrondis, total: arrondi(recitArrondi + combatsArrondis, pasHeures) },
     couts: TARIFS_CONTEUR.map((t) => {
       const usd = toursConteur * coutTourUsd(t);
       const pas = usd < 5 ? 0.1 : 0.5;

@@ -431,7 +431,9 @@ const PnjObjet = z.object({
       types: z.array(z.enum(CATEGORIES_OBJET)).default([]),
     })
     .optional(),
-  services: z.array(z.object({ id: Id, nom: Texte, resume: Texte, prix: z.number().min(0), condition: Condition.optional(), effets: Effets.default([]) })).default([]),
+  // `type` (facultatif) : ce que le service fait dans les règles (soins : PV au maximum ; nuit : repos long même là où l'on ne peut pas dormir ;
+  // identification : objets du sac identifiés). Sans lui, le moteur devine d'après l'identifiant (voir `monde/services.ts`).
+  services: z.array(z.object({ id: Id, nom: Texte, resume: Texte, prix: z.number().min(0), type: z.enum(['soins', 'nuit', 'identification']).optional(), condition: Condition.optional(), effets: Effets.default([]) })).default([]),
   inventaire: z.array(Id).default([]),
   // Profil de combat (monstre du SRD) si le PNJ doit se battre.
   profilCombat: Id.optional(),
@@ -499,7 +501,7 @@ export const Lieu = z.object({
   description: Texte,
   ambiance: z.string().optional(),
   // Le récit d'arrivée : ce que le JOUEUR lit en entrant ici (à la première visite, puis quand une variante change). Sensoriel, au
-  // présent, 60 à 150 mots, sans secret ni mécanique (jamais « jauge », DD…) ni ce qu'on peut y trouver (c'est le rôle de `description`,
+  // présent, 130 à 170 mots, sans secret ni mécanique (jamais « jauge », DD…) ni ce qu'on peut y trouver (c'est le rôle de `description`,
   // qui est pour le MJ). Sans lui, le joueur ne lit que le résumé.
   arrivee: z.string().optional(),
   // Avant / Après : le lieu change avec l'histoire. La première variante dont la condition est vraie remplace `arrivee` ; le récit est
@@ -539,6 +541,8 @@ export const Quete = z.object({
   nom: Texte,
   type: z.enum(['principale', 'secondaire', 'personnelle', 'faction']),
   donneur: Id.optional(),
+  // Le lieu où la quête est CONFIÉE (celui du donneur, ou l'une de ses présences), pas celui de l'objectif : le parchemin du jeu écrit
+  // « Confiée par <donneur>, <métier> — <lieu> ». Le validateur avertit quand il diffère du lieu du donneur.
   lieu: Id.optional(),
   // Texte du journal de quête, côté joueur.
   resume: Texte,

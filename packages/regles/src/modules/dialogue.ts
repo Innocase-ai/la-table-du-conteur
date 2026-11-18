@@ -177,7 +177,7 @@ export const moduleDialogue: Module = {
             ordre: { type: 'influencer', pnj: i.id, maniere, secret: sec.fait },
             // Un secret à prix sans jet s'achète : aucun jet à annoncer.
             ...(sec.prix && !sec.jet ? {} : { jet: jetAnnonce(p, maniere, sec.jet?.competence ?? maniere, sec.jet?.dd ?? dd, mode) }),
-            desactivee: trop ? 'Il ne vous fait pas encore assez confiance.' : attenteTexte(attenteInfluence(p, i.id, maniere, sec.fait)) ?? (sec.prix && p.etat.pieces < sec.prix ? 'Pas assez d’or.' : undefined),
+            desactivee: trop ? 'Il ne vous fait pas encore assez confiance.' : attenteTexte(attenteInfluence(p, i.id, maniere, sec.fait, !!sec.jet)) ?? (sec.prix && p.etat.pieces < sec.prix ? 'Pas assez d’or.' : undefined),
           },
         ];
       },

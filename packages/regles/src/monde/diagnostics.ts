@@ -65,6 +65,12 @@ export function codeDuMessage(message: string, gravite: Gravite): string {
   if (/inaccessible depuis le départ/.test(message)) return 'lieu.inaccessible';
   if (/personne ne le révèle/.test(message)) return 'fait.sans-source';
   if (/est lu mais jamais posé/.test(message)) return 'flag.lu-jamais-pose';
+  if (/ sautable : son objectif/.test(message) || /^Sujet « [^»]+ » : il débloque/.test(message)) return 'quete.sautable';
+  if (/ : sans chemin de retour vers un lieu sûr/.test(message)) return 'lieu.sans-retour';
+  if (/ : renvoie vers « /.test(message)) return 'texte.renvoi-pnj';
+  if (/ sans condition de présence \(/.test(message)) return 'texte.compagnon-nomme';
+  if (/ : texte mort \(/.test(message) || /: texte mort \(/.test(message)) return 'texte.variante-morte';
+  if (/ : condition impossible \(/.test(message) || / : verrou DD \d+ sans clé/.test(message)) return 'condition.impossible';
   if (/est exigé mais ne se trouve nulle part/.test(message)) return 'objet.introuvable';
   if (/est exigé mais n'est révélé nulle part/.test(message)) return 'fait.introuvable';
   if (/rien ne la propose ni ne l'active/.test(message)) return 'quete.jamais-proposee';
@@ -74,10 +80,37 @@ export function codeDuMessage(message: string, gravite: Gravite): string {
   return gravite === 'erreur' ? 'validation.erreur' : 'validation.autre';
 }
 
+/**
+ * Les défauts de jeu : ce qui casse ou trompe le joueur (fiche C1 du lot 1). Un objet ou un fait exigé que rien ne donne, un drapeau jamais posé,
+ * une quête sautable, un lieu sans retour, une condition impossible, un texte mort, un fait détenu hors du canon. `pnpm monde verifier` les range à
+ * part (rubrique « Défauts de jeu ») et un monde publié qui en a n'est pas prêt, sauf défaut accepté dans `revue.json`. Tout le reste (richesse,
+ * longueurs, renvois, services…) est un conseil d'écriture : il ne bloque jamais.
+ */
+export const DEFAUTS_DE_JEU: ReadonlySet<string> = new Set([
+  'objet.introuvable',
+  'fait.introuvable',
+  'flag.lu-jamais-pose',
+  'quete.sautable',
+  'lieu.sans-retour',
+  'condition.impossible',
+  'texte.variante-morte',
+  'revue.fait-non-autorise',
+]);
+export const estDefautDeJeu = (code: string): boolean => DEFAUTS_DE_JEU.has(code);
+
+/** Ce qui distingue deux défauts de même code dans la même entité (l'objet, le fait ou le drapeau cité) : il entre dans la clé de revue. */
+function motDuMessage(code: string, message: string): string | undefined {
+  if (code === 'objet.introuvable' || code === 'fait.introuvable' || code === 'flag.lu-jamais-pose') return /(?:l'objet|le fait|le drapeau) « ([^»]+) »/.exec(message)?.[1];
+  if (code === 'condition.impossible') return /\((.{1,80})/.exec(message)?.[1];
+  return undefined;
+}
+
 /** Range une phrase du validateur en diagnostic, sans toucher à son texte. */
 export function diagnosticDeMessage(message: string, gravite: Gravite, source: Diagnostic['source'] = 'validation'): Diagnostic {
   const entite = entiteDuMessage(message);
-  return { code: codeDuMessage(message, gravite), gravite, message, ...(entite ? { entite } : {}), source };
+  const code = codeDuMessage(message, gravite);
+  const mot = motDuMessage(code, message);
+  return { code, gravite, message, ...(entite ? { entite } : {}), source, ...(mot ? { donnees: { mot } } : {}) };
 }
 
 /** Les phrases d'un module (`valider` : erreurs, `conseils` : avis) en diagnostics `module.<id>`. */

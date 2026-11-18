@@ -479,11 +479,14 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
       nomsEtape.add(c);
       return c;
     };
+    // Le journal ne nomme pas de lieu (règle du 16/11/2026) et l'importateur ne devine aucun texte : chaque étape de but est « À écrire »,
+    // avec le lieu dans la consigne seulement, pour que l'auteur sache où elle mène sans l'écrire au joueur. Elles entrent ainsi dans le brief.
+    const etapeAEcrire = (but: string, lieu?: Actif) => `${EC} : ce que le joueur cherche à cette étape (${but}${lieu ? `, à « ${nom(lieu)} » : ne nommez pas ce lieu` : ''}).`;
     const dejaVisites = new Set<string>();
     const aller = (l: Actif) => {
       if (dejaVisites.has(l.id)) return;
       dejaVisites.add(l.id);
-      etapes.push({ id: idEtape(`aller-${slug(nom(l))}`), texte: `Rendez-vous à ${nom(l)}.`, completion: { lieu: idDe(l) }, lieu: idDe(l) });
+      etapes.push({ id: idEtape(`aller-${slug(nom(l))}`), texte: etapeAEcrire('rejoindre ce lieu', l), completion: { lieu: idDe(l) }, lieu: idDe(l) });
     };
     sortants(q, 'deroule').filter(estLieu).forEach(aller);
     const arrivee = sortants(q, 'termine').find(estLieu);
@@ -496,7 +499,7 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
       const ou = lieuDe(c);
       etapes.push({
         id: idEtape(`vaincre-${slug(nom(c))}`),
-        texte: `Vainquez ${nom(c)}.`,
+        texte: etapeAEcrire(`vaincre ${nom(c)}`, ou),
         completion: c.type === 'adversaire' ? issuesDe(c) : { rencontre: { id: idDe(c), issue: 'victoire' } },
         ...(ou ? { lieu: idDe(ou) } : {}),
       });
@@ -525,10 +528,10 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
     }
     for (const c of cibles.filter((x) => cat(x) === 'objet')) {
       const ou = lieuDe(c);
-      etapes.push({ id: idEtape(`trouver-${slug(nom(c))}`), texte: `Trouvez ${nom(c)}.`, completion: { objet: idDe(c) }, ...(ou ? { lieu: idDe(ou) } : {}) });
+      etapes.push({ id: idEtape(`trouver-${slug(nom(c))}`), texte: etapeAEcrire(`trouver ${nom(c)}`, ou), completion: { objet: idDe(c) }, ...(ou ? { lieu: idDe(ou) } : {}) });
     }
     if (captif && lieuCaptif) {
-      etapes.push({ id: idEtape(`liberer-${slug(nom(captif))}`), texte: `Libérez ${nom(captif)}.`, completion: { flag: `${qid}-libere` }, lieu: idDe(lieuCaptif) });
+      etapes.push({ id: idEtape(`liberer-${slug(nom(captif))}`), texte: etapeAEcrire(`libérer ${nom(captif)}`, lieuCaptif), completion: { flag: `${qid}-libere` }, lieu: idDe(lieuCaptif) });
       poserSujet(captif, {
         id: `delivrer-${slug(nom(q))}`.slice(0, 60),
         mots: ['libérer', 'délivrer', 'détacher'],
@@ -543,7 +546,7 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
     const objetsApportes = cibles.filter((x) => cat(x) === 'objet');
     if (destinataire && objetsApportes.length) {
       const lieuD = lieuDe(destinataire);
-      etapes.push({ id: idEtape(`apporter-${slug(nom(destinataire))}`), texte: `Apportez ${objetsApportes.map(nom).join(', ')} à ${nom(destinataire)}.`, completion: { flag: `${qid}-livre` }, ...(lieuD ? { lieu: idDe(lieuD) } : {}) });
+      etapes.push({ id: idEtape(`apporter-${slug(nom(destinataire))}`), texte: etapeAEcrire(`apporter ${objetsApportes.map(nom).join(', ')} à ${nom(destinataire)}`, lieuD), completion: { flag: `${qid}-livre` }, ...(lieuD ? { lieu: idDe(lieuD) } : {}) });
       poserSujet(destinataire, {
         id: `livraison-${slug(nom(q))}`.slice(0, 60),
         mots: ['livrer', 'apporter', ...objetsApportes.map((o) => nom(o).toLowerCase())],
@@ -800,7 +803,7 @@ export const messagePourClaude = (id: string): string =>
 export function ecrireMondeForge(racineMondes: string, id: string, source: string, brut: unknown, modeles: Modeles, options: OptionsImport): { dossier: string; resultat: ResultatImport; rapport: string } {
   // On convertit AVANT de créer quoi que ce soit : une conception inutilisable ne laisse pas de dossier à moitié rempli.
   const resultat = convertirForge(brut, id, options);
-  const dossier = creerSquelette(racineMondes, id, String(resultat.monde['nom']), modeles);
+  const dossier = creerSquelette(racineMondes, id, String(resultat.monde['nom']), modeles, { lieuxDeDepart: false });
   const monde = JSON.parse(readFileSync(join(dossier, 'monde.json'), 'utf8')) as Record<string, unknown>;
   const mondeFinal = { ...monde, ...resultat.monde, ton: ['à définir'] };
   writeFileSync(join(dossier, 'monde.json'), `${JSON.stringify(mondeFinal, null, 2)}\n`);
