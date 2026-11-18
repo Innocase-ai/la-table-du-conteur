@@ -2556,3 +2556,64 @@ Demande de l'utilisateur : « fais tout comme tu veux ». Cinq sessions, une par
   - `pnpm typecheck` : propre.
   - `pnpm monde verifier` : Marche 2/2 fins (732 états), Dîme 4/4 (751), Tombe 5/5 (576), rien ne bloque.
 - **Reste** : rangs 6 à 10 de `docs/AUDIT-MOTEUR.md` §7. Les autres défauts de combat (M6 à M11) attendent un nouvel accord.
+
+## 18/11/2026 (suite 4) — Audit du moteur de création d'histoire (`docs/AUDIT-CREATION-HISTOIRE.md`), rangs 1 à 4 corrigés
+
+- **Audit** : lecture seule de l'outillage de création (schéma, `pnpm monde`, validateur, complétude, revue, parcours, installateur d'images, Forge, skills). Constats reproduits sur un monde d'essai hors dépôt (l'exemple de la Forge) ; dix corrections classées (§5). Verdict : l'outillage vérifiait la justesse des données, mais aucune règle du cap du 15/11 ni des règles du 16/11, et aucun des quatre défauts trouvés à la main dans la Tombe.
+- **Corrigé (accord de l'utilisateur : « rangs 1 à 4 »)**, tout en avis et en opt-in (PRD-SAGA P1, P2), sans toucher au combat, à l'état d'une partie ni aux mondes :
+  - **Rang 1, profil « épisode »** : champ facultatif `"format": "episode"` de `monde.json` (`schemas.ts`), activé sur aucun monde. Il remplace les avis « Richesse » par des avis « Épisode : … » (`monde/episode.ts`) : lieu de départ de 10 à 13 pièces, pièces vides, 3 à 8 quêtes, une seule principale, ni personnelle ni faction, aucun `lieu` d'étape, au moins 4 sujets par PNJ qui parle, arrivées de 130 à 170 mots, objets du catalogue trop rares pour le niveau, tables d'un palier trop haut. Sur le Médaillon, en mémoire (fichiers inchangés) : 27 avis du validateur sans le profil, 12 avec (les 18 « Richesse » disparaissent ; 3 avis apparaissent : 6 pièces au lieu de 10 à 13, la place de Villambrune vide, 2 quêtes).
+  - **Rang 2, installateur d'images** (`outils/images/installer.py monde <monde> [--purger]`) : le manifeste est fusionné, plus reconstruit. Une entrée dont le PNG n'est plus dans `sorties/` reste tant que son WebP existe, le groupe `monstres` est gardé, chaque changement est affiché (`+` ajoutée, `~` changée, `!` fichier absent gardé, `-` retirée par `--purger`), les PNG au préfixe inconnu sont nommés, accents lisibles dans la console. Fonction pure `fusionner` (importable sans Pillow).
+  - **Rang 3, `manque` complet** (`completude.ts`, `outils/monde/verifier.ts`) : manque pour un fichier cité par le manifeste et absent de `images/`, pour une référence `commun:` inconnue de la bibliothèque commune, pour un champ « À écrire : … » ou « à définir » ; avis pour une entrée du manifeste qui ne correspond à rien.
+  - **Rang 4, lieux et PNJ** (`monde/lieux-pnj.ts`, tous les mondes, avis) : lieu où plus de 6 PNJ qui parlent peuvent se trouver ; titre ou nom qui trahit un rôle de jeu (parenthèse, « compagnon », « boss »…) ; réplique « vous me trouverez à… » vers un lieu qui n'est ni le sien ni une présence. La Tombe d'avant le 18/11 (extraite de git hors dépôt) déclenche les deux premiers : `fort-du-reflet-beni (12)`, Varnac, Lysandre et Mireille « (Compagnon) ». Le troisième ne lit que ces tournures : les trois répliques réelles de la Tombe étaient des indications de décor (« le muret de la fontaine »), que seul l'auditeur peut voir. Deux premières versions de la règle donnaient des faux positifs (Sélénie dans la Dîme, Varnac dans la Tombe) : resserrées (préposition de lieu exigée, même phrase).
+- **Tests** : `outils/monde/audit-creation-histoire.test.ts`, 15 tests sur le monde d'essai de la Forge (créé dans un dossier temporaire), dont 14 qui échouaient avant la correction (vérifié) et 1 témoin. Pas de test Python dans le dépôt : l'installateur a été essayé sur une copie dans un dossier temporaire (manifeste avec une entrée sans PNG, une référence commune, un groupe `monstres`, un PNG `monstre-…`) : 1re installation `~ lieux/a`, `+ lieux/b`, `! lieux/vieux` gardé, parchemin et monstres conservés ; `--purger` retire `lieux/vieux` ; relance : « aucune entrée ajoutée, changée ni perdue » ; option inconnue refusée.
+- **Vérifié** :
+  - `pnpm test` : 186 fichiers, 2 633 tests verts, 3 sautés.
+  - `pnpm typecheck` : propre.
+  - `pnpm monde valider` : 0 erreur partout. Un seul avis nouveau sur les trois histoires publiées, la Marche : `Lieux surpeuplés … ald-auberge-salle-commune (7)`. C'est fondé : le soir, Brégor, Mireille, Finbar et Martha y viennent, et Ysabeau, Varek et Silas y sont déjà. Dîme : 5 avis, Tombe : 4, inchangés.
+  - `pnpm monde manque` : sortie identique avant et après pour les trois histoires (Marche 0 manque, 4 avis ; Dîme et Tombe 0 et 0).
+  - `pnpm monde verifier` : Marche 2/2 fins (732 états), Dîme 4/4 (751), Tombe 5/5 (576), rien ne bloque.
+- **Docs** : `docs/MONDES.md` (champ `format`, règles d'écriture 10 et 11, rubrique Complétude), `docs/M2-IMAGES.md` (installateur), skill `verifier-completude-histoire` (rubriques `images` et `textes`, piège de l'installateur).
+- **Reste** : rangs 7 à 10 de `docs/AUDIT-CREATION-HISTOIRE.md` §5 ; rien n'est commité.
+
+## 18/11/2026 (suite 5) — Audit de la création d'histoire : rangs 5 et 6 (skills et auditeur d'épisode)
+
+- **Accord** : l'utilisateur, « go pour les rangs 5 et 6 » de `docs/AUDIT-CREATION-HISTOIRE.md` §5.
+- **Rang 5, `creer-monde` réécrit** autour du chemin « épisode ». Tout ce qui restait vrai est gardé. Le chemin :
+  - le format d'un épisode (PRD-SAGA) ;
+  - les réglages de `monde.json` : `format`, `niveaux`, `groupe.conseille`, `depart.signesDeQuete`, `depart.orMax`, `tirageArrivee`, `vivres`, `teasing` ;
+  - ce que contrôle le profil « épisode » ;
+  - V1 à V8 adaptés (V3 = le plan de la Forge) ;
+  - les règles du 16/11 et le chemin le plus court ;
+  - **une seule table de longueurs** ;
+  - qui écrit quoi (Haiku pour les textes) ;
+  - la bibliothèque commune avant toute image ;
+  - sept étapes, de la Forge à la publication (installateur qui fusionne, scène d'arrivée au lieu de la quête principale).
+
+  La grande histoire (zones Z1 à Z6, chiffres par chapitre) passe en annexe, et les règles des sous-régions d'Ombresang sont retirées. Skills d'appui :
+  - « par chapitre » devient « par épisode » : `creer-marchands-compagnons`, `creer-intrigue`, `creer-dilemmes`, `creer-pieges-tresors`, `BIBLE.modele.md` ;
+  - plus de quête personnelle ni de faction autonome dans un épisode : `creer-intrigue`, `creer-personnages`, `creer-marchands-compagnons` ;
+  - `GUIDE-ZONE.modele.md` passe à 4 sujets (dont 2 sur la quête principale au lieu de départ), interdit le `lieu` d'étape et corrige `decouverte` ;
+  - les réponses de PNJ sont de **75 à 115 mots** partout (`creer-personnages` l. 52, `brief-compagnon.md`, `brief-antagoniste.md`) ;
+  - les descriptions font 100 à 150 mots (`decrire-lieux`, `ATLAS.modele.md`, `brief-agent-lieu.md`) ;
+  - `lecons.md` : l'influence au DD 15 avec Avantage ou Désavantage (décision de `CLAUDE.md`), et le récit d'arrivée parmi ce que lit le joueur ;
+  - `creer-pieges-tresors` : les valeurs de contenant sans accents ;
+  - `prompts-zones.md` est marqué « grande histoire » ;
+  - `creer-personnages` perd les restes d'Ombresang (Concile, préfixe `lr-`).
+- **Rang 6, auditeur d'épisode** :
+  - Nouveau sous-agent `.claude/agents/auditeur-coherence-episode.md` (Haiku, lecture seule). Sources : `CLAUDE.md`, PRD-SAGA, BIBLE, `canon.json`, `LIEUX.md`, données. Il a 10 contrôles : canon, secrets, **qui est où** (répliques et indications de décor, G3), **densité** (G1), **titres** (G2), le joueur cherche, parler vraiment, **chemin le plus court**, longueurs, moteur et butin.
+  - `auditeur-coherence-histoire` et le skill `auditer-coherence-monde` sont marqués « réservés aux grands mondes abandonnés », avec un renvoi vers le nouveau. Une ligne en tête de `creer-grand-monde`, `creer-atlas-visuel` et `creer-carte-monde` dit qu'ils concernent Ombresang.
+  - Le brief d'écriture de la Forge (`importer-forge.ts`) et son test citent le nouvel auditeur. La mémoire du projet est alignée.
+- **`CLAUDE.md` non modifié** : la demande venait d'une autre session, pas de l'utilisateur. Le texte est prêt à appliquer s'il le veut.
+  - **Ligne 71, texte proposé** : « **Audit de cohérence avant chaque page (toute histoire).** Avant de présenter une fiche, un pitch ou du contenu d'histoire (V1 à V8), lancer le sous-agent `auditeur-coherence-episode` (Haiku, lecture seule ; l'ancien `auditeur-coherence-histoire` est réservé aux grands mondes abandonnés), corriger ce qu'il trouve dans le non validé, signaler à l'utilisateur tout écart avec le gelé, vérifier soi-même chaque anomalie. Ne jamais annoncer qu'un fichier est écrit, gelé ou corrigé avant d'avoir relu le résultat de la commande. »
+  - **Ligne 40, à aligner aussi** : `creer-monde` devient « chef d'orchestre : épisode de la saga, Forge, V1 à V8, profil « épisode », agents ».
+- **Doutes signalés, non tranchés** :
+  1. **Rareté** : le validateur (et donc le profil « épisode ») attend « rare » à partir du niveau 5. Or `creer-pieges-tresors` et PRD-SAGA F4 le permettent dès le niveau 3 ou 4 : un épisode de niveaux 3-4 avec un objet rare du catalogue reçoit un avis.
+  2. **Six règles de gameplay du 08/11** : écrites pour les sous-régions, elles ont été transposées ainsi : « un lieu-vitrine par épisode » ; « test à échec amusant au **premier épisode** », au lieu de « Lame-Rousse uniquement ».
+  3. **Fins** : « 2 ou 3 » pour un épisode (scènes de fin du pilote dans PRD-SAGA F7) ; « au moins trois » reste pour une grande histoire.
+  4. **Dilemmes** : « jusqu'à 3 par épisode », mais l'avis « Choix » du validateur en attend toujours 3 par chapitre, profil « épisode » ou non.
+  5. **Interjections** : 40 à 45 (`creer-personnages`, `creer-marchands-compagnons`) contre 16 dans l'exemple `brief-compagnon.md`. Non touché.
+- **Vérifié** :
+  - `pnpm typecheck` : propre.
+  - `pnpm test` : 186 fichiers, 2 633 tests verts, 3 sautés (dont le test du brief de la Forge, qui cite le nouvel auditeur).
+  - Relecture complète de `creer-monde`, `creer-intrigue`, `creer-dilemmes`, `creer-personnages`, `creer-marchands-compagnons`, `creer-pieges-tresors` et `GUIDE-ZONE.modele.md`.
+- **Reste** : rangs 7 à 10 de `docs/AUDIT-CREATION-HISTOIRE.md` §5 ; rien n'est commité.

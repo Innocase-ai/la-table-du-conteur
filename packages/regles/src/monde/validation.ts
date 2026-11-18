@@ -13,6 +13,8 @@ import { interjectionsDe } from './interjections-donnees';
 import { diagnosticDeMessage, type Diagnostic } from './diagnostics';
 import { refsCondition, refsEffet } from './references';
 import { avisQuetesSautables } from './quete-sautable';
+import { conseilsEpisode, RARETE_NIVEAU_MIN } from './episode';
+import { avisLieuxEtPnj } from './lieux-pnj';
 import { etatInitial, evaluerCondition } from './etat';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
 
@@ -66,7 +68,7 @@ export const MINIMA_PAR_CHAPITRE = {
   enigmes: 3, pieges: 5, rencontres: 15, faits: 40, factions: 4, tables: 3, fins: 2,
 };
 
-const RAPPORT_RARETE_NIVEAU: Record<string, number> = { commun: 1, 'peu-commun': 1, rare: 5, 'tres-rare': 11, legendaire: 17 };
+const RAPPORT_RARETE_NIVEAU = RARETE_NIVEAU_MIN;
 
 function compter(valeurs: string[]): Record<string, number> {
   const res: Record<string, number> = {};
@@ -707,8 +709,15 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   // --- Enchaînements : une quête principale doit exister, avec un donneur ---
   if (!Array.from(dm.quetes.values()).some((q) => q.type === 'principale')) avis('Aucune quête principale.');
 
+  // --- Lieux et PNJ : lieu surpeuplé, titre qui trahit, réplique qui place le PNJ ailleurs (avis, tous les mondes) ---
+  for (const a of avisLieuxEtPnj(dm)) avis(a);
+
+  // --- Épisode (opt-in, `monde.format: "episode"`) : les règles du cap du 15/11/2026 remplacent les objectifs de richesse d'un chapitre ---
+  if (dm.monde.format === 'episode') for (const a of conseilsEpisode(dm, srd)) avis(a);
+
   // --- Richesse : un chapitre doit offrir assez à explorer, à qui parler et à trouver ---
   const nbChap = dm.monde.chapitres.length;
+  const richesse = dm.monde.format !== 'episode';
   const comptes: [string, number, number][] = [
     ['lieux', dm.lieux.size, MINIMA_PAR_CHAPITRE.lieux],
     ['PNJ', dm.pnj.size, MINIMA_PAR_CHAPITRE.pnj],
@@ -727,12 +736,12 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     ['tables de butin', dm.tables.size, MINIMA_PAR_CHAPITRE.tables],
     ['fins', dm.fins.size, MINIMA_PAR_CHAPITRE.fins],
   ];
-  for (const [nom, n, min] of comptes) if (n < min * nbChap) avis(`Richesse : ${n} ${nom} pour ${nbChap} chapitre(s) (objectif : ${min * nbChap}).`);
+  for (const [nom, n, min] of comptes) if (richesse && n < min * nbChap) avis(`Richesse : ${n} ${nom} pour ${nbChap} chapitre(s) (objectif : ${min * nbChap}).`);
   const types = new Set([...dm.lieux.values()].map((l) => l.type));
   for (const [t, min] of [['grotte', 3], ['donjon', 1]] as const) {
-    if ([...dm.lieux.values()].filter((l) => l.type === t).length < min * nbChap) avis(`Richesse : moins de ${min * nbChap} ${t}(s).`);
+    if (richesse && [...dm.lieux.values()].filter((l) => l.type === t).length < min * nbChap) avis(`Richesse : moins de ${min * nbChap} ${t}(s).`);
   }
-  if (!types.has('village') && !types.has('ville')) avis('Richesse : ni village ni ville.');
+  if (richesse && !types.has('village') && !types.has('ville')) avis('Richesse : ni village ni ville.');
 
   const stats: StatsMonde = {
     lieux: compter([...dm.lieux.values()].map((l) => l.type)),

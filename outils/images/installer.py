@@ -2,7 +2,8 @@
 """Installe les images générées (sorties/images/…, PNG) dans le dépôt, réduites en WebP.
 
   python3 outils/images/installer.py galerie          → apps/jeu/src/portraits/<id>.webp (512 px, commun à tous les mondes)
-  python3 outils/images/installer.py monde <monde>    → packages/mondes/<monde>/images/<id>.webp + manifeste.json
+  python3 outils/images/installer.py monde <monde> [--purger]
+                                                      → packages/mondes/<monde>/images/<id>.webp + manifeste.json
   python3 outils/images/installer.py bestiaire        → apps/jeu/src/bestiaire/<profil>.webp (images de combat, tous mondes)
   python3 outils/images/installer.py equipement       → apps/jeu/src/equipement/<id>.webp (armes et armures du SRD, tous mondes)
   python3 outils/images/installer.py terrains         → apps/jeu/src/terrains/<ambiance>-<type>.webp (raccordables)
@@ -10,12 +11,22 @@
 
 Les PNG d'origine restent dans sorties/ (ignoré par git). Le manifeste d'un monde range chaque image par groupe
 (lieux, pnj, monstres, objets, cartes) sous l'identifiant de l'élément du monde ; le moteur le lit et le vérifie
-(packages/regles/src/monde/images.ts). Nécessite Pillow.
+(packages/regles/src/monde/images.ts). Nécessite Pillow (sur cette machine : `uv run --with pillow python outils/images/installer.py …`).
+
+Monde : le manifeste est FUSIONNÉ, pas reconstruit (audit du 18/11/2026, docs/AUDIT-CREATION-HISTOIRE.md G4). Une entrée dont le PNG
+n'est plus dans sorties/ est gardée tant que son .webp est dans le dépôt ; une entrée dont le fichier a disparu n'est retirée qu'avec
+--purger. Tout ce qui change est affiché.
 """
+from __future__ import annotations
+
 import json
 import sys
 from pathlib import Path
-from PIL import Image
+
+try:
+    from PIL import Image
+except ImportError:  # la fusion du manifeste (`fusionner`) se teste sans Pillow
+    Image = None  # type: ignore[assignment]
 
 RACINE = Path(__file__).resolve().parents[2]
 GROUPES = {"lieu-": "lieux", "pnj-": "pnj", "objet-": "objets", "carte-": "cartes"}
@@ -94,33 +105,67 @@ def galerie() -> None:
     print(f"{len(pngs)} portrait(s) installés dans {cible.relative_to(RACINE)}")
 
 
-def monde(id_monde: str) -> None:
+def fusionner(ancien: dict, installees: dict, presents: set, purger: bool = False) -> tuple[dict, list[str]]:
+    """Le nouveau manifeste et la liste de ce qui change. `ancien` : le manifeste en place ; `installees` : groupe → {clé: fichier} des
+    images que l'on vient d'installer depuis sorties/ ; `presents` : les fichiers du dossier images/ après l'installation. Rien ne se
+    perd sans le dire : une entrée absente de sorties/ reste tant que son fichier existe (ou si c'est une référence `commun:`) ; une
+    entrée dont le fichier n'existe plus est gardée et signalée, et n'est retirée qu'avec `purger`."""
+    manifeste = {g: dict(e) for g, e in ancien.items()}
+    for g in GROUPES.values():
+        manifeste.setdefault(g, {})
+    changements: list[str] = []
+    for groupe, entrees in installees.items():
+        for cle, fichier in entrees.items():
+            avant = manifeste[groupe].get(cle)
+            if avant is None:
+                changements.append(f"  + {groupe}/{cle} : {fichier}")
+            elif avant != fichier:
+                changements.append(f"  ~ {groupe}/{cle} : {avant} → {fichier}")
+            manifeste[groupe][cle] = fichier
+    for groupe, entrees in manifeste.items():
+        for cle, fichier in list(entrees.items()):
+            if cle in installees.get(groupe, {}) or str(fichier).startswith("commun:") or fichier in presents:
+                continue
+            if purger:
+                del entrees[cle]
+                changements.append(f"  - {groupe}/{cle} : {fichier} (fichier absent, retiré par --purger)")
+            else:
+                changements.append(f"  ! {groupe}/{cle} : {fichier} (fichier absent du dossier images/ : gardé ; --purger pour le retirer)")
+    return manifeste, changements
+
+
+def monde(id_monde: str, purger: bool = False) -> None:
     source = RACINE / "sorties/images/mondes" / id_monde
     cible = RACINE / "packages/mondes" / id_monde / "images"
     if not source.is_dir():
         sys.exit(f"Aucune image générée pour « {id_monde} » ({source.relative_to(RACINE)}).")
     cible.mkdir(parents=True, exist_ok=True)
-    manifeste = {g: {} for g in GROUPES.values()}
+    installees: dict = {g: {} for g in GROUPES.values()}
+    ignores = []
     for png in sorted(source.glob("*.png")):
         prefixe = next((p for p in GROUPES if png.stem.startswith(p)), None)
         if not prefixe:
+            ignores.append(png.name)
             continue
         # Lieux : 960 px de large (plein écran du récit), qualité 75 ; cartes : 1248 px (on y pose des repères), qualité 80 ; portraits, monstres, objets : 512 px.
         reduire(png, cible / f"{png.stem}.webp", *{"lieu-": (960, 75), "carte-": (1248, 80)}.get(prefixe, (512, 80)))
-        manifeste[GROUPES[prefixe]][png.stem[len(prefixe):]] = f"{png.stem}.webp"
-    # Les références à la bibliothèque commune (`commun:pnj/<id>`, `commun:objets/<id>`) ne viennent d'aucun PNJ généré : on les garde.
-    ancien = cible / "manifeste.json"
-    if ancien.exists():
-        for groupe, entrees in json.loads(ancien.read_text(encoding="utf8")).items():
-            for cle, fichier in entrees.items():
-                if str(fichier).startswith("commun:"):
-                    manifeste.setdefault(groupe, {}).setdefault(cle, fichier)
-    (cible / "manifeste.json").write_text(json.dumps(manifeste, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
-    total = sum(len(v) for v in manifeste.values())
-    print(f"{total} image(s) installées dans {cible.relative_to(RACINE)} ({', '.join(f'{len(v)} {g}' for g, v in manifeste.items())})")
+        installees[GROUPES[prefixe]][png.stem[len(prefixe):]] = f"{png.stem}.webp"
+    ancien_fichier = cible / "manifeste.json"
+    ancien = json.loads(ancien_fichier.read_text(encoding="utf8")) if ancien_fichier.exists() else {}
+    presents = {f.name for f in cible.iterdir() if f.is_file()}
+    manifeste, changements = fusionner(ancien, installees, presents, purger)
+    ancien_fichier.write_text(json.dumps(manifeste, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
+    total = sum(len(v) for v in installees.values())
+    print(f"{total} image(s) installées depuis {source.relative_to(RACINE)} ; manifeste : {', '.join(f'{len(v)} {g}' for g, v in manifeste.items())}")
+    print("\n".join(["Changements du manifeste :", *changements]) if changements else "Manifeste : aucune entrée ajoutée, changée ni perdue.")
+    if ignores:
+        print(f"PNG ignorés (préfixe inconnu, attendu : {', '.join(GROUPES)}) : {', '.join(ignores)}")
 
 
 if __name__ == "__main__":
+    for flux in (sys.stdout, sys.stderr):
+        if hasattr(flux, "reconfigure"):
+            flux.reconfigure(encoding="utf-8")  # console Windows : les accents
     if sys.argv[1:2] == ["galerie"]:
         galerie()
     elif sys.argv[1:2] == ["bestiaire"]:
@@ -131,7 +176,7 @@ if __name__ == "__main__":
         terrains()
     elif sys.argv[1:2] == ["interface"]:
         interface()
-    elif sys.argv[1:2] == ["monde"] and len(sys.argv) == 3:
-        monde(sys.argv[2])
+    elif sys.argv[1:2] == ["monde"] and len(sys.argv) in (3, 4) and sys.argv[3:] in ([], ["--purger"]):
+        monde(sys.argv[2], purger=sys.argv[3:] == ["--purger"])
     else:
         sys.exit(__doc__)

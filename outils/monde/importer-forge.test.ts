@@ -212,7 +212,7 @@ describe('import d\'une conception de la Forge', () => {
       expect(brief).toContain('# Brief d\'écriture : Le Médaillon de la Sœur Endormie');
       expect(brief).toContain('validé par l\'utilisateur');
       expect(brief).toContain('agents Haiku');
-      expect(brief).toContain('auditeur-coherence-histoire');
+      expect(brief).toContain('auditeur-coherence-episode');
       expect(brief).toContain('RAPPORT-FORGE.md');
       for (const r of REGLES_ECRITURE) expect(brief).toContain(r);
       // L'inventaire : une ligne par champ, avec le chemin dans la fiche.

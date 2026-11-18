@@ -8,7 +8,8 @@ import { Canon, Revue } from '../../packages/regles/src/monde/canon';
 import { resumerCompletude, verifierCompletude, type Ecart } from '../../packages/regles/src/monde/completude';
 import { diagnostiquerMonde } from '../../packages/regles/src/monde/diagnostiquer';
 import { Estimation, estimerCampagne } from '../../packages/regles/src/monde/estimation';
-import { ManifesteImages } from '../../packages/regles/src/monde/images';
+import { TableObjetsHistoires, TablePnjCommuns } from '../../packages/regles/src/monde/communs';
+import { ManifesteImages, type IdsCommuns } from '../../packages/regles/src/monde/images';
 import { listerRevue } from '../../packages/regles/src/monde/revue';
 import { RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import type { DonneesMonde } from '../../packages/regles/src/monde/schemas';
@@ -31,7 +32,18 @@ export function completudeDuMonde(dossier: string, dm: DonneesMonde): Ecart[] {
     scenes: scenesDu(dm).scenes,
     voix: noms(join(dossier, 'voix'), '.mp3'),
     estimationPresente: existsSync(join(dossier, 'estimation.json')),
+    // Le disque et la bibliothèque commune (audit du 18/11/2026, rang 3) : une image citée mais absente, une référence commune inconnue.
+    fichiersImages: new Set(existsSync(join(dossier, 'images')) ? readdirSync(join(dossier, 'images')) : []),
+    communs: idsCommuns(),
   });
+}
+
+/** Les ids de la bibliothèque commune (`packages/donnees/visuel/pnj-communs.json` et `objets-histoires.json`). */
+function idsCommuns(): IdsCommuns {
+  const visuel = join(RACINE_MONDES, '../donnees/visuel');
+  const pnj = TablePnjCommuns.safeParse(lireJson(join(visuel, 'pnj-communs.json')));
+  const objets = TableObjetsHistoires.safeParse(lireJson(join(visuel, 'objets-histoires.json')));
+  return { pnj: new Set(pnj.success ? pnj.data.pnj.map((e) => e.id) : []), objets: new Set(objets.success ? objets.data.objets.map((e) => e.id) : []) };
 }
 
 export type StatutRubrique = 'ok' | 'avis' | 'echec' | 'saute';

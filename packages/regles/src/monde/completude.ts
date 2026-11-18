@@ -1,7 +1,7 @@
 // Complétude d'un monde : ce qui MANQUE pour qu'une histoire soit livrable (images, cartes, scènes, voix, positions, estimation).
 // Le validateur (`validation.ts`) vérifie que ce qui existe est juste ; ce module cherche ce qui n'existe pas encore.
 // Pur : les fichiers (images communes, voix, manifeste) sont lus par l'appelant (`outils/monde/cli.ts`).
-import type { ManifesteImages } from './images';
+import { verifierImages, type IdsCommuns, type ManifesteImages } from './images';
 import type { DonneesMonde } from './schemas';
 
 export type Gravite = 'manque' | 'avis';
@@ -33,7 +33,15 @@ export interface EntreesCompletude {
   /** Noms (sans extension) des voix livrées : `<scene>-<plan>`. */
   voix: Set<string>;
   estimationPresente: boolean;
+  /** Fichiers présents dans le dossier `images/` du monde (noms avec extension) : une image citée par le manifeste et absente est un manque. Sans cette liste, rien n'est vérifié sur le disque. */
+  fichiersImages?: ReadonlySet<string>;
+  /** Ids de la bibliothèque commune : une référence `commun:pnj/…` ou `commun:objets/…` inconnue est un manque. */
+  communs?: IdsCommuns;
 }
+
+/** Les marques laissées par le squelette (`pnpm monde nouveau`) et l'importateur de la Forge : un texte encore à écrire. */
+export const A_ECRIRE = /^\s*À écrire\b/;
+const A_DEFINIR = 'à définir';
 
 /** Nombre d'enfants à partir duquel un lieu mérite une carte illustrée (`outils/images/cartes.ts`). */
 export const SEUIL_CARTE = 5;
@@ -50,6 +58,20 @@ export function verifierCompletude(e: EntreesCompletude): Ecart[] {
   for (const p of dm.pnj.values()) if (!manifeste?.pnj[p.id]) manque('images', p.id, `PNJ « ${p.nom} » sans portrait`);
   for (const o of dm.objets.values()) {
     if (!manifeste?.objets[o.id] && !e.imagesCommunes.has(e.idImageCommune(o.id))) manque('images', o.id, `objet « ${o.nom} » sans image (icône par défaut dans le sac)`);
+  }
+
+  // 1 bis. Le manifeste face au disque et à la bibliothèque commune (audit du 18/11/2026, rang 3) : un fichier absent montre une tuile
+  // vide, une référence commune inconnue aussi ; une entrée qui ne correspond à rien dans le monde n'est qu'un avis (reste d'un ancien lieu).
+  if (manifeste) {
+    for (const groupe of Object.keys(manifeste) as (keyof ManifesteImages)[]) {
+      for (const [id, f] of Object.entries(manifeste[groupe])) {
+        const ref = /^commun:(pnj|objets)\/(.+)$/.exec(f);
+        if (ref) {
+          if (e.communs && (ref[1] !== groupe || !e.communs[ref[1] as 'pnj' | 'objets'].has(ref[2]!))) manque('images', id, `référence commune inconnue « ${f} » (${groupe}/${id} : aucun asset de ce nom dans la bibliothèque commune)`);
+        } else if (e.fichiersImages && !e.fichiersImages.has(f)) manque('images', f, `fichier absent du dossier images/ (cité par ${groupe}/${id} dans le manifeste)`);
+      }
+    }
+    for (const x of verifierImages(dm, manifeste).inconnues) avis('images', x, 'entrée du manifeste qui ne correspond à aucun élément du monde (à retirer ?)');
   }
 
   // 2. Objets du catalogue cités (trésors, boutiques, inventaires, récompenses) : leur image commune existe-t-elle ?
@@ -93,6 +115,18 @@ export function verifierCompletude(e: EntreesCompletude): Ecart[] {
   // Un contrat se reconnaît à son nom, ou à la forme notée dans ses ramifications (« Forme : traque légère. », voir creer-contrats).
   const aDesContrats = [...dm.quetes.values()].some((q) => /contrat/i.test(`${q.id} ${q.nom}`) || /^\s*forme\s*:/i.test(q.ramifications ?? ''));
   if (parleDeContrats.length && !aDesContrats) avis('contrats', parleDeContrats.join(', '), "ces lieux annoncent des contrats, mais aucune quête de contrat n'existe (skill creer-contrats)");
+
+  // 6 bis. Textes encore à écrire (« À écrire : … », « à définir ») : le squelette et la Forge les posent, rien d'autre ne les signale.
+  const aEcrire = (racine: string, x: unknown, chemin: string): void => {
+    if (typeof x === 'string') {
+      if (A_ECRIRE.test(x) || x.trim() === A_DEFINIR) manque('textes', `${racine}${chemin ? `:${chemin}` : ''}`, x.length > 90 ? `${x.slice(0, 90)}…` : x);
+    } else if (Array.isArray(x)) x.forEach((v, i) => aEcrire(racine, v, `${chemin}[${i}]`));
+    else if (x && typeof x === 'object') for (const [k, v] of Object.entries(x)) aEcrire(racine, v, chemin ? `${chemin}.${k}` : k);
+  };
+  aEcrire('monde.json', dm.monde, '');
+  const groupes: [string, Map<string, unknown>][] = [['lieux', dm.lieux], ['pnj', dm.pnj], ['objets', dm.objets], ['tresors', dm.tresors], ['tables', dm.tables], ['rencontres', dm.rencontres], ['pieges', dm.pieges], ['enigmes', dm.enigmes], ['quetes', dm.quetes], ['factions', dm.factions], ['jauges', dm.jauges], ['evenements', dm.evenements], ['fins', dm.fins], ['faits', dm.faits]];
+  for (const [g, m] of groupes) for (const [id, x] of m ?? []) aEcrire(`${g}/${id}`, x, '');
+  for (const [g, xs] of Object.entries(dm.extensions ?? {})) xs.forEach((x, i) => aEcrire(`${g}/${(x as { id?: string })?.id ?? i}`, x, ''));
 
   // 7. Publication : estimation de durée et de coût, quêtes rangées dans les chapitres.
   if (dm.monde.statut === 'publie' && !e.estimationPresente) manque('publication', 'estimation.json', 'monde publié sans estimation (pnpm monde estimer)');

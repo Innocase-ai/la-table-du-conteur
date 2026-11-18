@@ -763,7 +763,7 @@ export function briefEcriture(id: string, r: ResultatImport, mondeFinal: Record<
     '',
     '1. **Les textes sont écrits par des agents Haiku** (un par groupe de fiches : lieux, PNJ, rencontres et quêtes, objets et contenants), chacun avec ces règles, les fiches concernées et leur voisinage (lieu, PNJ du lieu, quête liée). Claude relit et arbitre ; il ne réécrit pas à leur place.',
     '2. Chaque agent remplace **uniquement** les valeurs « À écrire : … » (le chemin du champ est donné ci-dessous) et ne touche à rien d\'autre.',
-    '3. Avant de présenter quoi que ce soit : `pnpm monde valider ' + id + '`, puis le sous-agent `auditeur-coherence-histoire` (lecture seule) pour la cohérence, et vérifier soi-même ses anomalies.',
+    '3. Avant de présenter quoi que ce soit : `pnpm monde valider ' + id + '`, puis le sous-agent `auditeur-coherence-episode` (lecture seule : canon, qui est où, titres, règles du 16/11, chemin le plus court) pour la cohérence, et vérifier soi-même ses anomalies.',
     '4. **L\'utilisateur valide chaque groupe de textes** (lieux, puis PNJ, puis quêtes…) avant qu\'on le considère comme gelé.',
     `5. À la fin : \`pnpm monde verifier ${id}\`, \`pnpm monde parcours ${id}\`, aucune occurrence de « À écrire » ne doit rester (\`grep -r "À écrire" packages/mondes/${id}\`), entrée dans \`docs/JOURNAL.md\`. Ne rien commiter sans l'accord de l'utilisateur ; images, voix et appels d'API : annoncer le coût d'abord.`,
     '',

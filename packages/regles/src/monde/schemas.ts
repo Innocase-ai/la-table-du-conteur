@@ -655,6 +655,10 @@ export const Monde = z.object({
   // paragraphes séparés par une ligne vide. Sans lui, l'écran montre `resume`.
   teasing: z.string().optional(),
   ton: z.array(Texte).min(1),
+  // Le gabarit d'écriture que le validateur applique (facultatif, 18/11/2026) : `episode` (cap du 15/11/2026, docs/PRD-SAGA.md) remplace
+  // les avis « Richesse » d'un chapitre par les règles d'un épisode court (lieu de départ de 10 à 13 pièces, 3 à 8 quêtes…, voir
+  // `monde/episode.ts`). Absent ou `campagne` : les avis d'avant. Ne change rien au jeu.
+  format: z.enum(['campagne', 'episode']).optional(),
   // Niveaux de personnages pour lesquels le monde est écrit.
   niveaux: z.object({ min: z.number().int().min(1).max(20), max: z.number().int().min(1).max(20) }),
   // Taille du groupe pour laquelle l'histoire est écrite (4 ou 6 héros). Elle se joue de 1 à 6 héros : les combats s'adaptent
