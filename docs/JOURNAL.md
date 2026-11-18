@@ -2540,3 +2540,19 @@ Demande de l'utilisateur : « fais tout comme tu veux ». Cinq sessions, une par
   - `pnpm monde verifier` : Marche 2/2 fins (732 états), Dîme 4/4 (751), Tombe 5/5 (576), rien ne bloque.
   - Aucun fichier de `src/combat/` touché (P3).
 - **Reste** : rangs 4 à 10 de `docs/AUDIT-MOTEUR.md` §7 (les rangs 4 et 5 touchent le combat gelé).
+
+## 18/11/2026 (suite 3) — Audit du moteur : rangs 4 et 5, dans le combat gelé (accord de l'utilisateur)
+
+- **Accord** : l'utilisateur lève le gel du combat (PRD-SAGA P3) pour ces deux corrections seulement ; rien d'autre dans `src/combat/`.
+- **M4** : la botte Poussée envoyait la cible hors de la grille (la copie de `moteur.ts` ne vérifiait pas les bords), et le combat ne finissait plus. Elle appelle maintenant `repousser` (`sorts.ts`), qui vérifie les bords ; la copie est supprimée.
+- **M5** : `clonerCombattant` (`etat.ts`) partageait caractéristiques, sauvegardes, compétences et attaques avec le vrai combattant. L'IA qui envisageait une potion de force de géant (Héros auto) gonflait la Force du héros sans rien boire. Ces champs sont maintenant copiés.
+- **Tests** : `tests/audit-moteur-combat.test.ts`, 5 tests. Sur une copie de `HEAD` hors du dépôt, 4 échouent et le témoin (poussée en terrain libre) passe ; avec la correction, les 5 passent.
+- **Simulation de référence (P3)** : `pnpm simuler 10 rapide` enregistré avant toute modification, plus une empreinte de chacun des 60 combats.
+  - Après la correction, toutes les lignes sont identiques hors de la durée, et les 60 empreintes de journal aussi.
+  - C'était attendu : aucune poussée dans ces combats, aucun héros pré-tiré ne porte de potion de force de géant.
+  - Seul écart, le temps : la simulation prend +8,5 % (≈ 50,0 s → 54,3 s), entièrement dû à la copie de M5. Une première écriture coûtait +14 % ; détail dans `docs/AUDIT-MOTEUR.md` §8.
+- **Vérifié** :
+  - `pnpm test` : 185 fichiers, 2 618 tests verts, 3 sautés.
+  - `pnpm typecheck` : propre.
+  - `pnpm monde verifier` : Marche 2/2 fins (732 états), Dîme 4/4 (751), Tombe 5/5 (576), rien ne bloque.
+- **Reste** : rangs 6 à 10 de `docs/AUDIT-MOTEUR.md` §7. Les autres défauts de combat (M6 à M11) attendent un nouvel accord.

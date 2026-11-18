@@ -28,13 +28,14 @@ import {
   couvert,
   distanceCases,
   distanceMetres,
-  franchissable,
   ligneDeVue,
   TAILLE_CASE,
   type Chemin,
   type Grille,
   type Position,
 } from './grille';
+// Cycle d'import voulu (sorts.ts importe aussi ce module) : `repousser` n'est appelé qu'à l'exécution, jamais au chargement.
+import { repousser } from './sorts';
 
 export const DEGATS_PHYSIQUES = ['contondant', 'perforant', 'tranchant'];
 
@@ -955,19 +956,10 @@ function appliquerBotte(
       }
       break;
     case 'poussee': {
-      // Seule une créature de taille G ou moins peut être repoussée.
+      // Seule une créature de taille G ou moins peut être repoussée, de 3 m (deux cases). `repousser` vérifie les bords de la grille :
+      // la copie qui était ici ne le faisait pas et envoyait la cible hors de la grille (audit du moteur du 18/11/2026, M4).
       if (TAILLES.indexOf(cible.taille) > TAILLES.indexOf('G')) break;
-      const dx = Math.sign(cible.position.x - attaquant.position.x);
-      const dy = Math.sign(cible.position.y - attaquant.position.y);
-      const occ = occupation(etat, cible);
-      const pousse: Position[] = [];
-      for (let i = 0; i < 2; i++) {
-        const p = { x: cible.position.x + dx, y: cible.position.y + dy };
-        if (!franchissable(etat.grille.cases[p.y * etat.grille.largeur + p.x] ?? 'mur') || occ.occupees.has(cle(p))) break;
-        cible.position = p;
-        pousse.push(p);
-      }
-      if (pousse.length) journaliser(etat, { type: 'deplacement', texte: `${cible.nom} est repoussé.`, acteur: cible.id, details: { chemin: pousse } });
+      repousser(etat, attaquant.position, cible, 2);
       break;
     }
     case 'enchainement': {

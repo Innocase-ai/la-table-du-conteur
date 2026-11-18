@@ -294,10 +294,25 @@ export function allies(etat: EtatCombat, c: Combattant): Combattant[] {
   return etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !horsCombat(x));
 }
 
-/** Copie d'un combattant : seuls les champs qui changent en combat sont dupliqués ; le reste (profil, attaques) est partagé. */
+/**
+ * Copie d'une attaque et de son tableau de dégâts. Les dégâts eux-mêmes sont partagés : rien ne les modifie en place, un effet
+ * (potion de force de géant, `objets.ts`) remplace l'élément du tableau.
+ */
+const clonerAttaque = (a: AttaqueArme): AttaqueArme => ({ ...a, degats: [...a.degats] });
+
+/**
+ * Copie d'un combattant : les champs qui changent en combat sont dupliqués ; le reste (profil) est partagé. Caractéristiques,
+ * sauvegardes, compétences et attaques sont copiées aussi : un objet bu en simulation (potion de force de géant) les modifie en place,
+ * et l'IA qui l'envisageait changeait le vrai combattant sans rien boire (audit du moteur du 18/11/2026, M5).
+ */
 function clonerCombattant(c: Combattant): Combattant {
   return {
     ...c,
+    mods: { ...c.mods },
+    sauvegardes: { ...c.sauvegardes },
+    competences: c.competences && { ...c.competences },
+    attaques: c.attaques.map(clonerAttaque),
+    autreJeu: c.autreJeu && { ...c.autreJeu, attaques: c.autreJeu.attaques.map(clonerAttaque) },
     position: { ...c.position },
     etats: c.etats.map((e) => ({ ...e })),
     modificateurs: c.modificateurs.map((m) => ({ ...m })),

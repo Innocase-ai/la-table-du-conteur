@@ -2,7 +2,11 @@
 
 Audit en lecture seule de `packages/regles` : noyau à modules, moteur de monde (exploration, dialogue, présences, quêtes, jauges, fins, scènes, tirage d'arrivée, estimation), combat, création et équipement, validateur et parcours automatique, sauvegardes et migrations. Aucun fichier du moteur n'a été modifié, rien n'a été commité, aucune API n'a été appelée. Ce rapport est le seul fichier créé.
 
-**Corrigés le 18/11/2026** : M1, M2 et M3 (rangs 1 à 3 du §7), test `packages/regles/tests/audit-moteur-correctifs.test.ts` (13 tests, dont 10 qui échouaient avant la correction). Les autres constats restent à faire.
+**Corrigés le 18/11/2026** :
+- M1, M2 et M3 (rangs 1 à 3 du §7), test `packages/regles/tests/audit-moteur-correctifs.test.ts` (13 tests, dont 10 qui échouaient avant la correction).
+- M4 et M5 (rangs 4 et 5, combat touché avec l'accord de l'utilisateur), test `packages/regles/tests/audit-moteur-combat.test.ts` (5 tests, dont 4 qui échouaient avant). Comparaison des simulations au §8.
+
+Les autres constats restent à faire.
 
 **Méthode.** Quatre relectures menées en parallèle (Opus) : exploration et monde ; dialogues, objets et économie ; combat ; noyau, création et vérification. Chaque constat est reproduit par un petit script jetable, placé hors du dépôt. Les constats graves ont été relancés et relus dans le code par l'auteur du rapport. Les points déjà connus (`AUDIT-MOTEUR-JEU.md`, `AUDIT-COMBAT.md`, `AUDIT-REGLES-SRD.md`, `AUDIT-DIALOGUES-PNJ.md`, `AUDIT-CREATION.md`, dépendances de la fiche F3 dans `PRD-SAGA.md`) ne sont pas repris. Ils sont seulement revérifiés au §6.
 
@@ -66,7 +70,8 @@ En résumé, le noyau transactionnel et le combat sont solides : ni plantage ni 
   - Mettre `disponible` dans le `try`, et protéger `propositions` et `encarts` de la même façon.
   - Dans `migrer`, refuser clairement une sauvegarde à laquelle il manque `scene`, `modules` ou `journal`, ou leur donner une valeur par défaut.
 
-### M4. La botte Poussée envoie la cible hors de la grille, et le combat ne finit plus
+### M4. La botte Poussée envoie la cible hors de la grille, et le combat ne finit plus · **corrigé le 18/11/2026**
+- **Correction faite** : la botte appelle `repousser(etat, attaquant.position, cible, 2)` (`combat/sorts.ts`), qui vérifie les bords de la grille ; la copie de `moteur.ts` est supprimée. Le reste ne change pas : 3 m, taille G au plus, même ligne de journal, rien sur une cible morte. Test : `tests/audit-moteur-combat.test.ts`. Simulation de référence identique (§8).
 - **Où** : `combat/moteur.ts:966`. Le code lit `cases[p.y * largeur + p.x] ?? 'mur'` sans vérifier `x`. À `x = -1`, l'index retombe sur la dernière case de la ligne précédente, qui est franchissable. `repousser` (`combat/sorts.ts:252`) vérifie, lui, les bords.
 - **Ce qui se passe** : le monstre se retrouve en `x = -2`. Il ne peut plus bouger, personne ne peut le cibler, et le combat tourne sans fin.
 - **Reproduire** : `audit-combat/poussee-bloque.ts`.
@@ -81,7 +86,8 @@ En résumé, le noyau transactionnel et le combat sont solides : ni plantage ni 
 
 ### Combat (tous dans `src/combat/`, gelé par P3)
 
-**M5. « Héros auto » gonfle la Force d'un héros sans qu'il boive la potion.**
+**M5. « Héros auto » gonfle la Force d'un héros sans qu'il boive la potion.** · **corrigé le 18/11/2026**
+- **Correction faite** : `clonerCombattant` (`combat/etat.ts`) copie aussi `mods`, `sauvegardes`, `competences`, les attaques (et leur tableau de dégâts) et celles de l'autre jeu d'armes. Test : `tests/audit-moteur-combat.test.ts`. Simulation de référence identique ; coût mesuré : +8,5 % de temps sur la simulation (§8).
 - **Où** : `combat/etat.ts:298-311` (`clonerCombattant`), `combat/objets.ts:120-129`, `combat/ia.ts:295-298`.
 - **Ce qui se passe** : `clonerCombattant` partage `mods`, `sauvegardes`, `competences` et `attaques` avec l'état réel. `appliquerObjet` modifie ces objets en place. Or l'IA simule toutes les cartes jouables, y compris `base:objet-*`, alors que `COMBAT.md` dit qu'elle ne les joue pas. La simulation modifie donc le vrai héros.
 - **Reproduire** : `audit-combat/repro.ts`, bloc C-fuite-force. `étape choisie : Javeline (lancer) → g1 — potion encore en réserve : 1` / `AVANT : For 3 … epee-longue:+5/3` / `APRÈS : For 5 … epee-longue:+7/5`.
@@ -335,8 +341,8 @@ En résumé, le noyau transactionnel et le combat sont solides : ni plantage ni 
 | 1 | ✅ **fait le 18/11/2026** : toujours proposer « Fin du dialogue », et repasser en exploration quand l'interlocuteur est parti après un service ou une influence | M1 | petit | non |
 | 2 | ✅ **fait le 18/11/2026** : `gardienEnPlace` ignore les rencontres fortuites `auto-*` | M2 | petit | non |
 | 3 | ✅ **fait le 18/11/2026** : `charger` répare une scène ou un lieu inconnus et complète `scene`, `modules` et `journal` ; `disponible` passe dans le `try` ; test d'une sauvegarde qui cite une entité supprimée | M3 | petit à moyen | non |
-| 4 | La poussée passe par `repousser` (bords de la grille vérifiés) | M4 | petit | **oui** (P3 : accord et simulation de référence) |
-| 5 | Copie profonde de `mods`, `sauvegardes`, `competences` et `attaques` dans `clonerCombattant` | M5 | petit | **oui** |
+| 4 | ✅ **fait le 18/11/2026** : la poussée passe par `repousser` (bords de la grille vérifiés) | M4 | petit | **oui** (accord de l'utilisateur ; simulation de référence identique) |
+| 5 | ✅ **fait le 18/11/2026** : copie profonde de `mods`, `sauvegardes`, `competences` et `attaques` dans `clonerCombattant` | M5 | petit | **oui** (idem) |
 | 6 | Toute nuit complète fait avancer l'horloge et rouvre la fouille ; réveil à heure + 8 entre 6 h et 8 h | M12 | petit | non |
 | 7 | Tombe : passage des racines à sens unique (ou DD relevé), texte de `retour` à la découverte, avis du validateur pour un passage caché entre niveaux | M13 | petit | non |
 | 8 | Deux corrections d'une ligne : une quête échouée ne se termine plus (M17), délai d'un secret sans la manière (M18) | M17, M18 | très petit | non |
@@ -352,3 +358,22 @@ Pour les rangs 4 et 5 et tout le bloc combat, P3 impose d'enregistrer `pnpm simu
 ## Annexe : scripts de reproduction
 
 Ils sont hors du dépôt, dans le dossier temporaire de la session : `C:\Users\sebas\AppData\Local\Temp\claude\584d935d5a46fbdf\d204682f-75b2-42c5-8c49-41e6a44dc808\scratchpad\`, sous-dossiers `audit-exploration\`, `audit-dialogue-objets\`, `audit-combat\` et `audit-noyau-creation\`. On les lance depuis la racine du dépôt avec `node_modules/.bin/tsx <script>`, mais `p1-parcours.ts` et `p5-fin-impossible.ts` demandent `node --max-old-space-size=8000 node_modules/tsx/dist/cli.mjs`. Ce dossier peut être vidé au redémarrage : copier ce qui servira de base aux tests de non-régression avant de corriger.
+
+## 8. Simulation de référence (P3) pour M4 et M5, le 18/11/2026
+
+`pnpm simuler 10 rapide` (six héros pré-tirés, IA rapide des deux côtés, graines 1000 à 1009) a été enregistré avant toute modification puis relancé après. En complément, une empreinte de chaque combat a été relevée avant et après : 60 combats (6 rencontres × 10 graines), avec vainqueur, rounds, PV de chaque héros, nombre d'événements et empreinte SHA-1 du journal complet.
+
+| Rencontre | Avant | Après |
+|---|---|---|
+| Embuscade gobeline | victoires 100 %, rounds 4.1, PV restants 83 %, à terre 0.1, morts 0.0 | identique |
+| La crypte | 100 %, 6.7, 51 %, 0.6, 0.2 | identique |
+| La bande et ses ogres | 100 %, 5.2, 82 %, 0.3, 0.0 | identique |
+| Le camp hobgobelin | 90 %, 7.3, 50 %, 1.7, 0.4 | identique |
+| Le gué des brigands | 100 %, 4.2, 90 %, 0.1, 0.0 | identique |
+| Le col gelé | 60 %, 10.2, 20 %, 4.0, 1.8 | identique |
+
+**Bilan** : toutes les lignes sont identiques hors de la colonne de durée, et les 60 empreintes de journal sont identiques. Aucun écart à expliquer, ce que l'analyse prévoyait :
+- Aucun combat de référence ne contient de poussée (0 ligne « est repoussé » dans les 60 journaux) : M4 n'y joue pas.
+- Aucun héros pré-tiré ne porte de potion de force de géant, seul objet qui modifiait un combattant en place : M5 ne change aucun choix.
+
+**Seul écart : le temps.** La durée par partie passe de 0,5-1,2 s à 0,6-1,2 s selon la rencontre. Mesurée en alternance sur le script d'empreinte, la simulation complète passe de ≈ 50,0 s à ≈ 54,3 s, soit **+8,5 %**. Tout vient de M5 : avec la seule correction de M4, la durée est de 50,5 s. Une première écriture de la copie coûtait +14 % ; la version gardée copie le tableau des dégâts sans copier chaque dégât, et évite les décompositions conditionnelles. Par extrapolation, un tour d'IA normale passerait d'environ 119 ms à environ 129 ms (non mesuré). Si ce coût gêne, une copie sur écriture dans `combat/objets.ts` ne coûterait rien, mais elle protège moins contre une future mutation en place.
