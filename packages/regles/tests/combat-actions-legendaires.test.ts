@@ -7,6 +7,7 @@ import { monstreDepuisProfil } from '../src/combat/creation';
 import { ACTIONS_LEGENDAIRES, ACTIONS_LEGENDAIRES_MAX, estActionLegendaire, type Combattant, type EtatCombat } from '../src/combat/etat';
 import { IA_RAPIDE, jouerTourIA } from '../src/combat/ia';
 import { actionsLegendairesApres, actionsLegendairesJouables, rendreActionsLegendaires, VERROU_LEGENDAIRE } from '../src/combat/legendaire';
+import { distanceCases } from '../src/combat/grille';
 import { creerCombat } from '../src/combat/moteur';
 import { preparerRencontre, RENCONTRES, type Rencontre } from '../src/combat/prototype';
 import { chargerDonneesSrd } from '../src/donnees-node';
@@ -61,7 +62,7 @@ describe('la réserve d’actions légendaires', () => {
   it('on sait reconnaître une action légendaire et celles qu’on sait jouer (résolution d’attaque ou de sauvegarde)', () => {
     const { monstre } = combat('dragon-blanc-adulte');
     expect(monstre.actionsMonstre.filter(estActionLegendaire).map((a) => a.id).sort()).toEqual(['assaut-incisif', 'decharge-de-gel', 'presence-terrifiante']);
-    expect(actionsLegendairesJouables(monstre).map((a) => a.id)).toEqual(['decharge-de-gel']);
+    expect(actionsLegendairesJouables(monstre).map((a) => a.id).sort()).toEqual(['assaut-incisif', 'decharge-de-gel']);
   });
 });
 
@@ -150,5 +151,96 @@ describe('dans un combat entier', () => {
       usages += dit(etat, /dépense une action légendaire/).length;
     }
     expect(usages).toBeGreaterThan(0);
+  });
+});
+
+/** Pose `h` sur une case libre à `cases` cases de `autour` (la première trouvée). */
+function placer(etat: EtatCombat, h: Combattant, autour: Combattant, cases: number | 'loin'): void {
+  if (cases === 'loin') {
+    let meilleure = { x: 0, y: 0 };
+    let d = -1;
+    for (let y = 0; y < etat.grille.hauteur; y++) for (let x = 0; x < etat.grille.largeur; x++) {
+      if (etat.grille.cases[y * etat.grille.largeur + x] !== 'sol' || etat.combattants.some((c) => c !== h && c.position.x === x && c.position.y === y)) continue;
+      if (distanceCases({ x, y }, autour.position) > d) (d = distanceCases({ x, y }, autour.position), (meilleure = { x, y }));
+    }
+    h.position = meilleure;
+    return;
+  }
+  for (let y = 0; y < etat.grille.hauteur; y++) {
+    for (let x = 0; x < etat.grille.largeur; x++) {
+      const p = { x, y };
+      if (etat.grille.cases[y * etat.grille.largeur + x] !== 'sol' || distanceCases(p, autour.position) !== cases) continue;
+      if (etat.combattants.some((c) => c !== h && c.position.x === x && c.position.y === y)) continue;
+      h.position = p;
+      return;
+    }
+  }
+  throw new Error(`aucune case libre à ${cases} case(s)`);
+}
+
+describe('lot 3b : se déplacer puis attaquer (Assaut incisif, Balayage caudal, Offensive…)', () => {
+  it('les 24 actions légendaires « effectue une attaque de X » portent leurs données : des attaques du profil, une part de Vitesse', () => {
+    let n = 0;
+    for (const m of donnees.monstres.values()) {
+      for (const a of m.actions) {
+        if (!a.legendaire) continue;
+        n++;
+        expect(estActionLegendaire(a), `${m.id}/${a.id}`).toBe(true);
+        for (const id of a.legendaire.attaque) expect(m.actions.find((x) => x.id === id)?.resolution?.type, `${m.id}/${a.id} → ${id}`).toBe('attaque');
+        expect(a.legendaire.deplacement ?? 0).toBeGreaterThanOrEqual(0);
+        expect(a.legendaire.deplacement ?? 0).toBeLessThanOrEqual(1);
+      }
+    }
+    expect(n).toBe(24);
+  });
+
+  it('un adversaire déjà à portée : il ne bouge pas, il frappe (Saignée)', () => {
+    const { etat, monstre, heros } = combat('dragon-blanc-adulte');
+    monstre.ressources[`${VERROU_LEGENDAIRE}decharge-de-gel`] = 1;
+    placer(etat, heros[0]!, monstre, 1);
+    const depart = { ...monstre.position };
+    actionsLegendairesApres(etat, heros[1]!);
+    expect(monstre.position).toEqual(depart);
+    expect(monstre.ressources[ACTIONS_LEGENDAIRES]).toBe(2);
+    expect(dit(etat, /dépense une action légendaire : Assaut incisif/)).toHaveLength(1);
+    expect(dit(etat, /attaque .* \(Sai/).length).toBe(1);
+  });
+
+  it('un adversaire à quelques cases : il s’approche (moitié de sa Vitesse), frappe, et son propre mouvement du tour n’est pas entamé', () => {
+    const { etat, monstre, heros } = combat('dragon-blanc-adulte');
+    monstre.ressources[`${VERROU_LEGENDAIRE}decharge-de-gel`] = 1;
+    for (const h of heros.slice(1)) placer(etat, h, monstre, 'loin');
+    placer(etat, heros[0]!, monstre, 5);
+    const avant = distanceCases(monstre.position, heros[0]!.position);
+    const tour = { mouvement: monstre.tour.mouvement, aBouge: monstre.tour.aBouge };
+    actionsLegendairesApres(etat, heros[1]!);
+    expect(distanceCases(monstre.position, heros[0]!.position)).toBeLessThan(avant);
+    expect(distanceCases(monstre.position, heros[0]!.position)).toBeLessThanOrEqual(2);
+    expect(dit(etat, /Dragon blanc adulte attaque .* \(Sai/).length).toBeGreaterThanOrEqual(1);
+    expect(monstre.tour.mouvement).toBe(tour.mouvement);
+    expect(monstre.tour.aBouge).toBe(tour.aBouge);
+    expect(monstre.ressources[ACTIONS_LEGENDAIRES]).toBe(2);
+  });
+
+  it('un adversaire trop loin pour la moitié de la Vitesse : rien n’est dépensé', () => {
+    const { etat, monstre, heros } = combat('dragon-blanc-adulte');
+    monstre.ressources[`${VERROU_LEGENDAIRE}decharge-de-gel`] = 1;
+    for (const h of heros) placer(etat, h, monstre, 'loin');
+    actionsLegendairesApres(etat, heros[0]!);
+    expect(monstre.ressources[ACTIONS_LEGENDAIRES]).toBe(3);
+  });
+
+  it('sans déplacement (Balayage caudal du dragon bleu) : seulement un adversaire déjà au contact', () => {
+    const { etat, monstre, heros } = combat('dragon-bleu-adulte');
+    for (const h of heros) placer(etat, h, monstre, 8);
+    // Ses autres actions légendaires jouables (Fracas, etc.) n'en sont pas : seule l'attaque est possible, et personne n'est au contact.
+    for (const a of actionsLegendairesJouables(monstre)) monstre.ressources[`${VERROU_LEGENDAIRE}${a.id}`] = 1;
+    actionsLegendairesApres(etat, heros[0]!);
+    expect(monstre.ressources[ACTIONS_LEGENDAIRES]).toBe(3);
+    for (const k of Object.keys(monstre.ressources)) if (k.startsWith(VERROU_LEGENDAIRE)) delete monstre.ressources[k];
+    monstre.ressources[`${VERROU_LEGENDAIRE}fracas-tonitruant`] = 1;
+    placer(etat, heros[0]!, monstre, 1);
+    actionsLegendairesApres(etat, heros[1]!);
+    expect(dit(etat, /dépense une action légendaire : Balayage caudal/)).toHaveLength(1);
   });
 });

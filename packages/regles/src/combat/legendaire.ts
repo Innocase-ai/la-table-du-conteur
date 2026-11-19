@@ -8,15 +8,15 @@
 import { moyenneDes } from '../des';
 import type { ActionMonstre } from '../schemas';
 import { ACTIONS_LEGENDAIRES, ACTIONS_LEGENDAIRES_MAX, ennemis, estActionLegendaire, horsCombat, journaliser, peutAgir, type Combattant, type EtatCombat } from './etat';
-import { casesZone, distanceMetres, ligneDeVue } from './grille';
+import { casesZone, distanceMetres, ligneDeVue, TAILLE_CASE, type Position } from './grille';
 // Cycle d'import voulu (moteur.ts appelle ce module à chaque fin de tour) : `attaqueMonstre` n'est appelé qu'à l'exécution.
-import { attaqueMonstre } from './moteur';
+import { attaqueMonstre, deplacementsPossibles, deplacer, vitesse } from './moteur';
 
 /** Préfixe de la clé de `ressources` qui verrouille une action légendaire jusqu'au début du prochain tour du monstre (« ne peut alors plus entreprendre cette action »). */
 export const VERROU_LEGENDAIRE = 'verrouLegendaire:';
 
 /** Une action légendaire qu'on sait jouer : elle porte une résolution d'attaque ou de sauvegarde. */
-const jouable = (a: ActionMonstre): boolean => a.resolution?.type === 'attaque' || a.resolution?.type === 'sauvegarde';
+const jouable = (a: ActionMonstre): boolean => !!a.legendaire || a.resolution?.type === 'attaque' || a.resolution?.type === 'sauvegarde';
 
 /** Les actions légendaires jouables d'un monstre. */
 export function actionsLegendairesJouables(c: Combattant): ActionMonstre[] {
@@ -35,13 +35,54 @@ interface Plan {
   action: ActionMonstre;
   cibles: Combattant[];
   score: number;
+  /** Action « se déplace puis attaque » (`legendaire`) : l'attaque du profil à jouer et la case où aller d'abord (absente : il attaque d'où il est). */
+  attaque?: string;
+  vers?: Position;
 }
 
 /** Ce qu'une cible touchée rapporte au monstre : ses dégâts moyens (pondérés par la chance de toucher ou de faire rater) et un bonus pour les états infligés. */
 const valeurParCible = (a: ActionMonstre): number => a.degats.reduce((s, d) => s + moyenneDes(d.des) + d.bonus, 0) * 0.6 + (a.etats.length ? 3 : 0);
 
+/** La portée d'une action d'attaque du profil, en mètres. */
+const porteeDe = (a: ActionMonstre): number => (a.portee?.type === 'distance' ? (a.portee.longue ?? a.portee.normale ?? 1.5) : (a.portee?.allonge ?? 1.5));
+
+/**
+ * « Se déplace d'une part de sa Vitesse et effectue une attaque de X » (`legendaire`) : la meilleure attaque listée (dégâts moyens), contre l'adversaire le
+ * plus blessé qu'il peut atteindre, d'où il est ou après s'être approché (chemin le moins cher dans la part de Vitesse permise). Aucun déplacement si une
+ * cible est déjà à portée.
+ */
+function planDeplacerEtAttaquer(etat: EtatCombat, c: Combattant, a: ActionMonstre): Plan | undefined {
+  const attaques = a.legendaire!.attaque.map((id) => c.actionsMonstre.find((x) => x.id === id)).filter((x): x is ActionMonstre => x?.resolution?.type === 'attaque');
+  if (!attaques.length) return undefined;
+  const moyenne = (x: ActionMonstre) => x.degats.reduce((s, d) => s + moyenneDes(d.des) + d.bonus, 0);
+  const attaque = [...attaques].sort((x, y) => moyenne(y) - moyenne(x))[0]!;
+  const portee = Math.max(porteeDe(attaque), 1.5);
+  const visibles = ennemis(etat, c);
+  const unite = moyenne(attaque) * 0.65;
+  const dejaLa = visibles.filter((e) => distanceMetres(c.position, e.position) <= portee && (attaque.portee?.type !== 'distance' || ligneDeVue(etat.grille, c.position, e.position)));
+  if (dejaLa.length) return { action: a, cibles: [[...dejaLa].sort((x, y) => x.pv - y.pv)[0]!], score: unite, attaque: attaque.id };
+  const part = a.legendaire!.deplacement ?? 0;
+  if (part <= 0) return undefined;
+  // Les cases où il peut aller avec la part de Vitesse permise (sans toucher à son mouvement du tour).
+  const mouvement = c.tour.mouvement;
+  c.tour.mouvement = Math.floor((vitesse(c) * part) / TAILLE_CASE) * TAILLE_CASE;
+  const chemins = deplacementsPossibles(etat, c);
+  c.tour.mouvement = mouvement;
+  let meilleur: { cible: Combattant; vers: Position; cout: number } | undefined;
+  for (const [, chemin] of chemins) {
+    const arrivee = chemin.etapes[chemin.etapes.length - 1];
+    if (!arrivee) continue;
+    for (const e of visibles) {
+      if (distanceMetres(arrivee, e.position) > portee) continue;
+      if (!meilleur || chemin.cout < meilleur.cout || (chemin.cout === meilleur.cout && e.pv < meilleur.cible.pv)) meilleur = { cible: e, vers: arrivee, cout: chemin.cout };
+    }
+  }
+  return meilleur ? { action: a, cibles: [meilleur.cible], score: unite - 0.1, attaque: attaque.id, vers: meilleur.vers } : undefined;
+}
+
 /** Ce que ferait cette action maintenant : qui serait touché (zone) ou visé (une cible), et ce que ça vaut ; rien si personne n'est à portée. */
 function planDe(etat: EtatCombat, c: Combattant, a: ActionMonstre): Plan | undefined {
+  if (a.legendaire) return planDeplacerEtAttaquer(etat, c, a);
   const visibles = ennemis(etat, c);
   const portee = a.portee?.type === 'distance' ? (a.portee.longue ?? a.portee.normale ?? 1.5) : a.portee?.type === 'contact' ? (a.portee.allonge ?? 1.5) : 0;
   const unite = valeurParCible(a);
@@ -85,6 +126,19 @@ export function actionsLegendairesApres(etat: EtatCombat, apres: Combattant): vo
     c.ressources[ACTIONS_LEGENDAIRES]! -= 1;
     if (/ne peut alors plus entreprendre cette action/i.test(choix.action.resume)) c.ressources[`${VERROU_LEGENDAIRE}${choix.action.id}`] = 1;
     journaliser(etat, { type: 'info', texte: `${c.nom} dépense une action légendaire : ${choix.action.nom} (${c.ressources[ACTIONS_LEGENDAIRES]} restante(s)).`, acteur: c.id });
+    if (choix.attaque) {
+      // Se déplacer d'abord (une part de sa Vitesse, sans entamer son mouvement du tour), puis frapper si l'adversaire est toujours là et lui debout.
+      if (choix.vers) {
+        const sauve = { mouvement: c.tour.mouvement, aBouge: c.tour.aBouge };
+        c.tour.mouvement = Math.floor((vitesse(c) * (choix.action.legendaire!.deplacement ?? 0)) / TAILLE_CASE) * TAILLE_CASE;
+        deplacer(etat, c, choix.vers);
+        c.tour.mouvement = sauve.mouvement;
+        c.tour.aBouge = sauve.aBouge;
+      }
+      const cible = choix.cibles[0]!;
+      if (peutAgir(c) && !cible.mort && !horsCombat(cible)) attaqueMonstre(etat, c, cible, choix.attaque);
+      continue;
+    }
     for (const cible of choix.cibles) if (!cible.mort && !horsCombat(cible)) attaqueMonstre(etat, c, cible, choix.action.id);
   }
 }

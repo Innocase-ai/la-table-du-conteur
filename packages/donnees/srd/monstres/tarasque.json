@@ -267,7 +267,14 @@
       "id": "offensive",
       "nom": "Offensive",
       "cout": "gratuit",
-      "resume": "Action légendaire. La tarasque se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Griffe ou de Queue."
+      "resume": "Action légendaire. La tarasque se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Griffe ou de Queue.",
+      "legendaire": {
+        "deplacement": 0.5,
+        "attaque": [
+          "griffe",
+          "queue"
+        ]
+      }
     }
   ],
   "description": "Une bête colossale aux pattes lourdes et griffues, couverte d'écailles épaisses et d'une carapace hérissée de pointes osseuses. Sa tête cornue et dentée porte une gueule large et rugissante, et sa longue queue noueuse traîne lourdement derrière elle."

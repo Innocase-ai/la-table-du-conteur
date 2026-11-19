@@ -174,7 +174,13 @@
       "id": "frappe-immortelle",
       "nom": "Frappe immortelle",
       "cout": "gratuit",
-      "resume": "Action légendaire. Le vampire se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Frappe funéraire."
+      "resume": "Action légendaire. Le vampire se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Frappe funéraire.",
+      "legendaire": {
+        "deplacement": 0.5,
+        "attaque": [
+          "frappe-funeraire"
+        ]
+      }
     },
     {
       "id": "subjugation",

@@ -273,6 +273,9 @@ export const ActionMonstre = z.object({
   degats: z.array(Degats).default([]),
   etats: z.array(EtatInflige).default([]),
   recharge: z.string().optional(), // « 5-6 »
+  // Une action légendaire « [se déplace de la moitié de sa Vitesse et ] effectue une attaque de X [ou de Y] » (F6, lot 3b) : `attaque` liste les
+  // actions d'attaque du profil (par id) parmi lesquelles le monstre choisit ; `deplacement` : la part de sa Vitesse dont il peut se rapprocher d'abord.
+  legendaire: z.object({ deplacement: z.number().min(0).max(1).optional(), attaque: z.array(z.string()).min(1) }).optional(),
   utilisations: z.object({ nombre: z.number().int(), par: z.enum(['jour', 'repos-long', 'repos-court']) }).optional(),
 });
 export type ActionMonstre = z.infer<typeof ActionMonstre>;
