@@ -37,6 +37,8 @@ import {
 } from './grille';
 // Cycle d'import voulu (sorts.ts importe aussi ce module) : `repousser` n'est appelé qu'à l'exécution, jamais au chargement.
 import { repousser } from './sorts';
+// Cycle d'import voulu : les actions légendaires appellent `attaqueMonstre` d'ici, à l'exécution seulement.
+import { actionsLegendairesApres, rendreActionsLegendaires } from './legendaire';
 
 export const DEGATS_PHYSIQUES = ['contondant', 'perforant', 'tranchant'];
 
@@ -163,6 +165,7 @@ function debutTour(etat: EtatCombat): void {
   for (const x of etat.combattants) x.etats = x.etats.filter((e) => e.jusquAuDebutDe !== c.id);
   c.tour = tourVierge(c);
   c.ressources.reaction = 1;
+  rendreActionsLegendaires(c);
   journaliser(etat, { type: 'tour', texte: `Tour de ${c.nom}.`, acteur: c.id });
   // Recharge des actions de monstre (« 5-6 » : récupérée sur 5 ou 6 au d6).
   for (const a of c.actionsMonstre) {
@@ -273,6 +276,9 @@ export function finTour(etat: EtatCombat): void {
     c.elan.defausse.push(...c.elan.main);
     c.elan.main = [];
   }
+  if (verifierFin(etat)) return;
+  // F6 : aussitôt après ce tour, les monstres légendaires de l'autre camp peuvent dépenser une action légendaire (sans effet pour les autres).
+  actionsLegendairesApres(etat, c);
   if (verifierFin(etat)) return;
   // Combattant suivant (on saute les morts et les fuyards).
   for (let i = 0; i < etat.ordre.length; i++) {

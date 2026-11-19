@@ -112,6 +112,12 @@ export interface TourCourant {
 
 /** Clé de `ressources` qui compte les Résistances légendaires restantes d'un monstre (F6). */
 export const RESISTANCE_LEGENDAIRE = 'resistanceLegendaire';
+/** Clés de `ressources` des actions légendaires d'un monstre : utilisations restantes, et maximum rendu au début de son tour (F6, lot 3). */
+export const ACTIONS_LEGENDAIRES = 'actionsLegendaires';
+export const ACTIONS_LEGENDAIRES_MAX = 'actionsLegendairesMax';
+
+/** Une action de monstre qui est une action légendaire (son texte commence par « Action légendaire. »). */
+export const estActionLegendaire = (a: Pick<ActionMonstre, 'resume'>): boolean => /^Action l[ée]gendaire/i.test(a.resume);
 
 export interface Combattant {
   id: string;

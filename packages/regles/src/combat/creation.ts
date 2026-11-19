@@ -5,7 +5,7 @@ import type { Fiche } from '../fiche';
 import { CARACTERISTIQUES, type Arme, type Caracteristique, type Monstre } from '../schemas';
 import { DECK_ELAN_LANCEUR, DECK_ELAN_MARTIAL } from './cartes';
 import { doctrineDeProfil } from './doctrine';
-import { RESISTANCE_LEGENDAIRE, type AttaqueArme, type Botte, type Combattant } from './etat';
+import { ACTIONS_LEGENDAIRES, ACTIONS_LEGENDAIRES_MAX, RESISTANCE_LEGENDAIRE, type AttaqueArme, type Botte, type Combattant } from './etat';
 import type { Position } from './grille';
 
 const BOTTES: Record<string, Botte> = {
@@ -312,9 +312,17 @@ function sortsDeMonstre(m: Monstre, mods: Record<Caracteristique, number>) {
  * le nombre avant « /jour » ; 3 si le texte ne le dit pas). Rien pour les autres monstres : ils se jouent exactement comme avant.
  */
 function reservesLegendaires(m: Monstre): Record<string, number> {
-  const t = m.traits.find((x) => x.id === 'resistance-legendaire');
-  if (!t) return {};
-  return { [RESISTANCE_LEGENDAIRE]: Number(/(\d+)\s*\/\s*jour/.exec(t.resume)?.[1] ?? 3) };
+  const res: Record<string, number> = {};
+  const resistance = m.traits.find((x) => x.id === 'resistance-legendaire');
+  if (resistance) res[RESISTANCE_LEGENDAIRE] = Number(/(\d+)\s*\/\s*jour/.exec(resistance.resume)?.[1] ?? 3);
+  // Actions légendaires : « Utilisations d'action Légendaire : 3 » (3 par défaut), rendues en entier au début de son tour.
+  const actions = m.traits.find((x) => x.id === 'actions-legendaires');
+  if (actions) {
+    const n = Number(/Utilisations d'action L[ée]gendaire\s*:\s*(\d+)/i.exec(actions.resume)?.[1] ?? 3);
+    res[ACTIONS_LEGENDAIRES] = n;
+    res[ACTIONS_LEGENDAIRES_MAX] = n;
+  }
+  return res;
 }
 
 export function monstreDepuisProfil(m: Monstre, id: string, position: Position, nom = m.nom): Combattant {

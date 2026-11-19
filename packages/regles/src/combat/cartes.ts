@@ -3,7 +3,7 @@
 import { moyenneDes } from '../des';
 import { idImageCommune } from '../modules/image-commune';
 import type { Caracteristique, Sort } from '../schemas';
-import { actif, adversairesCiblables, allies, combattant, ennemis, horsCombat, journaliser, lancerDes, peutAgir, TAILLES, type AttaqueArme, type Combattant, type EtatCombat } from './etat';
+import { ACTIONS_LEGENDAIRES_MAX, actif, adversairesCiblables, allies, combattant, ennemis, estActionLegendaire, horsCombat, journaliser, lancerDes, peutAgir, TAILLES, type AttaqueArme, type Combattant, type EtatCombat } from './etat';
 import { distanceMetres, ligneDeVue, type Position } from './grille';
 import { appliquerObjet, avecIncantationDObjet, jetDe, PREFIXE_CHARGES, PREFIXE_OBJET, pourSoiSeul, utileA, visePar } from './objets';
 import {
@@ -262,6 +262,8 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
   for (const a of c.actionsMonstre) {
     const cout: CoutCarte = a.cout === 'bonus' ? 'bonus' : a.cout === 'reaction' ? 'reaction' : 'action';
     if (cout === 'reaction') continue;
+    // F6 : les actions légendaires d'un monstre qui en a la réserve ne se jouent qu'après le tour d'un autre (combat/legendaire.ts), pas à son tour.
+    if (c.ressources[ACTIONS_LEGENDAIRES_MAX] !== undefined && estActionLegendaire(a)) continue;
     let cibles: string[] = [];
     let ciblage: Ciblage = 'ennemi';
     let porteeAction: number | undefined;
