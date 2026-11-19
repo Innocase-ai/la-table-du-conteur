@@ -7,6 +7,8 @@ import {
   acteursPossibles,
   aOutils,
   bonusTest,
+  chercheursPossibles,
+  chercherPiege,
   commencer,
   desarmer,
   fouiller,
@@ -138,7 +140,7 @@ export const moduleExploration: Module = {
           : [],
     }),
     fouiller: commande({
-      description: 'Fouiller le lieu (passages secrets, trésors cachés, pièges, indices). Une fois par lieu et par jour.',
+      description: 'Fouiller le lieu (passages secrets, trésors cachés, pièges, indices). Une fois par lieu et par jour. Dans une histoire « pièges à chercher », la fouille ne révèle pas les pièges : voir chercherPiege.',
       entree: z.object({ personnage: Personnage }),
       disponible: libre,
       executer: (t, e) => verser(t, fouiller(partieMonde(t), e.personnage)),
@@ -158,6 +160,77 @@ export const moduleExploration: Module = {
                 ordre: { type: 'fouiller' },
               },
             ]
+          : [],
+    }),
+    chercherPiege: commande({
+      description:
+        "Chercher un piège sur un contenant visible (cible {tresor}) ou dans la pièce (cible {piece: true}) : un jet de Perception ou d'Investigation contre un DD secret, une tentative par héros et par cible. Seulement dans les histoires où la fouille ne révèle pas les pièges. « Rien de suspect » ne prouve pas qu'il n'y a pas de piège.",
+      entree: z.object({ cible: z.union([z.object({ tresor: z.string() }), z.object({ piece: z.literal(true) })]), personnage: Personnage }),
+      disponible: (ctx) => (ctx.dm.monde.piegesACherche ? true : 'Dans cette histoire, la fouille révèle déjà les pièges.'),
+      executer: (t, e) => verser(t, chercherPiege(partieMonde(t), e.cible, e.personnage)),
+      propositions: (ctx, p) => {
+        // Sans le drapeau du monde, rien ne change à l'écran : la fouille révèle les pièges comme avant.
+        if (!enExploration(p) || !ctx.dm.monde.piegesACherche) return [];
+        const ex = p.etat.exploration;
+        const annonce = (cle: string): Pick<Proposition, 'jet' | 'acteurs' | 'desactivee'> => {
+          const { defaut, liste, tous } = chercheursPossibles(p, cle);
+          return {
+            jet: { test: defaut?.test ?? 'perception', ...(defaut ? { qui: defaut.nom, bonus: defaut.bonus } : {}) },
+            ...(liste.length > 1 ? { acteurs: liste } : {}),
+            ...(tous ? { desactivee: 'Chacun a déjà cherché ici.' } : {}),
+          };
+        };
+        const res: Proposition[] = [];
+        // Un contenant visible, non gardé, dont le piège n'est pas déjà connu (le bouton resterait sans objet) : tous le proposent, piégés ou non.
+        for (const x of scene(ctx, p).tresors.filter((y) => y.etat !== 'garde')) {
+          const pg = ctx.dm.tresors.get(x.id)?.acces.piege;
+          if (pg && (ex.decouverts.includes(`piege:${pg}`) || ex.pieges[pg])) continue;
+          res.push({
+            groupe: PANNEAUX.objets,
+            element: { id: `tresor:${x.id}`, titre: x.nom },
+            libelle: 'Chercher un piège',
+            icone: 'base:fouiller',
+            style: 'discret',
+            aide: "Perception ou Investigation, au meilleur des deux. Le DD reste secret ; un seul essai par héros et par contenant. « Rien de suspect » ne veut pas dire « pas de piège ».",
+            ...annonce(`tresor:${x.id}`),
+            ordre: { type: 'chercherPiege', cible: { tresor: x.id } },
+          });
+        }
+        res.push({
+          groupe: PANNEAUX.ici,
+          libelle: 'Chercher des pièges',
+          icone: 'base:fouiller',
+          style: 'discret',
+          aide: 'Sonder les dalles, les seuils et les murs de la pièce. Le DD reste secret ; un seul essai par héros. Les contenants se sondent un à un, à côté d’eux.',
+          ...annonce(`piece:${p.etat.lieu}`),
+          ordre: { type: 'chercherPiege', cible: { piece: true } },
+        });
+        return res;
+      },
+    }),
+    desarmer: commande({
+      description: 'Désamorcer un piège repéré (neutraliser son mécanisme).',
+      entree: z.object({ piege: z.string(), personnage: Personnage }),
+      disponible: libre,
+      executer: (t, e) => verser(t, desarmer(partieMonde(t), e.piege, e.personnage)),
+      propositions: (ctx, p) =>
+        enExploration(p)
+          ? scene(ctx, p)
+              .pieges.filter((x) => x.etat === 'repere')
+              .map((x) => {
+                const comp = ctx.dm.pieges.get(x.id)?.desarmement.competence;
+                // Monde « pièges à chercher » : le piège d'un contenant d'ici se désamorce sur la ligne du contenant, avec ses autres actions.
+                const contenant = ctx.dm.monde.piegesACherche ? [...ctx.dm.tresors.values()].find((t) => t.lieu === p.etat.lieu && t.acces.piege === x.id) : undefined;
+                return {
+                  groupe: PANNEAUX.objets,
+                  element: contenant ? { id: `tresor:${contenant.id}`, titre: contenant.nom } : { id: `piege:${x.id}`, titre: `⚠ ${x.nom}`, danger: true },
+                  libelle: 'Désamorcer',
+                  icone: 'base:desamorcer',
+                  aide: x.resume,
+                  ...(comp ? annonceActeur(p, comp) : {}),
+                  ordre: { type: 'desarmer', piege: x.id },
+                };
+              })
           : [],
     }),
     ouvrir: commande({
@@ -182,29 +255,6 @@ export const moduleExploration: Module = {
         }
         return res;
       },
-    }),
-    desarmer: commande({
-      description: 'Désamorcer un piège repéré (neutraliser son mécanisme).',
-      entree: z.object({ piege: z.string(), personnage: Personnage }),
-      disponible: libre,
-      executer: (t, e) => verser(t, desarmer(partieMonde(t), e.piege, e.personnage)),
-      propositions: (ctx, p) =>
-        enExploration(p)
-          ? scene(ctx, p)
-              .pieges.filter((x) => x.etat === 'repere')
-              .map((x) => {
-                const comp = ctx.dm.pieges.get(x.id)?.desarmement.competence;
-                return {
-                  groupe: PANNEAUX.objets,
-                  element: { id: `piege:${x.id}`, titre: `⚠ ${x.nom}`, danger: true },
-                  libelle: 'Désamorcer',
-                  icone: 'base:desamorcer',
-                  aide: x.resume,
-                  ...(comp ? annonceActeur(p, comp) : {}),
-                  ordre: { type: 'desarmer', piege: x.id },
-                };
-              })
-          : [],
     }),
     prendre: commande({
       description: "Prendre le contenu d'un trésor visible et ouvert.",

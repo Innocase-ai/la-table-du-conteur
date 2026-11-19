@@ -62,6 +62,11 @@ export interface EtatExploration {
   rencontresAuto?: Record<string, RencontreMonde>;
   /** Les passants déjà croisés (on n'en croise pas deux fois le même avant d'avoir fait le tour). */
   passantsVus?: string[];
+  /**
+   * Les recherches de piège déjà faites (F1, monde avec `piegesACherche`) : `<cible>:<héros>`, où la cible est `tresor:<id>` ou
+   * `piece:<lieu>`. Une seule tentative par héros et par cible, réussie ou non. Absent des sauvegardes anciennes.
+   */
+  recherches?: string[];
 }
 
 /** Remet dans le monde les rencontres fortuites d'une partie chargée (le monde, lui, vient d'être rechargé sans elles). */
@@ -424,7 +429,8 @@ function cachettes(p: PartieMonde, lieu: string): { cle: string; dd: number; com
     if (t.condition && !evaluerCondition(t.condition, p.etat)) continue;
     res.push({ cle, dd: t.acces.cache.dd, competence: t.acces.cache.competence, libelle: `${t.nom} (${t.description})`, reveler: () => ex.decouverts.push(cle) });
   }
-  for (const pg of p.dm.pieges.values()) {
+  // Monde « pièges à chercher » : la fouille de la pièce ne révèle plus les pièges, c'est `chercherPiege` qui s'en charge.
+  for (const pg of p.dm.monde.piegesACherche ? [] : p.dm.pieges.values()) {
     const cle = `piege:${pg.id}`;
     if (pg.lieu !== lieu || ex.decouverts.includes(cle) || ex.pieges[pg.id]) continue;
     // Un piège ne se repère pas d'office en entrant (perception passive) : il faut fouiller, avec un jet qui peut échouer.
@@ -674,6 +680,87 @@ export function fouiller(p: PartieMonde, personnage?: string): CompteRendu {
   }
   if (!r.constats.length) r.constats.push('La fouille ne donne rien.');
   declencherRencontre(p, r, p.dm.lieux.get(p.etat.lieu)!, 'exploration');
+  suites(p, r);
+  return r;
+}
+
+// ---------------------------------------------------------------------------
+// Chercher un piège (F1) : un contenant ou la pièce, un jet par héros et par cible
+// ---------------------------------------------------------------------------
+
+/** Ce qu'on fouille à la recherche d'un piège : un contenant visible, ou la pièce (les pièges que aucun contenant ne porte). */
+export type CibleChercher = { tresor: string } | { piece: true };
+
+/** La cible dans l'état (`tresor:<id>` ou `piece:<lieu>`) et ce qu'elle pourrait cacher : jamais montré au joueur. */
+function cibleDeRecherche(p: PartieMonde, cible: CibleChercher): { cle: string; /** « sur le coffre », « dans la pièce » */ sur: string; pieges: Piege[] } | { refus: string } {
+  const ex = p.etat.exploration;
+  const aTrouver = (pg: Piege) => !ex.decouverts.includes(`piege:${pg.id}`) && !ex.pieges[pg.id];
+  if ('tresor' in cible) {
+    const t = p.dm.tresors.get(cible.tresor);
+    if (!t || t.lieu !== p.etat.lieu || !tresorVisible(p, t) || ex.tresorsPris.includes(t.id)) return { refus: "Il n'y a rien de tel ici." };
+    const pg = t.acces.piege ? p.dm.pieges.get(t.acces.piege) : undefined;
+    const nom = t.nom.replace(/^(Le|La|Les|L’|L') ?/, (m) => m.toLowerCase());
+    // Un piège déjà repéré (ou réglé) sur ce contenant : rien à chercher, et rien de caché n'est dit.
+    if (pg && !aTrouver(pg)) return { refus: `Le piège de ${nom} est déjà connu.` };
+    return { cle: `tresor:${t.id}`, sur: `sur ${nom}`, pieges: pg ? [pg] : [] };
+  }
+  // Les pièges de la pièce : ceux d'un contenant d'ici se cherchent sur le contenant, tous les autres (libres, de passage, d'une énigme) ici.
+  const portes = new Set([...p.dm.tresors.values()].filter((t) => t.lieu === p.etat.lieu && t.acces.piege).map((t) => t.acces.piege!));
+  const pieges = [...p.dm.pieges.values()].filter((pg) => pg.lieu === p.etat.lieu && !portes.has(pg.id) && aTrouver(pg));
+  return { cle: `piece:${p.etat.lieu}`, sur: 'dans la pièce', pieges };
+}
+
+/**
+ * Qui peut chercher un piège sur cette cible, annoncé avant le clic : tous les héros debout avec leur bonus (le meilleur de Perception
+ * et d'Investigation, au choix du joueur, donc le même quel que soit le piège), ceux qui ont déjà cherché ici en grisé, et le héros
+ * par défaut (le meilleur de ceux qui n'ont pas encore cherché). Rien de ce que la cible cache n'en sort.
+ */
+export function chercheursPossibles(p: Pick<PartieMonde, 'groupe' | 'etat'>, cle: string): { defaut?: ActeurPossible & { test: Competence }; liste: ActeurPossible[]; tous: boolean } {
+  const deja = new Set(p.etat.exploration.recherches ?? []);
+  const vivants = p.groupe.filter((a) => a.pv > 0);
+  const liste = vivants
+    .map((a): ActeurPossible => ({ id: a.id, nom: a.nom, bonus: Math.max(bonusTest(a, 'perception'), bonusTest(a, 'investigation')), ...(deja.has(`${cle}:${a.id}`) ? { desactivee: 'A déjà cherché ici.' } : {}) }))
+    .sort((x, y) => y.bonus - x.bonus);
+  const d = liste.find((x) => !x.desactivee);
+  const a = d && vivants.find((h) => h.id === d.id);
+  const test: Competence = a && bonusTest(a, 'investigation') > bonusTest(a, 'perception') ? 'investigation' : 'perception';
+  return { ...(d ? { defaut: { ...d, test } } : {}), liste, tous: !!liste.length && !d };
+}
+
+/**
+ * Chercher un piège sur un contenant visible ou dans la pièce (monde avec `piegesACherche`). Un jet de Perception ou d'Investigation
+ * (la meilleure des deux pour le héros) contre le DD de détection du piège, qui reste secret ; **une tentative par héros et par
+ * cible**, réussie ou non. Trouvé, le piège est repéré (`desarmer` devient possible) ; sinon le constat est volontairement ambigu :
+ * « rien de suspect » ne dit jamais qu'il n'y a pas de piège, et l'on voit le même résultat sur un contenant sans piège.
+ */
+export function chercherPiege(p: PartieMonde, cible: CibleChercher, personnage?: string): CompteRendu {
+  if (!p.dm.monde.piegesACherche) return refus('Dans cette histoire, la fouille de la pièce révèle déjà les pièges : rien de plus à chercher.');
+  const c = cibleDeRecherche(p, cible);
+  if ('refus' in c) return refus(c.refus);
+  const ex = p.etat.exploration;
+  const { defaut, tous } = chercheursPossibles(p, c.cle);
+  let a: Personnage | undefined;
+  if (personnage) {
+    a = p.groupe.find((x) => x.id === personnage && x.pv > 0);
+    if (!a) return refus(`« ${personnage} » ne peut pas chercher.`);
+    if ((ex.recherches ?? []).includes(`${c.cle}:${a.id}`)) return refus(`${a.nom} a déjà cherché ici : un autre regard, peut-être.`);
+  } else {
+    a = defaut && p.groupe.find((x) => x.id === defaut.id);
+    if (!a) return refus(tous ? 'Chacun a déjà cherché de ce côté : on ne verra pas mieux sans autre indice.' : 'Personne ne peut chercher.');
+  }
+  (ex.recherches ??= []).push(`${c.cle}:${a.id}`);
+  const r = resultat();
+  const test: Competence = bonusTest(a, 'investigation') > bonusTest(a, 'perception') ? 'investigation' : 'perception';
+  // Le DD est secret : le jet est lancé contre 0 (comme la fouille) et jugé ensuite ; le journal ne garde jamais le DD.
+  const jet = tester(p, r, a, test, 0);
+  jet.ddSecret = true;
+  const trouves = c.pieges.filter((pg) => jet.total >= pg.detection.dd);
+  jet.reussite = trouves.length > 0;
+  for (const pg of trouves) {
+    ex.decouverts.push(`piege:${pg.id}`);
+    r.constats.push(`${a.nom} repère un piège ${c.sur} : ${pg.nom} (${pg.resume}).`);
+  }
+  if (!trouves.length) r.constats.push(`${a.nom} ne remarque rien de suspect ${c.sur}.`);
   suites(p, r);
   return r;
 }

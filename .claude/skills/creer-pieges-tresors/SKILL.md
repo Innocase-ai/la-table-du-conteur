@@ -38,7 +38,7 @@ Le format est dans `packages/regles/src/monde/schemas.ts` (`Tresor`, `Piege`, `O
 ## Les pièges
 
 ### Ce que le moteur fait
-- **Détection** : la perception passive ne repère **jamais** un piège. Il ne se découvre qu'en **fouillant** (`detection` : compétence et DD, secret ; une fouille par lieu et par jour). Un piège peut donc rester caché.
+- **Détection** : la perception passive ne repère **jamais** un piège. Il ne se découvre qu'en **fouillant** (`detection` : compétence et DD, secret ; une fouille par lieu et par jour). Un piège peut donc rester caché. **Épisodes (F1, 19/11/2026) : `"piegesACherche": true` dans `monde.json`** : la fouille ne révèle plus les pièges, le joueur les **cherche** (`chercherPiege` : Perception ou Investigation au meilleur des deux, une tentative par héros et par cible, contenant ou pièce ; la `detection.competence` n'est alors plus lue). Garde un DD de détection de 12 à 16 au niveau 3, et dans un tel monde un piège de contenant se cherche sur le contenant, tous les autres (libre, de passage, d'énigme) dans la pièce. Détail : `docs/MONDES.md`, « Pièges à chercher ».
 - **Une fois repéré**, le groupe lit `nom` et `resume` (« un piège : nom (résumé) ») : écris le `resume` pour **ce que le groupe comprend en le voyant** (le mécanisme, pas la solution, aucun DD).
 - **Désamorçage** (`desarmement` : compétence, DD, `outil` facultatif) : sans l'outil requis, désavantage ; un échec de **5 ou plus** le déclenche ; un échec plus léger ne fait rien et on peut réessayer. `outils-de-voleur` est reconnu dans l'inventaire ; un autre outil doit être dans la liste d'outils du personnage.
 - **Déclenchement** : le texte `declenchement` est **narré au joueur** ; puis une **sauvegarde** éventuelle (`sauvegarde` : caractéristique, DD, `moitieSiReussite`), des **dégâts** (`degats` : dés et type), puis les **`effets`** du monde. Le moteur **ne tue pas** : 0 PV = inconscient. `etats` est affiché mais **n'est pas appliqué mécaniquement** : décris l'état dans `declenchement` si tu y tiens. `reinitialisation: true` : le piège se redéclenche à chaque fois.
@@ -67,7 +67,7 @@ Le format est dans `packages/regles/src/monde/schemas.ts` (`Tresor`, `Piege`, `O
 - [ ] Les **raretés et valeurs** respectent le niveau du lieu ; les objets du monde ont `lore` ou `inconnu` quand ils s'identifient ; les armes et armures ont `base`.
 - [ ] `description` d'un trésor et `resume` d'un piège : lisibles par le joueur, **sans secret, sans DD, sans solution**.
 - [ ] `pnpm monde valider <id>` : pas de nouvel avis « Butin », « Richesse » ; l'atelier (Registre, filtres « Jamais cité » et « Jamais produit » : une clé ou un objet que rien ne donne).
-- [ ] **Joue-le** : fouiller (le piège se trouve ou non), désarmer, ouvrir avec la clé, en crochetant, en forçant, et vérifie que le texte lu a du sens. Pour un piège spécial (rattaché à une énigme, effet `rencontre`), un test dans `packages/regles/tests/exploration.test.ts` (modèle : « les pièges ne se repèrent qu'en fouillant »).
+- [ ] **Joue-le** : fouiller (le piège se trouve ou non ; avec `piegesACherche`, chercher un piège sur le contenant puis dans la pièce), désarmer, ouvrir avec la clé, en crochetant, en forçant, et vérifie que le texte lu a du sens. Pour un piège spécial (rattaché à une énigme, effet `rencontre`), un test dans `packages/regles/tests/exploration.test.ts` (modèle : « les pièges ne se repèrent qu'en fouillant »).
 
 ## Les pièges connus
 - **`etats` n'est pas appliqué** : écris l'état dans `declenchement` ou donne-le par un `effet`.

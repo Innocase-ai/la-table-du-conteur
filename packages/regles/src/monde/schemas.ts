@@ -683,6 +683,11 @@ export const Monde = z.object({
   chapitres: z.array(Chapitre).min(1),
   // Ce que le MJ ne doit jamais faire dans ce monde (ex. magie ressuscitante).
   regles: z.array(Texte).default([]),
+  // Pièges à chercher (facultatif, F1 du 19/11/2026, docs/PRD-SAGA.md) : quand il vaut `true`, la fouille d'une pièce ne révèle plus les
+  // pièges ; le joueur les CHERCHE (commande `chercherPiege`, un jet de Perception ou d'Investigation par héros et par cible contre le
+  // DD secret de détection) puis les désamorce ; un piège non cherché se déclenche à l'ouverture, comme avant. Absent ou `false` :
+  // la fouille révèle les pièges comme toujours (comportement des histoires d'avant, voir docs/MONDES.md).
+  piegesACherche: z.boolean().default(false),
   // Le tirage d'arrivée (`monde/hasard-arrivee.ts`) : un dé à chaque arrivée dans un lieu (combat, rencontre, trouvaille ou rien). `false` le coupe.
   tirageArrivee: z.boolean().default(true),
   // Vivres (facultatif, 14/11/2026) : à chaque nouveau jour, chaque héros vivant mange une ration du sac du groupe (`objet`), sauf quand

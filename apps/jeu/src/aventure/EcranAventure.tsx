@@ -958,9 +958,14 @@ function Panneaux({
         const blocs: { element?: Proposition['element']; items: Proposition[] }[] = [];
         for (const p of items) {
           const dernier = blocs[blocs.length - 1];
-          const memeBloc = p.element
-            ? dernier?.element?.id === p.element.id
-            : !dernier?.element && dernier?.items[0]?.style === 'discret' && p.style === 'discret';
+          // Les actions d'un même élément (un contenant : chercher un piège, crocheter, prendre) vont sur la même ligne, même quand
+          // les modules les ont proposées à des endroits différents de la liste.
+          const memeElement = p.element ? blocs.find((b) => b.element?.id === p.element!.id) : undefined;
+          if (memeElement) {
+            memeElement.items.push(p);
+            continue;
+          }
+          const memeBloc = !p.element && !dernier?.element && dernier?.items[0]?.style === 'discret' && p.style === 'discret';
           if (dernier && memeBloc) dernier.items.push(p);
           else blocs.push({ element: p.element, items: [p] });
         }

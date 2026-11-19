@@ -32,6 +32,7 @@ Le produit est une **saga d'épisodes courts et indépendants** (`docs/PRD-SAGA.
 | `groupe.conseille` | 4 ou 6 | Taille du groupe annoncée au joueur ; les combats s'adaptent de 1 à 6 héros. Pour 4, mettre les renforts en derniers groupes. |
 | `depart.signesDeQuete` | `false` | Coupe les « ! » et « ? » au-dessus des PNJ : le joueur cherche et parle sans être guidé (règle du 16/11/2026). |
 | `depart.orMax` | 10 pour un village pauvre, sinon rien | Plafond d'or de départ **par héros** (≈ 23 po sans plafond) : un groupe riche de ses kits achèterait tout le stock du hub. |
+| `piegesACherche` | `true` (épisode) | La fouille ne révèle plus les pièges : le joueur les cherche (bouton « Chercher un piège » sur chaque contenant, « Chercher des pièges » pour la pièce ; une tentative par héros et par cible). Chaque piège doit rester trouvable (`docs/MONDES.md`, « Pièges à chercher », skill `creer-pieges-tresors`). |
 | `tirageArrivee`, `vivres` | au choix | Le dé à l'arrivée dans un lieu, les rations et la faim (`docs/MONDES.md`). |
 | `teasing` | 3 paragraphes, 150 à 200 mots | Le texte du bouton « Résumé » de l'écran « Choisir une histoire » (étape 6, point 12). |
 
@@ -197,7 +198,7 @@ Ses conseils de recette signalent les pièces vides, les quêtes injouables, les
    - des dossiers vides, dont `dilemmes/`.
 
    Le squelette ne valide pas tant que le lieu racine et le hub n'existent pas.
-4. Dans `monde.json`, pose les réglages d'un épisode (tableau plus haut) : `"format": "episode"`, `depart.signesDeQuete: false`, `depart.orMax` si le lieu est pauvre, `niveaux`, `groupe.conseille`. Garde `"statut": "brouillon"` jusqu'à la fin.
+4. Dans `monde.json`, pose les réglages d'un épisode (tableau plus haut) : `"format": "episode"`, `depart.signesDeQuete: false`, `"piegesACherche": true`, `depart.orMax` si le lieu est pauvre, `niveaux`, `groupe.conseille`. Garde `"statut": "brouillon"` jusqu'à la fin.
 
 ### Étape 3 — Écrire le canon (→ V2)
 
