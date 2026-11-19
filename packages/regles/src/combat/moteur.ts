@@ -2,6 +2,7 @@
 // Règles du SRD 5.2.1 (« Combat », « Dégâts et soins », « Glossaire de règles »).
 import { moyenneDes } from '../des';
 import type { Caracteristique, Etat } from '../schemas';
+import type { Contexte } from './cartes';
 import {
   aEtat,
   actif,
@@ -234,7 +235,8 @@ export function declencherZone(etat: EtatCombat, z: ZonePersistante, c: Combatta
   if (facteur > 0) infligerDegats(etat, c, [{ montant: Math.floor(lancerDes(etat, d.des) * facteur), type: d.type }], lanceur);
 }
 
-export function finTour(etat: EtatCombat): void {
+/** `ctx` (les sorts du catalogue) : facultatif ; sans lui, les actions légendaires qui lancent un sort ne se jouent pas (F6, lot 3c). */
+export function finTour(etat: EtatCombat, ctx?: Contexte): void {
   const c = actif(etat);
   // Sauvegardes de fin de tour contre les états.
   for (const e of [...c.etats]) {
@@ -278,7 +280,7 @@ export function finTour(etat: EtatCombat): void {
   }
   if (verifierFin(etat)) return;
   // F6 : aussitôt après ce tour, les monstres légendaires de l'autre camp peuvent dépenser une action légendaire (sans effet pour les autres).
-  actionsLegendairesApres(etat, c);
+  actionsLegendairesApres(etat, c, ctx);
   if (verifierFin(etat)) return;
   // Combattant suivant (on saute les morts et les fuyards).
   for (let i = 0; i < etat.ordre.length; i++) {
@@ -293,7 +295,7 @@ export function finTour(etat: EtatCombat): void {
   debutTour(etat);
   const nouveau = actif(etat);
   // Un combattant qui ne peut pas agir passe son tour.
-  if (!peutAgir(nouveau) && !etat.vainqueur) finTour(etat);
+  if (!peutAgir(nouveau) && !etat.vainqueur) finTour(etat, ctx);
 }
 
 export function verifierFin(etat: EtatCombat): boolean {

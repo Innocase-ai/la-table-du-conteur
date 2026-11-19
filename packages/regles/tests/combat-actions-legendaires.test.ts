@@ -9,6 +9,7 @@ import { IA_RAPIDE, jouerTourIA } from '../src/combat/ia';
 import { actionsLegendairesApres, actionsLegendairesJouables, rendreActionsLegendaires, VERROU_LEGENDAIRE } from '../src/combat/legendaire';
 import { distanceCases } from '../src/combat/grille';
 import { creerCombat } from '../src/combat/moteur';
+import { SORTS_JOUABLES_EN_COMBAT } from '../src/combat/sorts';
 import { preparerRencontre, RENCONTRES, type Rencontre } from '../src/combat/prototype';
 import { chargerDonneesSrd } from '../src/donnees-node';
 import { groupeDeTest, heroCombatDe, type Donnees } from '../src';
@@ -183,7 +184,7 @@ describe('lot 3b : se déplacer puis attaquer (Assaut incisif, Balayage caudal, 
     let n = 0;
     for (const m of donnees.monstres.values()) {
       for (const a of m.actions) {
-        if (!a.legendaire) continue;
+        if (!a.legendaire?.attaque) continue;
         n++;
         expect(estActionLegendaire(a), `${m.id}/${a.id}`).toBe(true);
         for (const id of a.legendaire.attaque) expect(m.actions.find((x) => x.id === id)?.resolution?.type, `${m.id}/${a.id} → ${id}`).toBe('attaque');
@@ -242,5 +243,69 @@ describe('lot 3b : se déplacer puis attaquer (Assaut incisif, Balayage caudal, 
     placer(etat, heros[0]!, monstre, 1);
     actionsLegendairesApres(etat, heros[1]!);
     expect(dit(etat, /dépense une action légendaire : Balayage caudal/)).toHaveLength(1);
+  });
+});
+
+describe('lot 3c : lancer un sort en action légendaire (« recourt à Incantation pour lancer X »)', () => {
+  it('les 14 actions qui lancent un sort portent le sort : de sa liste, que le moteur sait jouer', () => {
+    let n = 0;
+    for (const m of donnees.monstres.values()) {
+      for (const a of m.actions) {
+        if (!a.legendaire?.sort) continue;
+        n++;
+        expect(estActionLegendaire(a), `${m.id}/${a.id}`).toBe(true);
+        expect(m.sorts?.liste.some((l) => l.sort === a.legendaire!.sort), `${m.id}/${a.id} : ${a.legendaire.sort} dans sa liste`).toBe(true);
+        expect(SORTS_JOUABLES_EN_COMBAT.has(a.legendaire.sort), `${a.legendaire.sort} jouable`).toBe(true);
+        expect(donnees.sorts.has(a.legendaire.sort), `${a.legendaire.sort} existe`).toBe(true);
+      }
+    }
+    expect(n).toBe(14);
+  });
+
+  it('un sort de zone (Fracassement du dragon bleu) : dépense, journal, dégâts, et le tour et l’ordre du monstre sont rétablis', () => {
+    const { etat, monstre, heros } = combat('dragon-bleu-adulte');
+    for (const a of actionsLegendairesJouables(monstre)) if (a.id !== 'fracas-tonitruant') monstre.ressources[`${VERROU_LEGENDAIRE}${a.id}`] = 1;
+    const pvAvant = heros.map((h) => h.pv);
+    const tour = structuredClone(monstre.tour);
+    const actifAvant = etat.actif;
+    actionsLegendairesApres(etat, heros[0]!, ctx);
+    expect(dit(etat, /dépense une action légendaire : Fracas tonitruant \(2 restante/)).toHaveLength(1);
+    expect(dit(etat, /lance Fracassement/i).length).toBeGreaterThanOrEqual(1);
+    expect(heros.map((h) => h.pv).some((pv, i) => pv < pvAvant[i]!)).toBe(true);
+    expect(monstre.tour).toEqual(tour);
+    expect(etat.actif).toBe(actifAvant);
+    expect(monstre.ressources[`${VERROU_LEGENDAIRE}fracas-tonitruant`]).toBe(1);
+  });
+
+  it('un sort à une cible (Épine mentale du dragon de cuivre) frappe l’adversaire le plus blessé à portée', () => {
+    const { etat, monstre, heros } = combat('dragon-de-cuivre-adulte');
+    for (const a of actionsLegendairesJouables(monstre)) if (a.id !== 'decharge-mentale') monstre.ressources[`${VERROU_LEGENDAIRE}${a.id}`] = 1;
+    heros[2]!.pv = 1;
+    actionsLegendairesApres(etat, heros[0]!, ctx);
+    expect(dit(etat, /dépense une action légendaire : Décharge mentale/)).toHaveLength(1);
+    expect(dit(etat, /Épine mentale|Epine mentale/i).length).toBeGreaterThanOrEqual(1);
+    expect(heros[2]!.pv < 1 || heros[2]!.pv === 0 || etat.journal.some((e) => e.cible === heros[2]!.id)).toBe(true);
+  });
+
+  it('sans le contexte des sorts, le monstre ne sait pas lancer : rien n’est dépensé', () => {
+    const { etat, monstre, heros } = combat('dragon-bleu-adulte');
+    for (const a of actionsLegendairesJouables(monstre)) if (a.id !== 'fracas-tonitruant') monstre.ressources[`${VERROU_LEGENDAIRE}${a.id}`] = 1;
+    actionsLegendairesApres(etat, heros[0]!);
+    expect(monstre.ressources[ACTIONS_LEGENDAIRES]).toBe(3);
+  });
+
+  it('dans un combat entier, les dragons à sorts les lancent hors de leur tour et les invariants tiennent', () => {
+    let lances = 0;
+    for (const profil of ['dragon-bleu-adulte', 'dragon-d-airain-adulte', 'dragon-de-cuivre-adulte']) {
+      const { etat, monstre } = combat(profil, { graine: 41, niveau: 8 });
+      let tours = 0;
+      while (!etat.vainqueur && etat.round < 20 && tours++ < 400) {
+        jouerTourIA(etat, ctx, IA_RAPIDE);
+        expect(monstre.ressources[ACTIONS_LEGENDAIRES]).toBeGreaterThanOrEqual(0);
+        expect(etat.combattants.every((c) => c.pv >= 0 && c.pv <= c.pvMax)).toBe(true);
+      }
+      lances += dit(etat, /dépense une action légendaire : (Fracas|Lumière aveuglante|Décharge mentale)/).length;
+    }
+    expect(lances).toBeGreaterThan(0);
   });
 });

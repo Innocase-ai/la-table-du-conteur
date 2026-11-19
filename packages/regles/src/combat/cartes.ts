@@ -611,7 +611,7 @@ function executerCommande(etat: EtatCombat, ctx: Contexte, cmd: Commande): Resul
   if (etat.vainqueur) return { ok: false, erreur: 'Le combat est terminé.' };
   const c = actif(etat);
   if (cmd.type === 'finTour') {
-    finTour(etat);
+    finTour(etat, ctx);
     return { ok: true };
   }
   if (cmd.type === 'deplacer') {

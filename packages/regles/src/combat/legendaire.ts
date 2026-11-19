@@ -6,7 +6,9 @@
 // visible, émanation autour du monstre). Les autres (déplacement + attaque, sorts, effets sans résolution) n'ont pas encore de règle : le monstre ne
 // les joue pas. Opt-in par les données : un monstre sans le trait n'est jamais concerné. Ces actions ne sont plus des cartes de son propre tour.
 import { moyenneDes } from '../des';
-import type { ActionMonstre } from '../schemas';
+import type { ActionMonstre, Sort } from '../schemas';
+// Cycle d'import voulu (cartes.ts importe moteur.ts, qui appelle ce module) : appelés à l'exécution seulement.
+import { cartesDisponibles, executer, type Contexte } from './cartes';
 import { ACTIONS_LEGENDAIRES, ACTIONS_LEGENDAIRES_MAX, ennemis, estActionLegendaire, horsCombat, journaliser, peutAgir, type Combattant, type EtatCombat } from './etat';
 import { casesZone, distanceMetres, ligneDeVue, TAILLE_CASE, type Position } from './grille';
 // Cycle d'import voulu (moteur.ts appelle ce module à chaque fin de tour) : `attaqueMonstre` n'est appelé qu'à l'exécution.
@@ -38,10 +40,68 @@ interface Plan {
   /** Action « se déplace puis attaque » (`legendaire`) : l'attaque du profil à jouer et la case où aller d'abord (absente : il attaque d'où il est). */
   attaque?: string;
   vers?: Position;
+  /** Action qui lance un sort (`legendaire.sort`) : la carte de sort à jouer et, pour un sort de zone, le point visé. */
+  sort?: { carte: string; point?: Position };
 }
 
 /** Ce qu'une cible touchée rapporte au monstre : ses dégâts moyens (pondérés par la chance de toucher ou de faire rater) et un bonus pour les états infligés. */
 const valeurParCible = (a: ActionMonstre): number => a.degats.reduce((s, d) => s + moyenneDes(d.des) + d.bonus, 0) * 0.6 + (a.etats.length ? 3 : 0);
+
+/** Ce qu'une cible touchée par ce sort rapporte : ses dégâts moyens (pondérés), et un bonus fixe quand le sort n'inflige pas de dégâts. */
+const valeurDuSort = (s: Sort): number => (s.degats.length ? s.degats.reduce((t, d) => t + moyenneDes(d.des) + (d.bonus ?? 0), 0) * 0.6 : 3);
+
+/**
+ * « Recourt à Incantation pour lancer X » (`legendaire.sort`) : le sort X de la liste du monstre, lancé sans action ni réserve. On prend la carte de sort
+ * que le moteur offrirait au monstre s'il avait son action (cibles à portée, ou point d'une zone), les adversaires les plus blessés d'abord ; pour un
+ * sort de zone on essaie la case de chaque adversaire et l'on garde le centre qui en touche le plus, ses alliés comptant contre lui. Sans `ctx`
+ * (les sorts du catalogue), rien : le monstre ne sait pas lancer.
+ */
+function planSort(etat: EtatCombat, c: Combattant, a: ActionMonstre, ctx: Contexte | undefined): Plan | undefined {
+  const sort = ctx?.sorts.get(a.legendaire!.sort!);
+  if (!ctx || !sort) return undefined;
+  // La carte telle qu'elle serait avec une action disponible (le tour du monstre n'est pas le sien).
+  const copie = structuredClone(c.tour);
+  c.tour.action = true;
+  c.tour.sortEmplacementLance = false;
+  const k = cartesDisponibles(etat, ctx, c.id).find((x) => x.id === `sort:${sort.id}`);
+  c.tour = copie;
+  if (!k || !k.jouable) return undefined;
+  const unite = valeurDuSort(sort);
+  const adversaires = ennemis(etat, c);
+  if (k.ciblage === 'point' && k.zone && (k.zone.forme === 'sphere' || k.zone.forme === 'cube' || k.zone.forme === 'cylindre' || k.zone.forme === 'emanation')) {
+    const porteeSort = k.portee ?? 0;
+    let meilleur: Plan | undefined;
+    for (const e of adversaires) {
+      if (distanceMetres(c.position, e.position) > porteeSort || !ligneDeVue(etat.grille, c.position, e.position)) continue;
+      const cases = casesZone(etat.grille, k.zone.forme as 'sphere' | 'cube' | 'cylindre' | 'emanation', k.zone.taille, c.position, e.position);
+      const dedans = (x: Combattant) => cases.some((p) => p.x === x.position.x && p.y === x.position.y);
+      const touches = adversaires.filter(dedans);
+      const allies = etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !horsCombat(x) && dedans(x)).length;
+      const score = (touches.length - allies) * unite;
+      if (touches.length && score > 0 && (!meilleur || score > meilleur.score)) meilleur = { action: a, cibles: touches, score, sort: { carte: k.id, point: { ...e.position } } };
+    }
+    return meilleur;
+  }
+  if (k.ciblage !== 'ennemi' || !k.cibles.length) return undefined;
+  const cibles = k.cibles
+    .map((id) => etat.combattants.find((x) => x.id === id)!)
+    .filter((x) => x && !horsCombat(x))
+    .sort((x, y) => x.pv - y.pv)
+    .slice(0, Math.max(1, k.nbCibles));
+  return cibles.length ? { action: a, cibles, score: cibles.length * unite, sort: { carte: k.id } } : undefined;
+}
+
+/** Lance le sort du plan hors de son tour : le monstre devient un instant le combattant actif (sa main de cartes, ses coûts), puis son tour et l'ordre sont rétablis. */
+function lancerSortHorsTour(etat: EtatCombat, ctx: Contexte, c: Combattant, plan: Plan): void {
+  const copie = structuredClone(c.tour);
+  const indexActif = etat.actif;
+  etat.actif = etat.ordre.indexOf(c.id);
+  c.tour.action = true;
+  c.tour.sortEmplacementLance = false;
+  executer(etat, ctx, { type: 'jouer', carte: plan.sort!.carte, cibles: plan.cibles.map((x) => x.id), ...(plan.sort!.point ? { point: plan.sort!.point } : {}) });
+  c.tour = copie;
+  etat.actif = indexActif;
+}
 
 /** La portée d'une action d'attaque du profil, en mètres. */
 const porteeDe = (a: ActionMonstre): number => (a.portee?.type === 'distance' ? (a.portee.longue ?? a.portee.normale ?? 1.5) : (a.portee?.allonge ?? 1.5));
@@ -52,7 +112,7 @@ const porteeDe = (a: ActionMonstre): number => (a.portee?.type === 'distance' ? 
  * cible est déjà à portée.
  */
 function planDeplacerEtAttaquer(etat: EtatCombat, c: Combattant, a: ActionMonstre): Plan | undefined {
-  const attaques = a.legendaire!.attaque.map((id) => c.actionsMonstre.find((x) => x.id === id)).filter((x): x is ActionMonstre => x?.resolution?.type === 'attaque');
+  const attaques = (a.legendaire!.attaque ?? []).map((id) => c.actionsMonstre.find((x) => x.id === id)).filter((x): x is ActionMonstre => x?.resolution?.type === 'attaque');
   if (!attaques.length) return undefined;
   const moyenne = (x: ActionMonstre) => x.degats.reduce((s, d) => s + moyenneDes(d.des) + d.bonus, 0);
   const attaque = [...attaques].sort((x, y) => moyenne(y) - moyenne(x))[0]!;
@@ -81,7 +141,8 @@ function planDeplacerEtAttaquer(etat: EtatCombat, c: Combattant, a: ActionMonstr
 }
 
 /** Ce que ferait cette action maintenant : qui serait touché (zone) ou visé (une cible), et ce que ça vaut ; rien si personne n'est à portée. */
-function planDe(etat: EtatCombat, c: Combattant, a: ActionMonstre): Plan | undefined {
+function planDe(etat: EtatCombat, c: Combattant, a: ActionMonstre, ctx?: Contexte): Plan | undefined {
+  if (a.legendaire?.sort) return planSort(etat, c, a, ctx);
   if (a.legendaire) return planDeplacerEtAttaquer(etat, c, a);
   const visibles = ennemis(etat, c);
   const portee = a.portee?.type === 'distance' ? (a.portee.longue ?? a.portee.normale ?? 1.5) : a.portee?.type === 'contact' ? (a.portee.allonge ?? 1.5) : 0;
@@ -112,20 +173,24 @@ function planDe(etat: EtatCombat, c: Combattant, a: ActionMonstre): Plan | undef
  * Aussitôt après le tour de `apres` : chaque monstre légendaire de l'autre camp peut dépenser une utilisation. Il choisit l'action jouable qui vaut le
  * plus (le plus de cibles, sans trop toucher ses alliés) ; s'il n'y en a pas, il garde sa réserve. Sans effet pour tout monstre sans la réserve.
  */
-export function actionsLegendairesApres(etat: EtatCombat, apres: Combattant): void {
+export function actionsLegendairesApres(etat: EtatCombat, apres: Combattant, ctx?: Contexte): void {
   for (const c of etat.combattants) {
     if (etat.vainqueur) return;
     if (c.camp === apres.camp || c.id === apres.id) continue;
     if ((c.ressources[ACTIONS_LEGENDAIRES] ?? 0) <= 0 || !peutAgir(c)) continue;
     const plans = actionsLegendairesJouables(c)
       .filter((a) => !c.ressources[`${VERROU_LEGENDAIRE}${a.id}`])
-      .map((a) => planDe(etat, c, a))
+      .map((a) => planDe(etat, c, a, ctx))
       .filter((p): p is Plan => !!p);
     if (!plans.length) continue;
     const choix = plans.sort((x, y) => y.score - x.score)[0]!;
     c.ressources[ACTIONS_LEGENDAIRES]! -= 1;
     if (/ne peut alors plus entreprendre cette action/i.test(choix.action.resume)) c.ressources[`${VERROU_LEGENDAIRE}${choix.action.id}`] = 1;
     journaliser(etat, { type: 'info', texte: `${c.nom} dépense une action légendaire : ${choix.action.nom} (${c.ressources[ACTIONS_LEGENDAIRES]} restante(s)).`, acteur: c.id });
+    if (choix.sort && ctx) {
+      lancerSortHorsTour(etat, ctx, c, choix);
+      continue;
+    }
     if (choix.attaque) {
       // Se déplacer d'abord (une part de sa Vitesse, sans entamer son mouvement du tour), puis frapper si l'adversaire est toujours là et lui debout.
       if (choix.vers) {

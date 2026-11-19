@@ -184,7 +184,7 @@ export function jouerTourSimple(etat: EtatCombat, ctx: Contexte): void {
       deplacer(etat, c, meilleure);
     }
   }
-  if (!etat.vainqueur && actif(etat).id === id) finTour(etat);
+  if (!etat.vainqueur && actif(etat).id === id) finTour(etat, ctx);
 }
 
 // ---------------------------------------------------------------------------
@@ -349,7 +349,7 @@ function graine(base: number, i: number): number {
 
 /** Simule la fin du tour puis le reste du round avec la politique simple. */
 function simulerRound(etat: EtatCombat, ctx: Contexte, id: string): void {
-  if (!etat.vainqueur && actif(etat).id === id) finTour(etat);
+  if (!etat.vainqueur && actif(etat).id === id) finTour(etat, ctx);
   for (let n = 0; n < etat.ordre.length && !etat.vainqueur && actif(etat).id !== id; n++) jouerTourSimple(etat, ctx);
 }
 
@@ -437,7 +437,7 @@ function fuir(etat: EtatCombat, ctx: Contexte, c: Combattant): void {
     c.enFuite = true;
     journaliser(etat, { type: 'info', texte: `${c.nom} s'enfuit !`, acteur: c.id });
   }
-  if (!etat.vainqueur && actif(etat).id === c.id) finTour(etat);
+  if (!etat.vainqueur && actif(etat).id === c.id) finTour(etat, ctx);
 }
 
 /** Joue entièrement le tour du combattant actif ; renvoie les libellés des étapes choisies. */
@@ -445,7 +445,7 @@ export function jouerTourIA(etat: EtatCombat, ctx: Contexte, options: OptionsIA 
   const c = actif(etat);
   const doctrine = doctrineDe(c, options.doctrines);
   if (!peutAgir(c)) {
-    finTour(etat);
+    finTour(etat, ctx);
     return ['passe son tour'];
   }
   if (doitFuir(etat, c, doctrine) && !aEtat(c, 'empoigne')) {
@@ -457,12 +457,12 @@ export function jouerTourIA(etat: EtatCombat, ctx: Contexte, options: OptionsIA 
     const e = choisirEtape(etat, ctx, options);
     libelles.push(e.libelle);
     if (!appliquerEtape(etat, ctx, e)) {
-      finTour(etat);
+      finTour(etat, ctx);
       break;
     }
     if (e.commandes.some((x) => x.type === 'finTour')) break;
   }
-  if (!etat.vainqueur && actif(etat).id === c.id) finTour(etat);
+  if (!etat.vainqueur && actif(etat).id === c.id) finTour(etat, ctx);
   return libelles;
 }
 
