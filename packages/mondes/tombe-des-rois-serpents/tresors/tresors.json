@@ -563,6 +563,7 @@
     "lieu": "n3-salle-du-tresor",
     "contenant": "coffre",
     "description": "Quatre coffres de cèdre cerclés de bronze, couvercles rabattus sur des monceaux de pièces anciennes frappées d'un cobra. Entre elles s'alignent des lingots d'argent, et une statuette de jade dépasse d'un tas.",
+    "signe": "Les serrures de bronze des quatre coffres sont d'une finesse d'orfèvre.",
     "contenu": {
       "pieces": {
         "pc": 3000,
@@ -581,7 +582,11 @@
       ],
       "tables": []
     },
-    "acces": {}
+    "acces": {
+      "verrou": {
+        "dd": 15
+      }
+    }
   },
   {
     "id": "t-console-de-marbre",

@@ -172,7 +172,7 @@ export const SEUIL_PAUVRE_PAR_NIVEAU = 10;
 /** Un obstacle est « sérieux » à partir de ce DD équivalent (un DD 15 ; un FP 2,5). */
 export const SEUIL_OBSTACLE_SERIEUX = 15;
 /** Une cachette de ce DD ou plus compte comme un obstacle pour l'avis « riche sans obstacle ». */
-const DD_CACHE_QUI_COMPTE = 15;
+const DD_CACHE_QUI_COMPTE = 14;
 
 const liste = (xs: string[], n = 6) => `${xs.slice(0, n).join(', ')}${xs.length > n ? `… (${xs.length} en tout)` : ''}`;
 
@@ -187,13 +187,15 @@ export function conseilsButin(dm: DonneesMonde, srd: Donnees): string[] {
   const riche = SEUIL_RICHE_PAR_NIVEAU * niveau;
   const pauvre = SEUIL_PAUVRE_PAR_NIVEAU * niveau;
 
+  // Une énigme qui donne le trésor, ou une condition pour qu'il existe, sont aussi des obstacles (le joueur a quelque chose à accomplir).
+  const recompensesDEnigme = new Set([...dm.enigmes.values()].map((e) => e.recompense.tresor).filter((x): x is string => !!x));
   const richesSansObstacle: string[] = [];
   const obstaclesSansRien: string[] = [];
   for (const t of dm.tresors.values()) {
     const d = difficulteDeTresor(dm, srd, t);
     const valeur = valeurDeTresor(dm, srd, t);
     const cacheDure = (t.acces.cache?.dd ?? 0) >= DD_CACHE_QUI_COMPTE;
-    if (valeur >= riche && d.equivalentDd === 0 && !cacheDure) richesSansObstacle.push(`${t.id} (≈ ${Math.round(valeur)} po)`);
+    if (valeur >= riche && d.equivalentDd === 0 && !cacheDure && !t.condition && !recompensesDEnigme.has(t.id)) richesSansObstacle.push(`${t.id} (≈ ${Math.round(valeur)} po)`);
     // « Rien » de valeur : ni argent notable, ni objet de quête, clé, nommé ou unique, ni indice, ni peu commun ou mieux.
     const sert = !!t.indice || t.contenu.objets.some((o) => {
       const i = infosObjet(dm, srd, o.objet);
@@ -201,7 +203,7 @@ export function conseilsButin(dm: DonneesMonde, srd: Donnees): string[] {
     });
     if (d.equivalentDd >= SEUIL_OBSTACLE_SERIEUX && valeur < pauvre && !sert) obstaclesSansRien.push(`${t.id} (difficulté ${Math.round(d.equivalentDd)}, ≈ ${Math.round(valeur)} po)`);
   }
-  if (richesSansObstacle.length) avis.push(`Butin et difficulté : trésors riches (≥ ${riche} po pour les niveaux jusqu'à ${niveau}) sans verrou, piège ni gardien (plus c'est riche, plus l'accès doit être difficile ; F4) : ${liste(richesSansObstacle)}.`);
+  if (richesSansObstacle.length) avis.push(`Butin et difficulté : trésors riches (≥ ${riche} po pour les niveaux jusqu'à ${niveau}) sans verrou, piège, gardien, énigme ni condition (plus c'est riche, plus l'accès doit être difficile ; F4) : ${liste(richesSansObstacle)}.`);
   if (obstaclesSansRien.length) avis.push(`Butin et difficulté : obstacles sérieux (DD ${SEUIL_OBSTACLE_SERIEUX} ou plus, ou FP 2,5 ou plus) pour un contenu sans valeur (moins de ${pauvre} po, ni objet de quête, clé, nommé ou rare, ni indice) : ${liste(obstaclesSansRien)}.`);
 
   // Des objets qu'un tirage plafonné ne donnerait jamais : quête, clé, unique.

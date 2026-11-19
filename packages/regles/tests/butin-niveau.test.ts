@@ -335,6 +335,15 @@ describe('les avis du validateur (jamais bloquants)', () => {
     dm.tresors.delete('c-riche');
     contenant(dm, 'c-riche', { acces: { cache: { dd: 11, competence: 'investigation' } } }, { pieces: { po: seuil + 50 } });
     expect(butin(dm).join('\n')).toMatch(/c-riche/);
+    // Une condition d’existence, ou une énigme qui le donne, est aussi un obstacle.
+    dm.tresors.delete('c-riche');
+    contenant(dm, 'c-riche', { condition: { flag: 'un-drapeau' } }, { pieces: { po: seuil + 50 } });
+    expect(butin(dm).join('\n')).not.toMatch(/c-riche/);
+    dm.tresors.delete('c-riche');
+    contenant(dm, 'c-riche', {}, { pieces: { po: seuil + 50 } });
+    const enigme = [...dm.enigmes.values()][0]!;
+    enigme.recompense = { ...enigme.recompense, tresor: 'c-riche' };
+    expect(butin(dm).join('\n')).not.toMatch(/c-riche/);
   });
 
   it('un obstacle sérieux sans rien dedans est signalé, sauf s’il garde une clé, un objet de quête, un indice ou un objet nommé', () => {
