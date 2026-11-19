@@ -6,6 +6,7 @@
     "test": "vitest run",
     "typecheck": "tsc -p packages/regles --noEmit && tsc -p outils --noEmit && tsc -p apps/atelier --noEmit && tsc -p apps/jeu --noEmit",
     "simuler": "tsx outils/simuler.ts",
+    "simuler:haut": "tsx outils/simuler-haut-niveau.ts",
     "jeu": "pnpm --filter jeu dev",
     "atelier": "pnpm --filter atelier dev",
     "images": "tsx outils/images/cli.ts",

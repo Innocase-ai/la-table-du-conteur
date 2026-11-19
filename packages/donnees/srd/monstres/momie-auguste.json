@@ -187,7 +187,11 @@
       "id": "tourbillon-de-sable",
       "nom": "Tourbillon de sable",
       "cout": "reaction",
-      "resume": "Déclencheur : la momie est touchée par un jet d'attaque. Conséquences : la momie ajoute 2 à sa CA contre l'attaque, ce qui peut faire rater celle-ci, et se téléporte d'un maximum de 18 m dans un espace inoccupé qu'elle voit. Chaque créature de son choix parmi celles qu'elle voit dans un rayon de 1,50 m de son espace de destination subit l'état Aveuglé jusqu'à la fin du tour suivant de la momie."
+      "resume": "Déclencheur : la momie est touchée par un jet d'attaque. Conséquences : la momie ajoute 2 à sa CA contre l'attaque, ce qui peut faire rater celle-ci, et se téléporte d'un maximum de 18 m dans un espace inoccupé qu'elle voit. Chaque créature de son choix parmi celles qu'elle voit dans un rayon de 1,50 m de son espace de destination subit l'état Aveuglé jusqu'à la fin du tour suivant de la momie.",
+      "reaction": {
+        "ca": 2,
+        "contre": "tous"
+      }
     },
     {
       "id": "frappe-necrotique",

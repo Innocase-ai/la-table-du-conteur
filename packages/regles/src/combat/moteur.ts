@@ -520,6 +520,16 @@ export function jetAttaque(
       journaliser(etat, { type: 'sort', texte: `${cible.nom} lance Bouclier (+5 CA).`, acteur: cible.id, details: { sort: 'bouclier' } });
     }
   }
+  // F6 : réaction de monstre « +N à la CA contre cette attaque » (Parade, Tourbillon de sable) : utilisée seulement si elle fait rater le coup.
+  if (touche && d !== 20 && cible.ressources.reaction && peutAgir(cible)) {
+    const reaction = cible.actionsMonstre.find((a) => a.reaction && (a.reaction.contre === 'tous' || a.reaction.contre === mode));
+    if (reaction && total < caCible + reaction.reaction!.ca) {
+      cible.ressources.reaction = 0;
+      caCible += reaction.reaction!.ca;
+      touche = false;
+      journaliser(etat, { type: 'info', texte: `${cible.nom} réagit (${reaction.nom}) : +${reaction.reaction!.ca} à sa CA, l'attaque rate.`, acteur: cible.id });
+    }
+  }
   const critique = touche && (d >= seuilCritique || critiqueAuto);
   return { ca: caCible, couvert: bonusCouvert, touche, critique, avantage, desavantage, total, de: d };
 }

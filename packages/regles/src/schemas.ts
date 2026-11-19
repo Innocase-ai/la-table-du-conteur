@@ -275,6 +275,9 @@ export const ActionMonstre = z.object({
   recharge: z.string().optional(), // « 5-6 »
   // Une action légendaire « [se déplace de la moitié de sa Vitesse et ] effectue une attaque de X [ou de Y] » (F6, lot 3b) : `attaque` liste les
   // actions d'attaque du profil (par id) parmi lesquelles le monstre choisit ; `deplacement` : la part de sa Vitesse dont il peut se rapprocher d'abord.
+  // Réaction « ajoute N à sa CA contre cette attaque » (Parade, Tourbillon de sable ; F6, lot 5) : si une attaque (de ce mode) touche le monstre et que ce bonus la
+  // ferait rater, il l'utilise (sa réaction, une par round) et elle rate. Seule la part « CA » est jouée ; une téléportation ou un état infligé du texte ne l'est pas.
+  reaction: z.object({ ca: z.number().int().min(1).max(10), contre: z.enum(['corps-a-corps', 'distance', 'tous']).default('tous') }).optional(),
   // `sort` (lot 3c) : « recourt à Incantation pour lancer X » : le sort X de la liste du monstre (`sorts.liste`), lancé sans action ni réserve.
   legendaire: z
     .object({ deplacement: z.number().min(0).max(1).optional(), attaque: z.array(z.string()).min(1).optional(), sort: z.string().optional() })
