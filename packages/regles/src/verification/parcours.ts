@@ -44,6 +44,8 @@ export interface OptionsParcours {
   frontiereMax?: number;
   /** Le groupe joué (par défaut : le groupe conseillé du créateur). */
   groupe?: Personnage[];
+  /** Le carnet de campagne injecté au départ (F5) : pour jouer et prouver les échos qu'un épisode lit. Sans lui, un groupe sans carnet. */
+  campagne?: readonly string[];
   /**
    * Chercher d'abord un « squelette » (défaut : oui) : un chemin par paliers, en largeur, qui va à chaque fois vers le plus proche progrès
    * (un lieu jamais vu, un fait, un drapeau, un objet, une quête dont une fin dépend), puis seulement la recherche guidée, à partir de tous
@@ -69,6 +71,8 @@ export interface Parcours {
   fin: string;
   graine: number;
   niveau: number;
+  /** Le carnet avec lequel ce parcours a été joué (absent : sans carnet) ; `rejouer` le reçoit pour refaire le même chemin. */
+  campagne?: string[];
   etapes: EtapeParcours[];
 }
 
@@ -564,8 +568,8 @@ function squelette(
 }
 
 /** Rejoue des ordres depuis le début d'une partie ; sert à vérifier un parcours et à l'afficher pas à pas. */
-export function rejouer(moteur: Moteur, groupe: Personnage[], graine: number, niveau: number, ordres: Ordre[]): { partie: Partie; refus?: string } {
-  let partie = moteur.executer(moteur.nouvellePartie(groupe, { graine, niveau }), { type: 'commencer' }).partie;
+export function rejouer(moteur: Moteur, groupe: Personnage[], graine: number, niveau: number, ordres: Ordre[], campagne?: readonly string[]): { partie: Partie; refus?: string } {
+  let partie = moteur.executer(moteur.nouvellePartie(groupe, { graine, niveau, ...(campagne?.length ? { campagne } : {}) }), { type: 'commencer' }).partie;
   for (const o of ordres) {
     const r = moteur.executer(partie, o);
     if (r.refus) return { partie, refus: `${o.type} : ${r.refus}` };
@@ -588,6 +592,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
   const { dm } = ctx;
   const groupe = groupeDuParcours(ctx, opts);
   const niveau = opts.niveau ?? dm.monde.niveaux.min;
+  const carnet = opts.campagne?.length ? { campagne: [...opts.campagne] } : {};
   const graines = opts.graines ?? [7, 21];
   const poidsAncetres = opts.poidsAncetres ?? graines.map((_, i) => (i === 0 ? 0 : 4));
   const budgetEtats = opts.budgetEtats ?? 6000;
@@ -629,7 +634,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
     // Les ancêtres des fins pas encore trouvées : chaque ancêtre atteint vaut quelques points (on suit les conditions de ce qui produit la fin).
     const indexRefs = indexerReferences(dm);
     const ancetresParFin = new Map(fins.map((f) => [f.id, ancetresDe(moteur, f.id, indexRefs)]));
-    const initiale = moteur.executer(moteur.nouvellePartie(groupe, { graine, niveau }), { type: 'commencer' }).partie;
+    const initiale = moteur.executer(moteur.nouvellePartie(groupe, { graine, niveau, ...carnet }), { type: 'commencer' }).partie;
     initiale.journal = [];
     const evaluer = (p: Partie): number => {
       let s = progression(p);
@@ -665,7 +670,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
         { etatsParPalier: Math.min(budgetEtats, 2_500), enMs: () => maintenant() - depart > budgetMs * 0.6 || etatsGraine >= budgetEtats },
         (fin, noeud) => {
           noter(noeud.partie!);
-          if (!trouvees.has(fin)) trouvees.set(fin, { fin, graine, niveau, etapes: cheminDe(noeud) });
+          if (!trouvees.has(fin)) trouvees.set(fin, { fin, graine, niveau, ...carnet, etapes: cheminDe(noeud) });
         },
         // Les états du squelette comptent dans le budget de la graine et dans le total.
         () => {
@@ -719,7 +724,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
         const noeud: Noeud = { partie: enfant, lieu: enfant.etat.lieu, parent: n, actions: essais, profondeur: n.profondeur + 1, score: 0, ordreArrivee: ordreArrivee++ };
         if (finAtteinte) {
           noter(enfant);
-          if (!trouvees.has(finAtteinte)) trouvees.set(finAtteinte, { fin: finAtteinte, graine, niveau, etapes: cheminDe(noeud) });
+          if (!trouvees.has(finAtteinte)) trouvees.set(finAtteinte, { fin: finAtteinte, graine, niveau, ...carnet, etapes: cheminDe(noeud) });
           if (!couvrir && trouvees.size === fins.length) break;
           continue;
         }

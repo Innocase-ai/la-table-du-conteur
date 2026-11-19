@@ -23,6 +23,7 @@ export { evenementsIci, herosQuiAgit, origineAffichee, type EtatEvenementsChoix,
 export { sceneEnCours, scenesDu, SceneNarree, PlanScene, type EtatScenes } from './scenes';
 export { objetDe, plusBlesse, POTION_DE_COMBAT, type EtatInventaire } from './inventaire';
 export { appliquerEquipement, bouclierActif, caAvecEquipement, chargeDuGroupe, copieEquipement, estDeuxMains, estLegere, harmonises, harmonisesEmbarques, HARMONISES_MAX, idElementPorte, infoEquipement, mainsArmees, normaliserEquipement, objetsPortes, placer, proprietesArme, rangerAvecCatalogue, retirerDe, type ResultatPlacer } from './equipement-regles';
+export { bilanDeFin, entrerDansEpisode, type BilanEpisode, type EntreeEpisode } from './campagne-regles';
 export { sortsConnus } from './grimoire';
 export { ficheDeSort } from './fiche-sort';
 export { articles, rachats, prixLisible, vitrineDe, type ArticleVitrine, type EtatCommerce, type ServiceVitrine, type Vitrine } from './commerce';
