@@ -2785,3 +2785,14 @@ Demande de l'utilisateur : « fais tout comme tu veux ». Cinq sessions, une par
 
 - `docs/FICHES-LOT-2.md` : quatre fiches avec faits, options et recommandation — L2-D1 secret d'Elara/Balthazar (autoriser dans le canon), L2-D2 faits hors canon de la Marche (3 PNJ) et de la Dîme (7 PNJ) (autoriser), L2-D3 second raccourci de la Tombe (DD 16 → 18 ; avis disparu et 5 fins toujours prouvées, mesuré en mémoire), L2-D4 zone 2 de la Marche (laisser accepté tant que l'histoire n'est pas proposée). Rien n'est appliqué : l'utilisateur décide.
 - Vérifié : `pnpm typecheck` propre, `pnpm test` 197 fichiers, 2 801 verts, 6 sautés. Rien n'est commité.
+
+### 19/11/2026 — Lot 2, étape B appliquée : les trois décisions tranchées (données)
+
+- **Cadre** : l'utilisateur, après la présentation des fiches : « fais les bons choix, tu connais le but final, donner du plaisir aux joueurs ». Les recommandations de `docs/FICHES-LOT-2.md` sont appliquées ; l'étape A est commitée (`0c3f386`). Rien de cette suite n'est commité.
+- **L2-D1** : `secret-fausse-tombe-leurre` autorise `pnj:elara-herboriste` et `pnj:frere-balthazar` (`canon.json` de la Tombe). Raison de plaisir de jeu : le joueur qui cherche d'abord au Fort trouve une piste, sans entrer dans la tombe.
+- **L2-D2** : dix PNJ autorisés dans le canon de la Marche (Silas, Bregor, Demi-Dent) et de la Dîme (Pimmo, Aveline, Marin, Nyx, Varg, Grum, Bram) ; ces accès gardés étaient voulus.
+- **L2-D3** : DD 18 (au-dessus de la Perception passive 16) pour le passage caché `n2-soldats-d-argile` → `n3-hall-du-basilic` et pour le fait `f-passage-soldats-vers-n3` (`z2-niveau2.json`) ; `LIEUX.md` et `RECAP-VALIDATION-LIEUX.md` alignés. Le joueur doit chercher pour trouver le raccourci, et le niveau 2 ne se saute plus gratuitement.
+- **L2-D4** : option 1, rien à faire (la Marche n'est pas proposée au joueur) ; ses 3 acceptations restent dans `revue.json`.
+- **`revue.json`** : 2 entrées retirées (Tombe, qui n'a plus de rejet), 3 (Marche, il en reste 3) et 7 (Dîme, il en reste 1, la quête sautable).
+- **Test adapté** : `lot1-horloge-parcours.test.ts`, la Tombe n'a plus aucun avis « passage caché trouvé sans jet » (il en attendait 1, celui que D3 supprime).
+- **Vérifié** : `pnpm monde verifier` des trois histoires « Rien ne bloque » ; parcours Tombe 5/5 (4 112 états), Marche 2/2, Dîme 4/4 ; plus aucun défaut accepté pour « fait détenu hors du canon » ni pour le raccourci.

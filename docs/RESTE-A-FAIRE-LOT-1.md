@@ -3,9 +3,9 @@
 Lot 1 commité (code `3465cd7`, données `a724a6e`). Détail : `docs/JOURNAL.md` (suites 6 à 9) et `docs/FICHES-LOT-1.md`.
 
 ## Décisions à prendre
-- **D7, secret d'Elara** : l'autoriser dans `canon.json` ou retirer son secret. Lève aussi frère Balthazar (même fait `f-fausse-tombe-leurre`). Aujourd'hui accepté dans `packages/mondes/tombe-des-rois-serpents/revue.json`.
-- **Alertes « fait détenu hors du canon »** de la Marche (3 PNJ) et de la Dîme (7 PNJ) : autoriser dans le canon ou retirer le fait ; acceptées dans leur `revue.json` en attendant.
-- **Second raccourci de la Tombe** : `n2-soldats-d-argile` ↔ `n3-hall-du-basilic` (DD 16 = Perception passive 16), signalé par le validateur.
+- ~~D7, secret d'Elara~~ : fait le 19/11/2026 (autorisé dans `canon.json`, lot 2, L2-D1).
+- ~~Alertes « fait détenu hors du canon »~~ : faites le 19/11/2026 (10 PNJ autorisés dans le canon de la Marche et de la Dîme, lot 2, L2-D2).
+- ~~Second raccourci de la Tombe~~ : fait le 19/11/2026 (DD 18, lot 2, L2-D3).
 - **Marche, suite de l'histoire (zone 2)** : le flacon de toxine et le drapeau `z2-davor-neutralise` n'existent pas encore (acceptés avec raison).
 
 ## Travail

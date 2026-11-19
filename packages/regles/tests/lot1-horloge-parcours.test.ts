@@ -217,11 +217,11 @@ describe('J6 (M13) : le passage secret de la Tombe ne saute plus les niveaux 1 e
       expect(avisPassage(dm), 'sens unique vers le plus profond').toHaveLength(avant + 1);
     });
 
-    it('la Tombe (données d’aujourd’hui) : seul le raccourci intérieur du niveau 2 est signalé (la sortie vers le bivouac est à sens unique)', () => {
+    it('la Tombe (données d’aujourd’hui) : plus aucun passage caché trouvé sans jet (sortie du bivouac à sens unique, raccourci du niveau 2 à DD 18 > Perception passive 16, décision L2-D3 du 19/11/2026)', () => {
       const a = avisPassage(tombe());
       expect(a.filter((x) => x.includes('« n3-escalier-surface » → « bivouac-entree »'))).toHaveLength(0);
-      expect(a.filter((x) => x.includes('« n2-soldats-d-argile » → « n3-hall-du-basilic »'))).toHaveLength(1); // un second, de l'intérieur du niveau 2
-      expect(a).toHaveLength(1);
+      expect(a.filter((x) => x.includes('« n2-soldats-d-argile » → « n3-hall-du-basilic »'))).toHaveLength(0);
+      expect(a).toHaveLength(0);
     });
   });
 

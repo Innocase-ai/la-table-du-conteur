@@ -1,6 +1,6 @@
 # Fiches de décision du lot 2 (volet « dettes du lot 1 ») — 19/11/2026
 
-**Statut : propositions, rien n'est appliqué.** Ces fiches préparent les quatre décisions que le lot 1 a laissées ouvertes ; chacune donne les faits (mesurés sur les données et sur le parcours automatique), les options, une recommandation et ce que le choix déclenche. Aucune donnée d'histoire n'a été modifiée pour les écrire. Le parcours automatique prouve de nouveau les 5 fins de la Tombe (étape A, journal du 19/11/2026) : les vérifications ci-dessous sont donc possibles.
+**Statut au 19/11/2026 : L2-D1, L2-D2 et L2-D3 appliqués avec les recommandations ci-dessous (l'utilisateur m'a laissé trancher : « fais les bons choix, le but est de donner du plaisir aux joueurs ») ; L2-D4 : option 1, rien à faire.** Les fiches gardent leurs faits et leurs options ; chacune est suivie, dans le journal du 19/11/2026, de ce qui a été changé. Variante appliquée pour L2-D3 : le DD passe à 18 sur le lien **et** sur le fait `f-passage-soldats-vers-n3` (même cachette, même valeur).
 
 Rappel : `packages/mondes/<histoire>/revue.json` accepte aujourd'hui ces points avec leur raison ; chaque décision dit aussi quoi y retirer.
 

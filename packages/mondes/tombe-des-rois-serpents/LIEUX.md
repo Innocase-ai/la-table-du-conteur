@@ -96,7 +96,7 @@ Ce tableau est produit par script : il reflète les fichiers du monde (PNJ, renc
 | `n2-tombe-sparamantur` | — | `r-sparamantur-squelette` | — | `t-ornements-sparamantur` | — | `f-sparamantur-veille` (perception 11) | `exa-sparamantur-plaques` |
 | `n2-tombe-franbinzar` | — | `r-gelee-ocre-franbinzar` | — | `t-bague-franbinzar` | — | `f-franbinzar-gelee` (nature 11) | `exa-franbinzar-cuvettes` |
 | `n2-sacristie` | — | — | — | `t-sacristie-icone` | — | `f-vrai-nom-baltoplate`, `f-cercle-d-argent-garde` (religion 10) | `exa-sacristie-casiers` |
-| `n2-soldats-d-argile` | — | `r-statues-creuses-serpents` | — | `t-statue-creuse`, `t-outils-tombe-inachevee` | — | `f-soldats-argile-creux` (investigation 10), `f-chantier-abandonne` (histoire 12), `f-passage-soldats-vers-n3` (perception 16) | `exa-soldats-argile-fentes`, `exa-soldats-outils` |
+| `n2-soldats-d-argile` | — | `r-statues-creuses-serpents` | — | `t-statue-creuse`, `t-outils-tombe-inachevee` | — | `f-soldats-argile-creux` (investigation 10), `f-chantier-abandonne` (histoire 12), `f-passage-soldats-vers-n3` (perception 18) | `exa-soldats-argile-fentes`, `exa-soldats-outils` |
 | `n2-escalier-piege` | — | — | `p-escalier-basculant` | — | — | `f-escalier-basculant` (investigation 12) | `exa-escalier-serpents` |
 | `n2-arene-gardien` | — | `r-gardien-osseux` | — | `t-boucliers-arene` | — | `f-gardien-osseux-gouffre`, `f-boucliers-trophees` (investigation 10) | `exa-arene-boucliers`, `exa-arene-griffures` |
 | `n2-gouffre-et-effondrement` | — | `r-traversee-corniche` | `p-marteau-porte-niveau2` | — | — | `f-porte-niveau-3-corniche` | `exa-gouffre-eboulis` |
