@@ -5,7 +5,7 @@ import type { Fiche } from '../fiche';
 import { CARACTERISTIQUES, type Arme, type Caracteristique, type Monstre } from '../schemas';
 import { DECK_ELAN_LANCEUR, DECK_ELAN_MARTIAL } from './cartes';
 import { doctrineDeProfil } from './doctrine';
-import type { AttaqueArme, Botte, Combattant } from './etat';
+import { RESISTANCE_LEGENDAIRE, type AttaqueArme, type Botte, type Combattant } from './etat';
 import type { Position } from './grille';
 
 const BOTTES: Record<string, Botte> = {
@@ -307,6 +307,16 @@ function sortsDeMonstre(m: Monstre, mods: Record<Caracteristique, number>) {
   };
 }
 
+/**
+ * Les réserves d'un monstre « légendaire » (F6) : sa Résistance légendaire, lue sur le trait `resistance-legendaire` du profil (« (3/jour…) » :
+ * le nombre avant « /jour » ; 3 si le texte ne le dit pas). Rien pour les autres monstres : ils se jouent exactement comme avant.
+ */
+function reservesLegendaires(m: Monstre): Record<string, number> {
+  const t = m.traits.find((x) => x.id === 'resistance-legendaire');
+  if (!t) return {};
+  return { [RESISTANCE_LEGENDAIRE]: Number(/(\d+)\s*\/\s*jour/.exec(t.resume)?.[1] ?? 3) };
+}
+
 export function monstreDepuisProfil(m: Monstre, id: string, position: Position, nom = m.nom): Combattant {
   const mods = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, modificateur(m.caracteristiques[c] ?? 10)])) as Record<Caracteristique, number>;
   const sauvegardes = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, m.sauvegardes[c] ?? mods[c]])) as Record<Caracteristique, number>;
@@ -342,7 +352,8 @@ export function monstreDepuisProfil(m: Monstre, id: string, position: Position, 
     traits: m.traits.map((t) => t.id),
     sorts: lance?.sorts ?? [],
     ...(lance ? { sortsMonstre: lance.sortsMonstre, incantation: lance.incantation } : {}),
-    ressources: { reaction: 1, ...lance?.ressources },
+    // F6 : Résistance légendaire (« 3/jour ») : une réserve par combat, seulement pour les monstres qui portent ce trait.
+    ressources: { reaction: 1, ...lance?.ressources, ...reservesLegendaires(m) },
     rage: false,
     initiative: 0,
     mort: false,

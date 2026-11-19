@@ -17,6 +17,7 @@ import {
   type Combattant,
   type DetailsEvenement,
   type EtatActif,
+  RESISTANCE_LEGENDAIRE,
   type EtatCombat,
   type Modificateur,
   type ZonePersistante,
@@ -388,7 +389,14 @@ export function sauvegarde(etat: EtatCombat, c: Combattant, carac: Caracteristiq
   const d = avantage ? Math.max(d1, de(etat, 20)) : desavantage ? Math.min(d1, de(etat, 20)) : d1;
   let total = d + c.sauvegardes[carac] + desModificateurs(etat, c, 'de_sauvegarde') + bonus;
   if (total < dd) total += inspirationRattrape(etat, c, dd - total);
-  return total >= dd;
+  if (total >= dd) return true;
+  // F6 : Résistance légendaire. Un jet raté se réussit tout de même tant qu'il en reste ; seulement pour un monstre qui porte la réserve.
+  if ((c.ressources[RESISTANCE_LEGENDAIRE] ?? 0) > 0) {
+    c.ressources[RESISTANCE_LEGENDAIRE]! -= 1;
+    journaliser(etat, { type: 'info', texte: `${c.nom} utilise sa Résistance légendaire : il réussit son jet de sauvegarde (${c.ressources[RESISTANCE_LEGENDAIRE]} restante(s)).`, acteur: c.id });
+    return true;
+  }
+  return false;
 }
 
 /** Le demi-couvert compte pour les sauvegardes de Dextérité contre un effet venu de `origine` (SRD 5.2.1). */

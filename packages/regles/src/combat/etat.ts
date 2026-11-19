@@ -110,6 +110,9 @@ export interface TourCourant {
   dernierCoup?: { cible: string; corpsACorps: boolean; critique: boolean; mainsNues: boolean };
 }
 
+/** Clé de `ressources` qui compte les Résistances légendaires restantes d'un monstre (F6). */
+export const RESISTANCE_LEGENDAIRE = 'resistanceLegendaire';
+
 export interface Combattant {
   id: string;
   nom: string;
