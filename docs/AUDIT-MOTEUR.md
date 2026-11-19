@@ -151,7 +151,7 @@ En résumé, le noyau transactionnel et le combat sont solides : ni plantage ni 
 - **Gravité** : gênant. Bug, reproduit.
 - **Correction** : appliquer les évolutions « repos-long » et les événements de repos à toute nuit complète, compter la fouille par repos plutôt que par jour civil, et calculer le réveil à heure + 8 entre 6 h et 8 h.
 
-**M13. La Tombe : le niveau 3 est accessible dès le 5e pas.** · **corrigé le 18/11/2026** (texte `retour` à la découverte, avis « Passage caché », passage des racines à sens unique) ; **mais** le parcours automatique ne prouve plus les 4 fins qui suivent le retour au bivouac (540 s, 7 530 états ; le niveau 3 est atteint en 101 pas, le cœur de la tombe en 120) : `verifier` de la Tombe échoue, accepté par l'utilisateur jusqu'à une amélioration du parcours
+**M13. La Tombe : le niveau 3 est accessible dès le 5e pas.** · **corrigé le 18/11/2026** (texte `retour` à la découverte, avis « Passage caché », passage des racines à sens unique) ; **mais** le parcours automatique ne prouve plus les 4 fins qui suivent le retour au bivouac (540 s, 7 530 états ; le niveau 3 est atteint en 101 pas, le cœur de la tombe en 120) : `verifier` de la Tombe échouait, accepté par l'utilisateur jusqu'à une amélioration du parcours (faite le 19/11/2026 : clé de recherche réduite et squelette, 5 fins sur 5 en ≈ 1 min)
 - **Où** : données (`tombe-des-rois-serpents/lieux/z3-niveau3.json`, lien `n3-escalier-surface` ↔ `bivouac-entree`) et `monde/exploration.ts:418`.
 - **Ce qui se passe** :
   - Le passage secret est à double sens (`sens: double`) avec un DD de Perception de 15. La Perception passive du groupe conseillé vaut 16 : le passage est trouvé dès l'arrivée au bivouac, sans jet.

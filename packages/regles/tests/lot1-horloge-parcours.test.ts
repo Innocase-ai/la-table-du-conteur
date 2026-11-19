@@ -251,20 +251,19 @@ describe('J6 (M13) : le passage secret de la Tombe ne saute plus les niveaux 1 e
     expect([...accessibles(dm, 'bivouac-entree', sansNiveaux1et2)].some((l) => l.startsWith('n3-'))).toBe(true);
   });
 
-  // La preuve par le parcours automatique (lente : une minute) : le groupe atteint `n3-hall-du-basilic` en passant par les niveaux 1 et 2 (101 pas
-  // le 18/11/2026). Lancée avec `PARCOURS_LENTS=1`, comme les autres parcours lents. Les fins, elles, ne sont plus prouvées (journal, « suite 8 »).
-  it.skipIf(!process.env['PARCOURS_LENTS'])('(données, D4) le parcours automatique atteint le niveau 3 en passant par les niveaux 1 et 2', () => {
+  // La preuve par le parcours automatique : le groupe atteint `n3-hall-du-basilic` en passant par les niveaux 1 et 2. Avec le squelette d'emblée
+  // (lot 2, étape A), quelques secondes ; avant, 55 s et 101 pas. Le chemin trouvé n'a pas à être long : il doit seulement passer par les niveaux 1 et 2.
+  it('(données, D4) le parcours automatique atteint le niveau 3 en passant par les niveaux 1 et 2', () => {
     const dm = tombe();
     dm.fins.clear();
     for (const [id, condition] of [['jalon', { lieu: 'n3-hall-du-basilic' }], ['fin-echec-horloge', { flag: 'jamais-pose' }]] as const) {
       dm.fins.set(id, { id, nom: id, condition, epilogue: 'x', variantes: [], consequences: [] } as never);
     }
-    const rap = explorerParcours({ dm, srd }, { budgetEtats: 4000, budgetMs: 120_000 });
+    const rap = explorerParcours({ dm, srd }, { budgetEtats: 4000, budgetMs: 60_000, trancheAvantSquelette: 0 });
     const p = rap.parcours.find((x) => x.fin === 'jalon');
     expect(p, 'le niveau 3 est atteignable').toBeDefined();
     const lieux = new Set(p!.etapes.map((e) => e.lieu));
     expect([...lieux].some((l) => l.startsWith('n1-'))).toBe(true);
     expect([...lieux].some((l) => l.startsWith('n2-'))).toBe(true);
-    expect(p!.etapes.length).toBeGreaterThan(72);
-  }, 150_000);
+  }, 90_000);
 });

@@ -88,7 +88,7 @@ Toute variation d'un de ces chiffres après une fiche doit être **expliquée da
 
 ## J6 — Tombe : le niveau 3 ne doit plus s'atteindre dès le 5e pas (M13) — *à ne faire que sur décision*
 
-**Fait le 18/11/2026, D4 appliquée** (sens unique, texte `retour` corrigé dans le moteur, avis du validateur). **Critère non tenu : les 5 fins ne sont plus prouvées** par le parcours automatique de la Tombe (4 fins sur 5 non trouvées en 540 s ; le niveau 3 est atteint en 101 pas par les niveaux 1 et 2). L'utilisateur a accepté que `verifier` de la Tombe échoue jusqu'à une amélioration du parcours (journal « suite 8 »).
+**Fait le 18/11/2026, D4 appliquée** (sens unique, texte `retour` corrigé dans le moteur, avis du validateur). **Critère non tenu : les 5 fins ne sont plus prouvées** par le parcours automatique de la Tombe (4 fins sur 5 non trouvées en 540 s ; le niveau 3 est atteint en 101 pas par les niveaux 1 et 2). L'utilisateur a accepté que `verifier` de la Tombe échoue jusqu'à une amélioration du parcours (journal « suite 8 »). **Levé le 19/11/2026** : le parcours a été amélioré (lot 2, étape A) et prouve de nouveau les 5 fins de la Tombe avec D4 en place.
 
 - **Objectif :** que les niveaux 1 et 2 ne se sautent pas.
 - **Aujourd'hui :** le passage secret `n3-escalier-surface` ↔ `bivouac-entree` est à double sens avec un DD de Perception de 15, et la Perception passive du groupe conseillé vaut 16 : il est trouvé à l'arrivée au bivouac, sans jet. Le parcours atteint `fin-partage-honnete` en 72 pas. Au passage, le texte de découverte reprend `lien.description` (des marches « qui montent vers l'air libre ») au lieu de `retour`, quand on le découvre depuis l'autre côté.

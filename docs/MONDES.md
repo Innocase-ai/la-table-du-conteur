@@ -184,7 +184,7 @@ Le chargement d'un monde (`assemblerMonde`, utilisé par les outils, l'atelier e
 
 ## Vérifier une histoire avant de la publier (`pnpm monde verifier`)
 
-`pnpm monde verifier [monde] [--sans-parcours] [--etats N] [--ms N] [--graines a,b]` (`outils/monde/verifier.ts`) fait en une commande le bilan du point V8, rubrique par rubrique ; code de sortie 1 si une rubrique ❌ bloque :
+`pnpm monde verifier [monde] [--sans-parcours] [--etats N] [--ms N] [--graines a,b]` (le parcours cherche d'abord de façon guidée, puis, si 1 000 états n'ont pas suffi, par un « squelette » de paliers vers le progrès le plus proche : un monde dense comme la Tombe prouve ses 5 fins en ≈ 1 min ; depuis le 19/11/2026) (`outils/monde/verifier.ts`) fait en une commande le bilan du point V8, rubrique par rubrique ; code de sortie 1 si une rubrique ❌ bloque :
 
 | Rubrique | ❌ (bloque) | ⚠️ (à lire) |
 | --- | --- | --- |
