@@ -93,6 +93,11 @@ export interface EtatMonde {
   /** Heure du jour (0 à 23) : les trajets la font avancer ; absente des sauvegardes anciennes (8 h). */
   heure?: number;
   niveauGroupe: number;
+  /**
+   * Le carnet de campagne (F5) : les échos marquants des épisodes précédents, lus par la condition `{ campagne }`. Absent d'une partie sans
+   * carnet (toutes les sauvegardes d'avant) : la condition est alors fausse. Posé au départ de l'épisode, jamais modifié en cours de partie.
+   */
+  campagne?: string[];
   /** Les origines des héros du groupe (classe, espèce, historique), pour les conditions `heros` ; absent des anciennes sauvegardes. */
   heros?: { classe: string; espece: string; historique: string }[];
   flags: Record<string, boolean>;
@@ -150,7 +155,7 @@ export function completerEtat(e: EtatMonde, dm: DonneesMonde): number {
   return ajoutees;
 }
 
-export function etatInitial(dm: DonneesMonde, niveauGroupe = dm.monde.niveaux.min): EtatMonde {
+export function etatInitial(dm: DonneesMonde, niveauGroupe = dm.monde.niveaux.min, campagne?: readonly string[]): EtatMonde {
   return {
     monde: dm.monde.id,
     lieu: dm.monde.depart.lieu,
@@ -174,6 +179,8 @@ export function etatInitial(dm: DonneesMonde, niveauGroupe = dm.monde.niveaux.mi
     rencontresFaites: [],
     evenementsJoues: [],
     narrations: [],
+    // Le carnet n'entre dans l'état que s'il porte quelque chose : sans lui, la forme de l'état est celle d'avant (P4).
+    ...(campagne?.length ? { campagne: [...new Set(campagne)] } : {}),
   };
 }
 
@@ -219,6 +226,7 @@ export function evaluerCondition(c: Condition, e: EtatMonde): boolean {
   }
   if ('temoin' in c) return (memoireDe(e).temoignages ?? []).some((t) => t.presents.includes(c.temoin.pnj) && (c.temoin.genre === undefined || t.genre === c.temoin.genre));
   if ('moment' in c) return momentDe(e.heure) === c.moment;
+  if ('campagne' in c) return (e.campagne ?? []).includes(c.campagne);
   if ('pieces' in c) return (c.pieces.min === undefined || e.pieces >= c.pieces.min) && (c.pieces.max === undefined || e.pieces <= c.pieces.max);
   if ('niveauGroupe' in c) return (c.niveauGroupe.min === undefined || e.niveauGroupe >= c.niveauGroupe.min) && (c.niveauGroupe.max === undefined || e.niveauGroupe <= c.niveauGroupe.max);
   if ('heros' in c) return (e.heros ?? []).some((h) => (!c.heros.classe || h.classe === c.heros.classe) && (!c.heros.espece || h.espece === c.heros.espece) && (!c.heros.historique || h.historique === c.heros.historique));

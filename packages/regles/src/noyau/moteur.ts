@@ -11,7 +11,8 @@ import { VERSION_PARTIE, type CommandeJeu, type ContexteJeu, type EvenementJeu, 
 export interface Moteur {
   ctx: ContexteJeu;
   modules: Module[];
-  nouvellePartie(groupe: Personnage[], options?: { graine?: number; niveau?: number }): Partie;
+  /** `campagne` : le carnet de campagne du groupe (échos des épisodes précédents, F5), lu par la condition `{ campagne }`. */
+  nouvellePartie(groupe: Personnage[], options?: { graine?: number; niveau?: number; campagne?: readonly string[] }): Partie;
   executer(partie: Partie, ordre: Ordre): ResultatOrdre;
   /** Les commandes connues, avec leur disponibilité dans la partie (pour les boutons et le conteur). */
   commandes(partie?: Partie): { type: string; module: string; description: string; commande: CommandeJeu; disponible: true | string }[];
@@ -72,7 +73,7 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
         graine: (options.graine ?? Math.floor(Math.random() * 2 ** 31)) >>> 0,
         scene: { type: 'exploration' },
         groupe: structuredClone(groupe),
-        etat: { ...etatInitial(dm, niveau), heros: groupe.map((p) => ({ classe: p.fiche.classe, espece: p.fiche.espece, historique: p.fiche.historique })), exploration: etatExplorationVide() },
+        etat: { ...etatInitial(dm, niveau, options.campagne), heros: groupe.map((p) => ({ classe: p.fiche.classe, espece: p.fiche.espece, historique: p.fiche.historique })), exploration: etatExplorationVide() },
         modules: Object.fromEntries(modules.filter((m) => m.etatInitial).map((m) => [m.id, m.etatInitial!(ctx)])),
         journal: [],
       };
