@@ -34,6 +34,7 @@ export * from './monde/salutations-communes';
 export * from './monde/presentation';
 export * from './monde/etat';
 export * from './monde/validation';
+export * from './monde/campagne';
 export * from './monde/diagnostics';
 export * from './monde/references';
 export * from './monde/graphes';

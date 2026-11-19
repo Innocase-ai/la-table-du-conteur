@@ -14,11 +14,13 @@
 //   pnpm monde nouveau <id> "<Nom>"    crée le squelette d'un nouveau monde (voir .claude/skills/creer-monde)
 //   pnpm monde importer-forge <fichier.forge.json> <id-monde> [--niveaux 1-2] [--heures 1]
 //                                     convertit une conception de la Forge d'Histoires (RPGMakerStory) en NOUVEAU monde brouillon, avec RAPPORT-FORGE.md (docs/FORGE.md)
+//   pnpm monde campagne              le registre des échos de campagne (émis et lus) de tous les épisodes, et son contrôle entre épisodes ; code 1 s'il y a une erreur (F5)
 //   pnpm monde calibrer <temps-de-jeu.json>   compare le temps de jeu mesuré (export de l'écran Options) à la durée estimée de chaque histoire
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
 import { chargerMonde, listerMondes, RACINE_MONDES as RACINE_DEPOT } from '../../packages/regles/src/monde/chargeur';
+import { registreDeCampagne, validerCampagne } from '../../packages/regles/src/monde/campagne';
 import { diagnostiquerMonde } from '../../packages/regles/src/monde/diagnostiquer';
 import { resumerCompletude } from '../../packages/regles/src/monde/completude';
 import { problemesDeChargement } from '../../packages/regles/src/monde/assemblage';
@@ -113,6 +115,22 @@ if (commande === 'calibrer') {
   const res = calibrer(texte, estimations);
   console.log(texteCalibrage(res));
   process.exit(res.erreur ? 1 : 0);
+}
+
+if (commande === 'campagne') {
+  const charges = listerMondes(RACINE_MONDES).map((id) => ({ id, r: chargerMonde(join(RACINE_MONDES, id)) }));
+  const invalides = charges.filter((c) => !c.r.ok);
+  for (const c of invalides) console.error(`❌ ${c.id} : fichiers invalides, ses échos ne sont pas lus`);
+  const dms = charges.flatMap((c) => (c.r.ok ? [c.r.monde] : []));
+  const reg = registreDeCampagne(dms);
+  const { erreurs, avis } = validerCampagne(dms);
+  console.log(`\nCampagne : ${reg.emis.length} écho(s) émis, ${new Set(reg.lus.map((l) => l.id)).size} lu(s) par ${new Set(reg.lus.map((l) => l.monde)).size} épisode(s), sur ${dms.length} monde(s)`);
+  for (const e of reg.emis) console.log(`  ${e.id.padEnd(34)} émis par ${e.monde} — ${e.phrase}`);
+  for (const l of reg.lus) console.log(`  lu : ${l.id.padEnd(30)} ${l.monde} (${l.ou})`);
+  for (const m of erreurs) console.error(`  ❌ ${m}`);
+  for (const m of avis) console.warn(`  ⚠️  ${m}`);
+  console.log(erreurs.length || invalides.length ? '\n❌ La campagne a des erreurs.' : '\n✅ Aucune erreur entre épisodes.');
+  process.exit(erreurs.length || invalides.length ? 1 : 0);
 }
 
 if (commande === 'lister' || !commande) {

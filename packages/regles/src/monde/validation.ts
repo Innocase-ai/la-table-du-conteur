@@ -15,6 +15,7 @@ import { refsCondition, refsEffet } from './references';
 import { avisQuetesSautables } from './quete-sautable';
 import { conseilsEpisode, RARETE_NIVEAU_MIN } from './episode';
 import { conseilsButin } from './butin-niveau';
+import { avisCampagneDeLEpisode } from './campagne';
 import { avisLieuxEtPnj } from './lieux-pnj';
 import { etatInitial, evaluerCondition } from './etat';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
@@ -748,6 +749,12 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
 
   // --- Butin (F4) : un trésor riche sans obstacle, un obstacle sérieux sans rien dedans, des objets que le tirage plafonné ne donnerait jamais (avis, tous les mondes) ---
   for (const a of conseilsButin(dm, srd)) avis(a);
+
+  // --- Campagne (F5) : les échos que l'épisode émet (conditions valides, identifiants uniques) et sa façon de lire le carnet ---
+  for (const e of dm.monde.campagne?.emet ?? []) cond(`Campagne, écho « ${e.id} »`, e.quand);
+  const camp = avisCampagneDeLEpisode(dm, srd);
+  camp.erreurs.forEach((m) => err(m));
+  camp.avis.forEach((m) => avis(m));
 
   // --- Épisode (opt-in, `monde.format: "episode"`) : les règles du cap du 15/11/2026 remplacent les objectifs de richesse d'un chapitre ---
   if (dm.monde.format === 'episode') for (const a of conseilsEpisode(dm, srd)) avis(a);

@@ -15,6 +15,7 @@ import type { Moteur } from '../noyau/moteur';
 import type { ContexteJeu, Partie } from '../noyau/types';
 import { recuperer, type Personnage } from '../personnage';
 import { CATEGORIES_JAMAIS_TIREES } from '../monde/butin-niveau';
+import { echosDeFin } from '../monde/campagne';
 import { appliquerEquipement } from './equipement-regles';
 
 /** Ce que le groupe emporte à la fin d'un épisode : du JSON, sans rien de l'épisode quitté. */
@@ -46,7 +47,8 @@ const estDeQuete = (srd: Donnees | undefined, id: string): boolean => {
 
 /**
  * Le bilan d'un épisode : à appeler quand l'histoire est finie (ou à tout moment, pour un bilan « tel quel »). La partie n'est pas modifiée.
- * `echos` : les échos que cet épisode ajoute au carnet (pas (c) : il les déduira des données du monde).
+ * Le carnet du bilan = celui de départ, plus les échos que le monde émet (`campagne.emet`, ceux dont la condition est vraie dans l'état final), plus
+ * `echos` (ajoutés à la main : essais, outils).
  */
 export function bilanDeFin(partie: Partie, ctx: ContexteJeu, options: { echos?: readonly string[] } = {}): BilanEpisode {
   const { srd, dm } = ctx;
@@ -88,7 +90,7 @@ export function bilanDeFin(partie: Partie, ctx: ContexteJeu, options: { echos?: 
     pieces: partie.etat.pieces,
     inventaire,
     laisses: [...laisses].sort(),
-    campagne: [...new Set([...(partie.etat.campagne ?? []), ...(options.echos ?? [])])],
+    campagne: [...new Set([...(partie.etat.campagne ?? []), ...echosDeFin(dm, partie.etat), ...(options.echos ?? [])])],
   };
 }
 

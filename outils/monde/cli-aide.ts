@@ -1,10 +1,10 @@
 // Les petites règles du CLI `pnpm monde`, hors de `cli.ts` pour qu'on puisse les tester : la liste des commandes, la lecture stricte des
 // options (une valeur mal écrite est refusée, jamais ignorée en silence) et ce que dit `parcours` (audit du 18/11/2026, O1, O7, O8, O9).
 
-export const COMMANDES = ['lister', 'valider', 'verifier', 'manque', 'parcours', 'enigmes', 'doc', 'estimer', 'nouveau', 'importer-forge', 'calibrer'] as const;
+export const COMMANDES = ['lister', 'valider', 'verifier', 'manque', 'parcours', 'enigmes', 'doc', 'estimer', 'nouveau', 'importer-forge', 'calibrer', 'campagne'] as const;
 
 export const USAGE = `Usage : pnpm monde ${COMMANDES.join(' | ')} [monde]
-  nouveau <id> "<Nom>" · importer-forge <fichier.forge.json> <id> [--niveaux 1-2] [--heures 1] · calibrer <temps-de-jeu.json>
+  nouveau <id> "<Nom>" · importer-forge <fichier.forge.json> <id> [--niveaux 1-2] [--heures 1] · calibrer <temps-de-jeu.json> · campagne (le registre des échos de tous les épisodes, et son contrôle)
   parcours et verifier : [--etats N] [--ms N] [--graines a,b] ; parcours : [--chemin] [--couvrir] [--frontiere N] ; verifier : [--sans-parcours]`;
 
 export interface OptionsCli {

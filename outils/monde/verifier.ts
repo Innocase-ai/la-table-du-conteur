@@ -2,7 +2,7 @@
 // prêt » (point V8 du skill creer-monde). Validation (modules et énigmes jouées compris), ce qui manque, estimation à jour, revue de
 // secrets du canon, preuve des fins. Une rubrique ❌ bloque la publication ; une rubrique ⚠️ se lit et se décide.
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import type { Donnees } from '../../packages/regles/src/donnees';
 import { Canon, Revue } from '../../packages/regles/src/monde/canon';
 import { resumerCompletude, verifierCompletude, type Ecart } from '../../packages/regles/src/monde/completude';
@@ -13,7 +13,8 @@ import { ManifesteImages, type IdsCommuns } from '../../packages/regles/src/mond
 import { cleDeRevue, listerRevue, revoirMonde } from '../../packages/regles/src/monde/revue';
 import { diagnosticDeMessage, estDefautDeJeu, type Diagnostic } from '../../packages/regles/src/monde/diagnostics';
 import type { DiagnosticMonde } from '../../packages/regles/src/monde/diagnostiquer';
-import { RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
+import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
+import { echosEmis, echosLus, validerCampagne } from '../../packages/regles/src/monde/campagne';
 import type { DonneesMonde } from '../../packages/regles/src/monde/schemas';
 import { idImageCommune } from '../../packages/regles/src/modules/image-commune';
 import { scenesDu } from '../../packages/regles/src/modules/scenes';
@@ -240,6 +241,10 @@ export function verifierMonde(id: string, dossier: string, dm: DonneesMonde, srd
     ]),
   });
 
+  // 4 bis. La campagne (F5) : seulement pour un épisode qui émet ou lit des échos ; il est contrôlé avec les autres épisodes du dépôt.
+  const rubCampagne = rubriqueCampagne(id, dossier, dm);
+  if (rubCampagne) rubriques.push(rubCampagne);
+
   // 5. Les fins arrivent-elles ? Un joueur automatique joue le vrai moteur (combats supposés gagnés).
   if (options.parcours === false) {
     rubriques.push({ nom: 'Parcours', statut: 'saute', resume: 'non joué (--sans-parcours)', details: [] });
@@ -260,6 +265,32 @@ export function verifierMonde(id: string, dossier: string, dm: DonneesMonde, srd
   }
 
   return { monde: id, statut: dm.monde.statut, rubriques, ok: rubriques.every((r) => r.statut !== 'echec') };
+}
+
+/**
+ * La rubrique « Campagne » : les échos de cet épisode face à tous les épisodes du dossier des mondes (erreur : un écho lu que personne n'émet,
+ * un écho émis deux fois ; avis : un écho que personne ne lit, ou lu seulement par son émetteur). Rien pour un épisode qui n'en parle pas.
+ */
+export function rubriqueCampagne(id: string, dossier: string, dm: DonneesMonde): Rubrique | undefined {
+  if (!echosEmis(dm).length && !echosLus(dm).length) return undefined;
+  const racine = dirname(dossier);
+  const autres: DonneesMonde[] = [];
+  for (const autre of listerMondes(racine)) {
+    if (autre === id) continue;
+    const r = chargerMonde(join(racine, autre));
+    if (r.ok) autres.push(r.monde);
+  }
+  const { erreurs, avis } = validerCampagne([dm, ...autres]);
+  // Seuls les échos qui touchent cet épisode comptent ici (les autres ont leur propre vérification).
+  const touche = (m: string) => m.includes(`« ${id} »`) || echosEmis(dm).some((e) => m.includes(`« ${e.id} »`)) || echosLus(dm).some((l) => m.includes(`« ${l.id} »`));
+  const mes = erreurs.filter(touche);
+  const mesAvis = avis.filter(touche);
+  return {
+    nom: 'Campagne',
+    statut: mes.length ? 'echec' : mesAvis.length ? 'avis' : 'ok',
+    resume: `${echosEmis(dm).length} écho(s) émis, ${new Set(echosLus(dm).map((l) => l.id)).size} lu(s), ${mes.length} erreur(s), ${mesAvis.length} avis`,
+    details: premiers([...mes.map((m) => `ERREUR  ${m}`), ...mesAvis.map((m) => `avis    ${m}`)]),
+  };
 }
 
 const ICONES: Record<StatutRubrique, string> = { ok: '✅', avis: '⚠️ ', echec: '❌', saute: '⏭️ ' };

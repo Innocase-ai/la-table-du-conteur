@@ -703,6 +703,10 @@ export const Monde = z.object({
   // réel du groupe, n'offre jamais d'objet de quête, de clé ni d'objet `unique`, et la difficulté du contenant ou de la rencontre pousse
   // vers les entrées les plus rares du palier permis. Absent ou `false` : les tirages d'avant, à graine égale (voir docs/MONDES.md).
   butinPlafonne: z.boolean().default(false),
+  // Campagne (facultatif, F5 du 19/11/2026, docs/PRD-SAGA.md) : les échos que cet épisode laisse au carnet du groupe. À la fin de l'épisode,
+  // chaque écho dont `quand` est vrai entre au carnet (`bilanDeFin`) ; un épisode suivant le lit avec la condition `{ campagne: id }`. `phrase` : ce que
+  // le carnet dit au joueur. Voir `monde/campagne.ts` et docs/MONDES.md. Absent : l'épisode n'émet rien.
+  campagne: z.object({ emet: z.array(z.object({ id: Id, quand: Condition, phrase: Texte })).default([]) }).optional(),
   // Le tirage d'arrivée (`monde/hasard-arrivee.ts`) : un dé à chaque arrivée dans un lieu (combat, rencontre, trouvaille ou rien). `false` le coupe.
   tirageArrivee: z.boolean().default(true),
   // Vivres (facultatif, 14/11/2026) : à chaque nouveau jour, chaque héros vivant mange une ration du sac du groupe (`objet`), sauf quand
