@@ -4,6 +4,7 @@
 // ne les suit pas reste jouable. Opt-in (PRD-SAGA P2) : sans le champ, le validateur dit exactement ce qu'il disait avant.
 import type { Donnees } from '../donnees';
 import { tableDe } from './butin-commun';
+import { conseilsButinEpisode } from './butin-niveau';
 import { examensDe } from './examens-donnees';
 import { evenementsChoixDe } from './evenements-choix-donnees';
 import type { DonneesMonde, Lieu } from './schemas';
@@ -116,6 +117,9 @@ export function conseilsEpisode(dm: DonneesMonde, srd: Donnees): string[] {
     .filter((t): t is NonNullable<typeof t> => !!t && (PALIER_NIVEAU_MIN[t.palier] ?? 1) > nivMax)
     .map((t) => `${t.id} (palier ${t.palier})`);
   if (hautes.length) avis.push(`Épisode : tables de butin d’un palier trop haut pour les niveaux ${nivMin} à ${nivMax} : ${liste(hautes)}.`);
+
+  // 6. Les trois degrés de butin (F4) : 1 à 3 objets uniques, rattachés à la quête principale ou au boss ; un objet nommé a son histoire.
+  avis.push(...conseilsButinEpisode(dm));
 
   return avis;
 }

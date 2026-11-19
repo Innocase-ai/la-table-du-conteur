@@ -33,6 +33,7 @@ Le produit est une **saga d'épisodes courts et indépendants** (`docs/PRD-SAGA.
 | `depart.signesDeQuete` | `false` | Coupe les « ! » et « ? » au-dessus des PNJ : le joueur cherche et parle sans être guidé (règle du 16/11/2026). |
 | `depart.orMax` | 10 pour un village pauvre, sinon rien | Plafond d'or de départ **par héros** (≈ 23 po sans plafond) : un groupe riche de ses kits achèterait tout le stock du hub. |
 | `piegesACherche` | `true` (épisode) | La fouille ne révèle plus les pièges : le joueur les cherche (bouton « Chercher un piège » sur chaque contenant, « Chercher des pièges » pour la pièce ; une tentative par héros et par cible). Chaque piège doit rester trouvable (`docs/MONDES.md`, « Pièges à chercher », skill `creer-pieges-tresors`). |
+| `butinPlafonne` | `true` (épisode) | Plafond de butin à l'exécution (F4) : un tirage de table ne donne que des entrées du palier du niveau réel du groupe, jamais d'objet de quête, de clé ni d'unique, et la difficulté du contenant ou de la rencontre pousse vers les plus rares permis. Ne touche ni `contenu.objets` ni les récompenses (écrits à la main). Sans lui, tirages d'avant (`docs/MONDES.md`, « Butin par difficulté et niveau », skill `creer-pieges-tresors`). |
 | `tirageArrivee`, `vivres` | au choix | Le dé à l'arrivée dans un lieu, les rations et la faim (`docs/MONDES.md`). |
 | `teasing` | 3 paragraphes, 150 à 200 mots | Le texte du bouton « Résumé » de l'écran « Choisir une histoire » (étape 6, point 12). |
 
@@ -43,9 +44,10 @@ Le produit est une **saga d'épisodes courts et indépendants** (`docs/PRD-SAGA.
 - **aucun `lieu` sur les étapes de quête** ;
 - **au moins 4 sujets** pour chaque PNJ qui parle (qui a un sujet, ou qui se trouve au lieu de départ) ;
 - **récits d'arrivée de 130 à 170 mots** ;
-- un objet du catalogue trop rare pour le niveau maximal (rare : niveau 5, très rare : 11, légendaire : 17 ; un objet unique se déclare dans `objets/`) ; une table de butin d'un palier trop haut.
+- un objet du catalogue trop rare pour le niveau maximal (rare : niveau 5, très rare : 11, légendaire : 17 ; un objet unique se déclare dans `objets/`) ; une table de butin d'un palier trop haut ;
+- **1 à 3 objets `unique`** (`degre: "unique"` dans `objets/`), chacun rattaché à la quête principale (récompense) ou au boss (trésor gardé par une rencontre élevée ou citée par la quête principale) ; un objet `nomme` sans `lore`.
 
-Le profil ne vérifie pas encore « 2 sujets sur la quête principale », les 1 à 3 uniques, ni la scène d'arrivée au lieu de la quête principale : à vérifier soi-même et par l'auditeur. Pour **tous** les mondes, le validateur avertit aussi des **lieux surpeuplés** (plus de 6 PNJ qui parlent au même endroit : découper en pièces), des **titres qui trahissent** (une parenthèse, « compagnon », « boss »… dans un `nom` ou un `titre`) et des **répliques « vous me trouverez à… »** qui citent un lieu où le PNJ n'est jamais.
+Le profil ne vérifie pas encore « 2 sujets sur la quête principale » ni la scène d'arrivée au lieu de la quête principale : à vérifier soi-même et par l'auditeur. Pour **tous** les mondes, le validateur avertit aussi des **lieux surpeuplés** (plus de 6 PNJ qui parlent au même endroit : découper en pièces), des **titres qui trahissent** (une parenthèse, « compagnon », « boss »… dans un `nom` ou un `titre`) et des **répliques « vous me trouverez à… »** qui citent un lieu où le PNJ n'est jamais.
 
 ## Les points de validation (décision de l'utilisateur, 06/11/2026)
 
@@ -198,7 +200,7 @@ Ses conseils de recette signalent les pièces vides, les quêtes injouables, les
    - des dossiers vides, dont `dilemmes/`.
 
    Le squelette ne valide pas tant que le lieu racine et le hub n'existent pas.
-4. Dans `monde.json`, pose les réglages d'un épisode (tableau plus haut) : `"format": "episode"`, `depart.signesDeQuete: false`, `"piegesACherche": true`, `depart.orMax` si le lieu est pauvre, `niveaux`, `groupe.conseille`. Garde `"statut": "brouillon"` jusqu'à la fin.
+4. Dans `monde.json`, pose les réglages d'un épisode (tableau plus haut) : `"format": "episode"`, `depart.signesDeQuete: false`, `"piegesACherche": true`, `"butinPlafonne": true`, `depart.orMax` si le lieu est pauvre, `niveaux`, `groupe.conseille`. Garde `"statut": "brouillon"` jusqu'à la fin.
 
 ### Étape 3 — Écrire le canon (→ V2)
 

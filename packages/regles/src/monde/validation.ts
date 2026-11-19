@@ -14,6 +14,7 @@ import { diagnosticDeMessage, type Diagnostic } from './diagnostics';
 import { refsCondition, refsEffet } from './references';
 import { avisQuetesSautables } from './quete-sautable';
 import { conseilsEpisode, RARETE_NIVEAU_MIN } from './episode';
+import { conseilsButin } from './butin-niveau';
 import { avisLieuxEtPnj } from './lieux-pnj';
 import { etatInitial, evaluerCondition } from './etat';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
@@ -277,7 +278,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     if (o.categorie === 'bouclier' && o.base !== 'bouclier') err(`Objet « ${o.id} » : un bouclier du monde doit avoir « base » : « bouclier ».`);
     if (srd.objets.has(o.id) || srd.armes.has(o.id) || srd.armures.has(o.id)) err(`Objet « ${o.id} » : identifiant déjà pris par le catalogue du SRD.`);
     const minNiveau = RAPPORT_RARETE_NIVEAU[o.rarete]!;
-    if (dm.monde.niveaux.max < minNiveau && o.rarete !== 'commun') avis(`Objet « ${o.id} » : rareté « ${o.rarete} » inhabituelle pour les niveaux ${dm.monde.niveaux.min} à ${dm.monde.niveaux.max}.`);
+    if (dm.monde.niveaux.max < minNiveau && o.rarete !== 'commun' && o.degre !== 'unique') avis(`Objet « ${o.id} » : rareté « ${o.rarete} » inhabituelle pour les niveaux ${dm.monde.niveaux.min} à ${dm.monde.niveaux.max}.`);
     if (o.usage) effets(`Objet « ${o.id} »`, o.usage.effets);
     // Les sorts d'un parchemin ou d'une baguette doivent exister et se jouer en combat ; un objet à charges ne coûte pas plus que son maximum.
     for (const l of o.usage?.sorts ?? []) {
@@ -744,6 +745,9 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
 
   // --- Lieux et PNJ : lieu surpeuplé, titre qui trahit, réplique qui place le PNJ ailleurs (avis, tous les mondes) ---
   for (const a of avisLieuxEtPnj(dm)) avis(a);
+
+  // --- Butin (F4) : un trésor riche sans obstacle, un obstacle sérieux sans rien dedans, des objets que le tirage plafonné ne donnerait jamais (avis, tous les mondes) ---
+  for (const a of conseilsButin(dm, srd)) avis(a);
 
   // --- Épisode (opt-in, `monde.format: "episode"`) : les règles du cap du 15/11/2026 remplacent les objectifs de richesse d'un chapitre ---
   if (dm.monde.format === 'episode') for (const a of conseilsEpisode(dm, srd)) avis(a);

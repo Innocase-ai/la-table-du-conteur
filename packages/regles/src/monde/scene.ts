@@ -72,7 +72,8 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
       id: t.id,
       nom: t.nom,
       contenant: t.contenant,
-      description: t.description,
+      // L'indice visible de richesse (F4, `signe`) se lit avec la description, avant d'ouvrir.
+      description: t.signe ? `${t.description} ${t.signe}` : t.description,
       etat: gardienEnPlace(dm, etat, t) ? 'garde' : t.acces.verrou && !ex.ouverts.includes(`tresor:${t.id}`) ? 'ferme' : 'ouvert',
     })),
     pieges: [...dm.pieges.values()]

@@ -219,6 +219,10 @@ export const Objet = z.object({
   // Ce que le joueur voit tant qu'il n'a pas identifié l'objet (nom et description vagues) ; sans cela, l'objet se montre tel quel.
   inconnu: z.object({ nom: Texte, resume: Texte }).optional(),
   maudit: z.string().optional(),
+  // Le degré de butin de l'objet (F4, facultatif) : `nomme` = écrit à la main, ordinaire, avec son histoire (récompense d'une quête
+  // secondaire) ; `unique` = objet fixe de la quête principale ou du boss (1 à 3 par épisode ; jamais tiré, exempté du plafond de rareté).
+  // Absent : un objet ordinaire (les objets « tirés » sont ceux des tables). Voir `monde/butin-niveau.ts` et docs/MONDES.md.
+  degre: z.enum(['nomme', 'unique']).optional(),
   attunement: z.boolean().default(false),
   visuel: z.string().optional(),
   // Où il se porte (tête, cou, torse, dos, gants, ceinture, pieds, anneau, main) ; sans cela, le moteur le déduit de sa catégorie et de son identifiant (voir equipement/emplacements.ts).
@@ -252,6 +256,9 @@ export const Tresor = z.object({
   lieu: Id,
   contenant: z.enum(['coffre', 'cache', 'cadavre', 'etagere', 'tombe', 'sarcophage', 'sac', 'autel', 'etabli', 'vitrine', 'sol', 'autre']),
   description: Texte,
+  // Un indice visible de richesse (F4, facultatif) : ce que le joueur voit AVANT d'ouvrir (« une serrure d'une finesse inhabituelle »).
+  // Lu avec la description dans la scène ; aucun secret, aucun DD, aucune valeur chiffrée.
+  signe: Texte.optional(),
   contenu: z.object({
     pieces: Pieces.optional(),
     objets: z.array(z.object({ objet: Id, quantite: z.number().int().positive().default(1) })).default([]),
@@ -688,6 +695,11 @@ export const Monde = z.object({
   // DD secret de détection) puis les désamorce ; un piège non cherché se déclenche à l'ouverture, comme avant. Absent ou `false` :
   // la fouille révèle les pièges comme toujours (comportement des histoires d'avant, voir docs/MONDES.md).
   piegesACherche: z.boolean().default(false),
+  // Butin plafonné au niveau (facultatif, F4 du 19/11/2026, docs/PRD-SAGA.md) : quand il vaut `true`, un tirage de table de butin ne
+  // retient que les entrées dont le palier (celui de la table, de la sous-table ou de la rareté de l'objet) ne dépasse pas celui du niveau
+  // réel du groupe, n'offre jamais d'objet de quête, de clé ni d'objet `unique`, et la difficulté du contenant ou de la rencontre pousse
+  // vers les entrées les plus rares du palier permis. Absent ou `false` : les tirages d'avant, à graine égale (voir docs/MONDES.md).
+  butinPlafonne: z.boolean().default(false),
   // Le tirage d'arrivée (`monde/hasard-arrivee.ts`) : un dé à chaque arrivée dans un lieu (combat, rencontre, trouvaille ou rien). `false` le coupe.
   tirageArrivee: z.boolean().default(true),
   // Vivres (facultatif, 14/11/2026) : à chaque nouveau jour, chaque héros vivant mange une ration du sac du groupe (`objet`), sauf quand

@@ -4,6 +4,7 @@
 import { lancer, type Generateur } from '../des';
 import type { Donnees } from '../donnees';
 import { tableDe } from './butin-commun';
+import { difficulteDeRencontre, difficulteDeTresor, entreesRetenues, palierDeNiveau, type ContexteButin } from './butin-niveau';
 import { tirerDepouilles } from './depouilles';
 import { hasardDe, phraseTrouvaille, tirerArrivee, type HasardLieu, type TirageArrivee } from './hasard-arrivee';
 import type { Jet } from '../noyau/types';
@@ -672,7 +673,8 @@ export function fouiller(p: PartieMonde, personnage?: string): CompteRendu {
       if (jet.reussite) {
         // Un tirage peut ne rien donner (entrée « rien » d'une table) : on tire encore, quelques fois au plus.
         let objets: string[] = [];
-        for (let essai = 0; essai < 6 && !objets.length; essai++) objets = tirerTable(p, amorcee.table);
+        const ctx = contexteButin(p, () => 0);
+        for (let essai = 0; essai < 6 && !objets.length; essai++) objets = tirerTable(p, amorcee.table, 0, ctx);
         if (objets.length) r.constats.push(phraseTrouvaille(p.gen, objets.join(', ')));
         else jet.reussite = false;
       }
@@ -964,7 +966,9 @@ function viderTresor(p: PartieMonde, r: CompteRendu, t: Tresor): void {
     p.etat.inventaire[o.objet] = (p.etat.inventaire[o.objet] ?? 0) + o.quantite;
     gains.push(`${o.quantite > 1 ? `${o.quantite} × ` : ''}${nomObjet(p, o.objet)}`);
   }
-  for (const tb of t.contenu.tables) for (let i = 0; i < tb.jets; i++) gains.push(...tirerTable(p, tb.table));
+  // Monde à butin plafonné (F4) : la difficulté du contenant (verrou, piège, gardien) pousse le tirage vers le haut du palier du groupe.
+  const ctx = contexteButin(p, () => difficulteDeTresor(p.dm, p.srd, t).degre);
+  for (const tb of t.contenu.tables) for (let i = 0; i < tb.jets; i++) gains.push(...tirerTable(p, tb.table, 0, ctx));
   if (t.indice && !p.etat.faits.includes(t.indice)) {
     p.etat.faits.push(t.indice);
     r.revele.push(t.indice);
@@ -1032,15 +1036,33 @@ function depouilles(p: PartieMonde, r: CompteRendu, rencontre: string): void {
   if (lignes.length) r.constats.push(`Dépouilles : ${lignes.join(', ')}.`);
 }
 
-/** Un tirage sur une table de butin (entrées pondérées, tables imbriquées). */
-function tirerTable(p: PartieMonde, id: string, profondeur = 0): string[] {
+/**
+ * Le contexte d'un tirage plafonné (F4) : `undefined` quand le monde n'a pas `butinPlafonne` (les tirages d'avant, inchangés). La
+ * difficulté est calculée à la demande : un monde sans le drapeau ne paie rien.
+ */
+function contexteButin(p: PartieMonde, difficulte: () => number): ContexteButin | undefined {
+  if (!p.dm.monde.butinPlafonne) return undefined;
+  const niveau = Math.max(1, ...p.groupe.map((h) => h.fiche.niveau));
+  return { palier: palierDeNiveau(niveau), degre: difficulte(), dm: p.dm, srd: p.srd };
+}
+
+/** Un tirage sur une table de butin (entrées pondérées, tables imbriquées). Avec un contexte (monde plafonné), seules les entrées permises sortent. */
+function tirerTable(p: PartieMonde, id: string, profondeur = 0, ctx?: ContexteButin): string[] {
   const t = tableDe(p.dm, id);
   if (!t || profondeur > 5) return [];
-  const total = t.entrees.reduce((s, e) => s + e.poids, 0);
-  let x = p.gen() * total;
-  const e = t.entrees.find((en) => (x -= en.poids) < 0) ?? t.entrees[t.entrees.length - 1]!;
+  let e: (typeof t.entrees)[number];
+  if (ctx) {
+    const retenues = entreesRetenues(t, ctx);
+    if (!retenues.length) return [];
+    let x = p.gen() * retenues.reduce((s, r) => s + r.poids, 0);
+    e = (retenues.find((r) => (x -= r.poids) < 0) ?? retenues[retenues.length - 1]!).entree;
+  } else {
+    const total = t.entrees.reduce((s, en) => s + en.poids, 0);
+    let x = p.gen() * total;
+    e = t.entrees.find((en) => (x -= en.poids) < 0) ?? t.entrees[t.entrees.length - 1]!;
+  }
   if (e.rien) return [];
-  if (e.table) return tirerTable(p, e.table, profondeur + 1);
+  if (e.table) return tirerTable(p, e.table, profondeur + 1, ctx);
   if (e.pieces) {
     const n = lancer(e.pieces.des, p.gen).total;
     const po = e.pieces.unite === 'po' ? n : e.pieces.unite === 'pa' ? n / 10 : n / 100;
@@ -1246,7 +1268,8 @@ export function issueRencontre(
     // Une rencontre qui revient (aléatoire, répétable) ne rapporte pas de PX une seconde fois : pas de farm.
     if (issue.px && !p.etat.rencontresFaites.includes(rencontre)) p.etat.xp += Math.floor(issue.px / Math.max(1, p.groupe.length));
     appliquer(p, r, def.effetsVictoire);
-    for (const tb of def.butin.tables) r.constats.push(`Butin : ${tirerTable(p, tb).join(', ') || 'rien'}.`);
+    const ctxButin = contexteButin(p, () => difficulteDeRencontre(p.srd, def).degre);
+    for (const tb of def.butin.tables) r.constats.push(`Butin : ${tirerTable(p, tb, 0, ctxButin).join(', ') || 'rien'}.`);
     butinFixe(p, r, rencontre);
     depouilles(p, r, rencontre);
   }
