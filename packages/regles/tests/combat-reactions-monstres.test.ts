@@ -32,10 +32,12 @@ describe('la donnée', () => {
         if (!a.reaction) continue;
         trouvees.push(`${m.id}/${a.id}`);
         expect(a.cout, `${m.id}/${a.id}`).toBe('reaction');
-        expect(a.reaction.ca).toBeGreaterThanOrEqual(1);
+        expect(a.reaction.ca ?? a.reaction.redirige ?? a.reaction.reduitDegats ?? a.reaction.sauvegarde).toBeTruthy();
       }
     }
-    expect(trouvees.sort()).toEqual(['chef-de-bande/parade', 'erinye/parade', 'gladiateur/parade', 'marilith/parade', 'momie-auguste/tourbillon-de-sable', 'noble/parade', 'veteran/parade']);
+    // Les six Parade et le Tourbillon de sable du lot 5 ; les autres sont celles du lot 7 (`combat-reactions-monstres-2.test.ts`).
+    expect(trouvees.filter((t) => t.endsWith('/parade') || t.endsWith('/tourbillon-de-sable')).sort()).toEqual(['chef-de-bande/parade', 'erinye/parade', 'gladiateur/parade', 'marilith/parade', 'momie-auguste/tourbillon-de-sable', 'noble/parade', 'veteran/parade']);
+    expect(trouvees).toHaveLength(13);
   });
 });
 

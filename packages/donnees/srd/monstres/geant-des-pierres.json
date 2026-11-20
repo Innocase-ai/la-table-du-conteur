@@ -118,7 +118,14 @@
       "resume": "Déclencheur : le géant est touché par un jet d'attaque à distance qui lui inflige des dégâts contondants, perforants ou tranchants. Conséquences : le géant réduit les dégâts infligés par l'attaque de 11 (1d10 + 6) ; si ces dégâts sont réduits à 0, le géant peut réorienter une partie de l'impact. JS Dextérité DD 17, une créature que le géant voit dans un rayon de 18 m. Échec : 11 (1d10 + 6) dégâts de force.",
       "recharge": "5-6",
       "degats": [],
-      "etats": []
+      "etats": [],
+      "reaction": {
+        "contre": "distance",
+        "reduitDegats": {
+          "des": "1d10",
+          "bonus": 6
+        }
+      }
     }
   ],
   "description": "Ce géant longiligne a la peau lisse et grise, à l'aspect de granit poli, et un crâne nu, aux yeux enfoncés. Il ne porte qu'un pagne rudimentaire et des lanières de cuir usé, et son corps semble taillé dans la pierre."

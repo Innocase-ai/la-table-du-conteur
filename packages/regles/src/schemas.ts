@@ -277,7 +277,21 @@ export const ActionMonstre = z.object({
   // actions d'attaque du profil (par id) parmi lesquelles le monstre choisit ; `deplacement` : la part de sa Vitesse dont il peut se rapprocher d'abord.
   // Réaction « ajoute N à sa CA contre cette attaque » (Parade, Tourbillon de sable ; F6, lot 5) : si une attaque (de ce mode) touche le monstre et que ce bonus la
   // ferait rater, il l'utilise (sa réaction, une par round) et elle rate. Seule la part « CA » est jouée ; une téléportation ou un état infligé du texte ne l'est pas.
-  reaction: z.object({ ca: z.number().int().min(1).max(10), contre: z.enum(['corps-a-corps', 'distance', 'tous']).default('tous') }).optional(),
+  // Lot 7 : d'autres réactions jouables. `ca` + `duree: 'tour'` : le bonus dure jusqu'au début du prochain tour du monstre (Bouclier de la liche et du mage) ;
+  // `redirige` : l'attaque dirigée contre lui est reportée sur un allié adjacent de taille `tailleMax` ou moins, avec qui il change de place (Attaque redirigée) ;
+  // `reduitDegats` : les dégâts physiques d'une attaque (de ce mode) qui l'a touché baissent de `des + bonus` (Parade de projectile) ; `sauvegarde` : +`bonus` au jet
+  // de sauvegarde raté de lui-même ou d'un allié à `portee` mètres ou moins, si cela le réussit (Accès d'ingéniosité du sphinx).
+  reaction: z
+    .object({
+      ca: z.number().int().min(1).max(10).optional(),
+      contre: z.enum(['corps-a-corps', 'distance', 'tous']).default('tous'),
+      duree: z.enum(['attaque', 'tour']).default('attaque'),
+      redirige: z.object({ tailleMax: z.string() }).optional(),
+      reduitDegats: z.object({ des: z.string().regex(/^\d+d\d+$/), bonus: z.number().int().default(0) }).optional(),
+      sauvegarde: z.object({ bonus: z.number().int().min(1), portee: z.number().positive() }).optional(),
+    })
+    .refine((r) => !!(r.ca || r.redirige || r.reduitDegats || r.sauvegarde), 'reaction : au moins un effet')
+    .optional(),
   // `sort` (lot 3c) : « recourt à Incantation pour lancer X » : le sort X de la liste du monstre (`sorts.liste`), lancé sans action ni réserve.
   legendaire: z
     .object({ deplacement: z.number().min(0).max(1).optional(), attaque: z.array(z.string()).min(1).optional(), sort: z.string().optional() })

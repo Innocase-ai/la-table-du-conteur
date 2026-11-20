@@ -30,6 +30,7 @@ import {
   couvert,
   distanceCases,
   distanceMetres,
+  casesDeTaille,
   casesOccupees,
   ligneDeVue,
   TAILLE_CASE,
@@ -399,6 +400,16 @@ export function sauvegarde(etat: EtatCombat, c: Combattant, carac: Caracteristiq
   let total = d + c.sauvegardes[carac] + desModificateurs(etat, c, 'de_sauvegarde') + bonus;
   if (total < dd) total += inspirationRattrape(etat, c, dd - total);
   if (total >= dd) return true;
+  // F6 (lot 7) : Accès d'ingéniosité du sphinx : +N au jet raté de lui-même ou d'un allié proche, si cela le réussit (sa réaction).
+  const aide = etat.combattants.find((x) => x.camp === c.camp && !horsCombat(x) && peutAgir(x) && !!x.ressources.reaction && x.actionsMonstre.some((a) => a.reaction?.sauvegarde && distanceMetres(x, c) <= a.reaction.sauvegarde.portee));
+  if (aide) {
+    const a = aide.actionsMonstre.find((y) => y.reaction?.sauvegarde)!;
+    if (total + a.reaction!.sauvegarde!.bonus >= dd) {
+      aide.ressources.reaction = 0;
+      journaliser(etat, { type: 'info', texte: `${aide.nom} réagit (${a.nom}) : +${a.reaction!.sauvegarde!.bonus} au jet de ${c.nom}, qui réussit.`, acteur: aide.id });
+      return true;
+    }
+  }
   // F6 : Résistance légendaire. Un jet raté se réussit tout de même tant qu'il en reste ; seulement pour un monstre qui porte la réserve.
   if ((c.ressources[RESISTANCE_LEGENDAIRE] ?? 0) > 0) {
     c.ressources[RESISTANCE_LEGENDAIRE]! -= 1;
@@ -523,16 +534,56 @@ export function jetAttaque(
   }
   // F6 : réaction de monstre « +N à la CA contre cette attaque » (Parade, Tourbillon de sable) : utilisée seulement si elle fait rater le coup.
   if (touche && d !== 20 && cible.ressources.reaction && peutAgir(cible)) {
-    const reaction = cible.actionsMonstre.find((a) => a.reaction && (a.reaction.contre === 'tous' || a.reaction.contre === mode));
-    if (reaction && total < caCible + reaction.reaction!.ca) {
+    const reaction = cible.actionsMonstre.find((a) => a.reaction?.ca && (a.reaction.contre === 'tous' || a.reaction.contre === mode));
+    const bonusCa = reaction?.reaction?.ca ?? 0;
+    if (reaction && total < caCible + bonusCa) {
       cible.ressources.reaction = 0;
-      caCible += reaction.reaction!.ca;
+      caCible += bonusCa;
       touche = false;
-      journaliser(etat, { type: 'info', texte: `${cible.nom} réagit (${reaction.nom}) : +${reaction.reaction!.ca} à sa CA, l'attaque rate.`, acteur: cible.id });
+      // Bouclier (liche, mage) : le bonus dure jusqu'au début du prochain tour du monstre, comme pour un héros.
+      if (reaction.reaction!.duree === 'tour') cible.modificateurs.push({ id: 'reaction-ca', type: 'bonus_ca', valeur: bonusCa, source: cible.id, expire: { moment: 'debut_tour', de: cible.id } });
+      journaliser(etat, { type: 'info', texte: `${cible.nom} réagit (${reaction.nom}) : +${bonusCa} à sa CA${reaction.reaction!.duree === 'tour' ? ' jusqu’à son prochain tour' : ''}, l'attaque rate.`, acteur: cible.id });
     }
   }
   const critique = touche && (d >= seuilCritique || critiqueAuto);
   return { ca: caCible, couvert: bonusCouvert, touche, critique, avantage, desavantage, total, de: d };
+}
+
+/**
+ * F6 (lot 7) : Attaque redirigée (chef gobelin). Quand une créature ennemie l'attaque, le monstre qui a cette réaction (et sa réaction) change de place avec un allié
+ * adjacent de taille `tailleMax` ou moins ; l'allié devient la cible. Rend la cible de l'attaque (la même si rien ne se passe).
+ */
+function redirigerAttaque(etat: EtatCombat, attaquant: Combattant, cible: Combattant): Combattant {
+  const action = cible.actionsMonstre.find((a) => a.reaction?.redirige);
+  if (!action || attaquant.camp === cible.camp || !cible.ressources.reaction || !peutAgir(cible)) return cible;
+  const tailleMax = TAILLES.indexOf(action.reaction!.redirige!.tailleMax as (typeof TAILLES)[number]);
+  const candidats = allies(etat, cible).filter((x) => peutAgir(x) && casesDeTaille(x.taille) === 1 && casesDeTaille(cible.taille) === 1 && TAILLES.indexOf(x.taille) <= tailleMax && distanceMetres(x, cible) <= TAILLE_CASE);
+  const allie = [...candidats].sort((x, y) => y.pv - x.pv)[0];
+  if (!allie) return cible;
+  cible.ressources.reaction = 0;
+  [cible.position, allie.position] = [allie.position, cible.position];
+  journaliser(etat, { type: 'info', texte: `${cible.nom} réagit (${action.nom}) : il change de place avec ${allie.nom}, qui reçoit l'attaque.`, acteur: cible.id, cible: allie.id });
+  return allie;
+}
+
+/**
+ * F6 (lot 7) : Parade de projectile (géant des pierres). Une attaque de ce mode qui touche le monstre voit ses dégâts physiques baisser de `des + bonus` ; sa réaction.
+ * Modifie `degats` sur place, avant qu'ils soient infligés.
+ */
+function reduireDegatsParReaction(etat: EtatCombat, cible: Combattant, mode: 'corps-a-corps' | 'distance', degats: { montant: number; type: string }[]): void {
+  const action = cible.actionsMonstre.find((a) => a.reaction?.reduitDegats && (a.reaction.contre === 'tous' || a.reaction.contre === mode));
+  if (!action || !cible.ressources.reaction || !peutAgir(cible) || !degats.some((d) => DEGATS_PHYSIQUES.includes(d.type) && d.montant > 0)) return;
+  const r = action.reaction!.reduitDegats!;
+  let reste = lancerDes(etat, r.des) + r.bonus;
+  cible.ressources.reaction = 0;
+  const avant = degats.reduce((t, d) => t + d.montant, 0);
+  for (const d of degats) {
+    if (!DEGATS_PHYSIQUES.includes(d.type)) continue;
+    const retire = Math.min(d.montant, reste);
+    d.montant -= retire;
+    reste -= retire;
+  }
+  journaliser(etat, { type: 'info', texte: `${cible.nom} réagit (${action.nom}) : les dégâts baissent de ${avant - degats.reduce((t, d) => t + d.montant, 0)}.`, acteur: cible.id });
 }
 
 /** Une estimation, sans tirer un dé, des chances qu'une attaque touche (pour l'aperçu avant de choisir une cible). */
@@ -898,6 +949,7 @@ export function attaqueArme(
   options: { opportunite?: boolean; enchainement?: boolean } = {},
 ): JetAttaque {
   const p = portee(arme);
+  cible = redirigerAttaque(etat, attaquant, cible);
   const jet = jetAttaque(etat, attaquant, cible, arme.bonusAttaque, arme.mode, arme.mode === 'distance' ? p.normale : undefined);
   journaliser(etat, {
     type: 'attaque',
@@ -955,6 +1007,7 @@ export function attaqueArme(
     degats.push({ montant: lancerDes(etat, m.de!, mult), type: physique });
   }
   attaquant.modificateurs = attaquant.modificateurs.filter((x) => !(x.type === 'de_degats' && x.usageUnique));
+  reduireDegatsParReaction(etat, cible, arme.mode, degats);
   infligerDegats(etat, cible, degats, attaquant, jet.critique);
   appliquerBotte(etat, attaquant, cible, arme, options);
   // Rayon traçant : l'avantage accordé est consommé par cette attaque (déjà retiré dans jetAttaque).
@@ -1013,6 +1066,7 @@ export function attaqueMonstre(etat: EtatCombat, attaquant: Combattant, cible: C
   if (!action) throw new Error(`Action inconnue : ${actionId}`);
   const r = action.resolution;
   if (r?.type === 'attaque') {
+    cible = redirigerAttaque(etat, attaquant, cible);
     const jet = jetAttaque(etat, attaquant, cible, r.bonus ?? 0, r.mode, action.portee?.normale);
     journaliser(etat, {
       type: 'attaque',
@@ -1023,10 +1077,12 @@ export function attaqueMonstre(etat: EtatCombat, attaquant: Combattant, cible: C
     });
     if (!jet.touche) return;
     const mult = jet.critique ? 2 : 1;
+    const degatsDuMonstre = action.degats.map((d) => ({ montant: lancerDes(etat, d.des, mult) + d.bonus, type: d.type }));
+    reduireDegatsParReaction(etat, cible, r.mode, degatsDuMonstre);
     infligerDegats(
       etat,
       cible,
-      action.degats.map((d) => ({ montant: lancerDes(etat, d.des, mult) + d.bonus, type: d.type })),
+      degatsDuMonstre,
       attaquant,
       jet.critique,
     );

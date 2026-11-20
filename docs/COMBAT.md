@@ -240,3 +240,16 @@ Le banc de haut niveau (`pnpm simuler:haut`) est **inchangé** (aucun de ses mon
 | Dragon rouge adulte (niv. 15) | 60 %, 10,3 rounds, 19 % | **20 %**, 16,1 rounds, 5 % |
 | Kraken (niv. 17) | 90 %, 16,2 rounds, 48 % | **30 %**, 26,9 rounds, 40 % |
 | Aboleth, vampire, liche | inchangés | inchangés |
+
+### Réactions de monstres, suite (F6, lot 7)
+
+Six réactions de plus se jouent (8 monstres), par le champ `reaction` du profil (`schemas.ts`, élargi : `ca`, `duree`, `redirige`, `reduitDegats`, `sauvegarde`). Chacune est la **réaction** du monstre (une par round, rendue au début de son tour) :
+
+- **Bouclier** (`magie-protectrice` de la liche et du mage, `ca: 5, duree: 'tour'`) : comme la réaction Bouclier d'un héros, un coup qui touche et que +5 CA ferait rater rate ; le bonus dure **jusqu'au début du prochain tour du monstre**. Seule la part « Bouclier » est jouée (pas le contresort, pas d'emplacement : le monstre n'en dépense pas).
+- **Attaque redirigée** (`attaque-redirigee`, chef gobelin, `redirige: { tailleMax: 'M' }`) : quand une créature ennemie l'attaque (arme ou action de monstre à jet d'attaque), il **change de place avec un allié adjacent** de taille Petite ou Moyenne (le plus en forme), et l'allié reçoit l'attaque (`attaqueArme` et `attaqueMonstre`, avant le jet).
+- **Parade de projectile** (`parade-de-projectile`, géant des pierres, `reduitDegats: { des: '1d10', bonus: 6 }, contre: 'distance'`) : une attaque à distance qui le touche voit ses dégâts physiques baisser de 1d10 + 6 ; la part « renvoyer le rocher » n'est pas jouée.
+- **Accès d'ingéniosité** (sphinx savant et merveilleux, `sauvegarde: { bonus: 2, portee: 9 }`) : un jet de sauvegarde raté de lui ou d'un allié à 9 m, qu'un +2 réussirait, est réussi (`sauvegarde()`). Les « 2/jour » du sphinx merveilleux ne sont pas comptés (une réaction par round seulement).
+
+**Pas jouées (9 réactions, 7 profils)** : Division (gelée ocre, pouding noir : créer deux créatures plus petites en cours de combat), Nuage d'encre (pieuvres : eau, visibilité nulle), Hurlement (criard : alerte sans effet de combat), Regard dérangeant (diable des chaînes : jet au début du tour d'un autre), Protection (garde animé : bonus de CA au porteur d'une amulette), Poursuite (nalfeshnie : téléportation), Antennes réactives (oxydeur : rejoue une attaque), et le contresort de la magie protectrice.
+
+**Mesure** (`pnpm simuler 10 rapide`, avant = référence du lot 6) : une seule ligne bouge, « Embuscade gobeline » 4,1 → **3,8 rounds** (le chef gobelin fait encaisser un coup à un gobelin) ; les cinq autres sont identiques. `pnpm simuler:haut` : la liche, 9,4 → **10,1 rounds** (Bouclier), 8,8 → 9,4 actions légendaires, toujours 0 % de victoires ; les autres lignes identiques. Tests : `tests/combat-reactions-monstres-2.test.ts` (9).

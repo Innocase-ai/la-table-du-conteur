@@ -102,7 +102,12 @@
       "id": "attaque-redirigee",
       "nom": "Attaque redirigée",
       "cout": "reaction",
-      "resume": "Déclencheur : une créature que le gobelin voit effectue un jet d'attaque contre lui. Le gobelin échange sa place avec un allié de taille P ou M à 1,50 m ou moins ; l'allié devient la nouvelle cible de l'attaque."
+      "resume": "Déclencheur : une créature que le gobelin voit effectue un jet d'attaque contre lui. Le gobelin échange sa place avec un allié de taille P ou M à 1,50 m ou moins ; l'allié devient la nouvelle cible de l'attaque.",
+      "reaction": {
+        "redirige": {
+          "tailleMax": "M"
+        }
+      }
     }
   ],
   "resistances": [],
