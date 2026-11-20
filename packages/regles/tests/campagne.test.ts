@@ -86,14 +86,14 @@ describe('le carnet dans l’état et dans la partie (P4)', () => {
     expect(evaluerCondition({ campagne: 'epi1-sauve' }, rechargee.etat)).toBe(true);
   });
 
-  it('une partie sans carnet ne porte pas le champ, et la version de sauvegarde ne bouge pas', () => {
+  it('une partie sans carnet ne porte pas le champ, et la version de sauvegarde est 5', () => {
     const dm = charger();
     const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);
     const p = moteur.executer(moteur.nouvellePartie(groupe(), { graine: 3, niveau: 3 }), { type: 'commencer' }).partie;
     expect('campagne' in p.etat).toBe(false);
     expect(JSON.stringify(p)).not.toContain('"campagne"');
-    expect(p.version).toBe(4);
-    expect(VERSION_PARTIE).toBe(4);
+    expect(p.version).toBe(5);
+    expect(VERSION_PARTIE).toBe(5);
   });
 
   it('le carnet résiste aux actions du jeu (il n’est pas modifié en cours de partie)', () => {

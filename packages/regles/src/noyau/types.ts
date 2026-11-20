@@ -8,13 +8,13 @@ import type { EtatExploration } from '../monde/exploration';
 import type { CarteMonde } from '../monde/carte';
 import type { FormulaireReponse } from '../monde/reponses';
 import type { Personnage } from '../personnage';
-import type { DonneesMonde } from '../monde/schemas';
+import type { DonneesMonde, Objet } from '../monde/schemas';
 import type { Generateur } from '../des';
 import type { EtatCombat } from '../combat/etat';
 import type { Rencontre } from '../combat/prototype';
 
 /** Version du format de sauvegarde ; chaque changement de forme ajoute une migration (noyau/migrations.ts). */
-export const VERSION_PARTIE = 4;
+export const VERSION_PARTIE = 5;
 
 /**
  * Un combat d'histoire en cours, gardé dans la sauvegarde : recharger la page reprend au même point. L'état du combat contient
@@ -29,6 +29,23 @@ export interface CombatEnCours {
   rencontre: Rencontre;
   /** Niveau de l'IA des monstres. */
   ia: 'normale' | 'facile';
+}
+
+/** Un écho du carnet de campagne : sa phrase (écrite par l'épisode qui l'a émis, pour le joueur) et l'épisode d'origine. */
+export interface EchoCarnet {
+  id: string;
+  phrase: string;
+  monde: string;
+}
+
+/**
+ * La saga d'une partie (F5, version 5) : ce qui vient des épisodes précédents. `carnet` : les échos avec leur phrase (l'état n'en garde que les identifiants) ;
+ * `souvenirs` : les définitions des objets propres à un épisode précédent que le groupe a gardés (une relique, une arme nommée) : l'épisode en cours ne les connaît pas,
+ * le moteur les ajoute à ses objets au chargement. Absent d'une partie qui n'est pas la suite d'un épisode.
+ */
+export interface SagaPartie {
+  carnet: EchoCarnet[];
+  souvenirs: Objet[];
 }
 
 /** Un jet de dés fait par le moteur, montré au joueur tel quel. */
@@ -58,6 +75,8 @@ export interface Partie {
   /** État du hasard : une partie rechargée tire les mêmes dés. */
   graine: number;
   scene: Scene;
+  /** Ce qui vient des épisodes précédents (absent d'une partie qui n'est pas une suite ; version 5). */
+  saga?: SagaPartie;
   /** Le combat d'histoire commencé et pas fini (absent hors combat ; version 4). */
   combatEnCours?: CombatEnCours;
   groupe: Personnage[];

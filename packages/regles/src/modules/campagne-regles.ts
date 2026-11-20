@@ -1,21 +1,22 @@
-// La campagne, pas (b) de F5 (docs/PRD-SAGA.md) : le BILAN de fin d'épisode (ce que le groupe emporte) et l'ENTRÉE dans l'épisode suivant.
-// Fonctions pures du moteur, sans écran ni sauvegarde : le client les branchera au pas (d). Un épisode est un monde ; ce qui est à lui (lieux,
+// La campagne (F5 de docs/PRD-SAGA.md, pas (b) puis (d)) : le BILAN de fin d'épisode (ce que le groupe emporte) et l'ENTRÉE dans l'épisode suivant.
+// Fonctions pures du moteur, sans écran : le client les branche (écran de fin « Continuer la saga »). Un épisode est un monde ; ce qui est à lui (lieux,
 // drapeaux, quêtes, PNJ, jauges) reste derrière, ce qui est au groupe (héros, XP, or, sac) voyage.
 //
-// Ce qui voyage : les héros (fiche, choix de montée, sorts, équipement, objets embarqués), l'XP, l'or, les objets du CATALOGUE SRD du sac, le
-// carnet de campagne. Ce qui ne voyage pas : les objets propres au monde quitté (une relique, une arme nommée : sa définition n'existe pas dans
-// l'épisode suivant ; une arme ou une armure redevient son modèle SRD, le reste est laissé et nommé dans `laisses`), les objets de quête et les
-// clés, les compagnons (des PNJ escortés, propres à leur épisode), le lieu, le jour, tout l'état du monde.
+// Ce qui voyage : les héros (fiche, choix de montée, sorts, équipement, objets embarqués), l'XP, l'or, les objets du sac et ceux qu'on porte (ceux du CATALOGUE SRD, et
+// les objets PROPRES à l'épisode quitté : une relique, une arme nommée, dont la définition voyage avec la partie, `SagaPartie.souvenirs`), le carnet de campagne et
+// les phrases de ses échos. Ce qui ne voyage pas : les objets de quête et les clés (ils n'ont de sens que dans leur épisode), les compagnons (des PNJ escortés,
+// propres à leur épisode), le lieu, le jour, tout l'état du monde.
 import type { Donnees } from '../donnees';
 import { creerGenerateur, type Generateur } from '../des';
 import { SEUILS_PX } from '../caracteristiques';
 import { estAncienEquipement } from '../equipement/ranger';
 import { EMPLACEMENTS } from '../equipement/emplacements';
-import type { Moteur } from '../noyau/moteur';
-import type { ContexteJeu, Partie } from '../noyau/types';
+import { ajouterSouvenirs, type Moteur } from '../noyau/moteur';
+import type { ContexteJeu, EchoCarnet, Partie } from '../noyau/types';
 import { recuperer, type Personnage } from '../personnage';
 import { CATEGORIES_JAMAIS_TIREES } from '../monde/butin-niveau';
 import { echosDeFin } from '../monde/campagne';
+import type { Objet } from '../monde/schemas';
 import { appliquerEquipement } from './equipement-regles';
 
 /** Ce que le groupe emporte à la fin d'un épisode : du JSON, sans rien de l'épisode quitté. */
@@ -29,19 +30,23 @@ export interface BilanEpisode {
   groupe: Personnage[];
   xp: number;
   pieces: number;
-  /** Le sac : seulement des objets du catalogue SRD, hors quête et clés. */
+  /** Le sac : les objets du catalogue SRD et ceux du monde quitté (leurs définitions sont dans `souvenirs`), hors quête et clés. */
   inventaire: Record<string, number>;
-  /** Ce qui était propre à l'épisode et reste derrière (objets du sac ou portés, par identifiant). */
+  /** Les définitions des objets propres au monde quitté que le groupe garde (sac ou équipement). */
+  souvenirs: Objet[];
+  /** Ce qui reste derrière : objets de quête, clés, objets inconnus (par identifiant). */
   laisses: string[];
-  /** Le carnet de campagne cumulé : celui de départ plus les échos de l'épisode. */
+  /** Le carnet de campagne cumulé : celui de départ plus les échos de l'épisode (identifiants, pour les conditions). */
   campagne: string[];
+  /** Les mêmes échos avec leur phrase et leur épisode d'origine, pour le joueur (ceux qui ont une phrase). */
+  carnet: EchoCarnet[];
 }
 
 const connuDuCatalogue = (srd: Donnees | undefined, id: string): boolean => !!srd && (srd.objets.has(id) || srd.armes.has(id) || srd.armures.has(id));
 
-/** Un objet du SRD qui sert à une quête ou ouvre quelque chose ne voyage pas (il n'a de sens que dans son épisode). */
-const estDeQuete = (srd: Donnees | undefined, id: string): boolean => {
-  const c = srd?.objets.get(id)?.categorie;
+/** Un objet de quête ou une clé ne voyage pas (il n'a de sens que dans son épisode). */
+const estDeQuete = (srd: Donnees | undefined, dm: ContexteJeu['dm'], id: string): boolean => {
+  const c = dm.objets.get(id)?.categorie ?? srd?.objets.get(id)?.categorie;
   return !!c && CATEGORIES_JAMAIS_TIREES.includes(c);
 };
 
@@ -53,19 +58,26 @@ const estDeQuete = (srd: Donnees | undefined, id: string): boolean => {
 export function bilanDeFin(partie: Partie, ctx: ContexteJeu, options: { echos?: readonly string[] } = {}): BilanEpisode {
   const { srd, dm } = ctx;
   const laisses = new Set<string>();
+  const souvenirs = new Map<string, Objet>();
   const groupe = structuredClone(partie.groupe);
+  /** Garde l'objet (catalogue, ou propre au monde : sa définition voyage) ; sinon il est laissé. */
+  const garder = (id: string): boolean => {
+    if (estDeQuete(srd, dm, id)) return false;
+    if (dm.objets.has(id)) {
+      souvenirs.set(id, structuredClone(dm.objets.get(id)!));
+      return true;
+    }
+    return connuDuCatalogue(srd, id);
+  };
 
-  // L'équipement : un objet du monde quitté redevient son modèle SRD (arme, armure, bouclier) ou est laissé.
+  // L'équipement porté : un objet de quête, une clé ou un objet inconnu est retiré (et laissé).
   for (const h of groupe) {
     if (!h.equipe || estAncienEquipement(h.equipe)) continue;
     let change = false;
     for (const s of EMPLACEMENTS) {
       const id = h.equipe.emplacements[s];
-      if (!id || connuDuCatalogue(srd, id)) continue;
-      const objet = dm.objets.get(id);
-      const base = objet?.base;
-      if (base && (srd?.armes.has(base) || srd?.armures.has(base))) h.equipe.emplacements[s] = base;
-      else delete h.equipe.emplacements[s];
+      if (!id || garder(id)) continue;
+      delete h.equipe.emplacements[s];
       laisses.add(id);
       change = true;
     }
@@ -75,9 +87,14 @@ export function bilanDeFin(partie: Partie, ctx: ContexteJeu, options: { echos?: 
   const inventaire: Record<string, number> = {};
   for (const [id, q] of Object.entries(partie.etat.inventaire)) {
     if (q <= 0) continue;
-    if (connuDuCatalogue(srd, id) && !estDeQuete(srd, id)) inventaire[id] = q;
+    if (garder(id)) inventaire[id] = q;
     else laisses.add(id);
   }
+
+  const campagne = [...new Set([...(partie.etat.campagne ?? []), ...echosDeFin(dm, partie.etat), ...(options.echos ?? [])])];
+  // Les phrases : celles qui viennent déjà de la saga, plus celles que cet épisode déclare pour les échos qu'il émet.
+  const carnet = new Map<string, EchoCarnet>((partie.saga?.carnet ?? []).map((e) => [e.id, e]));
+  for (const e of dm.monde.campagne?.emet ?? []) if (campagne.includes(e.id) && !carnet.has(e.id)) carnet.set(e.id, { id: e.id, phrase: e.phrase, monde: dm.monde.id });
 
   return {
     version: 1,
@@ -89,8 +106,10 @@ export function bilanDeFin(partie: Partie, ctx: ContexteJeu, options: { echos?: 
     xp: partie.etat.xp,
     pieces: partie.etat.pieces,
     inventaire,
+    souvenirs: [...souvenirs.values()],
     laisses: [...laisses].sort(),
-    campagne: [...new Set([...(partie.etat.campagne ?? []), ...echosDeFin(dm, partie.etat), ...(options.echos ?? [])])],
+    campagne,
+    carnet: [...carnet.values()],
   };
 }
 
@@ -102,9 +121,10 @@ export interface EntreeEpisode {
 
 /**
  * Entre dans l'épisode que porte `moteur` avec le bilan du précédent : la partie neuve commence au lieu de départ, le jour 1, avec les
- * héros reposés (PV et emplacements pleins : du temps a passé entre deux épisodes), l'XP, l'or, le sac et le carnet. Un groupe sous le
- * niveau minimal de l'épisode garde son niveau et ses PX montent au seuil de ce minimum : il rattrape à sa première action (la progression
- * lit l'XP) ; le moteur ne le fait pas monter d'office ici, pour que les choix de montée restent ceux du joueur.
+ * héros reposés (PV et emplacements pleins : du temps a passé entre deux épisodes), l'XP, l'or, le sac, le carnet et les objets gardés (leurs définitions
+ * sont ajoutées au monde et gardées dans `partie.saga`). Un groupe sous le niveau minimal de l'épisode garde son niveau et ses PX montent au seuil de ce
+ * minimum : il rattrape à sa première action (la progression lit l'XP) ; le moteur ne le fait pas monter d'office ici, pour que les choix de montée
+ * restent ceux du joueur.
  */
 export function entrerDansEpisode(moteur: Moteur, bilan: BilanEpisode, options: { graine?: number; gen?: Generateur } = {}): EntreeEpisode {
   const dm = moteur.ctx.dm;
@@ -115,7 +135,11 @@ export function entrerDansEpisode(moteur: Moteur, bilan: BilanEpisode, options: 
     recuperer(h, 'long', gen);
     delete h.monteeEnAttente;
   }
+  // Les objets gardés d'abord : les modules s'en servent dès le départ (équipement du groupe).
+  const saga = bilan.souvenirs.length || bilan.carnet.length ? { carnet: bilan.carnet, souvenirs: bilan.souvenirs } : undefined;
+  ajouterSouvenirs(moteur.ctx, saga);
   const nouvelle = moteur.nouvellePartie(groupe, { graine, niveau: bilan.niveau, campagne: bilan.campagne });
+  if (saga) nouvelle.saga = structuredClone(saga);
   const { min, max } = dm.monde.niveaux;
   const avis: string[] = [];
   const seuilMin = SEUILS_PX[Math.min(Math.max(min, 1), SEUILS_PX.length) - 1] ?? 0;

@@ -277,8 +277,8 @@ describe('le conteur et les sauvegardes', () => {
     expect(a.map((o) => o.function.name)).toContain('chercherPiege');
   });
 
-  it('VERSION_PARTIE reste 4 : le champ `recherches` est facultatif et se recharge tel quel', () => {
-    expect(VERSION_PARTIE).toBe(4);
+  it('VERSION_PARTIE est 5 : le champ `recherches` est facultatif et se recharge tel quel', () => {
+    expect(VERSION_PARTIE).toBe(5);
     const { moteur, p } = enJeu(nouveau, CELLIER);
     const apres = moteur.executer(p, { type: 'chercherPiege', cible: { tresor: COFFRET } }).partie;
     expect(apres.etat.exploration.recherches?.length).toBe(1);

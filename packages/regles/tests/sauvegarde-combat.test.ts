@@ -74,9 +74,9 @@ function jouerJusquaLaFin(etat: EtatCombat) {
 }
 
 describe('sauvegarde du combat en cours', () => {
-  it('la partie est de version 4', () => {
-    expect(VERSION_PARTIE).toBe(4);
-    expect(moteur.nouvellePartie(groupe(), { graine: 1 }).version).toBe(4);
+  it('la partie est de version 5', () => {
+    expect(VERSION_PARTIE).toBe(5);
+    expect(moteur.nouvellePartie(groupe(), { graine: 1 }).version).toBe(5);
   });
 
   it('aller-retour en plein combat : le combat repris se déroule exactement comme celui qu’on a quitté (mêmes dés)', () => {
@@ -107,18 +107,18 @@ describe('sauvegarde du combat en cours', () => {
     expect(reprise.vainqueur).toBe(etat.vainqueur);
   });
 
-  it('migration 3 → 4 : une sauvegarde de version 3 (sans combat) se charge, passe en version 4, sans combat en cours', () => {
+  it('migration 3 → 4 : une sauvegarde de version 3 (sans combat) se charge, passe en version 5, sans combat en cours', () => {
     const p = moteur.executer(moteur.nouvellePartie(groupe(), { graine: 7, niveau: 3 }), { type: 'commencer' }).partie;
     const v3 = { ...p, version: 3 };
     const migree = moteur.charger(JSON.stringify(v3));
-    expect(migree.version).toBe(4);
+    expect(migree.version).toBe(5);
     expect(migree.combatEnCours).toBeUndefined();
     expect(migree.etat.lieu).toBe(p.etat.lieu);
   });
 
-  it('une sauvegarde plus récente que le jeu est refusée (version 5)', () => {
+  it('une sauvegarde plus récente que le jeu est refusée (version 6)', () => {
     const p = moteur.nouvellePartie(groupe(), { graine: 1 });
-    expect(() => moteur.charger(JSON.stringify({ ...p, version: 5 }))).toThrow(/version/);
+    expect(() => moteur.charger(JSON.stringify({ ...p, version: 6 }))).toThrow(/version/);
   });
 
   it('un combat resté dans une partie qui n’est plus en rencontre est oublié au chargement', () => {

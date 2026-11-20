@@ -22,6 +22,9 @@ import { NOMS_CARAC, NOMS_COMPETENCES } from '../createur/libelles';
 import { bibleDe, manifesteDe, urlImage } from '../mondes';
 import { etatConteur, llmDuJeu, type EtatConteur } from './conteur';
 import { nomFichierPartie, sauvegardeEnEchec, telechargerTexte, type Aventure } from './partie';
+import { CarnetSaga, ChoixSuite } from './PanneauSaga';
+import { carnetDeLaSaga } from './saga';
+import type { SuiteSaga } from './saga-regles';
 import { BoiteDialogue } from './BoiteDialogue';
 import { VitrineMarchand } from './VitrineMarchand';
 import { entreesDeConversation, indiceDerniereParole } from './conversation-regles';
@@ -68,6 +71,17 @@ interface Props {
   onPartie: (p: Partie) => void;
   onCombat: () => void;
   onMenu: () => void;
+  /** Les épisodes qu'on peut aborder à la fin de celui-ci (« Continuer la saga ») ; vide ou absent : pas de suite proposée. */
+  suites?: SuiteSaga[];
+  /** Le joueur choisit l'épisode suivant. */
+  onContinuer?: (monde: string) => void;
+  /** Le passage à l'épisode suivant est en cours (chargement du monde). */
+  suiteEnCours?: boolean;
+  /** Les noms des mondes, pour dire d'où vient chaque ligne du carnet. */
+  nomsMondes?: Record<string, string>;
+  /** Ce que le joueur doit savoir de son entrée dans cet épisode (niveau trop bas ou trop haut) ; affiché jusqu'à ce qu'il soit lu. */
+  avisEntree?: string[];
+  onAvisLu?: () => void;
 }
 
 function libelleTest(test: string): string {
@@ -151,7 +165,7 @@ const PENDANT_OUTIL: Record<string, string> = {
   payerService: 'Quelques pièces changent de main…',
 };
 
-export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
+export function EcranAventure({ aventure, onPartie, onCombat, onMenu, suites = [], onContinuer, suiteEnCours = false, nomsMondes = {}, avisEntree = [], onAvisLu }: Props) {
   const { moteur, partie } = aventure;
   const dm = moteur.ctx.dm;
   const [refus, setRefus] = useState<string>();
@@ -794,10 +808,24 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           </>
         ) : (
           <>
+            {avisEntree.length > 0 && (
+              <section className="panneau-action avis-entree">
+                <h3>Nouvel épisode</h3>
+                {avisEntree.map((a) => (
+                  <p key={a}>{a}</p>
+                ))}
+                <button type="button" className="bouton-discret" onClick={onAvisLu}>
+                  Compris
+                </button>
+              </section>
+            )}
+            {!fin && partie.saga && <CarnetSaga carnet={carnetDeLaSaga(partie, aventure)} noms={nomsMondes} />}
             {fin && (
               <section className="panneau-action fin-histoire">
                 <h3>{fin.nom}</h3>
                 <p>{epilogue ?? fin.epilogue}</p>
+                <CarnetSaga carnet={carnetDeLaSaga(partie, aventure)} noms={nomsMondes} ouvert />
+                {onContinuer && <ChoixSuite suites={suites} niveau={partie.etat.niveauGroupe} occupe={suiteEnCours} onChoisir={onContinuer} />}
                 <button type="button" className="bouton-principal" onClick={onMenu}>
                   Retour au menu
                 </button>

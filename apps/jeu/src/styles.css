@@ -10537,3 +10537,59 @@ kbd {
     gap: 6px 10px;
   }
 }
+
+/* La saga (F5 d) : le carnet des échos et le choix de l'épisode suivant. */
+.carnet-saga {
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  background: var(--panneau);
+  padding: 6px 10px;
+}
+
+.carnet-saga summary {
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--or);
+}
+
+.carnet-saga ul,
+.choix-suite ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.choix-suite ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.choix-suite li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.choix-suite h4 {
+  margin: 8px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--or);
+}
+
+.carnet-saga-origine,
+.choix-suite-accroche,
+.choix-suite-niveaux {
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+.choix-suite .bouton-principal {
+  width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+}

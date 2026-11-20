@@ -20,6 +20,8 @@ const MIGRATIONS: Record<number, (p: Brute) => void> = {
   2: () => undefined,
   // 3 → 4 : champ facultatif `combatEnCours` (le combat d'histoire en cours) ; une vieille sauvegarde n'en a pas, rien à convertir.
   3: () => undefined,
+  // 4 → 5 : champ facultatif `saga` (le carnet et les objets gardés d'un épisode précédent) ; une vieille sauvegarde n'en a pas, rien à convertir.
+  4: () => undefined,
 };
 
 export function migrer(p: Brute): Brute {

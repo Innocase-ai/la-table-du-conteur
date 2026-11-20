@@ -3,6 +3,7 @@
 import { generateurSur } from '../des';
 import { etatInitial, completerEtat } from '../monde/etat';
 import { etatExplorationVide } from '../monde/exploration';
+import { Objet } from '../monde/schemas';
 import type { Personnage } from '../personnage';
 import { differences } from './differences';
 import { migrer } from './migrations';
@@ -35,6 +36,14 @@ function sansPlanter<T>(quoi: string, f: () => T): T | undefined {
   } catch (e) {
     console.error(`Erreur interne pendant la lecture : ${quoi}`, e);
     return undefined;
+  }
+}
+
+/** Ajoute au monde les objets que la saga a gardés d'un épisode précédent (sans écraser un objet du monde de même identifiant). */
+export function ajouterSouvenirs(ctx: ContexteJeu, saga: { souvenirs?: unknown[] } | undefined): void {
+  for (const brut of saga?.souvenirs ?? []) {
+    const o = Objet.safeParse(brut);
+    if (o.success && !ctx.dm.objets.has(o.data.id)) ctx.dm.objets.set(o.data.id, o.data);
   }
 }
 
@@ -158,6 +167,8 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
     charger(json) {
       const p = migrer(JSON.parse(json) as Record<string, unknown> & { version: number }) as unknown as Partie;
       if (p.monde !== ctx.dm.monde.id) throw new Error(`Sauvegarde du monde « ${p.monde} », pas « ${ctx.dm.monde.id} ».`);
+      // Les objets gardés d'un épisode précédent (version 5) : le monde ne les connaît pas, la partie les lui rend avant que les modules s'en servent.
+      ajouterSouvenirs(ctx, p.saga);
       // Une sauvegarde abîmée garde ce qui peut l'être : champs indispensables remis à leur valeur de départ (audit du 18/11/2026, M3).
       if (!p.scene || typeof p.scene !== 'object' || typeof p.scene.type !== 'string') p.scene = { type: 'exploration' };
       if (!p.modules || typeof p.modules !== 'object') p.modules = {};

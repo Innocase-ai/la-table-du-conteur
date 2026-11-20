@@ -53,22 +53,34 @@ describe('le bilan de fin d’épisode', () => {
     expect(JSON.stringify(b)).not.toContain('un-fait-du-val');
   });
 
-  it('le sac : le catalogue SRD voyage, les objets propres au monde, de quête et les clés restent derrière (nommés)', () => {
+  it('le sac : le catalogue SRD et les objets propres au monde voyagent (définitions gardées) ; les objets de quête restent derrière (nommés)', () => {
     const { dm, partie } = episodeJoue();
     const b = bilanDeFin(partie, { dm, srd });
-    expect(b.inventaire).toEqual({ rations: 4, 'potion-de-guerison': 2 });
-    expect(b.laisses).toEqual(expect.arrayContaining(['relique-du-val', 'lettre-du-val', 'arme-du-val', 'bague-du-val']));
+    expect(b.inventaire).toEqual({ rations: 4, 'potion-de-guerison': 2, 'relique-du-val': 1, 'arme-du-val': 1 });
+    expect(b.laisses).toEqual(['lettre-du-val']);
+    expect(b.souvenirs.map((o) => o.id).sort()).toEqual(['arme-du-val', 'bague-du-val', 'relique-du-val']);
+    expect(b.souvenirs.find((o) => o.id === 'arme-du-val')).toMatchObject({ nom: 'Lame du Val', bonus: { attaque: 1, degats: 1 } });
   });
 
-  it('une arme du monde en main redevient son modèle SRD (la fiche suit), un bijou du monde est laissé', () => {
+  it('une arme et un bijou du monde portés restent portés ; la partie quittée n’est pas modifiée', () => {
     const { dm, partie } = episodeJoue();
     const b = bilanDeFin(partie, { dm, srd });
     const e = b.groupe[0]!.equipe as { emplacements: Record<string, string> };
-    expect(e.emplacements['j1.droite']).toBe('epee-longue');
-    expect(e.emplacements.anneau1).toBeUndefined();
-    expect(b.groupe[0]!.fiche.equipement?.armes?.[0]).toBe('epee-longue');
-    // La partie, elle, garde son arme du monde.
+    expect(e.emplacements['j1.droite']).toBe('arme-du-val');
+    expect(e.emplacements.anneau1).toBe('bague-du-val');
     expect((partie.groupe[0]!.equipe as { emplacements: Record<string, string> }).emplacements['j1.droite']).toBe('arme-du-val');
+  });
+
+  it('un objet inconnu, ou un objet de quête porté, est retiré de l’équipement et laissé', () => {
+    const { dm, partie } = episodeJoue();
+    const equipe = partie.groupe[0]!.equipe as { emplacements: Record<string, string> };
+    equipe.emplacements.cou = 'objet-fantome';
+    equipe.emplacements.anneau2 = 'lettre-du-val';
+    const b = bilanDeFin(partie, { dm, srd });
+    const e = b.groupe[0]!.equipe as { emplacements: Record<string, string> };
+    expect(e.emplacements.cou).toBeUndefined();
+    expect(e.emplacements.anneau2).toBeUndefined();
+    expect(b.laisses).toEqual(expect.arrayContaining(['objet-fantome', 'lettre-du-val']));
   });
 
   it('le carnet est cumulé : celui de départ, plus les échos de l’épisode, sans doublon', () => {
@@ -110,7 +122,7 @@ describe('l’entrée dans l’épisode suivant', () => {
     const { partie: p, bilan } = suite();
     expect(p.etat.xp).toBe(bilan.xp);
     expect(p.etat.pieces).toBe(87.5);
-    expect(p.etat.inventaire).toEqual({ rations: 4, 'potion-de-guerison': 2 });
+    expect(p.etat.inventaire).toEqual({ rations: 4, 'potion-de-guerison': 2, 'relique-du-val': 1, 'arme-du-val': 1 });
     expect(p.etat.niveauGroupe).toBe(3);
     expect(bilan.groupe[0]!.pv).toBe(1);
     for (const h of p.groupe) expect(h.pv).toBe(h.fiche.pvMax);

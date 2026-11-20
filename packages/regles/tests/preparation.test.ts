@@ -283,7 +283,7 @@ describe('le conteur et la sauvegarde', () => {
   });
 
   it('pas de nouvelle version : le droit est un champ facultatif qui passe par la sauvegarde', () => {
-    expect(VERSION_PARTIE).toBe(4);
+    expect(VERSION_PARTIE).toBe(5);
     const h = heros('clerc', 3);
     h.preparation = { prepares: 'tous', mineurs: 0 };
     const p = partieAvec([h]);

@@ -12,7 +12,9 @@ import { noterAction } from './mesure/mesure-temps';
 import { useMesureTemps } from './mesure/useMesureTemps';
 import { EcranAventure } from './aventure/EcranAventure';
 import { demarrerAventure, partieSauvegardee, rencontreDeMonde, reprendreAventure, sauverPartie, type Aventure } from './aventure/partie';
-import { chargerHistoire } from './mondes';
+import { chargerHistoire, histoires } from './mondes';
+import { continuerSaga } from './aventure/saga';
+import { suitesPossibles } from './aventure/saga-regles';
 import { definirSceneMusique } from './musique';
 import type { SceneMusique } from './musique-regles';
 import { EcranHistoires } from './menu/EcranHistoires';
@@ -79,6 +81,8 @@ export function App() {
     etat?: EtatCombat;
   } | null>(null);
   const [chargement, setChargement] = useState<string | null>(null);
+  // Ce que le joueur doit savoir de son entrée dans l'épisode suivant (groupe trop bas ou trop haut), jusqu'à ce qu'il l'ait lu.
+  const [avisEntree, setAvisEntree] = useState<string[]>([]);
 
   // Sauvegarde automatique du groupe.
   useEffect(() => sauverGroupe(groupe), [groupe]);
@@ -167,6 +171,24 @@ export function App() {
           suite(p);
         }}
         onMenu={() => setVue({ nom: 'titre' })}
+        key={aventure.moteur.ctx.dm.monde.id}
+        suites={suitesPossibles(histoires().map((h) => h.monde), aventure.moteur.ctx.dm.monde.id, aventure.partie.etat.niveauGroupe)}
+        nomsMondes={Object.fromEntries(histoires().map((h) => [h.monde.id, h.monde.nom]))}
+        suiteEnCours={!!chargement}
+        avisEntree={avisEntree}
+        onAvisLu={() => setAvisEntree([])}
+        onContinuer={(monde) => {
+          // « Continuer la saga » : le bilan de l'épisode fini passe au moteur du suivant ; la partie neuve remplace l'ancienne sauvegarde.
+          setChargement('Ouverture du livre…');
+          continuerSaga(aventure, monde, d)
+            .then((r) => {
+              sauverPartie(r.aventure.partie);
+              setAventure(r.aventure);
+              setAvisEntree(r.avis);
+            })
+            .catch((e: unknown) => alert(e instanceof Error ? e.message : String(e)))
+            .finally(() => setChargement(null));
+        }}
         onCombat={() => {
           const p = aventure.partie;
           if (p.scene.type !== 'rencontre') return;
@@ -253,6 +275,7 @@ export function App() {
                 const a = demarrerAventure(dm, groupe, d);
                 sauverPartie(a.partie);
                 setAventure(a);
+                setAvisEntree([]);
                 setVue({ nom: 'aventure' });
               })
               .catch((e: unknown) => alert(e instanceof Error ? e.message : String(e)))
@@ -294,6 +317,7 @@ export function App() {
                           const a = reprendreAventure(dm, d);
                           if (a) {
                             setAventure(a);
+                            setAvisEntree([]);
                             setVue({ nom: 'aventure' });
                             // Un combat était en cours au moment de quitter : on y revient directement.
                             if (a.partie.combatEnCours && a.partie.scene.type === 'rencontre') setCombatHistoire(combatDeSauvegarde(a.partie.combatEnCours));

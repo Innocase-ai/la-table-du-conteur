@@ -480,7 +480,7 @@ describe('l’indice visible de richesse (`signe`)', () => {
 });
 
 describe('sauvegardes (P4)', () => {
-  it('la version de sauvegarde ne change pas : aucun champ d’état n’est ajouté', () => {
-    expect(VERSION_PARTIE).toBe(4);
+  it('la version de sauvegarde est 5 (F5 d : la saga voyage avec la partie, champ facultatif)', () => {
+    expect(VERSION_PARTIE).toBe(5);
   });
 });
