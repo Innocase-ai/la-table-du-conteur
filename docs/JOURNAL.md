@@ -2971,3 +2971,13 @@ Lu dans le code ; aucune ligne de code ni de donnée modifiée. Fiche : `docs/PR
 - **Mesure** : `pnpm simuler 10 rapide` : seule « Embuscade gobeline » bouge (4,1 → 3,8 rounds), les cinq autres lignes identiques ; `pnpm simuler:haut` : la liche 9,4 → 10,1 rounds (0 % de victoires toujours).
 - **Tests** : 9 nouveaux (`tests/combat-reactions-monstres-2.test.ts`), le test des données du lot 5 mis à jour (13 réactions). **Mesures** : `pnpm typecheck` propre ; `pnpm test` 208 fichiers, **2 965 verts**, 6 sautés ; `pnpm monde verifier` des trois histoires « Rien ne bloque » (Tombe 5/5, Marche 2/2, Dîme 4/4), avis inchangés. `VERSION_PARTIE` reste 4.
 - **Non commité.** Suite : (b) l'IA, puis (c) les actions légendaires restantes.
+
+### 20/11/2026 — F6, lot 8 : Division, Regard dérangeant, Poursuite (fin des réactions de monstres jouables)
+
+- **Cadre** : suite demandée par la session principale (« les 9 réactions restantes, puis l'IA, puis les actions légendaires »). Lot 7 commité (`05cde3a`). Rien de ce lot n'est commité.
+- **Données** : `reaction` accepte `division`, `regard`, `poursuite` ; quatre profils : gelée ocre, pouding noir, diable des chaînes, nalfeshnie. Aucune donnée d'histoire touchée.
+- **Moteur** (`combat/moteur.ts`) : `diviserSiBesoin` (taille de moins, moitié des PV et des PX, copie dans l'ordre d'initiative juste après le parent avec correction de l'indice du combattant actif, case libre voisine, y compris quand la gelée est immunisée contre le coup), `declencherRegards` (début de tour), `poursuivre` (fin de déplacement). 5 réactions restent injouables : Nuage d'encre, Hurlement, Protection, Antennes réactives, contresort (raisons dans `docs/COMBAT.md`).
+- **Constat en écrivant le test** : la gelée ocre est immunisée contre le tranchant (« ne subit aucun dégât ») ; la première version ne la divisait pas, car le déclencheur est placé après le calcul des dégâts. Corrigé : le déclencheur compte aussi quand le coup est sans effet.
+- **Mesure** : `pnpm simuler 10 rapide` et `pnpm simuler:haut` **identiques** à avant le lot (aucun de ces monstres n'y est) ; le combat de la Tombe contre la gelée ocre change (division).
+- **Tests** : 9 nouveaux (`tests/combat-reactions-monstres-3.test.ts`, dont deux combats entiers contre la gelée et le pouding avec contrôle de l'ordre d'initiative), test des données mis à jour (17 réactions). **Mesures** : `pnpm typecheck` propre ; `pnpm test` 209 fichiers, **2 974 verts**, 6 sautés ; `pnpm monde verifier` des trois histoires « Rien ne bloque » (Tombe 5/5, Marche 2/2, Dîme 4/4), avis inchangés. `VERSION_PARTIE` reste 4.
+- **Suite** : (b) l'IA (affaiblissements, multiattaque redirigée), (c) actions légendaires restantes.

@@ -94,7 +94,10 @@
       "cout": "reaction",
       "resume": "Déclencheur : alors que la gelée est de taille G ou M et dispose d'au moins 10 points de vie, elle se retrouve En péril ou subit des dégâts de foudre ou tranchants. Conséquences : la gelée se divise en deux nouvelles gelées ocres. Chaque nouvelle gelée présente une catégorie de taille de moins que la gelée dont elle est issue et agit au même rang d'Initiative. Les points de vie de la gelée d'origine sont divisés équitablement entre les deux nouvelles (arrondis à l'inférieur).",
       "degats": [],
-      "etats": []
+      "etats": [],
+      "reaction": {
+        "division": true
+      }
     }
   ],
   "description": "Une masse visqueuse, d'un jaune ocre luisant, sans forme fixe, étale sa surface grumeleuse et humide. Quelques pseudopodes émoussés s'étirent lentement, et de petites bulles crèvent à sa surface, sans bruit."

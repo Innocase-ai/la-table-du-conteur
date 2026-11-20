@@ -289,8 +289,14 @@ export const ActionMonstre = z.object({
       redirige: z.object({ tailleMax: z.string() }).optional(),
       reduitDegats: z.object({ des: z.string().regex(/^\d+d\d+$/), bonus: z.number().int().default(0) }).optional(),
       sauvegarde: z.object({ bonus: z.number().int().min(1), portee: z.number().positive() }).optional(),
+      // Lot 8 : `division` (gelée ocre, pouding noir) : en péril, ou touché par la foudre ou le tranchant, le monstre se divise en deux, une taille plus petit, la moitié des PV chacun ;
+      // `regard` (diable des chaînes) : au début du tour d'un adversaire dans le rayon, un jet de sauvegarde (celui de l'action) ou l'état de l'action ; `poursuite` (nalfeshnie) :
+      // quand un adversaire finit un déplacement à `portee` m ou moins, il se téléporte à `rayon` m de lui.
+      division: z.boolean().optional(),
+      regard: z.object({ rayon: z.number().positive() }).optional(),
+      poursuite: z.object({ portee: z.number().positive(), rayon: z.number().positive() }).optional(),
     })
-    .refine((r) => !!(r.ca || r.redirige || r.reduitDegats || r.sauvegarde), 'reaction : au moins un effet')
+    .refine((r) => !!(r.ca || r.redirige || r.reduitDegats || r.sauvegarde || r.division || r.regard || r.poursuite), 'reaction : au moins un effet')
     .optional(),
   // `sort` (lot 3c) : « recourt à Incantation pour lancer X » : le sort X de la liste du monstre (`sorts.liste`), lancé sans action ni réserve.
   legendaire: z

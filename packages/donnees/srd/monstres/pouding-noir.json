@@ -99,7 +99,10 @@
       "cout": "reaction",
       "resume": "Déclencheur : alors que le pouding est de taille G ou M et dispose d'au moins 10 points de vie, il se retrouve En péril ou subit des dégâts de foudre ou tranchants. Conséquences : le pouding se scinde en deux nouveaux poudings noirs. Chaque nouveau pouding présente une catégorie de taille de moins que le pouding dont il est issu et agit au même rang d'Initiative. Les points de vie du pouding « parent » sont divisés équitablement entre les deux nouveaux poudings (arrondir à l'inférieur).",
       "degats": [],
-      "etats": []
+      "etats": [],
+      "reaction": {
+        "division": true
+      }
     }
   ],
   "description": "Une masse noire et luisante, lisse et huileuse, s'étale et se soulève lentement. De fins pseudopodes se tendent puis se retirent, et des gouttes d'un liquide verdâtre perlent à sa surface sans qu'aucun visage ni membre ne se dessine."

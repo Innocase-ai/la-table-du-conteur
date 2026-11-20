@@ -32,8 +32,11 @@ import {
   distanceMetres,
   casesDeTaille,
   casesOccupees,
+  franchissable,
   ligneDeVue,
   TAILLE_CASE,
+  typeCase,
+  voisins,
   type Chemin,
   type Grille,
   type Position,
@@ -193,6 +196,8 @@ function debutTour(etat: EtatCombat): void {
     c.tour.mouvement -= Math.ceil(vitesse(c) / 2 / TAILLE_CASE) * TAILLE_CASE;
     journaliser(etat, { type: 'etat', texte: `${c.nom} se relève.`, acteur: c.id });
   }
+  // F6 (lot 8) : Regard dérangeant des monstres qui voient le combattant dont le tour commence.
+  declencherRegards(etat, c);
   if (etat.options.elan && c.elan) piocherElan(etat, c, 2);
 }
 
@@ -692,6 +697,8 @@ export function infligerDegats(
       valeur: 0,
       details: { types: typesDegats, ...(reaction ? { reaction } : {}) },
     });
+    // Division : la gelée ocre est immunisée contre la foudre et le tranchant, qui la divisent pourtant (le déclencheur est de les subir, pas d'en souffrir).
+    diviserSiBesoin(etat, cible, typesDegats, cible.pv);
     return 0;
   }
   const absorbe = Math.min(cible.pvTemp, total);
@@ -719,6 +726,7 @@ export function infligerDegats(
     }
     return total;
   }
+  const pvAvant = cible.pv;
   cible.pv -= restant;
   if (cible.concentration && cible.pv > 0) {
     const dd = Math.min(30, Math.max(10, Math.floor(total / 2)));
@@ -738,7 +746,86 @@ export function infligerDegats(
       journaliser(etat, { type: 'mort', texte: `${cible.nom} tombe, inconscient !`, cible: cible.id });
     }
   }
+  diviserSiBesoin(etat, cible, typesDegats, pvAvant);
   return total;
+}
+
+/**
+ * F6 (lot 8) : Division (gelée ocre, pouding noir). Un monstre de taille Grande ou Moyenne qui a encore 10 PV ou plus se divise, en réaction, quand il vient
+ * d'être mis en péril (la moitié de ses PV ou moins) ou qu'il subit des dégâts de foudre ou tranchants : lui et une copie ont une taille de moins, la moitié des
+ * PV et des PX chacun ; la copie prend place juste après lui dans l'ordre d'initiative (même rang), sur une case libre à côté. Sans case libre, il ne se divise pas.
+ */
+function diviserSiBesoin(etat: EtatCombat, c: Combattant, types: string[], pvAvant: number): void {
+  const action = c.actionsMonstre.find((a) => a.reaction?.division);
+  if (!action || c.mort || c.camp !== 'monstres' || c.pv < 10 || !c.ressources.reaction || !peutAgir(c)) return;
+  const i = TAILLES.indexOf(c.taille);
+  if (i !== TAILLES.indexOf('M') && i !== TAILLES.indexOf('G')) return;
+  const enPeril = c.pv <= c.pvMax / 2 && pvAvant > c.pvMax / 2;
+  if (!enPeril && !types.some((t) => t === 'foudre' || t === 'tranchant')) return;
+  const { occupees } = occupation(etat, c);
+  const libre = voisins(etat.grille, c.position).find((p) => !occupees.has(cle(p)));
+  if (!libre) return;
+  c.taille = TAILLES[i - 1]!;
+  c.pv = Math.floor(c.pv / 2);
+  c.pvMax = Math.max(c.pv, Math.floor(c.pvMax / 2));
+  c.px = Math.floor(c.px / 2);
+  c.ressources.reaction = 0;
+  const copie = structuredClone(c);
+  const n = etat.combattants.filter((x) => x.id.startsWith(`${c.id}-d`)).length + 1;
+  copie.id = `${c.id}-d${n}`;
+  copie.position = libre;
+  etat.combattants.splice(etat.combattants.indexOf(c) + 1, 0, copie);
+  const rang = etat.ordre.indexOf(c.id);
+  etat.ordre.splice(rang + 1, 0, copie.id);
+  if (rang < etat.actif) etat.actif += 1;
+  journaliser(etat, { type: 'info', texte: `${c.nom} se divise (${action.nom}) : deux créatures de taille ${c.taille}, ${c.pv} PV chacune.`, acteur: c.id, cible: copie.id });
+}
+
+/**
+ * F6 (lot 8) : Regard dérangeant (diable des chaînes). Au début du tour de `c`, chaque monstre qui a cette réaction, dans son rayon, qui le voit et que `c` n'a
+ * pas déjà vaincu, lui impose le jet de sauvegarde de l'action ; raté, l'état de l'action dure jusqu'à la fin de son tour suivant ; réussi, `c` est immunisé
+ * contre le regard de ce monstre pour le reste du combat (24 h dans le texte).
+ */
+export function declencherRegards(etat: EtatCombat, c: Combattant): void {
+  for (const m of etat.combattants) {
+    if (m.camp === c.camp || m.mort || horsCombat(m) || !peutAgir(m) || !m.ressources.reaction) continue;
+    const action = m.actionsMonstre.find((a) => a.reaction?.regard && a.resolution?.type === 'sauvegarde');
+    if (!action || c.ressources[`immunise:${m.id}`] || distanceMetres(m, c) > action.reaction!.regard!.rayon || !ligneDeVue(etat.grille, m.position, c.position)) continue;
+    m.ressources.reaction = 0;
+    const r = action.resolution as Extract<NonNullable<typeof action.resolution>, { type: 'sauvegarde' }>;
+    const reussite = sauvegarde(etat, c, r.caracteristique, r.dd ?? 10);
+    journaliser(etat, { type: 'info', texte: `${m.nom} fixe ${c.nom} (${action.nom}) : sauvegarde ${reussite ? 'réussie, il est immunisé' : 'ratée'}.`, acteur: m.id, cible: c.id });
+    if (reussite) c.ressources[`immunise:${m.id}`] = 1;
+    else for (const e of action.etats) ajouterEtat(etat, c, { etat: e.etat, source: m.id, finTourDe: c.id, passerFin: true });
+  }
+}
+
+/**
+ * F6 (lot 8) : Poursuite (nalfeshnie). Quand un adversaire finit un déplacement à `portee` m ou moins d'un monstre qui a cette réaction, celui-ci se téléporte
+ * à `rayon` m de lui (la case libre la plus proche de sa place), sauf s'il y est déjà.
+ */
+export function poursuivre(etat: EtatCombat, mobile: Combattant): void {
+  for (const m of etat.combattants) {
+    if (m.camp === mobile.camp || m.mort || horsCombat(m) || !peutAgir(m) || !m.ressources.reaction) continue;
+    const action = m.actionsMonstre.find((a) => a.reaction?.poursuite);
+    if (!action) continue;
+    const { portee, rayon } = action.reaction!.poursuite!;
+    if (distanceMetres(m, mobile) > portee || distanceMetres(m, mobile) <= rayon || !ligneDeVue(etat.grille, m.position, mobile.position)) continue;
+    const { occupees } = occupation(etat, m);
+    const n = Math.floor(rayon / TAILLE_CASE);
+    let meilleure: Position | undefined;
+    for (let y = mobile.position.y - n; y <= mobile.position.y + n; y++) {
+      for (let x = mobile.position.x - n; x <= mobile.position.x + n; x++) {
+        const p = { x, y };
+        if (!franchissable(typeCase(etat.grille, p)) || occupees.has(cle(p)) || distanceCases(p, mobile) > n || distanceCases(p, mobile) < 1) continue;
+        if (!meilleure || distanceCases(p, m) < distanceCases(meilleure, m)) meilleure = p;
+      }
+    }
+    if (!meilleure) continue;
+    m.position = meilleure;
+    m.ressources.reaction = 0;
+    journaliser(etat, { type: 'deplacement', texte: `${m.nom} se téléporte près de ${mobile.nom} (${action.nom}).`, acteur: m.id, details: { chemin: [{ ...meilleure }] } });
+  }
 }
 
 function mourir(etat: EtatCombat, c: Combattant): void {
@@ -892,6 +979,8 @@ export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boole
     if (z.declencheurs.includes('entree') && !c.mort && dansZone(z, c.position) && !dansZone(z, depart)) declencherZone(etat, z, c);
   }
   // Ralentissement : la vitesse réduite ne s'applique qu'au tour suivant ; rien à faire ici.
+  // F6 (lot 8) : Poursuite des monstres qui voient ce déplacement se terminer.
+  poursuivre(etat, c);
   return true;
 }
 
