@@ -18,3 +18,12 @@ Les quêtes (`q-la-cle-de-la-foire`, `q-le-colis-du-forgeron`, `q-les-rats-de-la
 - **Gédéon, secret de la bande** : le sujet `gedeon-bande` se lit à l'attitude 30 (influence du moteur : Persuasion DD 15, 24 h après un échec) ; pas de jet propre au sujet.
 - **Événement de la corde** : aucun choix réservé à une origine de héros (avis du validateur) ; à décider avec l'utilisateur.
 - **Services de repas et de forge** : retirés (sans effet en jeu) ; le repas et la forge restent dits par les sujets de Colombe et de Brun et par la boutique de Brun.
+
+## Moulin (V6, 20/11/2026)
+
+- **Lien `verdelle` → `mou-pont-du-meunier`** (route, 1 h) : écrit **sans condition**, à conditionner par la quête principale active (`quete: q-la-cle-de-la-foire` active) dès que la quête existe (V4 : « la route s'ouvre quand la quête principale est active »).
+- **Conditions des deux trésors de la clé** : ajouter « quête `q-la-cle-de-la-foire` non terminée » à `mou-tre-cle` et `mou-tre-cle-poutre`, pour qu'ils ne se reforment pas après la remise de la clé.
+- **Scandale** (V7) : condition `f-gedeon-et-la-dette` **ou** `f-gedeon-a-engage-la-bande` (M1).
+- **Gédéon et le moulin** : `gedeon-moulin` (« je n'ai pas su qui s'en occupe ») est un mensonge de Gédéon, qui a payé la bande : voulu, à garder en tête pour les échos.
+- **Brun au moulin** : il y est passé ce matin à l'aube, avant que la bande n'ait tendu la barrière du pont (D9).
+- **PNJ qui parlent après une victoire** : l'homme de main et Rouquin se rendent et restent vivants (M8).

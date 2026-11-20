@@ -1,0 +1,120 @@
+[
+  {
+    "id": "mou-tre-bourse",
+    "nom": "La bourse sous le tonneau",
+    "lieu": "mou-pont-du-meunier",
+    "contenant": "autre",
+    "acces": {},
+    "gardien": "r-hommes-de-main",
+    "contenu": {
+      "pieces": {
+        "po": 10
+      }
+    },
+    "description": "Une bourse commune de cuir, usée et souple, cachée sous le tonneau-table, au milieu de la travée centrale. Elle est glissée entre le fond du tonneau et les planches, à l'abri de la pluie et de la vue de qui marche sur le pont."
+  },
+  {
+    "id": "mou-tre-coffre-campement",
+    "nom": "Le coffre de campement",
+    "lieu": "mou-salle-des-meules",
+    "contenant": "coffre",
+    "acces": {
+      "verrou": {
+        "dd": 12
+      }
+    },
+    "contenu": {
+      "pieces": {
+        "po": 20
+      }
+    },
+    "description": "Au pied du lit de camp, un coffre de campement cerclé de fer repose sur le plancher couvert de farine. Ses bandes de métal sont rouillées aux angles, et sa serrure, large comme une paume, a un cœur épais. Il ne bouge pas quand on le pousse du pied."
+  },
+  {
+    "id": "mou-tre-caisse",
+    "nom": "La caisse de matériel",
+    "lieu": "mou-cour",
+    "contenant": "coffre",
+    "acces": {
+      "verrou": {
+        "dd": 10
+      }
+    },
+    "contenu": {
+      "pieces": {
+        "po": 5
+      }
+    },
+    "description": "Une caisse de bois brut, aux coins cerclés de fer, repose sous l'auvent de l'atelier, contre le mur ouest. Ses planches sont grises, marquées par la pluie, et un cadenas de fer ferme son couvercle. Le métal est piqué de rouille, mais la serrure reste solide."
+  },
+  {
+    "id": "mou-tre-cle",
+    "nom": "La fente de la poutre",
+    "lieu": "mou-grenier",
+    "contenant": "cache",
+    "acces": {
+      "cache": {
+        "dd": 14,
+        "competence": "investigation"
+      }
+    },
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cle-du-coffre-de-la-foire",
+          "quantite": 1
+        }
+      ]
+    },
+    "indice": "f-cle-au-grenier",
+    "condition": {
+      "et": [
+        {
+          "non": {
+            "fait": "f-traces-de-corde-sur-la-poutre"
+          }
+        },
+        {
+          "non": {
+            "objet": "cle-du-coffre-de-la-foire"
+          }
+        }
+      ]
+    },
+    "description": "Une fente sombre s'ouvre dans la poutre maîtresse du grenier, à hauteur de main. Elle n'est visible qu'en la cherchant : le bois noir la dissimule, et son ouverture, étroite et nette, ressemble à une entaille ancienne. Il faut approcher le visage pour la voir."
+  },
+  {
+    "id": "mou-tre-cle-poutre",
+    "nom": "La fente de la poutre, repérée",
+    "lieu": "mou-grenier",
+    "contenant": "cache",
+    "acces": {
+      "cache": {
+        "dd": 10,
+        "competence": "investigation"
+      }
+    },
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cle-du-coffre-de-la-foire",
+          "quantite": 1
+        }
+      ]
+    },
+    "indice": "f-cle-au-grenier",
+    "condition": {
+      "et": [
+        {
+          "fait": "f-traces-de-corde-sur-la-poutre"
+        },
+        {
+          "non": {
+            "objet": "cle-du-coffre-de-la-foire"
+          }
+        }
+      ]
+    },
+    "description": "La même fente, dans la poutre maîtresse du grenier, à hauteur de main. Les traces de corde qui marquent le bois autour la rendent plus facile à repérer : son bord est lisse, poli comme par un frottement. Elle reste sombre, étroite, à peine plus large qu'un doigt."
+  }
+]

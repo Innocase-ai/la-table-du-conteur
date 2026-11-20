@@ -5,7 +5,8 @@
     "type": "region",
     "resume": "À écrire : la région où se déroule l’histoire.",
     "description": "À écrire : ce qu’on y trouve, factuel (pour le MJ).",
-    "visuel": "À écrire : ce qu’on voit, sans nommer les personnages."
+    "visuel": "À écrire : ce qu’on voit, sans nommer les personnages.",
+    "liens": []
   },
   {
     "id": "verdelle",
@@ -74,6 +75,13 @@
         "heures": 0,
         "description": "Au sud, une rue en pente descend vers le Pont-des-Marchands, un pont de pierre claire dont les piles plongent dans la rivière.",
         "retour": "Du pont, la place se voit en contrebas, au-dessus des toits : la fontaine, la corde tendue et les toiles rouges."
+      },
+      {
+        "vers": "mou-pont-du-meunier",
+        "type": "route",
+        "heures": 1,
+        "description": "Par le nord-est, une route de terre quitte le bourg entre deux haies de noisetiers et file vers les collines.",
+        "retour": "La route descend des collines vers le bourg, entre les haies ; de là-haut, on aperçoit les toits rouges de Verdelle et la fumée des cheminées."
       }
     ],
     "repos": "sur",
@@ -95,13 +103,6 @@
     "accroche": "Sur la place, une porte basse sous une enseigne de héron gris ; de la salle sortent l'odeur de pain et le bruit des bols.",
     "liens": [
       {
-        "vers": "verdelle",
-        "type": "porte",
-        "heures": 0,
-        "description": "De la salle, la porte basse ouvre sur la place : la fontaine, les toiles rouges et la lumière de l'automne.",
-        "retour": "Une porte basse, sous une enseigne peinte d'un héron gris, s'ouvre à l'ouest sur une salle chaude et bruyante."
-      },
-      {
         "vers": "ver-heron-cave",
         "type": "porte",
         "heures": 0,
@@ -122,15 +123,7 @@
     "arrivee": "La trappe ouverte vous laisse descendre par un escalier raide, dont chaque marche luit sous vos semelles. Le bruit de la salle s'éteint à mesure que vous descendez, et l'air devient frais, lourd, chargé d'une odeur de vin et de moisi. La voûte est si basse qu'il faut courber la nuque. Des tonneaux de chêne sont couchés en rang contre le mur, leurs cercles de fer rouillés, et des bocaux de verre s'alignent sur une étagère. Une lanterne de papier ocre pend au pied de l'escalier et fait briller les dalles mouillées. Dans la voûte du nord, un soupirail grillé laisse tomber un filet de jour gris, qui s'arrête à mi-hauteur. Au coin sud, un grattement très léger vient derrière une planche. Un sac de farine a été éventré près du mur, et sa poudre blanche dessine un chemin jusqu'à un trou. Une goutte tombe du plafond, régulièrement, dans une flaque.",
     "visuel": "Une voûte basse de pierre claire, mal jointe, où cinq tonneaux de chêne sont alignés contre le mur est. Des bocaux de verre garnissent une étagère de bois à l'ouest, et un soupirail grillé laisse tomber un filet de jour gris dans la voûte du nord. Une lanterne de papier ocre accrochée au pied de l'escalier éclaire les dalles mouillées.",
     "accroche": "Sous la trappe du comptoir, un escalier raide descend vers une voûte basse, où l'odeur de vin et de moisi monte.",
-    "liens": [
-      {
-        "vers": "ver-heron-salle",
-        "type": "porte",
-        "heures": 0,
-        "description": "Un escalier raide monte vers une trappe de chêne ouverte ; la lumière de la salle tombe en bande sur les marches, et le bruit des bols s'entend.",
-        "retour": "Derrière le comptoir, une trappe de chêne ferrée est relevée ; un escalier raide descend vers une cave, et son odeur de vin monte jusqu'à la salle."
-      }
-    ],
+    "liens": [],
     "rencontres": [
       {
         "id": "r-rats-de-la-cave",
@@ -152,13 +145,6 @@
     "accroche": "Au nord-est de la place, une halle de bois à colonnes ; sous son auvent rayé, on entend des voix graves.",
     "liens": [
       {
-        "vers": "verdelle",
-        "type": "porte",
-        "heures": 0,
-        "description": "Depuis la halle, la grande porte encadre la place, la fontaine et la foule des étals, et le soleil y entre en bande.",
-        "retour": "Au nord-est, une halle de bois à colonnes ouvre sa grande porte sur la place, sous un auvent rayé de rouge brique et de crème."
-      },
-      {
         "vers": "ver-bailli-cabinet",
         "type": "porte",
         "heures": 0,
@@ -178,15 +164,7 @@
     "arrivee": "Une porte de planches vous fait passer de la halle au silence, et la pièce s'ouvre devant vous, claire et nue. Le plancher craque à chaque pas, et la lumière de la rivière entre par une fenêtre étroite, pâle et verdâtre, qui se reflète en bandes sur les lattes. Le long du mur ouest, une étagère de registres monte jusqu'au plafond, reliés de toile et de chêne, classés par année. Une grande table est couverte de dossiers et de feuilles de comptes, et un pot à encre de faïence bleue, ébréché, a laissé sécher sa croûte noire. Au fond, face à la porte, un coffre de chêne cerclé de fer est scellé contre le mur. L'air sent le papier, la cire et l'humidité de l'eau. Le bruit de la rivière monte par la fenêtre ouverte, un clapotis régulier qui semble compter le temps.",
     "visuel": "Un cabinet clair aux murs de chêne, avec une étagère de registres à l'ouest, une grande table couverte de dossiers et une fenêtre étroite à l'est. Une lumière pâle de rivière se reflète en bandes verdâtres sur le plancher, et un coffre de chêne cerclé de fer ferme le fond de la pièce. Des parchemins empilés et des pupitres de bois complètent le décor.",
     "accroche": "Derrière la halle, une porte de planches donne sur un cabinet clair, où les registres dorment sur des étagères.",
-    "liens": [
-      {
-        "vers": "ver-bailli-salle",
-        "type": "porte",
-        "heures": 0,
-        "description": "La porte de planches du cabinet donne sur la halle ; de ce côté, la peinture verte est usée à hauteur de main, à force de passages.",
-        "retour": "Au fond de la halle, une porte de planches peinte en vert mousse mène à l'arrière-pièce du bailli, dont la fenêtre donne sur la rivière."
-      }
-    ]
+    "liens": []
   },
   {
     "id": "ver-sanctuaire",
@@ -199,15 +177,7 @@
     "arrivee": "Une porte cintrée s'ouvre sous une arche de pierre claire, et la nef vous accueille dans une fraîcheur d'eau. Au centre, une vasque de pierre reçoit une eau si claire que le fond est visible, et l'eau déborde doucement sur des galets gris. La lumière tombe bleue des vitraux du fond, deux lancettes où la rivière est peinte en traits fins, et elle glisse sur des bancs de chêne clair. Des tablettes de bois courent le long du mur nord, chargées de rubans de toile crème et rouge brique qui pendent comme des cordes à linge. Une lampe à huile brûle devant un autel bas, sans un bruit. On entend le clapotis de la vasque, et plus loin, derrière le mur, le murmure de la rivière. Une odeur de cire et d'herbes sèches monte doucement vers la voûte, et le silence est épais, presque tendre.",
     "visuel": "Une nef de pierre claire à voûtes, avec une vasque d'eau claire au centre et des vitraux bleus au fond. Des tablettes de bois au mur nord portent des rubans de toile et des poupées de bois, et une lampe à huile brille devant l'autel bas. La lumière bleue des vitraux glisse sur les bancs de chêne clair et sur les galets de la vasque.",
     "accroche": "À l'est de la place, une petite nef de pierre claire au bord de l'eau, derrière une porte cintrée et des rubans qui flottent.",
-    "liens": [
-      {
-        "vers": "verdelle",
-        "type": "porte",
-        "heures": 0,
-        "description": "Depuis la nef, la porte cintrée ouvre sur la place et la lumière de l'automne ; on y entend l'eau de la rivière.",
-        "retour": "À l'est, un petit sanctuaire de pierre claire se tient au bord de l'eau, derrière une porte cintrée et trois marches."
-      }
-    ]
+    "liens": []
   },
   {
     "id": "ver-forge",
@@ -220,15 +190,7 @@
     "arrivee": "Une chaleur sèche vous frappe dès le seuil, et l'odeur de charbon et de fer chaud vous prend à la gorge. La porte à mi-battant laisse entrer la lumière du jour, qui s'arrête net sur les dalles, comme si elle n'osait pas aller plus loin. Au fond, la braise de la forge luit d'un rouge profond sous une hotte noire, et chaque coup de soufflet la fait gonfler en étincelles. Une enclume de fer repose sur un billot de chêne, couverte de marques de marteau, et son tintement résonne entre les murs de pierre claire noircie de suie. Le long du mur, un soufflet de bois et de toile attend, près d'un établi où s'entassent fers, barres et outils. Au-dessus du linteau, un fer à cheval est cloué à l'envers, la pointe vers le bas.",
     "visuel": "Un atelier de pierre claire noircie de suie, avec une enclume de fer sur un billot de chêne au centre et une forge au fond, sous une hotte. Un soufflet de bois et de toile est appuyé au mur, près d'un établi couvert de fers et de barres. La braise de la forge éclaire la pièce d'une lueur rouge, et la lumière du jour entre par la porte à mi-battant.",
     "accroche": "Au sud-ouest de la place, une grande porte à mi-battant laisse voir une braise rouge et entendre le marteau sur l'enclume.",
-    "liens": [
-      {
-        "vers": "verdelle",
-        "type": "porte",
-        "heures": 0,
-        "description": "La grande porte de la forge donne sur la place ; le soufflet ronfle, et les passants s'arrêtent sur le seuil pour regarder.",
-        "retour": "Au sud-ouest, une forge de pierre noircie ouvre sur la place : une grande porte à mi-battant, et le rouge de la braise qui luit dans l'ombre."
-      }
-    ]
+    "liens": []
   },
   {
     "id": "ver-boutique-grain",
@@ -241,15 +203,7 @@
     "arrivee": "La porte de chêne grince et laisse entrer une odeur de grain, de sacs et de cordes mouillées. Une lanterne de papier ocre pend au plafond et répand une lumière chaude sur des étagères hautes, couvertes de bocaux de verre aux étiquettes écrites à la main. Le mur ouest disparaît sous des rouleaux de tissu crème et de toile rayée, et des cordes s'enroulent sur des chevilles de bois. Au centre, un comptoir de chêne, marqué de coups de couteau, porte une balance de cuivre aux plateaux bien frottés, qui tinte doucement à chaque mouvement d'air. Contre le mur est, des sacs de grain sont alignés, leurs cols pliés, et une poussière fine flotte dans la lumière. Une ardoise de prix est accrochée près de la porte, les chiffres à la craie, serrés. Au fond, derrière le comptoir, un coffre-fort de fer cerclé se dresse contre le mur, et le sol de planches gonfle sous vos pas.",
     "visuel": "Une boutique de pierre claire à porte de chêne, avec un comptoir de chêne et une balance de cuivre à l'entrée. Des étagères de bocaux, des rouleaux de tissu et des cordes couvrent le mur ouest, et des sacs de grain sont alignés contre le mur est. Une lanterne de papier ocre pend au plafond et éclaire les plateaux de la balance.",
     "accroche": "Au nord de la place, une maison de pierre claire et une porte de chêne sous un auvent ocre, avec des sacs de grain sur le seuil.",
-    "liens": [
-      {
-        "vers": "verdelle",
-        "type": "porte",
-        "heures": 0,
-        "description": "Depuis la boutique, la porte ouvre sur la place : on voit l'auvent ocre, les sacs de toile et la fontaine au loin.",
-        "retour": "Au nord, une maison de pierre claire à toit de tuiles ouvre sur la place une porte de chêne sous un auvent ocre."
-      }
-    ]
+    "liens": []
   },
   {
     "id": "ver-marche",
@@ -263,13 +217,6 @@
     "visuel": "Une ruelle de pavés bordée d'étals sous des auvents rayés rouge brique et crème, avec des cageots de légumes et des pots de miel alignés. Une balance publique au milieu de la ruelle, sur un pied de chêne, et des cordes pendues à l'étal du fond. La lumière dorée filtre à travers la toile en bandes, et les lanternes ocre pendent entre les perches.",
     "accroche": "Au sud-est de la place, une ruelle couverte d'auvents rayés, où les marchands s'appellent d'un étal à l'autre.",
     "liens": [
-      {
-        "vers": "verdelle",
-        "type": "porte",
-        "heures": 0,
-        "description": "La ruelle du marché remonte vers la place entre les étals ; les pavés luisent de brume, et la fontaine se voit par-dessus les toiles.",
-        "retour": "Au sud-est, une ruelle s'ouvre entre deux auvents rayés : les étals du marché débordent sur les pavés, et l'on entend les marchands crier."
-      },
       {
         "vers": "ver-pont-des-marchands",
         "type": "pont",
@@ -290,15 +237,7 @@
     "arrivee": "Le portail de bois s'ouvre sur une allée de terre battue, et l'air sent le foin sec et l'huile de graissage. Cinq boxes s'alignent de chaque côté, leurs claies de chêne clair patinées par les mains. Les mangeoires sont vides, mais le foin s'entasse en tas doux dans le box le plus grand, au fond. Des selles reposent sur des tréteaux près de l'entrée, leurs courroies de toile raides de poussière. Une lucarne laisse entrer une lumière poussiéreuse qui tombe en bandes dorées sur la terre. Le troisième box, seul, a une claie couverte de noms gravés au couteau, des noms de chevaux, certains si anciens qu'on ne les lit plus. Quelque part au fond, une goutte d'eau tombe de la toiture, à intervalles réguliers. Le bois des planches a gonflé avec l'humidité de la rivière, et les portes grincent au moindre souffle.",
     "visuel": "Un bâtiment de bois long et bas, avec cinq boxes de chaque côté d'une allée de terre battue et des selles posées sur des tréteaux près de la porte. Au fond, le troisième box a une claie couverte de noms gravés, et du foin s'entasse dans le box le plus grand. La lumière du jour entre par le portail ouvert, et une lanterne de papier ocre pend à un poteau.",
     "accroche": "Au sud-est de la place, un portail de bois ouvert sur une cour de terre et une odeur de foin.",
-    "liens": [
-      {
-        "vers": "verdelle",
-        "type": "porte",
-        "heures": 0,
-        "description": "Depuis les écuries, le portail ouvre sur la place ; les pavés luisent, et la corde des funambules barre le ciel au-dessus de la fontaine.",
-        "retour": "Plus loin, à l'est et au sud, un portail de bois ouvert sur une cour de terre laisse passer l'odeur du foin et le craquement des planches."
-      }
-    ]
+    "liens": []
   },
   {
     "id": "ver-pont-des-marchands",
@@ -311,22 +250,7 @@
     "arrivee": "Le pont de pierre claire s'avance au-dessus de l'eau, trois arches rondes qui se reflètent dans une rivière si calme qu'elle semble immobile. La brume du matin traîne encore sur l'eau, et les piles plongent dans un courant lent, brun et doux. Le long du parapet, la pierre est usée à hauteur de main, lisse, marquée de petites entailles. Plus bas, un ponton de planches de chêne descend au pied de la pile sud, où des cordes sont amarrées à des anneaux, et une caisse de bois attend sous une bâche. Une odeur de vase et de cordage monte de la rive, mêlée à celle du pain qui vient de la place. Un cri de batelier s'élève et se perd sous les arches. Sur le parapet, un avis aux bateliers, délavé, tient encore par un clou.",
     "visuel": "Un pont de pierre claire à trois arches, dont les piles plongent dans une eau calme et brune, avec des marques de crue creusées dans la pile nord. Un ponton de planches de chêne descend au pied de la pile sud, où des cordes et une caisse de bateliers attendent sous une bâche. La lumière de la brume se lève sur l'eau, et des reflets dorés glissent sous les arches.",
     "accroche": "Au sud de la place, un pont de pierre claire enjambe la rivière ; ses piles plongent dans une eau lente et brune.",
-    "liens": [
-      {
-        "vers": "verdelle",
-        "type": "porte",
-        "heures": 0,
-        "description": "Du pont, la place se voit en contrebas, au-dessus des toits : la fontaine, la corde tendue et les toiles rouges.",
-        "retour": "Au sud, une rue en pente descend vers le Pont-des-Marchands, un pont de pierre claire dont les piles plongent dans la rivière."
-      },
-      {
-        "vers": "ver-marche",
-        "type": "porte",
-        "heures": 0,
-        "description": "Une ruelle de pierre claire remonte du ponton vers le marché, bordée de caisses et de cordages.",
-        "retour": "La ruelle du marché descend vers le pont, entre les étals ; le bruit de la rivière remonte sous les toiles."
-      }
-    ]
+    "liens": []
   },
   {
     "id": "moulin",
@@ -335,7 +259,125 @@
     "parent": "verdelle-region",
     "resume": "À écrire : le site de quête du moulin.",
     "description": "À écrire : ce qu’on y trouve, factuel (pour le MJ).",
-    "visuel": "À écrire : ce qu’on voit, sans nommer les personnages."
+    "visuel": "À écrire : ce qu’on voit, sans nommer les personnages.",
+    "liens": []
+  },
+  {
+    "id": "mou-pont-du-meunier",
+    "nom": "Le Pont-du-Meunier",
+    "type": "lieu-dit",
+    "parent": "moulin",
+    "resume": "Le pont de bois du moulin, vermoulu et barré d'une barrière, au-dessus d'un bras de rivière.",
+    "description": "Pont de bois à trois travées, une douzaine de pas de long, posé sur deux piles de pierre claire verdie. La travée centrale est vermoulue : deux planches y manquent, et l'eau brune se voit entre les lattes. Côté route, une barrière de chêne tirée en travers porte l'écriteau « Fermé pour réparations ». Un tonneau couché, au milieu du pont, sert de table ; dessous, une bourse de 10 po, gardée par la rencontre. Quatre hommes de main (`r-hommes-de-main`, 100 PX, faibles) tiennent le pont : ils se laissent négocier (Persuasion DD 12), payer (20 po, si le groupe a cette somme), ou combattre. Au bout côté cour, une guérite de planches abrite l'un des quatre hommes de main, l'homme de main du pont (`homme-de-main-du-pont`, PNJ sans nom propre, au moins 4 sujets). Côté cour, une pente de terre monte vers le moulin.",
+    "ambiance": "Pont qui craque, eau qui gronde",
+    "arrivee": "La route débouche au bord d'un bras de rivière, et la première chose qu'on voit, c'est la barrière : un assemblage de planches tiré en travers de l'entrée du pont, sur deux poteaux de chêne. Un écriteau y est cloué, peint en grandes lettres inégales. Le pont de bois s'étire ensuite au-dessus de l'eau, en trois travées gris sombre, gorgées de pluie. Au milieu, les planches cèdent par endroits sous le pied, et il faut regarder où l'on pose ses bottes. L'eau gronde contre les piles de pierre claire, verdies à la base, et l'air sent le bois qui pourrit et la farine humide venue de l'autre rive. La brume traîne encore sur les berges, et la lumière tombe pâle, sans ombres nettes. De l'autre côté, une pente de terre monte vers le moulin, dont on ne voit pour l'instant qu'un pan de mur de pierre et une fumée mince.",
+    "visuel": "Un pont de bois à trois travées, aux planches gris sombre gorgées d'eau, franchit un bras de rivière entre deux piles de pierre claire verdie. Côté route, une barrière de bois barre l'entrée, son écriteau « Fermé pour réparations » cloué à la traverse ; au milieu du pont, un tonneau couché sert de table, et une guérite de planches se dresse au bout, côté cour. La lumière grise du ciel, filtrée par la brume, tombe sans source précise, et l'eau brune se brise contre les piles.",
+    "accroche": "Au bout de la route, une barrière tirée en travers d'un pont de bois vermoulu, au-dessus d'une eau qui gronde.",
+    "liens": [
+      {
+        "vers": "mou-cour",
+        "type": "chemin",
+        "heures": 0,
+        "description": "De l'autre côté du pont, une pente de terre monte vers une cour où une roue de chêne reste immobile au-dessus de l'eau.",
+        "retour": "Du haut de la pente, le pont se voit en contrebas : la barrière, les planches sombres et le bruit de la rivière.",
+        "condition": {
+          "rencontre": {
+            "id": "r-hommes-de-main"
+          }
+        }
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "r-hommes-de-main",
+        "declencheur": "entree",
+        "condition": {
+          "non": {
+            "rencontre": {
+              "id": "r-hommes-de-main"
+            }
+          }
+        },
+        "unique": false
+      }
+    ]
+  },
+  {
+    "id": "mou-cour",
+    "nom": "La cour du moulin",
+    "type": "lieu-dit",
+    "parent": "moulin",
+    "resume": "La cour de terre battue du moulin, devant la roue immobile et les sacs de farine.",
+    "description": "Cour de terre battue, fermée au nord par le mur du moulin. La roue à aubes, immobile, occupe l'angle est, et l'eau passe dessous sans la faire tourner. Trois rangs de sacs empilés contre le mur nord ; la porte du moulin, au centre, ouvre sur une marche usée. La porte basse de l'atelier, au mur ouest, a sa serrure forcée : bois frais aux éclats. Examinée de près, la serrure, comme la boue, montre des traces de charrette et de nombreuses bottes : une bande a passé ici. Sous l'auvent de l'atelier, une caisse de matériel du meunier contient 5 po. Devant la roue, une ornière en demi-cercle marque l'ancien tour de l'arbre. L'accès depuis le pont suppose la route ouverte (quête principale active).",
+    "ambiance": "Roue immobile, eau sous les aubes",
+    "arrivee": "La pente de terre vous amène au bord de la cour, où la boue colle aux semelles et chaque flaque reflète le ciel gris. Le mur de pierre du moulin ferme la cour au nord, couvert d'une poudre blanche qui se pose aussi sur vos manches. À l'est, une roue de chêne est arrêtée au-dessus de l'eau : ses aubes pourries pendent, et l'eau passe dessous sans la faire tourner, avec un bruit lourd et continu. Contre le mur, trois rangs de sacs de toile dressent une haie pâle, et la farine y est si fine qu'elle s'envole au moindre souffle. Personne ne parle, aucun outil ne résonne, seules les gouttes des gouttières et le vent dans les noisetiers rompent le silence. Il fait frais, et l'odeur de bois mouillé se mêle à celle de la farine. Au mur ouest, une porte basse d'atelier attend, son bois clair marqué d'éclats frais.",
+    "visuel": "Une cour de terre battue, détrempée en flaques, fermée au nord par le mur de pierre du moulin. La roue à aubes de chêne, immobile, domine l'angle est, son arbre posé sur deux paliers ; contre le mur nord, trois rangs de sacs de toile dressent une haie pâle de farine. La lumière grise du ciel tombe ouverte sur la cour, et l'eau passe sous la roue sans la faire tourner.",
+    "accroche": "Côté est, une roue de chêne immobile dépasse du mur de pierre, et une odeur de farine flotte sur la cour de terre battue.",
+    "liens": [
+      {
+        "vers": "mou-salle-des-meules",
+        "type": "porte",
+        "heures": 0,
+        "description": "Au centre du mur nord, une porte de chêne clair s'ouvre sur une marche de pierre usée ; une odeur de braise sort de l'ouverture.",
+        "retour": "De la salle, la porte ouvre sur la cour : la roue, les sacs pâles de farine et le ciel gris."
+      }
+    ]
+  },
+  {
+    "id": "mou-salle-des-meules",
+    "nom": "La salle des meules",
+    "type": "salle",
+    "parent": "moulin",
+    "resume": "La salle des meules du moulin, basse et grise de farine, où les pierres ne tournent plus.",
+    "description": "Salle basse de quatorze pas sur neuf, poutres poudrées de farine. Les deux meules occupent le centre, immobiles ; la meule du dessus repose sur son axe de fer. Au fond, contre le mur ouest, l'escalier du grenier monte vers une trappe que rien ne soulève quand on la pousse (une cale la coince de l'autre côté, depuis le grenier : voir « Avant / après »). Rouquin Lamefine (`rouquin-lamefine`, profil `chef-de-bande`, au moins 4 sujets) est assis sur le lit de camp, contre le mur est, et attend. La rencontre (`r-rouquin-au-moulin`, 450 PX, modérée) se règle par le combat ; une négociation (Persuasion DD 11) ou un achat (60 po) n'est possible qu'avec l'objet « reconnaissance de dette ». Sans lui, il refuse. Au pied du lit, un coffre de campement cerclé de fer est verrouillé (DD 12) et contient 20 po. Les dépouilles, après le combat, forment la table de butin commune du palier 1.",
+    "ambiance": "Farine, braises, meules muettes",
+    "arrivee": "La porte de la cour s'ouvre sur une marche usée, et la chaleur des braises vous monte au visage avant que vos yeux s'habituent à la pénombre. La salle est basse, et ses poutres sont poudrées de farine comme si l'on avait neigé dessus. Au centre, deux meules de pierre grise se dressent dans un bâti de chêne noirci, immobiles, leurs rainures pleines d'une poussière blanche. Un trépied de fer porte des braises qui craquent et teintent les murs d'un rouge sourd. Un homme est assis sur un lit de camp en planches, couvert d'une laine brune ; il lève la tête, puis la rebaisse sans se lever. Une fenêtre étroite, à l'est, laisse entrer un jour gris qui s'arrête à mi-hauteur. Au fond, un escalier de bois raide se perd dans l'ombre. Sous le plancher, l'eau de la rivière gronde à travers les jointures, et l'air sent la farine sèche, la braise et le bois ancien.",
+    "visuel": "Une salle basse aux poutres poudrées de farine, dominée par deux meules de pierre grise dans un bâti de chêne. Un escalier de bois raide monte au fond, contre le mur ouest, vers une trappe au plafond, et un lit de camp couvert de laine brune occupe le mur est. Une fenêtre étroite laisse entrer un jour gris, tandis qu'un trépied de fer chauffe des braises rouges près des meules.",
+    "accroche": "Au centre du mur du moulin, une porte de chêne clair ; par ses jointures filtre une lueur rouge de braise.",
+    "liens": [
+      {
+        "vers": "mou-grenier",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Au fond, contre le mur ouest, un escalier de bois raide monte vers une trappe au plafond, que rien ne soulève quand on la pousse.",
+        "retour": "Contre le mur ouest, une trappe de planches au ras du sol ouvre sur un escalier qui descend vers la salle ; une odeur de braise monte par l'ouverture.",
+        "condition": {
+          "rencontre": {
+            "id": "r-rouquin-au-moulin"
+          }
+        },
+        "verrou": {
+          "dd": 12
+        }
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "r-rouquin-au-moulin",
+        "declencheur": "entree",
+        "condition": {
+          "non": {
+            "rencontre": {
+              "id": "r-rouquin-au-moulin"
+            }
+          }
+        },
+        "unique": false
+      }
+    ]
+  },
+  {
+    "id": "mou-grenier",
+    "nom": "Le grenier du moulin",
+    "type": "salle",
+    "parent": "mou-salle-des-meules",
+    "resume": "Le grenier du moulin, sous les toits, où la poussière de grain se pose sur une poutre maîtresse.",
+    "description": "Grenier bas sous les toits, neuf pas sur sept, avec un faîtage central. La poutre maîtresse, de chêne noir, court d'est en ouest ; l'examen de sa surface montre des traces de corde, à hauteur de main. Dans une fente de cette poutre, la clé du coffre de la foire est glissée, nouée d'un nœud de funambule : cache à trouver par la fouille (Investigation DD 14, ou DD 10 après examen de la poutre). Les sacs vides sont pliés contre le pignon est. La petite trappe à grain du pignon ouest, trop étroite pour qu'un groupe l'emprunte et donnant sur le vide au-dessus de la roue, laisse passer le jour et le vent. Contre le mur ouest, la trappe de planches donne sur la salle des meules ; l'odeur de braise y monte. La tuile percée du pan nord fait goutter l'eau de pluie sur le plancher, près de la trappe.",
+    "ambiance": "Pluie sur les tuiles, poussière de grain",
+    "arrivee": "La trappe ouvre sur une pénombre qui sent la poussière de grain sec. Le plafond descend de part et d'autre d'un faîtage si bas qu'il faut se courber au centre. Une poutre maîtresse de chêne noir traverse le grenier d'est en ouest, à hauteur d'épaule, et des planches fendues plient un peu sous le pied. La pluie tambourine sur les tuiles, d'un bruit régulier et proche. Des tuiles sont percées sur le pan nord, et un jour gris y tombe en filets pâles qui se posent sur la poussière en suspension. Au pignon ouest, une petite ouverture carrée laisse passer un courant d'air frais. Contre le pignon est, des sacs de toile vides sont pliés en carré. Au centre, une tache sombre sur le plancher goutte à intervalles réguliers. Par la trappe monte le bruit de la salle : un cliquetis de braises, le souffle du feu, l'eau sous le plancher. Tout ici est gris, poussiéreux et silencieux, sauf la goutte.",
+    "visuel": "Un grenier bas sous les toits, aux planches fendues et poudrées de farine, où deux pans de tuiles se rejoignent sur une poutre maîtresse de chêne noir. Une trappe carrée, au ras du sol, s'ouvre contre le mur ouest sur la salle en contrebas, et des sacs de toile vides sont pliés contre le pignon est. Un jour gris tombe par une petite ouverture dans le pignon ouest et par les tuiles percées du pan nord.",
+    "accroche": "Au fond de la salle, un escalier de bois monte vers une trappe au plafond ; un courant d'air sec et une odeur de grain descendent par la fente.",
+    "liens": []
   },
   {
     "id": "pont-casse",
@@ -344,6 +386,7 @@
     "parent": "verdelle-region",
     "resume": "À écrire : le site de quête du Pont-Cassé.",
     "description": "À écrire : ce qu’on y trouve, factuel (pour le MJ).",
-    "visuel": "À écrire : ce qu’on voit, sans nommer les personnages."
+    "visuel": "À écrire : ce qu’on voit, sans nommer les personnages.",
+    "liens": []
   }
 ]

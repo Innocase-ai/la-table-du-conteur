@@ -1,0 +1,251 @@
+[
+  {
+    "id": "homme-de-main-du-pont",
+    "nom": "L’homme de main du pont",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "35 ans",
+    "role": "L’un des quatre hommes qui tiennent la barrière du Pont-du-Meunier, posté dans la guérite.",
+    "lieu": "mou-pont-du-meunier",
+    "apparence": "Humain de 35 ans, visage mal rasé et cerné par les nuits de garde. Un manteau de toile cirée, trempé, couvre une tenue de cuir usé. Il est adossé à la guérite, les mains dans les poches, comme un homme qui attend la fin de son quart.",
+    "personnalite": {
+      "traits": [
+        "laconique",
+        "bourru",
+        "las"
+      ],
+      "voix": "Il parle peu, d'une voix basse et grommelée, en phrases courtes qui finissent souvent par un haussement d'épaules.",
+      "valeurs": [
+        "sa paie d'abord",
+        "la tranquillité"
+      ],
+      "desir": "Toucher sa paie sans histoire.",
+      "peur": "Son chef.",
+      "defaut": "Il se tait plus vite qu'il ne réfléchit."
+    },
+    "attitude": 0,
+    "savoir": [],
+    "secrets": [
+      {
+        "fait": "f-gedeon-a-engage-la-bande",
+        "condition": {
+          "ou": [
+            {
+              "rencontre": {
+                "id": "r-hommes-de-main",
+                "issue": "victoire"
+              }
+            },
+            {
+              "rencontre": {
+                "id": "r-hommes-de-main",
+                "issue": "alternative",
+                "alternative": "negocier"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "hdm-garde",
+        "mots": [
+          "garde",
+          "ce pont",
+          "barrière",
+          "hommes"
+        ],
+        "question": "Qui garde ce pont ?",
+        "reponse": "« Les hommes de la barrière, c'est comme ça qu'on nous appelle, et ça nous va. Vous voyez la barrière, là, tirée sur ses deux poteaux ? C'est nous qui la tenons. On est payés pour qu'il ne passe personne sur ce pont, et on ne demande pas plus loin qui a payé. Ça ne nous regarde pas. Moi, je fais mon quart dans la guérite, les autres font le leur sous la pluie. Si vous voulez savoir pourquoi, ce n'est pas à moi qu'il faut le demander. »"
+      },
+      {
+        "id": "hdm-ferme",
+        "mots": [
+          "moulin",
+          "fermé",
+          "réparations",
+          "écriteau"
+        ],
+        "question": "Pourquoi le moulin est-il fermé ?",
+        "reponse": "« Fermé pour réparations, c'est écrit sur la barrière, et ce n'est pas moi qui l'ai peint. Je n'ai pas de marteau, pas de clous, rien de ce qu'il faut pour réparer quoi que ce soit là-bas. Je ne suis là que pour le pont, pas pour le moulin. Alors si vous voulez que je vous explique les réparations, je ne vais pas le faire, parce que je n'ai rien à expliquer. Regardez plutôt la rivière, elle a l'air d'en savoir plus que moi. Insistez tant que vous voulez, vous perdrez votre temps. »"
+      },
+      {
+        "id": "hdm-chef",
+        "mots": [
+          "commande",
+          "là-haut",
+          "chef",
+          "salle des meules"
+        ],
+        "question": "Qui commande, là-haut ?",
+        "reponse": "« Là-haut, dans la salle des meules, c'est Rouquin qui commande. Il est assis sur son lit de camp, et il ne se lève pas pour nous. Il s'appelle Rouquin, c'est tout ce que je sais de lui, et il n'aime pas qu'on le dérange, alors je ne monte pas le voir sans raison. Mon conseil : si vous avez de quoi le payer, ça ira plus vite que de l'insulter. Moi, je tiens ma guérite, la pluie me tombe dessus, et je n'ai pas envie d'en faire davantage. »"
+      },
+      {
+        "id": "hdm-travail",
+        "mots": [
+          "travail",
+          "pluie",
+          "pain",
+          "plaît"
+        ],
+        "question": "Ça vous plaît, ce travail ?",
+        "reponse": "« Vous me demandez si ça me plaît ? Trois jours de pluie, du pain dur, et une guérite de planches qui laisse passer l'eau par le toit. Non, ça ne me plaît pas, mais ça paie. Je compte mes pièces le soir, une à une, sur le tonneau, parce que c'est le seul moment de la journée qui m'appartient. Ne le prenez pas mal, je n'ai rien contre vous. C'est juste que je ne vois pas bien ce que je ferais d'autre avec mes mains. »"
+      },
+      {
+        "id": "hdm-patron",
+        "mots": [
+          "paie",
+          "patron",
+          "argent",
+          "payé"
+        ],
+        "question": "Qui vous paie ?",
+        "reponse": "« Qui me paie ? Quelqu'un de la ville qui a de l'argent, voilà ce que je peux dire. C'est le marchand de grain, Marchebise, et il a voulu qu'on tienne ce pont pour retrouver la clé de la foire. Je ne sais rien de plus : ni pourquoi il la veut, ni où elle est. Je ne suis qu'un homme de main, pas un homme qui pose des questions. Vous me l'avez arraché sous la pluie, et je ne le redirai pas devant mes gars. »",
+        "condition": {
+          "ou": [
+            {
+              "rencontre": {
+                "id": "r-hommes-de-main",
+                "issue": "victoire"
+              }
+            },
+            {
+              "rencontre": {
+                "id": "r-hommes-de-main",
+                "issue": "alternative",
+                "alternative": "negocier"
+              }
+            }
+          ]
+        },
+        "revele": [
+          "f-gedeon-a-engage-la-bande"
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "« Vous passez, ou vous restez là à regarder la pluie ? Le pont n'est pas fait pour les curieux. »",
+      "amical": "« Un temps pareil, hein ? Vous n'êtes pas venus pour la foire, j'imagine. Enfin, ce n'est pas mes affaires. »",
+      "hostile": "« Demi-tour, ou on va devoir se parler autrement. »",
+      "variantes": []
+    },
+    "profilCombat": "bandit"
+  },
+  {
+    "id": "rouquin-lamefine",
+    "nom": "Rouquin Lamefine",
+    "titre": "Chef de bande",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "42 ans",
+    "role": "Chef des hommes qui tiennent le moulin : il attend dans la salle des meules.",
+    "lieu": "mou-salle-des-meules",
+    "apparence": "42 ans, humain, cheveux roux qu'il porte courts, barbe de trois jours qui accroche la lueur des braises. Manteau de cuir usé fermé jusqu'au col, mains larges posées calmement sur ses genoux.",
+    "personnalite": {
+      "traits": [
+        "patient",
+        "ironique",
+        "économe de ses mots"
+      ],
+      "voix": "Lente et sèche, il parle à voix basse, avec la politesse d'un homme qui n'a jamais besoin de crier.",
+      "valeurs": [
+        "finir ce qu'on a commencé",
+        "payer ses hommes et les garder"
+      ],
+      "desir": "Finir le travail et toucher sa paie.",
+      "peur": "Perdre ses hommes et sa réputation.",
+      "defaut": "Il ne dit que ce qu'il veut dire, et il fait payer ceux qui insistent."
+    },
+    "attitude": -10,
+    "savoir": [],
+    "secrets": [
+      {
+        "fait": "f-gedeon-a-engage-la-bande",
+        "condition": {
+          "objet": "reconnaissance-de-dette"
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "rq-ici",
+        "mots": [
+          "moulin fermé",
+          "pourquoi fermé",
+          "garde",
+          "bruit de la foire"
+        ],
+        "question": "Que faites-vous ici ?",
+        "reponse": "« On garde un moulin fermé, dit-on. Il pourrait tourner, mais il ne tourne pas, et ce n'est pas mon affaire de le faire tourner. » Il étend ses jambes sur la laine brune du lit de camp, sans quitter la porte des yeux. « Le bruit de la foire ne me regarde pas, ni les clochettes, ni les cris des marchands. Vous non plus, si vous me laissez finir mon travail. Ce qui se passe en bas, sur le pont, ne vous concerne pas davantage. Vous n'avez rien à faire ici, et moi, j'ai beaucoup à faire. »"
+      },
+      {
+        "id": "rq-patron",
+        "mots": [
+          "qui vous paie",
+          "patron",
+          "employeur",
+          "argent"
+        ],
+        "question": "Pour qui travaillez-vous ?",
+        "reponse": "« Un patron qui paie bien, et qui paie d'avance, ce qui est rare dans ce pays. » Il frotte une braise tombée du trépied du bout de sa botte, sans se pencher. « Je ne vous donnerai pas son nom comme ça, pour rien. Un nom, ça se vend, et votre offre ne le vaut pas encore. Si elle le valait, je vous dirais peut-être qui il est. Pour l'instant, retenez seulement ceci : je reçois ma paie sans jamais voir la main qui la donne, et ça me va très bien. »"
+      },
+      {
+        "id": "rq-trouve",
+        "mots": [
+          "fouille",
+          "trouvé",
+          "trappe",
+          "grenier",
+          "cour"
+        ],
+        "question": "Qu'avez-vous trouvé ?",
+        "reponse": "« Mes hommes ont retourné la cour, puis la salle, de la farine jusqu'aux sacs. » Il désigne du menton l'escalier du fond, sans se lever. « Là-haut, la trappe tient bon. Elle ne cède ni à la main ni à l'épaule, et mes hommes attendent une barre à mine pour la faire céder. Je ne vous dirai pas ce que je cherche, parce que vous ne m'aideriez pas à le trouver, et que vous avez déjà assez de questions dans la tête. Laissez-moi finir la fouille. »"
+      },
+      {
+        "id": "rq-arranger",
+        "mots": [
+          "s'arranger",
+          "arrangement",
+          "prix",
+          "accord"
+        ],
+        "question": "On peut s'arranger ?",
+        "reponse": "« Pas à ce prix. » Il ne se redresse pas, pose seulement la main à plat sur la laine brune, comme pour la garder. « Vous me proposez des mots, et des mots, je n'en ai pas besoin. Ils ne paient ni mes hommes ni mon lit. Ma paie vient d'ailleurs, et elle est sûre. Si vous voulez qu'on parle sérieusement, apportez quelque chose qui pèse plus lourd qu'une bourse. Jusque-là, les meules attendront avec moi, et le coffre au pied de mon lit aussi. »",
+        "variantes": [
+          {
+            "condition": {
+              "objet": "reconnaissance-de-dette"
+            },
+            "reponse": "« Montrez-moi ça. » Il se tait un long moment, les yeux sur les braises du trépied, puis il tend la main sans se lever. « Vous avez mieux que des mots, je le vois à votre façon de la tenir. Posez-le sur la meule, et ne le lâchez pas avant que j'aie fini. Je ne dirai rien de ce qu'il contient, c'est votre affaire et la mienne. Je le lirai, et je jugerai de ce qu'il vaut. Ensuite, nous verrons ce que vous voulez vraiment. »"
+          }
+        ]
+      },
+      {
+        "id": "rq-patron-secret",
+        "mots": [
+          "qui est le patron",
+          "nom",
+          "Marchebise",
+          "clé",
+          "moulin"
+        ],
+        "question": "Qui est ce patron ?",
+        "reponse": "« Vous avez fini par le demander. C'est Gédéon Marchebise, le marchand de grain. » Il tapote la laine de son lit du bout des doigts, sans sourire. « Il m'a dit que la clé devait être quelque part ici, dans ce moulin. Pas dans la cour, pas dans la salle, quelque part où l'on ne regarde pas tout de suite. Je n'ai rien trouvé, et vous non plus, sans doute. Voilà ce que je sais, et ce n'est pas peu pour quelqu'un qui n'a jamais su pourquoi on le payait. »",
+        "condition": {
+          "objet": "reconnaissance-de-dette"
+        },
+        "revele": [
+          "f-gedeon-a-engage-la-bande"
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "« Vous êtes entrés. Dites-moi ce que vous voulez, je n'ai pas toute la journée. »",
+      "amical": "« Des gens qui frappent avant d'entrer, ça change. Restez si vous voulez, mais ne touchez à rien. »",
+      "hostile": "« Refermez cette porte, et vite. Je ne vais pas le redire deux fois. »",
+      "variantes": []
+    },
+    "profilCombat": "chef-de-bande"
+  }
+]

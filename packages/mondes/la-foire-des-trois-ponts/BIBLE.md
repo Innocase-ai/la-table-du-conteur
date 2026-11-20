@@ -2,7 +2,7 @@
 
 Document de référence pour tous ceux qui écrivent des données de ce monde. **Les identifiants du registre (§7) sont fixes** : les zones s'y réfèrent entre elles. Ne rien inventer qui contredise ce canon.
 
-> **Statut** : épisode pilote de la saga (F7 de `docs/PRD-SAGA.md`). **V1 (pitch), V2 (canon), V3 (plan) V4 (lieux par zone : village, moulin, Pont-Cassé) et V5 (fiches détaillées des 17 pièces, voir `LIEUX.md`) validés par l'utilisateur le 20/11/2026 ; **V6 du village (`V6-village.md`) validé le 20/11/2026** (reste V6 du moulin et du Pont-Cassé)** : ce qui est marqué « Validé » est **gelé** (changer un élément gelé demande un nouveau oui). Ce qui est marqué « Proposé » (identifiants, espèces, âges, peuples) n'est pas encore validé : il se tranche à V3 et V6.
+> **Statut** : épisode pilote de la saga (F7 de `docs/PRD-SAGA.md`). **V1 (pitch), V2 (canon), V3 (plan) V4 (lieux par zone : village, moulin, Pont-Cassé) et V5 (fiches détaillées des 17 pièces, voir `LIEUX.md`) validés par l'utilisateur le 20/11/2026 ; **V6 du village (`V6-village.md`) et V6 du moulin (`V6-moulin.md`) validés le 20/11/2026** (reste V6 du Pont-Cassé)** : ce qui est marqué « Validé » est **gelé** (changer un élément gelé demande un nouveau oui). Ce qui est marqué « Proposé » (identifiants, espèces, âges, peuples) n'est pas encore validé : il se tranche à V3 et V6.
 
 ## 1. Pitch — *Validé le 20/11/2026 (V1)*
 
@@ -20,6 +20,8 @@ Verdelle, bourg de rivière au pied des collines, tient chaque automne une foire
 - **Gédéon sait tout**. Il a engagé **Rouquin Lamefine**, chef de bande, et quatre hommes de main pour retrouver la clé avant le bailli sans se montrer : ils tiennent le moulin et chassent Tobie.
 - **Mère Pivoine** sait que son fils est en danger et attend un colis de Brun. **Sœur Pervenche** a vu Tobie prier de nuit. **Mathilde Pot-de-Miel** lui a vendu une corde fine. **Brun Forgefer**, ce matin à l'aube, a vu une serrure forcée au moulin.
 - Gédéon n'est pas un monstre : il croit son dû légitime. Il offrira 30 po au groupe « pour oublier l'affaire » (sans effet sur la quête).
+
+**Fait intermédiaire du moulin (V6, M1, validé le 20/11/2026)** : `f-gedeon-a-engage-la-bande` (« Gédéon Marchebise a engagé Rouquin Lamefine et ses hommes pour retrouver la clé de la foire, sans se montrer »), révélé par l'homme de main du pont (après une victoire ou une négociation) et par Rouquin (levier montré) ; c'est la source « témoignage d'un homme de main » du scandale (V7 : condition `f-gedeon-et-la-dette` ou `f-gedeon-a-engage-la-bande`).
 
 **Faits clés (chacun à trois sources jouables : un PNJ, un lieu à fouiller, un objet)** : `f-tobie-a-vole-la-cle` (Pervenche, Mathilde et la corde, la serrure forcée) ; `f-cle-au-grenier` (Tobie, Mère Pivoine, les traces de corde sur la poutre) ; `f-gedeon-et-la-dette` (un homme de main qui parle, la **reconnaissance de dette** dans le coffre de la boutique du grain, Tobie).
 
@@ -44,7 +46,7 @@ Aucune faction autonome (règle du cap du 15/11/2026).
 
 ## 6. Les peuples et les espèces dans ce monde — *Village validé le 20/11/2026 (V6, D1) ; Pont-Cassé et moulin à valider*
 
-Verdelle est un bourg de rivière où se croisent des forains de toutes sortes : une place pour chaque espèce jouable du SRD (drakéide, elfe, gnome, goliath, halfelin, humain, nain, orc, tieffelin), surtout parmi les forains et les marchands. Les PNJ clés sont humains sauf indication contraire. **Au village (V6, D1)** : Aubin Cerfeuil humain, 55 ans ; Colombe Tisserand halfeline, 48 ans ; Gédéon Marchebise humain, 52 ans ; Brun Forgefer nain, 60 ans ; Mathilde Pot-de-Miel gnome, 45 ans ; Sœur Pervenche elfe (a l'air de 40 ans). **Au Pont-Cassé** : Mère Pivoine humaine, 68 ans ; Tobie Pivoine humain, 24 ans. Rouquin Lamefine et l'homme de main du pont : à fixer en V6 (moulin).
+Verdelle est un bourg de rivière où se croisent des forains de toutes sortes : une place pour chaque espèce jouable du SRD (drakéide, elfe, gnome, goliath, halfelin, humain, nain, orc, tieffelin), surtout parmi les forains et les marchands. Les PNJ clés sont humains sauf indication contraire. **Au village (V6, D1)** : Aubin Cerfeuil humain, 55 ans ; Colombe Tisserand halfeline, 48 ans ; Gédéon Marchebise humain, 52 ans ; Brun Forgefer nain, 60 ans ; Mathilde Pot-de-Miel gnome, 45 ans ; Sœur Pervenche elfe (a l'air de 40 ans). **Au Pont-Cassé** : Mère Pivoine humaine, 68 ans ; Tobie Pivoine humain, 24 ans. **Au moulin (V6, M6)** : Rouquin Lamefine humain, 42 ans ; l'homme de main du pont humain, 35 ans.
 
 ## 7. Registre des identifiants fixes
 

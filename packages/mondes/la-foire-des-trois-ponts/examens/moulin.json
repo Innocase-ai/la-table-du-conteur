@@ -1,0 +1,88 @@
+[
+  {
+    "id": "exa-mou-ecriteau",
+    "lieu": "mou-pont-du-meunier",
+    "nom": "L'écriteau",
+    "apercu": "Un écriteau peint en grandes lettres inégales, cloué à la traverse de la barrière, annonce la fermeture du moulin.",
+    "texte": "Vous approchez l'écriteau à hauteur de regard. Les lettres ont été peintes à la main, et la couleur a passé par endroits. Elles ne sont pas de même taille : le F penche, le R s'étale, et le dernier mot déborde sur le bois clair. Quand vous passez le pouce sur la peinture, elle s'effrite en poudre sèche. Les clous qui le retiennent ont rouillé, et leur rouille a coulé en traînées orange sur le chêne gris. L'un d'eux est enfoncé de travers, comme si l'on avait frappé trop vite. Derrière, la corde de la barrière grince au vent, et l'eau gronde sous le pont.",
+    "effets": [],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-mou-serrure",
+    "lieu": "mou-cour",
+    "nom": "La serrure forcée",
+    "apercu": "La porte basse de l'atelier porte une serrure arrachée, dont le bois est encore frais et clair.",
+    "texte": "La serrure n'a pas été crochetée. Quelqu'un l'a forcée de l'extérieur, en faisant levier sur le montant : les éclats de chêne sont blancs et pointus, et ils sentent encore la sève. Le fer de la gâche est tordu, la vis a sauté de sa mortaise. Vous passez un doigt dans la fente, et une poussière fine de bois tombe sur vos gants. Le battant tient mal, il bouge d'un souffle quand vous le poussez. Par l'entrebâillement, vous ne voyez qu'une pénombre grise et l'odeur de bois mouillé.",
+    "effets": [
+      {
+        "fait": "f-cour-fouillee-par-une-bande"
+      }
+    ],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-mou-traces-cour",
+    "lieu": "mou-cour",
+    "nom": "Les traces dans la boue",
+    "apercu": "Dans la boue devant la roue, des traces de charrette se mêlent à de nombreuses bottes qui se croisent.",
+    "texte": "La boue est pleine d'empreintes, et elles ne se ressemblent pas. Il y a des bottes à semelle large, des pointes étroites, des talons usés d'un côté, des semelles neuves qui ont glissé. Elles vont et viennent entre la roue et le mur, certaines par-dessus d'autres, figées dans la terre où la pluie a rempli chaque creux. Les ornières de charrette tournent devant l'arbre de roue, et quelques flaques en gardent le reflet gris. Au bord de la boue, vous touchez une trace : elle est encore souple et froide. Le sol est lisse là où tout ce monde a marché, comme si l'on avait piétiné la même place longtemps.",
+    "effets": [
+      {
+        "fait": "f-cour-fouillee-par-une-bande"
+      }
+    ],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-mou-meules",
+    "lieu": "mou-salle-des-meules",
+    "nom": "Les deux meules",
+    "apercu": "Les deux meules de pierre grise portent des rainures de largeurs différentes, dont l'une est polie en cuvette.",
+    "texte": "Vous posez la main sur la meule du dessous, et la pierre est fraîche, un peu rugueuse. Les rainures ne se ressemblent pas : les unes sont fines comme un trait de plume, les autres larges de la largeur d'un doigt. Au centre de la plus large, la pierre s'est creusée en cuvette, lisse comme une assiette usée. Un siècle de grain a passé là, grain après grain, jusqu'à polir le gris. La poussière de farine glisse sous vos doigts et sent le pain sec. Dans le silence, vous croyez presque entendre le craquement d'une meule qui ne tourne plus.",
+    "effets": [],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-mou-poutre",
+    "lieu": "mou-grenier",
+    "nom": "La poutre maîtresse",
+    "apercu": "La poutre maîtresse du grenier porte, à hauteur de main, des traces de corde dans son bois noirci.",
+    "texte": "Le chêne est noir, poli par les années, et son grain se lit comme une écriture serrée. À hauteur de votre main, la surface est marquée d'une série de sillons parallèles, ni nets ni profonds, qui tournent autour de la poutre. Des fibres arrachées pendent encore, claires, légèrement pelucheuses. Vous passez le doigt dans un sillon : il est assez large pour un cordage, et les bords sont souples, comme frottés. Plus haut, la poutre est intacte, couverte de poussière de grain. Sous vos yeux, la lumière grise glisse sur le bois et révèle chaque entaille.",
+    "effets": [
+      {
+        "fait": "f-traces-de-corde-sur-la-poutre"
+      }
+    ],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-mou-trappe",
+    "lieu": "mou-grenier",
+    "nom": "La trappe de planches",
+    "apercu": "Une trappe de planches, contre le mur ouest, est coincée de ce côté-ci par une cale de bois.",
+    "texte": "La trappe est faite de planches épaisses, posées contre le mur ouest, au ras du plancher. Vous la poussez du pied : elle ne bouge pas, et vous comprenez vite pourquoi. Une cale de bois est glissée sous le rebord, calée contre le sol, serrée à force. Elle n'a rien de neuf, mais elle est nette, sans aucune trace de clou. Le bois est sec, aux nervures marquées, et elle ne se déplace qu'en la forçant. Par les fentes, vous sentez monter l'odeur de braise de la salle en contrebas, chaude et âcre.",
+    "effets": [
+      {
+        "fait": "f-trappe-calee-de-l-interieur"
+      }
+    ],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-mou-trappe-grain",
+    "lieu": "mou-grenier",
+    "nom": "La trappe à grain",
+    "apercu": "Dans le pignon ouest, une petite trappe à grain carrée laisse entrer un courant d'air frais.",
+    "texte": "L'ouverture est carrée, à peine assez large pour une épaule, et le bord n'a ni rebord ni verrou. Vous collez le visage contre l'encadrement : dehors, le vide, le gris de l'air, et très bas le bruit de l'eau qui passe sous une roue. Un courant d'air frais vous fouette les joues et fait trembler la poussière en suspension. Le bois de l'appui est gris, poudré de farine. Plus loin, la pluie tambourine sur les tuiles. Vous reculez d'un pas, et l'air vous semble plus sec.",
+    "effets": [],
+    "variantes": [],
+    "regards": []
+  }
+]

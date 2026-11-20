@@ -1,0 +1,164 @@
+[
+  {
+    "id": "r-hommes-de-main",
+    "nom": "Les hommes de la barrière",
+    "type": "mixte",
+    "lieu": "mou-pont-du-meunier",
+    "difficulte": "faible",
+    "intro": "Vos pas sonnent sur les planches, et la brume se déchire un instant au-dessus de l'eau. Quatre hommes se lèvent d'un même mouvement, comme s'ils n'attendaient que ce moment. Ils se placent en travers de la travée centrale, les bras le long du corps, et celui qui se tient au bout, près de la guérite, lève le menton vers votre chef de file. Ils ne bougent pas davantage. Le plus grand ne quitte pas des yeux votre chef de file, et les planches craquent sous le poids des autres. La rivière continue de se briser contre les piles, et la corde de la barrière grince dans votre dos.",
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 3,
+        "nom": "Hommes de la barrière"
+      },
+      {
+        "profil": "bandit",
+        "nombre": 1,
+        "nom": "L’homme de main du pont",
+        "pnj": "homme-de-main-du-pont"
+      }
+    ],
+    "carte": [
+      "############",
+      "#HH.....mm.#",
+      "#HH..#...m.#",
+      "#HH......m.#",
+      "############"
+    ],
+    "terrain": "foret",
+    "alternatives": [
+      {
+        "id": "negocier",
+        "nom": "Je leur parle posément, sans lever la main.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        },
+        "resume": "Vous parlez sans menace, et vous laissez aux hommes le temps de comprendre qu'on ne vient pas pour les frapper. Le plus grand hésite, puis fait un pas de côté. Les autres suivent, un à un, et s'écartent de la travée centrale. Celui de la guérite finit par poser le menton sur sa main et se rend : il vous laisse passer, sans un mot de plus sur ce qui se trame.",
+        "effets": [
+          {
+            "xp": 17
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "homme-de-main-du-pont",
+              "delta": -10
+            }
+          }
+        ]
+      },
+      {
+        "id": "payer",
+        "nom": "Je leur donne vingt pièces d'or.",
+        "condition": {
+          "pieces": {
+            "min": 20
+          }
+        },
+        "resume": "Ils comptent les pièces une à une, sans se presser, et le plus grand empoche la somme d'un geste sec. Les hommes s'écartent de la travée centrale et laissent le passage libre. Personne ne dit rien de plus. Celui de la guérite regarde la rivière, les lèvres serrées, comme un homme qui connaît la question qu'on pourrait lui poser et qui décide de ne pas y répondre.",
+        "effets": [
+          {
+            "pieces": -20
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "r-rouquin-au-moulin",
+    "nom": "Rouquin Lamefine",
+    "type": "mixte",
+    "lieu": "mou-salle-des-meules",
+    "difficulte": "moderee",
+    "intro": "Le groupe franchit la marche, et l'homme sur le lit de camp se lève sans hâte. Il ne se presse pas : il tire sur sa ceinture, glisse une main sous son manteau de cuir et s'avance d'un pas, juste assez pour que chacun le voie. Son regard passe d'un visage à l'autre, puis s'arrête sur vos mains, comme s'il comptait vos armes avant vos mots. Il ne sort rien. Sa main reste près de la poignée de son cimeterre, et il attend que vous parliez les premiers, parce qu'un homme qui attend a toujours l'avantage.",
+    "monstres": [
+      {
+        "profil": "chef-de-bande",
+        "nombre": 1,
+        "nom": "Rouquin Lamefine",
+        "pnj": "rouquin-lamefine"
+      }
+    ],
+    "carte": [
+      "##############",
+      "#.#.......#..#",
+      "#.#..##....m.#",
+      "#....##......#",
+      "#............#",
+      "#....~~......#",
+      "#............#",
+      "#..HHHHHH....#",
+      "###########.##"
+    ],
+    "terrain": "camp",
+    "alternatives": [
+      {
+        "id": "negocier",
+        "nom": "Je lui tends la reconnaissance de dette et je parle posément.",
+        "condition": {
+          "objet": "reconnaissance-de-dette"
+        },
+        "jet": {
+          "competence": "persuasion",
+          "dd": 11
+        },
+        "resume": "Le papier passe de votre main à la sienne. Rouquin le déplie lentement et le lit deux fois, les lèvres serrées. Il comprend seulement que son patron lui a caché quelque chose. Il range le papier dans sa poche sans un mot, ôte sa main de la poignée de son cimeterre et se rassied sur le lit de camp. Il ne s'en va pas. Il se rend, et il attend la suite.",
+        "effets": [
+          {
+            "xp": 75
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "rouquin-lamefine",
+              "delta": -10
+            }
+          }
+        ]
+      },
+      {
+        "id": "acheter",
+        "nom": "Je lui offre soixante pièces d'or pour qu'il lâche l'affaire.",
+        "condition": {
+          "et": [
+            {
+              "objet": "reconnaissance-de-dette"
+            },
+            {
+              "pieces": {
+                "min": 60
+              }
+            }
+          ]
+        },
+        "resume": "Vous posez la bourse sur la meule, et le tintement des soixante pièces fait tourner la tête de Rouquin. Il compte sans se presser, une pièce après l'autre, du bout de l'index. Il jette un regard au papier que vous tenez serré, puis tend la main pour la bourse, sans sourire. La salle retrouve son silence, les meules muettes, et l'affaire est close pour lui.",
+        "effets": [
+          {
+            "pieces": -60
+          },
+          {
+            "xp": 75
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [
+        "commun-decouverte-p1"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": []
+  }
+]
