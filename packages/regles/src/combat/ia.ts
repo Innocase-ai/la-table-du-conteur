@@ -237,7 +237,10 @@ function choixCibles(etat: EtatCombat, c: Combattant, k: Carte): string[][] {
     return tombe(ca) - tombe(cb) || ca.pv - cb.pv || distanceCases(ca, c) - distanceCases(cb, c);
   });
   if (k.nbCibles > 1 && k.categorie !== 'monstre') return [tries.slice(0, k.nbCibles)];
-  return tries.slice(0, 3).map((x) => [x]);
+  const options = tries.slice(0, 3).map((x) => [x]);
+  // F6 (lot 9) : une multiattaque de monstre peut aussi se répartir : la première attaque sur le plus faible, les suivantes sur le deuxième (l'IA compare).
+  if (k.categorie === 'monstre' && k.nbCibles > 1 && tries.length > 1) options.push([tries[0]!, tries[1]!]);
+  return options;
 }
 
 /** Les créatures qu'une zone atteindrait si elle était posée en `point` (comme `casesDeZone` de `sorts.ts`). */

@@ -114,6 +114,15 @@ function ciblesAttaque(etat: EtatCombat, c: Combattant, metres: number): string[
   return adversairesCiblables(etat, c).filter((e) => aPortee(etat, c, e, metres)).map((e) => e.id);
 }
 
+/** La cible de remplacement d'une attaque de multiattaque : l'adversaire debout à portée de cette attaque qui a le moins de PV, ou rien. */
+function prochaineCible(etat: EtatCombat, c: Combattant, actionId: string): Combattant | undefined {
+  const sous = c.actionsMonstre.find((x) => x.id === actionId);
+  const portee = sous?.portee?.type === 'distance' ? (sous.portee.longue ?? sous.portee.normale ?? 1.5) : (sous?.portee?.allonge ?? 1.5);
+  return ennemis(etat, c)
+    .filter((e) => e.pv > 0 && aPortee(etat, c, e, portee))
+    .sort((a, b) => a.pv - b.pv)[0];
+}
+
 /** Les chiffres d'un sort pour l'interface : attaque de sort (bonus du lanceur), sauvegarde imposée (DD du lanceur), dégâts. */
 function statsDeSort(sort: Sort, c: Combattant): StatsCarte | undefined {
   const r = sort.resolution;
@@ -661,8 +670,11 @@ function executerCommande(etat: EtatCombat, ctx: Contexte, cmd: Commande): Resul
         let i = 0;
         for (const m of action.multiattaque) {
           for (let n = 0; n < m.nombre; n++) {
-            const cible = cibles[Math.min(i++, cibles.length - 1)]!;
-            if (cible.mort || cible.pv <= 0) continue;
+            let cible: Combattant | undefined = cibles[Math.min(i++, cibles.length - 1)]!;
+            // F6 (lot 9) : multiattaque redirigée. Quand la cible choisie est tombée, l'attaque suivante ne se perd plus : elle va à l'adversaire encore debout, à portée de
+            // cette attaque, qui a le moins de PV (SRD : on choisit chaque cible au moment de l'attaque).
+            if (cible.mort || cible.pv <= 0) cible = prochaineCible(etat, c, m.action);
+            if (!cible) continue;
             attaqueMonstre(etat, c, cible, m.action);
           }
         }

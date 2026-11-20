@@ -265,3 +265,22 @@ Trois réactions de plus se jouent (quatre profils : gelée ocre, pouding noir, 
 **Toujours pas jouées (5 réactions, 5 profils)** : Nuage d'encre des pieuvres (l'eau et la visibilité nulle n'existent pas), Hurlement du criard (une alerte sans effet de combat), Protection du garde animé (le bonus de CA va au porteur d'une amulette : aucun porteur n'existe dans un combat), Antennes réactives de l'oxydeur (rejoue l'action Antennes, dont la corrosion de l'équipement n'est pas modélisée), et le contresort de la liche et du mage (il faudrait des sorts en réaction et un test de lanceur).
 
 **Mesure** : `pnpm simuler 10 rapide` et `pnpm simuler:haut` **inchangés** (aucun de ces quatre monstres n'y figure). Tests : `tests/combat-reactions-monstres-3.test.ts` (9).
+
+### IA : multiattaque redirigée et répartie (F6, lot 9)
+
+- **Affaiblissements** : **déjà valorisés** depuis le commit `83708f9` (`evaluer`, `ia.ts` : `valeurEntraves` compte, pour l'adversaire, états gênants, malus aux jets, Vitesse réduite, avantage contre lui, brûlure ; test `tests/ia-affaiblissements-zones.test.ts`). Le point faible n° 1 de l'état des lieux du 14/11 est donc réglé ; rien n'a été changé ici.
+- **Multiattaque redirigée** (`combat/cartes.ts`, `prochaineCible`) : quand la cible choisie d'une multiattaque de monstre est tombée (morte ou à 0 PV), l'attaque suivante ne se perd plus : elle va à l'adversaire **encore debout**, **à portée de cette attaque**, qui a le moins de PV (SRD : on choisit chaque cible au moment de l'attaque). Un héros déjà à terre n'est jamais visé ; s'il n'y a personne à portée, l'attaque est perdue comme avant.
+- **Multiattaque répartie** (`combat/ia.ts`, `choixCibles`) : en plus de « tout sur un seul adversaire », l'IA propose « la première attaque sur le plus faible, les suivantes sur le deuxième » et compare.
+
+**Mesure** (`pnpm simuler 10 rapide`, avant = référence du lot 8) :
+
+| Rencontre | Avant | Après |
+|---|---|---|
+| Embuscade gobeline | 100 %, 3,8 rounds, 83 % des PV | 100 %, 3,8 rounds, 84 % |
+| La crypte | 100 %, 6,7 rounds, 51 %, 0,2 mort | **90 %**, 6,7 rounds, **40 %**, 0,5 mort |
+| La bande et ses ogres | 100 %, 4,9 rounds, 85 % | 100 %, **4,5** rounds, 86 % |
+| Le camp hobgobelin | 90 %, 7,3 rounds, 50 % | **100 %**, 7,6 rounds, 54 % |
+| Le gué des brigands | 100 %, 4,3 rounds, 90 % | 100 %, 4,3 rounds, 91 % |
+| Le col gelé | 60 %, 10,2 rounds, 20 %, 1,8 mort | 60 %, **8,5** rounds, **28 %**, **0,4** mort |
+
+Dix parties, ±15 % de bruit : le sens est lisible (les monstres finissent leurs victimes plus vite, la crypte est plus dure, le col gelé moins meurtrier), pas les écarts d'une ligne. **Banc de haut niveau** (`pnpm simuler:haut`), les boss à multiattaque pèsent plus : dragon blanc adulte 50 % → **20 %** de victoires (PV restants 18 % → 4 %), d'airain 60 % → **30 %**, kraken 30 % → **10 %**, vampire 100 % → **90 %** ; dragon rouge 20 % → 30 %, aboleth et liche inchangés (liche toujours 0 %). Tests : `tests/combat-multiattaque-redirigee.test.ts` (5).
