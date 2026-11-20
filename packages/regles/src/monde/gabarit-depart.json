@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "nom": "Lieu de départ de village",
+  "resume": "Un village (ou un fort, un quartier) où chaque pièce offre quelque chose à faire. Liste d'emplacements et barème indicatif : voir docs/GABARIT-LIEU-DE-DEPART.md.",
+  "couches": {
+    "min": 2,
+    "max": 4,
+    "liste": [
+      { "id": "pnj", "libelle": "un PNJ", "aide": "quelqu'un à qui parler (un PNJ dont le lieu est cette pièce, ou qui y passe)" },
+      { "id": "contenant", "libelle": "un contenant", "aide": "un coffre, une cache, une étagère à fouiller (trésor de la pièce)" },
+      { "id": "obstacle", "libelle": "un verrou ou un piège", "aide": "un trésor verrouillé ou piégé, un piège, une énigme, une porte verrouillée" },
+      { "id": "adversaire", "libelle": "un adversaire avec butin", "aide": "une rencontre de combat dans la pièce, dont les adversaires laissent un butin" },
+      { "id": "service", "libelle": "un service", "aide": "une boutique, un soin, une nuit, un repas, une forge (service du lieu ou d'un PNJ présent)" },
+      { "id": "objet", "libelle": "un objet ou un détail", "aide": "un objet à ramasser, un détail à examiner, un tableau à vivre" }
+    ]
+  },
+  "emplacements": [
+    { "id": "batiments", "libelle": "Bâtiments d'une pièce", "nombre": { "min": 4 }, "pieces": { "min": 1, "max": 1 }, "aide": "au moins 4 bâtiments d'une seule pièce, directement dans le lieu de départ (forge, grenier, moulin, chapelle, échoppe…)" },
+    { "id": "taverne", "libelle": "Taverne", "pieces": { "min": 2, "max": 3 }, "aide": "une taverne de 2 ou 3 pièces visitables (salle commune, cave, cour, étage), avec un tavernier" },
+    { "id": "chambre", "libelle": "Chambre (service de repos)", "aide": "une chambre qui est un SERVICE de la taverne (service de type « nuit »), pas une pièce à visiter" },
+    { "id": "sanctuaire", "libelle": "Sanctuaire", "pieces": { "min": 1, "max": 1 }, "aide": "un sanctuaire d'une pièce, avec un soigneur (PNJ qui a un service de type « soins »)" },
+    { "id": "maison-du-chef", "libelle": "Maison du chef", "pieces": { "min": 2, "max": 3 }, "aide": "la maison (ou la halle) du chef du village : 2 ou 3 pièces, le chef y est présent" },
+    { "id": "marchand", "libelle": "Marchand", "aide": "au moins un marchand (PNJ qui a une boutique) dans le lieu de départ" }
+  ]
+}

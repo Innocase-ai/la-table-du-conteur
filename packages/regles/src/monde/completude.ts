@@ -1,6 +1,7 @@
 // Complétude d'un monde : ce qui MANQUE pour qu'une histoire soit livrable (images, cartes, scènes, voix, positions, estimation).
 // Le validateur (`validation.ts`) vérifie que ce qui existe est juste ; ce module cherche ce qui n'existe pas encore.
 // Pur : les fichiers (images communes, voix, manifeste) sont lus par l'appelant (`outils/monde/cli.ts`).
+import { avisGabarit } from './gabarit-depart';
 import { verifierImages, type IdsCommuns, type ManifesteImages } from './images';
 import type { DonneesMonde } from './schemas';
 
@@ -8,7 +9,7 @@ export type Gravite = 'manque' | 'avis';
 
 export interface Ecart {
   gravite: Gravite;
-  /** Rubrique : images, cartes, positions, scenes, voix, publication, textes. */
+  /** Rubrique : images, cartes, positions, scenes, voix, publication, textes, densite et gabarit (lieu de départ, F2). */
   categorie: string;
   /** Ce qui manque (un id, un nom de fichier…). */
   cible: string;
@@ -132,6 +133,10 @@ export function verifierCompletude(e: EntreesCompletude): Ecart[] {
   if (dm.monde.statut === 'publie' && !e.estimationPresente) manque('publication', 'estimation.json', 'monde publié sans estimation (pnpm monde estimer)');
   if (dm.monde.statut === 'brouillon') avis('publication', dm.monde.id, "monde en brouillon : l'histoire n'apparaît pas dans le jeu");
   if (dm.quetes.size && dm.monde.chapitres.every((c) => c.quetes.length === 0)) avis('publication', dm.monde.id, "aucun chapitre ne liste ses quêtes (`chapitres[].quetes`, à remplir à la publication)");
+
+  // 8. Le lieu de départ du gabarit (F2, `gabarit-depart.ts`) : pièces vides ou pauvres, emplacements manquants. Uniquement pour un monde qui
+  // déclare `depart.gabarit` (opt-in) ; toujours des AVIS (barème indicatif), jamais un manque.
+  for (const a of avisGabarit(dm)) avis(a.categorie, a.cible, a.detail);
 
   return ecarts;
 }

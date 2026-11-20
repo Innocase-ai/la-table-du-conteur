@@ -25,10 +25,12 @@ Elle liste, avec un code de sortie 1 s'il manque quelque chose :
 | `scenes` | pas de scène d'ouverture (`debut`) ; image d'un plan absente du manifeste ; fin sans scène | écrire `scenes/scenes.json` (skill `creer-monde`, étape 12 ; images déjà faites, pas de nouvelle dépense) |
 | `voix` | plan de scène sans voix | `pnpm voix generer <monde> --go` (voix officielle du Maître de jeu, jamais un autre timbre) |
 | `textes` | **manque** : un champ encore « À écrire : … » ou « à définir » (squelette de `pnpm monde nouveau`, import de la Forge) ; avis : lieu sans récit d'arrivée ou sans accroche | rédacteur Haiku, d'après la fiche de niveau 2 |
+| `densite` | **avis seulement** (jamais un manque), uniquement pour un monde qui déclare `depart.gabarit` : une pièce du lieu de départ vide ou à une seule couche (barème : 2 à 4 couches parmi PNJ, contenant, verrou ou piège, adversaire avec butin, service, objet ; pas toutes partout) | étoffer la pièce (un PNJ, un contenant, un service, un détail à examiner) ou la fondre dans une pièce voisine ; ne jamais remplir mécaniquement ; référence `docs/GABARIT-LIEU-DE-DEPART.md` |
+| `gabarit` | **avis seulement**, idem : un emplacement du gabarit qui manque (4 bâtiments d'une pièce, taverne de 2 ou 3 pièces, chambre = service de repos, sanctuaire d'une pièce avec soigneur, maison du chef de 2 ou 3 pièces avec le chef, marchand), un lieu de départ hors de 10 à 13 pièces | écrire l'emplacement, ou le **déclarer** dans `depart.gabarit.emplacements` s'il existe mais n'est pas reconnu (nom du lieu, type de service) |
 | `contrats` | des lieux annoncent des contrats que personne n'a écrits | skill `creer-contrats` |
 | `publication` | monde publié sans `estimation.json` ; aucun chapitre ne liste ses quêtes ; monde encore en brouillon | `pnpm monde estimer <monde>`, `chapitres[].quetes`, puis `statut` à `publie` après accord |
 
-Un **manque** bloque la livraison ; un **avis** se lit et se décide.
+Un **manque** bloque la livraison ; un **avis** se lit et se décide (les avis `densite` et `gabarit` n'ont jamais fait échouer une commande).
 
 ## Étape 2 : ce que la commande ne voit pas (à vérifier soi-même)
 

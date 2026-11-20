@@ -23,6 +23,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 
 - `docs/JOURNAL.md` : l'histoire du projet, **lire ses dernières entrées en premier** pour savoir où on en est.
 - **`docs/PRD-SAGA.md`** : le cap du 15/11/2026 (saga d'épisodes courts indépendants, lieu de départ dense, quêtes en grammaire, butin par difficulté, fiches F1 à F8, règles de non-régression) ; **le lire avant tout chantier de gameplay ou d'histoire**.
+- **`docs/GABARIT-LIEU-DE-DEPART.md`** : le gabarit du lieu de départ d'un épisode (emplacements, barème de 2 à 4 couches par pièce, champ `depart.gabarit`, avis de `pnpm monde manque`) ; à lire avant de concevoir ou de relire un village de départ.
 - `docs/PRD.md` (conception), `docs/ARCHITECTURE-CIBLE.md` (noyau à modules), `docs/COMBAT.md`, `docs/CREATION.md`, `docs/MONDES.md`, `docs/M2-IMAGES.md`, `docs/M4-CONTEUR.md`, `docs/SRD-INVENTAIRE.md`.
 - Code : `packages/regles` (moteur en TypeScript pur), `packages/donnees` (SRD en JSON, charte visuelle), `packages/mondes` (les histoires, un dossier par monde), `apps/jeu` (client Vite + React), `apps/bureau` (coquille de bureau Tauri), `outils/` (scripts en ligne de commande).
 - Images communes à tous les mondes : 529 images du catalogue SRD (armes, armures, matériel, outils, objets magiques) dans `apps/jeu/src/equipement/`, prompts dans `packages/donnees/visuel/objets-communs.json`, `idImageCommune` regroupe les variantes ; `pnpm images equipement --max 500 --partie i/n --go` pour en refaire.

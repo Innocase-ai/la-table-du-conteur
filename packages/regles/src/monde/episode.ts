@@ -64,7 +64,9 @@ export function conseilsEpisode(dm: DonneesMonde, srd: Donnees): string[] {
   for (const x of examensDe(dm).examens) occupe.add(x.lieu);
   for (const x of evenementsChoixDe(dm).evenements) occupe.add(x.lieu);
   for (const ev of dm.evenements.values()) if (ev.lieu) occupe.add(ev.lieu);
-  const vides = pieces.filter((l) => !occupe.has(l.id) && !l.rencontres.length && !l.services.length && !l.faits.length).map((l) => l.id);
+  // Un monde qui déclare le gabarit de lieu de départ (`depart.gabarit`, F2) a un contrôle de densité plus fin (`gabarit-depart.ts`, dans
+  // `pnpm monde manque` et `verifier`) : on ne répète pas ici l'avis grossier « pièces vides ».
+  const vides = dm.monde.depart.gabarit ? [] : pieces.filter((l) => !occupe.has(l.id) && !l.rencontres.length && !l.services.length && !l.faits.length).map((l) => l.id);
   if (vides.length) avis.push(`Épisode : pièces vides du lieu de départ (ni PNJ, ni contenant, ni service, ni rencontre, ni détail à examiner : visez 2 à 4 « couches » par pièce) : ${liste(vides)}.`);
 
   // 2. Les quêtes (PRD-SAGA §2.2 et F3) : 3 à 8, dont une seule principale, sans quête personnelle ni de faction autonome.

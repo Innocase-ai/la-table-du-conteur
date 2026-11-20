@@ -687,6 +687,11 @@ export const Monde = z.object({
     // Signes « ! » (quête à confier) et « ? » (rapport attendu) au-dessus des PNJ. Vrai par défaut ; `false` : le joueur cherche et
     // parle sans être guidé (règle de RPG du 16/11/2026).
     signesDeQuete: z.boolean().default(true),
+    // Le lieu de départ suit le gabarit de lieu de départ (facultatif, F2 du 20/11/2026, `docs/GABARIT-LIEU-DE-DEPART.md`) : sa seule présence
+    // (même `{}`) active le contrôle de densité de `pnpm monde manque` et `pnpm monde verifier` (des AVIS, jamais d'erreur) ; elle ne change rien
+    // au jeu. `emplacements` : l'auteur dit quel lieu tient quel emplacement (`taverne`, `sanctuaire`, `maison-du-chef`, `marchand`, `batiments`)
+    // quand le contrôle ne le reconnaît pas tout seul ; un id de lieu, ou une liste d'ids pour `batiments`. Absent : le comportement d'avant.
+    gabarit: z.object({ emplacements: z.record(z.string(), z.union([Id, z.array(Id).min(1)])).default({}) }).optional(),
   }),
   // Direction artistique, qui complète la charte graphique commune.
   direction: z.object({ style: Texte, palette: z.array(Texte).min(2), motsCles: z.array(Texte).default([]), interdits: z.array(Texte).default([]) }),

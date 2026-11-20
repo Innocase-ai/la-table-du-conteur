@@ -15,7 +15,7 @@ Un monde est un dossier de données (`packages/mondes/<id>/`) lu par le même mo
 ## Le format : un épisode de la saga (cap du 15/11/2026)
 
 Le produit est une **saga d'épisodes courts et indépendants** (`docs/PRD-SAGA.md`, à lire avant tout chantier d'histoire), avec les mêmes héros et un niveau par épisode. La « saison 1 » couvre les niveaux 1 à 5. Un épisode :
-- **un lieu de départ dense**, écrit à la main : un village, un quartier ou un château d'environ **10 à 13 pièces visitables**, chacune avec une image et quelque chose à faire. Gabarit (PRD F2) : 4 bâtiments d'une pièce, une taverne de 2 ou 3 pièces avec une chambre qui est un service de repos, un sanctuaire d'une pièce avec un soigneur, la maison du chef en 2 ou 3 pièces, un marchand. Le barème est indicatif : 2 à 4 « couches » par pièce parmi PNJ, contenant, verrou ou piège, adversaire avec butin, service, objet ; pas toutes les couches partout ;
+- **un lieu de départ dense**, écrit à la main : un village, un quartier ou un château d'environ **10 à 13 pièces visitables**, chacune avec une image et quelque chose à faire. Gabarit (PRD F2, **référence : `docs/GABARIT-LIEU-DE-DEPART.md`**, contrôlé par `pnpm monde manque` quand `monde.json` déclare `depart.gabarit`) : 4 bâtiments d'une pièce, une taverne de 2 ou 3 pièces avec une chambre qui est un service de repos, un sanctuaire d'une pièce avec un soigneur, la maison du chef en 2 ou 3 pièces, un marchand. Le barème est indicatif : 2 à 4 « couches » par pièce parmi PNJ, contenant, verrou ou piège, adversaire avec butin, service, objet ; pas toutes les couches partout ;
 - **2 à 4 sites de quête** ;
 - **3 à 8 quêtes, dont une seule principale** (le fil rouge). L'épisode 1 est plus court : 2 ou 3 quêtes, 2 ou 3 combats. **Pas de quête personnelle ni de faction autonome**, en faire des secondaires. Une quête a l'un des quatre buts **tuer, trouver, apporter, libérer**, résolu par un ou deux verbes (combat, fouille, énigme, discussion, désamorçage, crochetage). Il n'y a de porte de sortie (négocier, payer) que si l'adversaire parle ;
 - un **butin proportionnel à la difficulté et plafonné au niveau** du groupe, en trois degrés : *tiré* (tables), *nommé* (écrit, avec du lore, en récompense de quête secondaire), *unique* (1 à 3 par épisode, fixes, rattachés à la quête principale ou au boss) ;
@@ -30,6 +30,7 @@ Le produit est une **saga d'épisodes courts et indépendants** (`docs/PRD-SAGA.
 | `format` | `"episode"` | Active le **profil « épisode » du validateur** (ci-dessous). Sans lui, l'épisode reçoit les avis « Richesse » d'un chapitre de 30 lieux. Ne change rien au jeu. |
 | `niveaux` | `{ "min": N, "max": N + 1 }` | Le niveau de départ, puis le niveau atteint à la fin (le Médaillon : 1-2, 300 PX). Le butin et les raretés se jugent sur `max`. |
 | `groupe.conseille` | 4 ou 6 | Taille du groupe annoncée au joueur ; les combats s'adaptent de 1 à 6 héros. Pour 4, mettre les renforts en derniers groupes. |
+| `depart.gabarit` | `{}` (épisode) | Active le **contrôle de densité du lieu de départ** (F2) : `pnpm monde manque` et `verifier` signalent, par des **avis**, une pièce vide ou à une seule couche et un emplacement du gabarit qui manque (taverne, chambre, sanctuaire et soigneur, maison du chef, marchand, 4 bâtiments). Un emplacement que le contrôle ne reconnaît pas se déclare : `{ "emplacements": { "maison-du-chef": "la-halle" } }`. Ne change rien au jeu. Référence : `docs/GABARIT-LIEU-DE-DEPART.md`. |
 | `depart.signesDeQuete` | `false` | Coupe les « ! » et « ? » au-dessus des PNJ : le joueur cherche et parle sans être guidé (règle du 16/11/2026). |
 | `depart.orMax` | 10 pour un village pauvre, sinon rien | Plafond d'or de départ **par héros** (≈ 23 po sans plafond) : un groupe riche de ses kits achèterait tout le stock du hub. |
 | `piegesACherche` | `true` (épisode) | La fouille ne révèle plus les pièges : le joueur les cherche (bouton « Chercher un piège » sur chaque contenant, « Chercher des pièges » pour la pièce ; une tentative par héros et par cible). Chaque piège doit rester trouvable (`docs/MONDES.md`, « Pièges à chercher », skill `creer-pieges-tresors`). |
@@ -40,7 +41,7 @@ Le produit est une **saga d'épisodes courts et indépendants** (`docs/PRD-SAGA.
 
 **Le profil « épisode » du validateur** (`"format": "episode"`, `packages/regles/src/monde/episode.ts`). Il remplace les avis « Richesse » par des avis « Épisode : … », qui sont des **avis** à lire et à décider, jamais des erreurs :
 - le lieu de départ fait-il 10 à 13 pièces, lui compris ? Le lieu de départ est le lieu `depart.lieu`, ou son parent s'il n'a pas de pièces ; régions et routes sont exceptées ;
-- y a-t-il des **pièces vides**, sans PNJ, contenant, piège, énigme, examen, événement, rencontre, service ni fait ?
+- y a-t-il des **pièces vides**, sans PNJ, contenant, piège, énigme, examen, événement, rencontre, service ni fait ? (avec `depart.gabarit`, ce contrôle est remplacé par celui de densité : 2 à 4 couches par pièce, et les emplacements du gabarit) ;
 - 3 à 8 quêtes, une seule principale, aucune quête `personnelle` ni `faction` ;
 - **aucun `lieu` sur les étapes de quête** ;
 - **au moins 4 sujets** pour chaque PNJ qui parle (qui a un sujet, ou qui se trouve au lieu de départ) ;
@@ -201,7 +202,7 @@ Ses conseils de recette signalent les pièces vides, les quêtes injouables, les
    - des dossiers vides, dont `dilemmes/`.
 
    Le squelette ne valide pas tant que le lieu racine et le hub n'existent pas.
-4. Dans `monde.json`, pose les réglages d'un épisode (tableau plus haut) : `"format": "episode"`, `depart.signesDeQuete: false`, `"piegesACherche": true`, `"butinPlafonne": true`, `depart.orMax` si le lieu est pauvre, `niveaux`, `groupe.conseille`. Garde `"statut": "brouillon"` jusqu'à la fin.
+4. Dans `monde.json`, pose les réglages d'un épisode (tableau plus haut) : `"format": "episode"`, `depart.gabarit: {}`, `depart.signesDeQuete: false`, `"piegesACherche": true`, `"butinPlafonne": true`, `depart.orMax` si le lieu est pauvre, `niveaux`, `groupe.conseille`. Garde `"statut": "brouillon"` jusqu'à la fin.
 
 ### Étape 3 — Écrire le canon (→ V2)
 
