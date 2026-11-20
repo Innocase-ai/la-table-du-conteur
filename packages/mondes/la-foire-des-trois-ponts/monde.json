@@ -3,8 +3,8 @@
   "version": 1,
   "statut": "brouillon",
   "nom": "La Foire des Trois Ponts",
-  "resume": "À écrire : le décor, la situation, le conflit central (2 à 3 phrases).",
-  "accroche": "À écrire : la phrase qui donne envie de jouer.",
+  "resume": "Verdelle, bourg de rivière au pied des collines, s'apprête à ouvrir sa foire de trois jours. Mais la clé du coffre de la foire, qui garde les droits de place et la bourse du concours, a disparu. Le groupe arrive la veille de l'ouverture et doit démêler une affaire où chacun a quelque chose à cacher.",
+  "accroche": "Une clé volée, une foire qui ouvre à l'aube, et une question qui n'a rien de simple : qui doit payer ?",
   "ton": [
     "chaleureux",
     "malicieux"
@@ -18,19 +18,37 @@
   },
   "depart": {
     "lieu": "verdelle",
-    "intro": "À écrire : l'arrivée du groupe, en quelques phrases concrètes.",
+    "intro": "Le groupe arrive à Verdelle la veille de la foire, en fin d'après-midi, la poussière de la route encore aux bottes. Les premiers étals sont déjà dressés le long de la rivière, et les forains s'affairent sous les lanternes qu'on accroche. Au bourg, on parle à voix basse : la clé du coffre a disparu, et la foire doit ouvrir à l'aube quoi qu'il arrive.",
     "gabarit": {},
     "signesDeQuete": false,
     "orMax": 20
   },
   "direction": {
-    "style": "À écrire : le style visuel (matières, lumière, ambiance).",
+    "style": "Bois de chêne clair, toile rayée rouge brique et crème, pierre claire des ponts et lanternes de papier ocre. Lumière dorée d'automne et brume de rivière au petit matin, pour une ambiance chaleureuse de fête de village.",
     "palette": [
-      "à définir",
-      "à définir"
+      "ocre",
+      "vert mousse",
+      "rouge brique",
+      "crème",
+      "bleu rivière"
     ],
-    "motsCles": [],
-    "interdits": []
+    "motsCles": [
+      "toile rayée",
+      "lanterne",
+      "chêne clair",
+      "pierre claire",
+      "brume",
+      "étal",
+      "lumière dorée",
+      "fête de village"
+    ],
+    "interdits": [
+      "gore",
+      "magie ostentatoire",
+      "armures étincelantes",
+      "néons ou éléments modernes",
+      "ambiance funèbre"
+    ]
   },
   "chapitres": [
     {
@@ -40,7 +58,7 @@
         "min": 1,
         "max": 2
       },
-      "resume": "À écrire.",
+      "resume": "Verdelle, la veille de la foire : le groupe apprend la disparition de la clé du coffre et commence à remonter la piste.",
       "lieux": [
         "verdelle-region"
       ],
@@ -69,5 +87,6 @@
         "phrase": "Tobie Pivoine, funambule de Verdelle, se souvient de qui a payé sa dette."
       }
     ]
-  }
+  },
+  "teasing": "Verdelle sent la cannelle, le pain chaud et la sciure fraîche. Sous une lumière d'automne, les toiles rayées rouge brique et crème claquent au vent, les forains crient leurs marchandises, les lanternes de papier ocre se balancent au-dessus des étals, et la brume de la rivière monte doucement entre les ponts de pierre claire. Demain, la foire ouvrira ses portes à l'aube pour trois jours de fête.\n\nMais ce soir, la fête a un goût amer. Dans la nuit, la clé du coffre de la foire a disparu, avec les droits de place et la bourse du concours : trois cents pièces d'or. Sans elle, le coffre reste scellé, et le bailli Aubin Cerfeuil ne dort plus. Le groupe arrive la veille de l'ouverture, et tout le bourg bruisse déjà de la nouvelle.\n\nChacun, à Verdelle, a une bonne raison de vous parler et une meilleure raison de se taire. Une question vous suivra jusqu'au bout : qui doit payer, le voleur désespéré ou celui qui l'a acculé ?"
 }
