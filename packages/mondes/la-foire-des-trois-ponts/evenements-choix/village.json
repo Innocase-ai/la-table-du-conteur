@@ -1,0 +1,44 @@
+[
+  {
+    "id": "evt-la-corde-des-funambules",
+    "titre": "La corde des funambules",
+    "lieu": "verdelle",
+    "ouverture": "entree",
+    "visuel": "La corde des funambules est tendue au-dessus de la vasque de la fontaine, entre ses deux poteaux de chêne, à la hauteur d'un homme. La lumière dorée de l'automne la fait luire, et l'ombre des poteaux s'allonge sur les pavés mouillés.",
+    "narration": "Une corde n'est jamais qu'une corde, jusqu'au jour où quelqu'un décide de marcher dessus. Celle-ci attend depuis le matin, tendue et immobile, et elle a tout l'air d'un défi lancé à ceux qui ont le pied sûr. Quelques pas au-dessus de l'eau, les bras écartés, et les forains feront silence pour vous voir. Personne ne vous y oblige, et chacun a le choix de sa prudence. Qu'allez-vous faire : tenter la traversée, examiner la corde de près, ou passer votre chemin ?",
+    "variantes": [],
+    "choix": [
+      {
+        "id": "traverser",
+        "libelle": "Tenter la traversée.",
+        "jet": {
+          "competence": "acrobaties",
+          "dd": 8
+        },
+        "effets": [
+          {
+            "pieces": 2
+          }
+        ],
+        "echec": [
+          {
+            "temps": 0.5
+          }
+        ],
+        "resultat": "Vous posez le pied sur la corde, les bras écartés, et vous avancez pas à pas jusqu'à l'autre poteau, sans un faux mouvement. Les forains applaudissent, et un pourboire de deux pièces d'or glisse dans votre main. La corde, revenue à l'équilibre, ondule encore longtemps après votre pas, et vous descendez du poteau le sourire aux lèvres, sous les rires contents de la place.",
+        "resultatEchec": "Le pied dérape à mi-corde, les bras font un moulin, et c'est un grand plouf : vous voilà dans la vasque, à patauger dans une eau claire et fraîche. Les forains rient aux éclats autour de la fontaine. L'eau ne fait aucun mal, mais elle coule de vos manches et de vos bottes. La salle chaude du Héron Gris vous attend pour vous sécher."
+      },
+      {
+        "id": "regarder",
+        "libelle": "Examiner la corde de près.",
+        "effets": [
+          {
+            "fait": "f-noeud-de-funambule"
+          }
+        ],
+        "resultat": "Vous vous approchez du poteau de chêne et examinez les nœuds de près. Au pied du poteau, l'un d'eux attire votre regard : une boucle serrée, à la forme particulière, qu'on appelle un nœud de funambule. Vous retenez ce nœud, qui ne ressemble à aucun autre, et vous le gardez en tête pour la suite de votre visite."
+      }
+    ],
+    "partir": "Passer son chemin."
+  }
+]

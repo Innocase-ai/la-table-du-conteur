@@ -1,0 +1,157 @@
+[
+  {
+    "id": "ver-tre-fontaine",
+    "nom": "La cache de la margelle",
+    "lieu": "verdelle",
+    "contenant": "cache",
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "perception"
+      }
+    },
+    "contenu": {
+      "pieces": {
+        "po": 5
+      },
+      "objets": [
+        {
+          "objet": "piece-de-foire-ancienne",
+          "quantite": 1
+        }
+      ]
+    },
+    "description": "Sous la margelle de la fontaine, une pierre plus claire que le reste a été descellée puis remise en place. Elle est presque invisible d'un regard distrait, et la margelle, usée par les mains, garde pourtant des traces de pas et d'eau sur son rebord."
+  },
+  {
+    "id": "ver-tre-tonneau",
+    "nom": "Le tonneau du fond",
+    "lieu": "ver-heron-cave",
+    "contenant": "autre",
+    "acces": {},
+    "gardien": "r-rats-de-la-cave",
+    "contenu": {
+      "pieces": {
+        "po": 8
+      },
+      "objets": [
+        {
+          "objet": "vin-fin",
+          "quantite": 1
+        }
+      ]
+    },
+    "description": "Au bout de la rangée, derrière les autres, un tonneau de chêne porte sur son fond un rond de cire rouge, que nul autre ne porte. Ses cercles de fer sont rouillés comme ceux des autres, et son bouchon paraît scellé."
+  },
+  {
+    "id": "ver-tre-carnet",
+    "nom": "Le carnet du bailli",
+    "lieu": "ver-bailli-cabinet",
+    "contenant": "etagere",
+    "acces": {},
+    "contenu": {
+      "pieces": {
+        "po": 12
+      }
+    },
+    "description": "Un carnet à couverture de toile est posé sur l'étagère, à hauteur de main, sur une petite caisse de bois. Ses pages sont couvertes d'une écriture serrée, et la caisse, dessous, semble fermée d'un simple loquet de fer."
+  },
+  {
+    "id": "ver-tre-colis",
+    "nom": "Le coffre de la forge",
+    "lieu": "ver-forge",
+    "contenant": "coffre",
+    "acces": {
+      "verrou": {
+        "dd": 12
+      },
+      "piege": "ver-pie-aiguille-colis"
+    },
+    "contenu": {
+      "objets": [
+        {
+          "objet": "colis-de-brun",
+          "quantite": 1
+        }
+      ]
+    },
+    "description": "Sous l'établi, contre le mur ouest, un coffre de chêne cerclé de fer ferme à clé. Une étiquette y est accrochée, au nom de Mère Pivoine, et la serrure du couvercle paraît neuve."
+  },
+  {
+    "id": "ver-tre-coffre-fort",
+    "nom": "Le coffre-fort du grain",
+    "lieu": "ver-boutique-grain",
+    "contenant": "coffre",
+    "acces": {
+      "verrou": {
+        "dd": 14
+      },
+      "piege": "ver-pie-dard-coffre-fort"
+    },
+    "contenu": {
+      "pieces": {
+        "po": 40
+      },
+      "objets": [
+        {
+          "objet": "reconnaissance-de-dette",
+          "quantite": 1
+        }
+      ]
+    },
+    "indice": "f-gedeon-et-la-dette",
+    "description": "Derrière le comptoir, contre le mur du fond, un coffre-fort massif se dresse, sa serrure épaisse à hauteur d'homme. Sa lourde porte est close, et son acier sombre, un peu terni par l'humidité du quai, n'a rien d'un coffre ordinaire."
+  },
+  {
+    "id": "ver-tre-foin",
+    "nom": "La cache du foin",
+    "lieu": "ver-ecuries",
+    "contenant": "cache",
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "perception"
+      }
+    },
+    "contenu": {
+      "pieces": {
+        "po": 10
+      }
+    },
+    "description": "Dans le box du fond, le foin s'entasse en tas doux, serré contre la claie. Au pied du mur, la paille est tassée en un creux plus sombre que le reste du tas, et l'odeur de foin sec y est plus forte."
+  },
+  {
+    "id": "ver-tre-caisse",
+    "nom": "La caisse des bateliers",
+    "lieu": "ver-pont-des-marchands",
+    "contenant": "coffre",
+    "acces": {},
+    "contenu": {
+      "pieces": {
+        "po": 5
+      }
+    },
+    "description": "Sous une bâche, au pied de la pile sud, une caisse de bois est rangée sur le ponton, contre les planches humides. Ses planches gonflées par l'eau et son couvercle ajusté disent qu'elle sert depuis longtemps."
+  },
+  {
+    "id": "ver-tre-poupee",
+    "nom": "La poupée du sanctuaire",
+    "lieu": "ver-sanctuaire",
+    "contenant": "autre",
+    "acces": {
+      "cache": {
+        "dd": 10,
+        "competence": "perception"
+      }
+    },
+    "contenu": {
+      "objets": [
+        {
+          "objet": "poupee-de-bois-du-sanctuaire",
+          "quantite": 1
+        }
+      ]
+    },
+    "description": "Parmi les ex-voto du mur nord, une poupée de bois détonne : peinte d'un bleu vif, elle porte un ruban crème noué au cou. Les autres offrandes ont pâli sous la brume, mais celle-ci est neuve."
+  }
+]

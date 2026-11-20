@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ver-pie-aiguille-colis",
+    "nom": "L'aiguille de la serrure",
+    "lieu": "ver-forge",
+    "detection": {
+      "dd": 12,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 12,
+      "competence": "escamotage",
+      "outil": "outils-de-voleur"
+    },
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 11,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "1d4",
+        "type": "perforants"
+      }
+    ],
+    "resume": "Un ressort caché dans la serrure relie une fine aiguille au mécanisme : qui force la serrure sans précaution la libère.",
+    "declenchement": "Le ressort claque, et une aiguille jaillit de la serrure, pointue comme une piqûre de guêpe. Elle file à hauteur de main et siffle près de vos doigts, puis elle vous pique au passage d'une piqûre cuisante, qui vous rappellera longtemps de ne pas brusquer les serrures."
+  },
+  {
+    "id": "ver-pie-dard-coffre-fort",
+    "nom": "Le dard du couvercle",
+    "lieu": "ver-boutique-grain",
+    "detection": {
+      "dd": 13,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 13,
+      "competence": "escamotage",
+      "outil": "outils-de-voleur"
+    },
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 12,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "1d6",
+        "type": "perforants"
+      }
+    ],
+    "resume": "Sous le couvercle du coffre-fort est logé un dard d'acier, relié au ressort de la charnière. Il ne part qu'une seule fois, quand le couvercle se soulève sans précaution.",
+    "declenchement": "Clac ! Le ressort de la charnière se détend d'un coup sec, avec une précision de mécanicien, et un dard d'acier jaillit de sous le couvercle, pointu et luisant, à hauteur de poitrine."
+  },
+  {
+    "id": "ver-pie-filet-ecuries",
+    "nom": "Le filet au-dessus de l'allée",
+    "lieu": "ver-ecuries",
+    "detection": {
+      "dd": 11,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 10,
+      "competence": "escamotage"
+    },
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 10,
+      "moitieSiReussite": false
+    },
+    "degats": [],
+    "effets": [
+      {
+        "temps": 0.5
+      }
+    ],
+    "resume": "Un filet lesté pend au-dessus de l'allée, près de la porte du grenier, retenu par une corde tendue. Qui heurte cette corde le fait tomber sur ce qui passe.",
+    "declenchement": "La corde claque et le filet tombe d'un bloc sur l'allée. Tout le monde se bouscule pour s'en dégager, les pieds s'emmêlent dans les mailles, et il faut une bonne demi-heure pour démêler la toile et remettre l'allée en ordre. Personne ne se fait mal, mais la foire attendra."
+  }
+]

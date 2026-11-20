@@ -1,0 +1,165 @@
+[
+  {
+    "id": "colis-de-brun",
+    "nom": "Colis de ferrures",
+    "categorie": "quete",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "poidsKg": 2,
+    "resume": "Un paquet de toile ficelée, lourd, qui contient des ferrures et des clous neufs pour une roulotte.",
+    "lore": "Brun Forgefer l'a forgé pour l'essieu de la roulotte de Mère Pivoine, qui attend ses fers avant l'aube. Il a été enfermé dans le coffre de la forge, faute de temps pour le porter lui-même. Il doit être remis à la doyenne des forains, puis le reçu rapporté à Brun.",
+    "visuel": "Un paquet de toile crème, ficelé serré, qui laisse deviner des ferrures et des clous noirs ; la toile est propre et les nœuds sont neufs."
+  },
+  {
+    "id": "reconnaissance-de-dette",
+    "nom": "Reconnaissance de dette",
+    "categorie": "quete",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "poidsKg": 0,
+    "resume": "Un papier plié, couvert d'une écriture serrée, signé et daté.",
+    "lore": "Il consigne une somme de quatre-vingt-dix pièces d'or prêtée à un jeune funambule par Gédéon Marchebise, à rembourser avant la foire, sous peine de voir saisir la roulotte de sa mère. La signature de Gédéon Marchebise est nette, et la date tombe au début de la saison des foires.",
+    "visuel": "Une feuille pliée en quatre, de papier épais et jauni aux plis, couverte d'une écriture serrée, avec une signature à l'encre et une date."
+  },
+  {
+    "id": "poupee-de-bois-du-sanctuaire",
+    "nom": "Poupée de bois",
+    "categorie": "curiosite",
+    "rarete": "commun",
+    "valeurPo": 1,
+    "poidsKg": 0.2,
+    "resume": "Une petite poupée de bois peinte en bleu, un ruban de toile crème noué au cou, qui semble récente.",
+    "lore": "Elle était pendue aux tablettes d'ex-voto du sanctuaire de la Rive, parmi des poupées anciennes et fanées. Quelqu'un l'y a déposée il y a peu, en la nouant d'un ruban crème, comme on fait une offrande pour une personne qu'on aime.",
+    "visuel": "Une poupée de bois longue comme une main, peinte d'un bleu encore vif, avec un ruban de toile crème noué autour du cou ; la peinture est fraîche, le bois propre."
+  },
+  {
+    "id": "piece-de-foire-ancienne",
+    "nom": "Pièce de foire ancienne",
+    "categorie": "monnaie-ancienne",
+    "rarete": "commun",
+    "valeurPo": 1,
+    "poidsKg": 0,
+    "resume": "Une vieille pièce de foire, usée et sans grande valeur, qui a traversé bien des saisons.",
+    "lore": "Ces pièces de métal blanc étaient jadis frappées pour les jeux des foires, pour payer les tirs et les paris. Celle-ci a passé des années dans une poche, puis dans une cache sous une margelle.",
+    "visuel": "Une pièce ronde, de métal terni, à moitié effacée par les doigts ; le bord est encore net, le centre plus usé."
+  },
+  {
+    "id": "recu-de-mere-pivoine",
+    "nom": "Reçu de Mère Pivoine",
+    "categorie": "quete",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "poidsKg": 0,
+    "resume": "Un petit reçu signé, remis par la doyenne des forains en échange d'un colis.",
+    "lore": "La doyenne des forains l'a rédigé à la main, pour reconnaître la livraison de la ferronnerie de sa roulotte. Brun Forgefer le réclame pour clore sa commande.",
+    "visuel": "Un bout de papier de carnet, plié une fois, à l'encre bleue et à la signature large ; une tache de graisse dans un coin."
+  },
+  {
+    "id": "cle-du-coffre-de-la-foire",
+    "nom": "Clé du coffre de la foire",
+    "categorie": "cle",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "poidsKg": 0.2,
+    "resume": "Une clé de fer noircie, longue comme la main, à l'anneau usé.",
+    "lore": "Elle ouvre le coffre de la foire, scellé dans le cabinet du bailli, où sont gardés les droits de place et la bourse du concours. Le bailli Aubin Cerfeuil la tenait sous sa garde.",
+    "visuel": "Une clé de fer longue comme une main, noircie, à l'anneau usé et aux dents nettes."
+  },
+  {
+    "id": "perche-d-equilibriste",
+    "nom": "Perche de funambule",
+    "categorie": "arme",
+    "rarete": "peu-commun",
+    "valeurPo": 200,
+    "poidsKg": 2,
+    "base": "baton-de-combat",
+    "bonus": {
+      "attaque": 1,
+      "degats": 1
+    },
+    "magique": true,
+    "degre": "unique",
+    "resume": "Une perche de bois clair, longue et souple, ferrée de laiton aux deux bouts, faite pour garder l'équilibre sur une corde.",
+    "lore": "Les funambules des foires s'en servent pour tenir au-dessus du vide, et le bailli la réserve à celui qui lui rendra la clé. Des années de mains l'ont polie.",
+    "visuel": "Une longue perche de bois clair, lisse et légèrement cintrée, ferrée de laiton aux deux extrémités, qui brille au toucher."
+  },
+  {
+    "id": "corde-de-funambule",
+    "nom": "Corde de funambule",
+    "categorie": "materiel",
+    "rarete": "commun",
+    "valeurPo": 25,
+    "poidsKg": 1.5,
+    "degre": "nomme",
+    "resume": "Une corde de soie de quinze mètres, enroulée, fine et souple, qui glisse entre les doigts.",
+    "lore": "Une corde de soie, longue de quinze mètres, comme celles que les funambules tendent entre deux poteaux. Brun la donne à qui lui rapporte le reçu de Mère Pivoine.",
+    "visuel": "Un écheveau de corde de soie crème, enroulé serré, à la surface lisse et brillante."
+  },
+  {
+    "id": "porte-bonheur-de-funambule",
+    "nom": "Porte-bonheur de funambule",
+    "categorie": "curiosite",
+    "rarete": "commun",
+    "valeurPo": 1,
+    "poidsKg": 0.1,
+    "degre": "nomme",
+    "resume": "Un petit porte-bonheur de funambule, léger, qu'on garde sur soi pour la chance.",
+    "lore": "Les funambules le gardent sur eux pour la chance, et se le donnent parfois entre eux quand la corde est dangereuse. Il n'a aucune valeur, sinon celle qu'on lui prête.",
+    "visuel": "Un petit objet de bois et de tissu, léger, de la taille d'une paume, aux couleurs passées de crème et de rouge brique."
+  },
+  {
+    "id": "bague-de-foire",
+    "nom": "Bague de foire",
+    "categorie": "bijou",
+    "rarete": "commun",
+    "valeurPo": 2,
+    "poidsKg": 0.1,
+    "resume": "Une bague de laiton ornée d'un éclat de verre, le genre de bijou que l'on achète en passant.",
+    "lore": "Les marchands de la foire en vendent par dizaines, à offrir à une fiancée ou à garder pour soi. Elle ne vaut presque rien, mais elle brille bien sous une lanterne.",
+    "visuel": "Une bague de laiton terni, à large chaton, serti d'un éclat de verre bleu qui accroche la lumière."
+  },
+  {
+    "id": "collier-de-verre",
+    "nom": "Collier de verre",
+    "categorie": "bijou",
+    "rarete": "commun",
+    "valeurPo": 3,
+    "poidsKg": 0.1,
+    "resume": "Un collier de perles de verre colorées, enfilées sur un cordon de chanvre, bijou de foire.",
+    "lore": "Les étals de la foire en proposent de toutes les couleurs, et les enfants en réclament à grands cris. Les perles s'entrechoquent au moindre mouvement.",
+    "visuel": "Un collier de perles de verre rouges, vertes et crème, enfilées sur un cordon clair, qui renvoient la lumière."
+  },
+  {
+    "id": "sac-de-grain",
+    "nom": "Sac de grain",
+    "categorie": "nourriture",
+    "rarete": "commun",
+    "valeurPo": 1,
+    "poidsKg": 5,
+    "resume": "Un petit sac de toile rempli de grain, que vend le marchand de grain au poids.",
+    "lore": "Le grain de la boutique vient des fermes des environs et sert à nourrir chevaux et voyageurs. Le col du sac se replie et se noue d'une simple ficelle.",
+    "visuel": "Un petit sac de toile beige, plein à craquer, dont le col replié est noué d'une ficelle."
+  },
+  {
+    "id": "fers-a-cheval",
+    "nom": "Fers à cheval",
+    "categorie": "materiel",
+    "rarete": "commun",
+    "valeurPo": 1,
+    "poidsKg": 2,
+    "resume": "Un lot de fers à cheval neufs, sortis de la forge et encore couverts de limaille.",
+    "lore": "Brun Forgefer les frappe chaque automne pour les chevaux de la foire, et les écuries en réclament toujours davantage. Chaque fer porte la marque de la forge sur sa face extérieure.",
+    "visuel": "Un lot de fers à cheval gris et neufs, liés par un fil de fer, avec des traces de limaille sombre sur les bords."
+  },
+  {
+    "id": "clous-de-forge",
+    "nom": "Clous de forge",
+    "categorie": "materiel",
+    "rarete": "commun",
+    "valeurPo": 1,
+    "poidsKg": 0.5,
+    "resume": "Une poignée de gros clous de forge, à tête carrée et pointe nette, lourde dans la main.",
+    "lore": "La forge en fabrique pour les charpentes, les roues et les ferrures des roulottes. Ils se vendent au poids, et les bateliers en prennent toujours une poignée.",
+    "visuel": "Une poignée de gros clous de fer noir, à tête carrée et pointe aiguisée, qui tintent entre les doigts."
+  }
+]

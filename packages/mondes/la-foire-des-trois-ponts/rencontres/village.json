@@ -1,0 +1,34 @@
+[
+  {
+    "id": "r-rats-de-la-cave",
+    "nom": "Les rats de la cave",
+    "type": "combat",
+    "lieu": "ver-heron-cave",
+    "difficulte": "faible",
+    "intro": "Le grattement reprend, plus net, derrière la planche rongée. Des griffes raclent la pierre, puis une deuxième, puis une troisième. La farine glisse vers le trou dans un petit nuage blanc, et la planche cède dans un craquement sec. Trois rats géants se glissent au dehors, la fourrure hérissée, les yeux luisants. Ils ne grondent pas et ne crient pas : ils avancent en silence, en se séparant pour vous encercler. Vos mains se portent vers vos armes.",
+    "monstres": [
+      {
+        "profil": "rat-geant",
+        "nombre": 3
+      }
+    ],
+    "carte": [
+      "############",
+      "#.........##",
+      "#.#.......##",
+      "#.#...~....#",
+      "#..........#",
+      "#.mmm...HHH#",
+      "#.m.....HHH#",
+      "############"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
+    "effetsVictoire": []
+  }
+]
