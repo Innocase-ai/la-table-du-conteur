@@ -131,6 +131,8 @@ describe('dépenser une action légendaire après le tour d’un adversaire', ()
     heros[0]!.position = autour[0]!;
     heros[1]!.position = autour[1]!;
     heros.slice(2).forEach((h, i) => (h.position = { x: 0 + i, y: etat.grille.hauteur - 1 }));
+    // Le Trait d'orage (lot 3d) est aussi jouable : on le met de côté pour juger l'émanation seule.
+    monstre.ressources[`${VERROU_LEGENDAIRE}trait-d-orage`] = 1;
     actionsLegendairesApres(etat, heros[2]!);
     expect(dit(etat, /Encre toxique/).length).toBeGreaterThanOrEqual(2);
     const touches = new Set(etat.journal.filter((e) => /utilise Encre toxique sur/.test(e.texte)).map((e) => e.cible));
@@ -180,19 +182,19 @@ function placer(etat: EtatCombat, h: Combattant, autour: Combattant, cases: numb
 }
 
 describe('lot 3b : se déplacer puis attaquer (Assaut incisif, Balayage caudal, Offensive…)', () => {
-  it('les 24 actions légendaires « effectue une attaque de X » portent leurs données : des attaques du profil, une part de Vitesse', () => {
+  it('les 26 actions légendaires « attaque de X » (24) ou « recourt à Trait de foudre / Regard effroyable » (2) portent leurs données : des actions du profil, une part de Vitesse', () => {
     let n = 0;
     for (const m of donnees.monstres.values()) {
       for (const a of m.actions) {
         if (!a.legendaire?.attaque) continue;
         n++;
         expect(estActionLegendaire(a), `${m.id}/${a.id}`).toBe(true);
-        for (const id of a.legendaire.attaque) expect(m.actions.find((x) => x.id === id)?.resolution?.type, `${m.id}/${a.id} → ${id}`).toBe('attaque');
+        for (const id of a.legendaire.attaque) expect(m.actions.find((x) => x.id === id)?.resolution?.type, `${m.id}/${a.id} → ${id}`).toMatch(/^(attaque|sauvegarde)$/);
         expect(a.legendaire.deplacement ?? 0).toBeGreaterThanOrEqual(0);
         expect(a.legendaire.deplacement ?? 0).toBeLessThanOrEqual(1);
       }
     }
-    expect(n).toBe(24);
+    expect(n).toBe(26);
   });
 
   it('un adversaire déjà à portée : il ne bouge pas, il frappe (Saignée)', () => {

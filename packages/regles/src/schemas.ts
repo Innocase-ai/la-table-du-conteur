@@ -295,8 +295,10 @@ export const ActionMonstre = z.object({
       division: z.boolean().optional(),
       regard: z.object({ rayon: z.number().positive() }).optional(),
       poursuite: z.object({ portee: z.number().positive(), rayon: z.number().positive() }).optional(),
+      // Lot 10 : `contresort` (liche, mage) : un adversaire à `portee` m ou moins lance un sort de niveau 1 ou plus : il fait un jet de Constitution contre le DD de sort du monstre, raté le sort échoue.
+      contresort: z.object({ portee: z.number().positive() }).optional(),
     })
-    .refine((r) => !!(r.ca || r.redirige || r.reduitDegats || r.sauvegarde || r.division || r.regard || r.poursuite), 'reaction : au moins un effet')
+    .refine((r) => !!(r.ca || r.redirige || r.reduitDegats || r.sauvegarde || r.division || r.regard || r.poursuite || r.contresort), 'reaction : au moins un effet')
     .optional(),
   // `sort` (lot 3c) : « recourt à Incantation pour lancer X » : le sort X de la liste du monstre (`sorts.liste`), lancé sans action ni réserve.
   legendaire: z

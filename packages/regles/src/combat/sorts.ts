@@ -1,7 +1,7 @@
 // Lancer un sort : résolution générique d'après les données (attaque, sauvegarde, soins)
 // et gestionnaires dédiés pour les sorts marqués `special`.
 import type { Sort } from '../schemas';
-import { aEtat, ennemis, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat, type ZonePersistante } from './etat';
+import { aEtat, ennemis, horsCombat, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat, type ZonePersistante } from './etat';
 import { casesOccupees, casesZone, cle, distanceCases, distanceMetres, ligneDeVue, typeCase, type Position } from './grille';
 import { ajouterEtat, couvertSauvegarde, detailsJet, finConcentration, infligerDegats, jetAttaque, occupation, retirerEtat, sauvegarde, soigner, emplacementDisponible, vitesse, declencherZone, dansZone } from './moteur';
 import { franchissable, TAILLE_CASE } from './grille';
@@ -121,6 +121,24 @@ export function preparerIncantation(lanceur: Combattant, sort: Sort): number | s
   return niveau;
 }
 
+/**
+ * F6 (lot 10) : Contresort (liche, mage). Un adversaire du lanceur, à portée et qui le voit, peut dépenser sa réaction pour tenter d'annuler un sort de niveau 1 ou plus (les
+ * sorts mineurs ne valent pas sa réaction) : le lanceur fait un jet de Constitution contre le DD de sort du monstre ; raté, le sort échoue. Vrai si le sort est annulé.
+ */
+function contresortee(etat: EtatCombat, lanceur: Combattant, sort: Sort): boolean {
+  if (sort.niveau < 1) return false;
+  for (const m of etat.combattants) {
+    if (m.camp === lanceur.camp || m.mort || horsCombat(m) || !peutAgir(m) || !m.ressources.reaction || !m.incantation) continue;
+    const action = m.actionsMonstre.find((a) => a.reaction?.contresort);
+    if (!action || distanceMetres(m, lanceur) > action.reaction!.contresort!.portee || !ligneDeVue(etat.grille, m.position, lanceur.position)) continue;
+    m.ressources.reaction = 0;
+    const reussite = sauvegarde(etat, lanceur, 'con', m.incantation.dd);
+    journaliser(etat, { type: 'info', texte: `${m.nom} tente un Contresort sur ${sort.nom} : ${lanceur.nom} ${reussite ? 'réussit sa sauvegarde, le sort a lieu' : 'rate sa sauvegarde, le sort échoue'}.`, acteur: m.id, cible: lanceur.id });
+    return !reussite;
+  }
+  return false;
+}
+
 export function lancerSort(etat: EtatCombat, lanceur: Combattant, sort: Sort, niveau: number, cible: CibleSort): void {
   // Lancer un sort met fin à l'invisibilité (potion).
   retirerEtat(lanceur, 'invisible');
@@ -137,6 +155,7 @@ export function lancerSort(etat: EtatCombat, lanceur: Combattant, sort: Sort, ni
     cible: cible.cibles?.length === 1 ? cible.cibles[0]!.id : undefined,
     details: { sort: sort.id, point: cible.point, cases },
   });
+  if (contresortee(etat, lanceur, sort)) return;
   if (sort.concentration) {
     if (lanceur.concentration) finConcentration(etat, lanceur);
     lanceur.concentration = { sort: sort.id, cibles: (cible.cibles ?? []).map((c) => c.id) };

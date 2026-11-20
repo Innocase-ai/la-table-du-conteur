@@ -284,3 +284,23 @@ Trois réactions de plus se jouent (quatre profils : gelée ocre, pouding noir, 
 | Le col gelé | 60 %, 10,2 rounds, 20 %, 1,8 mort | 60 %, **8,5** rounds, **28 %**, **0,4** mort |
 
 Dix parties, ±15 % de bruit : le sens est lisible (les monstres finissent leurs victimes plus vite, la crypte est plus dure, le col gelé moins meurtrier), pas les écarts d'une ligne. **Banc de haut niveau** (`pnpm simuler:haut`), les boss à multiattaque pèsent plus : dragon blanc adulte 50 % → **20 %** de victoires (PV restants 18 % → 4 %), d'airain 60 % → **30 %**, kraken 30 % → **10 %**, vampire 100 % → **90 %** ; dragon rouge 20 % → 30 %, aboleth et liche inchangés (liche toujours 0 %). Tests : `tests/combat-multiattaque-redirigee.test.ts` (5).
+
+### Contresort et deux actions légendaires de plus (F6, lot 10) — ce qui est jouable l'est
+
+- **Contresort** (liche et mage, `reaction.contresort: { portee: 18 }` sur leur « Magie protectrice » ; `combat/sorts.ts`, `contresortee`, appelée par `lancerSort`) : quand un adversaire, à 18 m ou moins et en ligne de vue, lance un sort de **niveau 1 ou plus**, le monstre dépense sa réaction : le lanceur fait un jet de Constitution contre le DD de sort du monstre ; **raté, le sort échoue** (l'emplacement est dépensé, aucun effet). Les sorts mineurs ne sont pas contrés (ils ne valent pas la réaction). La réaction est la même que le Bouclier : la liche contre ou se protège, pas les deux dans le même round.
+- **Trait d'orage** (kraken) et **Regard de biais** (momie) : deux actions légendaires qui ne font que « recourir » à une action ordinaire du profil (Trait de foudre, Regard effroyable) ; `legendaire.attaque` désigne désormais aussi une action à sauvegarde, jouée sur l'adversaire le plus blessé à portée.
+
+**Mesure** : `pnpm simuler 10 rapide` **identique** (ni la liche, ni le mage, ni le kraken, ni la momie n'y figurent) ; `pnpm simuler:haut` : liche 8,3 → **10,4 rounds** (Contresort), toujours 0 % de victoires ; kraken 10 % → **0 %** de victoires (27,2 → 37,9 actions légendaires par partie) ; les autres lignes identiques. Tests : `tests/combat-contresort-legendaires.test.ts` (6).
+
+**Bilan de F6 : tout ce qui était jouable sans inventer de règle l'est. Reste non jouable :**
+
+| Quoi | Profils | Pourquoi |
+|---|---|---|
+| Actions légendaires qui lancent **Terreur** | dragons blanc et noir (adultes, vénérables), liche | le sort n'existe pas dans le moteur (ni état de peur à durée de concentration, ni fuite imposée) et n'est pas dans la liste de sorts du monstre |
+| …**Injonction** | dragon rouge (×2), momie, vampire | idem (ordre à effet d'un tour : approcher, lâcher, fuir, tomber, s'arrêter) |
+| …**Immobilisation de monstre** | dragon d'argent (×2) | sort de niveau 5 absent du moteur et de la liste de sorts du dragon |
+| …**Invisibilité** (« Envol furtif ») | dragon bleu (×2) | l'invisibilité d'un monstre en vol n'est pas modélisée |
+| **Téléportation funeste** | liche | choix d'une case d'arrivée (18 m) + dégâts de zone à la case quittée : demande une IA de position à part |
+| Réactions **Nuage d'encre**, **Hurlement**, **Protection**, **Antennes réactives** | pieuvres, criard, garde animé, oxydeur | eau et visibilité nulle (aucune règle), alerte sans effet de combat, porteur d'amulette (aucun dans un combat), corrosion de l'équipement (non modélisée) |
+
+Ajouter l'un de ces effets demande d'abord d'ajouter la règle au moteur (un sort, un état, une zone de visibilité) ; ce serait un lot de règles, pas de données.

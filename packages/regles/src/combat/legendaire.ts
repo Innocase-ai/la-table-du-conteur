@@ -112,7 +112,7 @@ const porteeDe = (a: ActionMonstre): number => (a.portee?.type === 'distance' ? 
  * cible est déjà à portée.
  */
 function planDeplacerEtAttaquer(etat: EtatCombat, c: Combattant, a: ActionMonstre): Plan | undefined {
-  const attaques = (a.legendaire!.attaque ?? []).map((id) => c.actionsMonstre.find((x) => x.id === id)).filter((x): x is ActionMonstre => x?.resolution?.type === 'attaque');
+  const attaques = (a.legendaire!.attaque ?? []).map((id) => c.actionsMonstre.find((x) => x.id === id)).filter((x): x is ActionMonstre => x?.resolution?.type === 'attaque' || x?.resolution?.type === 'sauvegarde');
   if (!attaques.length) return undefined;
   const moyenne = (x: ActionMonstre) => x.degats.reduce((s, d) => s + moyenneDes(d.des) + d.bonus, 0);
   const attaque = [...attaques].sort((x, y) => moyenne(y) - moyenne(x))[0]!;
