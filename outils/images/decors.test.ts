@@ -86,7 +86,7 @@ describe('le registre des décors', () => {
     for (const e of catalogue) expect(texte).toContain(`\`${e.id}\``);
     expect(texte).not.toContain('_(à générer)_');
     expect(texte).toContain('Tous les types ont leurs 3 variantes.');
-    expect(texte).toContain('Aucun épisode ne cite encore `commun:lieux/…`'); // aucune histoire existante n'a été modifiée
+    expect(texte).toContain('| la-foire-des-trois-ponts | ver-marche | `marche-etals-couverts` |'); // l'épisode pilote est le premier à citer des décors communs
   });
 
   it('un lot pas encore installé apparaît « à générer », et le registre dit ce qui manque encore', () => {

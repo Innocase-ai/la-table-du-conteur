@@ -45,7 +45,7 @@
           "livrer"
         ],
         "question": "Brun doit vous livrer quelque chose ?",
-        "reponse": "« Brun ? Il doit me porter des ferrures et des clous neufs pour l'essieu, oui. Mon essieu gémit depuis l'hiver, et une roulotte qui gémit finit toujours par se coucher dans le fossé. C'est un homme de parole, mais lent, comme un fer qui refroidit avant qu'on le frappe. Il les a forgés, à ce qu'il dit, et je veux ces clous avant l'aube, pas après. Si vous venez de sa part, posez le paquet sur la table pliante, et ne le laissez pas traîner dans l'herbe. »"
+        "reponse": "« Brun ? Il doit me porter des ferrures et des clous neufs pour l'essieu, oui. Mon essieu gémit depuis l'hiver, et une roulotte qui gémit finit toujours par se coucher dans le fossé. C'est un homme de parole, mais lent, comme un fer qui refroidit avant qu'on le frappe. Il les a forgés, à ce qu'il dit, et je veux ces clous au plus vite, pas plus tard. Si vous venez de sa part, posez le paquet sur la table pliante, et ne le laissez pas traîner dans l'herbe. »"
       },
       {
         "id": "mp-troupe",
@@ -57,7 +57,7 @@
           "roulottes"
         ],
         "question": "Parlez-moi de la troupe.",
-        "reponse": "« La troupe, c'est une famille qui a pris la route trop tôt et n'a jamais voulu la quitter. Il y a les jongleurs, les chanteurs, un accordéoniste qui ne se sépare jamais de son instrument, et ceux qui réparent tout ce qui roule. Demain, c'est la foire, et chacun montre ce qu'il sait faire, pour que les gens oublient le vent et la fatigue. Une roulotte comme la mienne vaut plus qu'une maison, à condition qu'elle roule encore. Les jeunes apprennent la corde, les vieux la chanson, et personne ne part de table le ventre vide. »"
+        "reponse": "« La troupe, c'est une famille qui a pris la route trop tôt et n'a jamais voulu la quitter. Il y a les jongleurs, les chanteurs, un accordéoniste qui ne se sépare jamais de son instrument, et ceux qui réparent tout ce qui roule. C'est la foire, et chacun montre ce qu'il sait faire, pour que les gens oublient le vent et la fatigue. Une roulotte comme la mienne vaut plus qu'une maison, à condition qu'elle roule encore. Les jeunes apprennent la corde, les vieux la chanson, et personne ne part de table le ventre vide. »"
       },
       {
         "id": "mp-fils",
@@ -221,7 +221,7 @@
           "bâche"
         ],
         "question": "Pourquoi vous cachez-vous ?",
-        "reponse": "« Ah, la question qui fait mal avant même la réponse. Il y a des hommes qui me cherchent, et ce ne sont pas des amis qui souhaitent bonne route. Ils sont polis, ce qui est pire. Alors je reste derrière cette toile : si je sors, ils me suivent, et s'ils me suivent, ils trouvent ma mère. Elle n'a rien fait, elle, à part m'élever avec beaucoup de patience. Vous voyez la lampe, là-bas, éteinte ? Ça me rassure qu'elle le soit, personne ne regarde par la fenêtre. Je ne vous demande pas de me protéger. Seulement de ne pas me vendre à eux, c'est déjà beaucoup. »",
+        "reponse": "« Ah, la question qui fait mal avant même la réponse. Il y a des hommes qui me cherchent, et ce ne sont pas des amis qui souhaitent bonne route. Ils sont polis, ce qui est pire. Alors je reste derrière cette toile : si je sors, ils me suivent, et s'ils me suivent, ils trouvent ma mère. Elle n'a rien fait, elle, à part m'élever avec beaucoup de patience. J'ai éteint ma lampe : ça me rassure, personne ne regarde par la fenêtre. Je ne vous demande pas de me protéger. Seulement de ne pas me vendre à eux, c'est déjà beaucoup. »",
         "condition": {
           "fait": "f-tobie-dans-la-roulotte"
         }
@@ -236,7 +236,7 @@
           "protéger"
         ],
         "question": "Et votre mère, qu'est-elle pour vous ?",
-        "reponse": "« Ma mère ? Elle est tout ce qu'il me reste de solide. Regardez la roulotte : elle a des années de route sur cet essieu qui grince, et elle le répare avec des bouts de fer, sans jamais se plaindre. Vous voyez mes mains ? Elles tremblent depuis cette nuit, et je ne sais pas comment les arrêter. Elle les prend dans les siennes et dit que c'est le froid de la rivière. Je l'aime, voilà, c'est tout. Je la protège comme je peux, même quand cela m'oblige à me taire. Si vous voulez l'aider, apportez-lui le colis de Brun : elle attend des ferrures neuves pour cet essieu. »",
+        "reponse": "« Ma mère ? Elle est tout ce qu'il me reste de solide. Regardez la roulotte : elle a des années de route sur cet essieu qui grince, et elle le répare avec des bouts de fer, sans jamais se plaindre. Si vous voyiez mes mains : elles tremblent depuis cette nuit, et je ne sais pas comment les arrêter. Elle les prend dans les siennes et dit que c'est le froid de la rivière. Je l'aime, voilà, c'est tout. Je la protège comme je peux, même quand cela m'oblige à me taire. Si vous voulez l'aider, apportez-lui le colis de Brun : elle attend des ferrures neuves pour cet essieu. »",
         "condition": {
           "fait": "f-tobie-dans-la-roulotte"
         }
@@ -386,7 +386,7 @@
         "la troupe avant tout",
         "la foire qui fait vivre les siens"
       ],
-      "desir": "Une belle foire demain, avec du monde et de l'argent dans les poches.",
+      "desir": "Une belle foire, avec du monde et de l'argent dans les poches.",
       "peur": "Qu'on touche à l'un des leurs.",
       "defaut": "Ils jugent un étranger sur sa première parole et ne reviennent pas dessus."
     },
@@ -403,8 +403,8 @@
           "costumes",
           "accordéon"
         ],
-        "question": "Que préparez-vous pour demain ?",
-        "reponse": "« Demain, c'est la foire, alors tout le monde répète, même le feu a l'air pressé. Ici, sous le pont brisé, on a de la place, et personne ne vient nous marcher sur les pieds. Regardez près de la roulotte de tête : les costumes sont sortis de leur caisse, et l'on rentre les coutures qui ont lâché. Derrière les roulottes, l'accordéon répète la même phrase depuis ce matin ; vous finirez par la siffler sans le vouloir. On fera d'abord la corde, puis les numéros d'équilibre, et la musique jusqu'à la nuit. Vous voulez voir ? Mais pas de mains baladeuses sur les costumes, s'il vous plaît. »",
+        "question": "Que préparez-vous pour la foire ?",
+        "reponse": "« C'est la foire, alors tout le monde répète, même le feu a l'air pressé. Ici, sous le pont brisé, on a de la place, et personne ne vient nous marcher sur les pieds. Regardez près de la roulotte de tête : les costumes sont sortis de leur caisse, et l'on rentre les coutures qui ont lâché. Derrière les roulottes, l'accordéon répète la même phrase depuis ce matin ; vous finirez par la siffler sans le vouloir. On fera d'abord la corde, puis les numéros d'équilibre, et la musique jusqu'à la nuit. Vous voulez voir ? Mais pas de mains baladeuses sur les costumes, s'il vous plaît. »",
         "condition": {
           "pnj": {
             "id": "forains-du-camp",

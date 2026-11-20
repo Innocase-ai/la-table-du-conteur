@@ -116,6 +116,12 @@ Tous les types ont leurs 3 variantes.
 
 ### Où les décors servent (généré d'après les manifestes)
 
-Aucun épisode ne cite encore `commun:lieux/…`.
+| Épisode | Lieu | Décor |
+| --- | --- | --- |
+| la-foire-des-trois-ponts | ver-bailli-cabinet | `maison-du-chef-cabinet-aux-parchemins` |
+| la-foire-des-trois-ponts | ver-boutique-grain | `boutique-etageres-et-bocaux` |
+| la-foire-des-trois-ponts | ver-heron-cave | `cave-tonneaux-et-bocaux` |
+| la-foire-des-trois-ponts | ver-marche | `marche-etals-couverts` |
+| la-foire-des-trois-ponts | ver-sanctuaire | `sanctuaire-nef-et-vasque` |
 
 <!-- FIN-GENERE -->
