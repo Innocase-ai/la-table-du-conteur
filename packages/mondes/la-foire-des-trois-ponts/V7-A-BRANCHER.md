@@ -27,3 +27,11 @@ Les quêtes (`q-la-cle-de-la-foire`, `q-le-colis-du-forgeron`, `q-les-rats-de-la
 - **Gédéon et le moulin** : `gedeon-moulin` (« je n'ai pas su qui s'en occupe ») est un mensonge de Gédéon, qui a payé la bande : voulu, à garder en tête pour les échos.
 - **Brun au moulin** : il y est passé ce matin à l'aube, avant que la bande n'ait tendu la barrière du pont (D9).
 - **PNJ qui parlent après une victoire** : l'homme de main et Rouquin se rendent et restent vivants (M8).
+
+## Pont-Cassé (V6, 20/11/2026)
+
+- **Reçu et colis** : `mp-colis` pose le drapeau `colis-remis-a-mere-pivoine` et donne `recu-de-mere-pivoine` ; le retour du reçu à Brun (fin de `q-le-colis-du-forgeron`) est à écrire en V7, avec la salutation `colis-remis` de Brun.
+- **Mathilde** : présente au camp le soir (P2) ; sa salutation « au camp » n'est pas branchée (pas de condition fiable : à reprendre en V7 avec un drapeau posé au camp le soir, ou à abandonner).
+- **Écho** : `tobie-confie` (porte-bonheur donné) est le drapeau de l'indice de `epi1-tobie-reconnaissant` ; les fins et les échos se décident en V7.
+- **Tobie muet** : listé dans la roulotte, muet (salutation narrée) jusqu'à `f-tobie-dans-la-roulotte` ; à vérifier en jeu que l'interface ne le propose pas comme interlocuteur avant la bâche.
+- **Chronologie** : le vol date de la nuit dernière ; Tobie se terre « depuis cette nuit » ; Pervenche l'a vu prier « la nuit dernière » ; Brun voit la serrure du moulin forcée « ce matin à l'aube ».

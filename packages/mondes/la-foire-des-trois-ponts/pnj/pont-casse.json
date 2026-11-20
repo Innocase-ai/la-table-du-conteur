@@ -1,0 +1,475 @@
+[
+  {
+    "id": "mere-pivoine",
+    "nom": "Mère Pivoine",
+    "titre": "Doyenne des forains",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "68 ans",
+    "role": "Doyenne des forains : elle attend le colis de Brun dans sa roulotte, à l’écart du camp.",
+    "lieu": "pon-roulotte",
+    "apparence": "Humaine de 68 ans, au visage fin buriné par le vent, les cheveux blancs relevés sous un foulard rouge brique. Robe de laine ocre et tablier usé ; ses mains sont toujours occupées à un ouvrage de fil.",
+    "personnalite": {
+      "traits": [
+        "posée",
+        "rêche",
+        "humour sec"
+      ],
+      "voix": "Posée et rêche, elle parle en proverbes de route et ne dit jamais deux mots là où un suffit.",
+      "valeurs": [
+        "la route et ses règles",
+        "la famille avant tout"
+      ],
+      "desir": "Que son fils sorte sain et sauf de la foire.",
+      "peur": "Perdre la roulotte et son fils.",
+      "defaut": "Elle ne sait pas demander de l'aide, et le montre."
+    },
+    "attitude": 0,
+    "savoir": [],
+    "secrets": [
+      {
+        "fait": "f-cle-au-grenier",
+        "condition": {
+          "flag": "colis-remis-a-mere-pivoine"
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "mp-brun",
+        "mots": [
+          "Brun",
+          "ferrures",
+          "clous",
+          "essieu",
+          "livrer"
+        ],
+        "question": "Brun doit vous livrer quelque chose ?",
+        "reponse": "« Brun ? Il doit me porter des ferrures et des clous neufs pour l'essieu, oui. Mon essieu gémit depuis l'hiver, et une roulotte qui gémit finit toujours par se coucher dans le fossé. C'est un homme de parole, mais lent, comme un fer qui refroidit avant qu'on le frappe. Il les a forgés, à ce qu'il dit, et je veux ces clous avant l'aube, pas après. Si vous venez de sa part, posez le paquet sur la table pliante, et ne le laissez pas traîner dans l'herbe. »"
+      },
+      {
+        "id": "mp-troupe",
+        "mots": [
+          "troupe",
+          "forains",
+          "métiers",
+          "foire",
+          "roulottes"
+        ],
+        "question": "Parlez-moi de la troupe.",
+        "reponse": "« La troupe, c'est une famille qui a pris la route trop tôt et n'a jamais voulu la quitter. Il y a les jongleurs, les chanteurs, un accordéoniste qui ne se sépare jamais de son instrument, et ceux qui réparent tout ce qui roule. Demain, c'est la foire, et chacun montre ce qu'il sait faire, pour que les gens oublient le vent et la fatigue. Une roulotte comme la mienne vaut plus qu'une maison, à condition qu'elle roule encore. Les jeunes apprennent la corde, les vieux la chanson, et personne ne part de table le ventre vide. »"
+      },
+      {
+        "id": "mp-fils",
+        "mots": [
+          "fils",
+          "Tobie",
+          "famille",
+          "bâche",
+          "roulotte"
+        ],
+        "question": "Où est votre fils ?",
+        "reponse": "Elle ne répond pas tout de suite. Son regard glisse vers la bâche rayée et s'y arrête un instant, puis revient à son ouvrage. « Vous êtes venu de bonne foi, alors je ne vais pas vous mentir : mon fils est là, derrière cette toile. Il ne sort plus depuis cette nuit, et je ne vous demande pas pourquoi vous le cherchez. Le reste, c'est entre lui et moi. » Elle tire un fil, le coupe avec les dents, sans se presser. « Vous avez une bonne tête, pour un étranger, et les bonnes têtes n'ont pas besoin de savoir tout ce qui se passe derrière une bâche. »",
+        "revele": [
+          "f-tobie-dans-la-roulotte"
+        ]
+      },
+      {
+        "id": "mp-camp",
+        "mots": [
+          "camp",
+          "pont",
+          "rive",
+          "ville",
+          "pourquoi"
+        ],
+        "question": "Pourquoi campez-vous ici ?",
+        "reponse": "Elle hausse les épaules sans quitter l'eau des yeux. « Le pont est tombé, et la ville n'a jamais eu le temps de le relever. Alors elle nous laisse la rive depuis l'effondrement, à condition qu'on ne gêne personne, ce qui n'est pas facile avec une troupe. Regardez les piles, là-bas, dans la brume : elles tiennent encore, et l'eau passe entre elles comme si de rien n'était. N'en parlons pas davantage, je n'aime pas qu'on fouille dans ce qui s'est cassé. »"
+      },
+      {
+        "id": "mp-colis",
+        "mots": [
+          "colis",
+          "Brun",
+          "reçu",
+          "remettre",
+          "ferrures"
+        ],
+        "question": "Lui remettre le colis de Brun.",
+        "reponse": "Elle se lève, lentement, et prend le paquet à deux mains. Elle défait la toile d'emballage, sort un clou, le fait rouler entre le pouce et l'index, puis le regarde contre la lumière de la porte. « Droit, bien trempé, pas une bavure. Brun a tenu sa parole, et il ne fait pas le bavard, c'est sa force. » Elle prend un bout de papier sur la table pliante, écrit d'une main ferme, signe, puis le tend. « Voilà votre reçu. Rapportez-le-lui, c'est la preuve que le travail est fait, et qu'un forgeron ne doit jamais rien à personne. »",
+        "condition": {
+          "objet": "colis-de-brun"
+        },
+        "effets": [
+          {
+            "objet": {
+              "id": "colis-de-brun",
+              "retirer": true
+            }
+          },
+          {
+            "objet": {
+              "id": "recu-de-mere-pivoine"
+            }
+          },
+          {
+            "flag": "colis-remis-a-mere-pivoine"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "mp-secret",
+        "mots": [
+          "plus",
+          "fils",
+          "confiance",
+          "moulin",
+          "rien d'autre"
+        ],
+        "question": "Qu'avez-vous à me dire de plus ?",
+        "reponse": "Elle repose son ouvrage sur ses genoux et baisse la voix, comme on parle à quelqu'un de confiance. « Vous m'avez rendu ce qu'on attendait de vous, alors je vais vous dire ce que mon fils m'a confié, une seule fois. Avant de se terrer ici, il m'a dit avoir caché la clé au grenier du moulin, dans la grosse poutre. Il n'a pas voulu m'en dire davantage, et je n'ai pas insisté, un fils qui se tait a ses raisons. Je ne sais rien de plus, je vous le jure sur la roulotte. » Du bout du doigt, elle effleure le ruban de la poupée, sur sa tablette, comme pour s'assurer qu'elle est toujours là.",
+        "condition": {
+          "flag": "colis-remis-a-mere-pivoine"
+        },
+        "revele": [
+          "f-cle-au-grenier"
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "« Vous entrez, ou vous restez dans la lumière ? Asseyez-vous si vous voulez, le banc ne mord pas. »",
+      "amical": "« Ah, vous voilà. Asseyez-vous, la tisane est encore tiède, et les visiteurs qui ne demandent rien sont rares dans ce camp. »",
+      "hostile": "« Vous n'avez pas l'air d'être venu pour la tisane. Parlez vite, et ne me rendez pas la journée plus lourde qu'elle ne l'est. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "colis-remis-a-mere-pivoine"
+          },
+          "texte": "« Vous êtes de la maison, maintenant. Asseyez-vous un moment, et ne soyez pas étonné si je vous donne un conseil de route. »"
+        }
+      ]
+    }
+  },
+  {
+    "id": "tobie-pivoine",
+    "nom": "Tobie Pivoine",
+    "titre": "Funambule",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "24 ans",
+    "role": "Funambule de la troupe, fils de Mère Pivoine : il se tient derrière la bâche de la roulotte.",
+    "lieu": "pon-roulotte",
+    "apparence": "Humain de 24 ans, silhouette fine et nerveuse, cheveux bruns en désordre et teint hâlé de plein air. Il porte une tunique de toile ocre usée aux coudes, et l'on voit ses mains trembler quand il parle.",
+    "personnalite": {
+      "traits": [
+        "nerveux",
+        "drôle par nécessité",
+        "loyal envers sa mère"
+      ],
+      "voix": "Rapide et haché, il plaisante à la fin de ses phrases pour ne pas pleurer.",
+      "valeurs": [
+        "la loyauté envers sa mère",
+        "la parole donnée"
+      ],
+      "desir": "Payer sa dette sans perdre sa mère ni sa corde.",
+      "peur": "Gédéon Marchebise, et décevoir sa mère.",
+      "defaut": "Il fuit ce qui lui fait honte et se cache au lieu de demander de l'aide."
+    },
+    "attitude": 0,
+    "savoir": [],
+    "secrets": [
+      {
+        "fait": "f-tobie-a-vole-la-cle",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 11
+        },
+        "condition": {
+          "fait": "f-tobie-dans-la-roulotte"
+        }
+      },
+      {
+        "fait": "f-cle-au-grenier",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 11
+        },
+        "condition": {
+          "fait": "f-tobie-dans-la-roulotte"
+        }
+      },
+      {
+        "fait": "f-gedeon-et-la-dette",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 11
+        },
+        "condition": {
+          "fait": "f-tobie-dans-la-roulotte"
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "tb-peur",
+        "mots": [
+          "se cacher",
+          "pourquoi",
+          "hommes",
+          "chercher",
+          "bâche"
+        ],
+        "question": "Pourquoi vous cachez-vous ?",
+        "reponse": "« Ah, la question qui fait mal avant même la réponse. Il y a des hommes qui me cherchent, et ce ne sont pas des amis qui souhaitent bonne route. Ils sont polis, ce qui est pire. Alors je reste derrière cette toile : si je sors, ils me suivent, et s'ils me suivent, ils trouvent ma mère. Elle n'a rien fait, elle, à part m'élever avec beaucoup de patience. Vous voyez la lampe, là-bas, éteinte ? Ça me rassure qu'elle le soit, personne ne regarde par la fenêtre. Je ne vous demande pas de me protéger. Seulement de ne pas me vendre à eux, c'est déjà beaucoup. »",
+        "condition": {
+          "fait": "f-tobie-dans-la-roulotte"
+        }
+      },
+      {
+        "id": "tb-mere",
+        "mots": [
+          "votre mère",
+          "roulotte",
+          "famille",
+          "mains",
+          "protéger"
+        ],
+        "question": "Et votre mère, qu'est-elle pour vous ?",
+        "reponse": "« Ma mère ? Elle est tout ce qu'il me reste de solide. Regardez la roulotte : elle a des années de route sur cet essieu qui grince, et elle le répare avec des bouts de fer, sans jamais se plaindre. Vous voyez mes mains ? Elles tremblent depuis cette nuit, et je ne sais pas comment les arrêter. Elle les prend dans les siennes et dit que c'est le froid de la rivière. Je l'aime, voilà, c'est tout. Je la protège comme je peux, même quand cela m'oblige à me taire. Si vous voulez l'aider, apportez-lui le colis de Brun : elle attend des ferrures neuves pour cet essieu. »",
+        "condition": {
+          "fait": "f-tobie-dans-la-roulotte"
+        }
+      },
+      {
+        "id": "tb-corde",
+        "mots": [
+          "corde",
+          "funambule",
+          "équilibre",
+          "vide",
+          "nœud"
+        ],
+        "question": "Parlez-nous de la corde.",
+        "reponse": "« La corde, c'est la seule chose qui ne me ment pas. On marche dessus les yeux fixés sur un point, toujours plus loin que là où l'on a peur. Le vide, lui, je ne le regarde jamais : il attend qu'on baisse la tête. Le nœud, je le fais à la main, deux tours et un contre-tour, sinon ça glisse. Pour la corde fine, je l'ai achetée il y a peu, dans une boutique où l'on ne pose pas trop de questions ; n'en faites pas une histoire, je vous en prie. Là-haut, personne ne peut me demander de payer. Je suis en paix seulement là-haut. Vous me croyez ? »",
+        "condition": {
+          "fait": "f-tobie-dans-la-roulotte"
+        }
+      },
+      {
+        "id": "tb-moulin",
+        "mots": [
+          "moulin",
+          "que s'est-il passé",
+          "hier",
+          "rien",
+          "esquiver"
+        ],
+        "question": "Que s'est-il passé au moulin ?",
+        "reponse": "« Au moulin ? Rien de ce que vous croyez. Je n'ai rien à raconter de cet endroit, voilà tout. Ne me demandez pas de détails, vous en avez assez comme ça. Regardez plutôt la bâche : elle bouge toute seule, c'est le vent, il faut bien que quelque chose bouge. Demandez-moi autre chose, une chose moins lourde, s'il vous plaît. »",
+        "condition": {
+          "fait": "f-tobie-dans-la-roulotte"
+        }
+      },
+      {
+        "id": "tb-aveu",
+        "mots": [
+          "on veut aider",
+          "vérité",
+          "dette",
+          "Gédéon Marchebise",
+          "clé du coffre",
+          "porte-bonheur"
+        ],
+        "question": "On veut seulement aider.",
+        "reponse": "« Je devais 90 po à Gédéon Marchebise, le marchand de grain. Il m'avait prêté, et moi je n'ai jamais su rembourser ; il a menacé de faire saisir la roulotte de ma mère. Alors, un soir, j'ai pris la clé du coffre de la foire, pour payer en douce avec la bourse du concours. Puis j'ai eu peur, et j'ai perdu courage. Je l'ai cachée au grenier du moulin, dans une fente de la grosse poutre, et je suis venu me terrer ici. Je suis désolé, vraiment. Tenez, prenez mon porte-bonheur de funambule : il m'a porté sur la corde, il vous portera peut-être mieux que moi. »",
+        "condition": {
+          "et": [
+            {
+              "fait": "f-tobie-dans-la-roulotte"
+            },
+            {
+              "ou": [
+                {
+                  "flag": "colis-remis-a-mere-pivoine"
+                },
+                {
+                  "pnj": {
+                    "id": "tobie-pivoine",
+                    "attitudeMin": 30
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "revele": [
+          "f-tobie-a-vole-la-cle",
+          "f-cle-au-grenier",
+          "f-gedeon-et-la-dette"
+        ],
+        "effets": [
+          {
+            "objet": {
+              "id": "porte-bonheur-de-funambule"
+            }
+          },
+          {
+            "flag": "tobie-confie"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "Derrière la bâche, une respiration retenue ; personne ne répond.",
+      "amical": "Derrière la bâche, une respiration retenue ; personne ne répond.",
+      "hostile": "Derrière la bâche, une respiration retenue ; personne ne répond.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "tobie-confie"
+          },
+          "texte": "« Vous savez tout, alors. Ça me soulage, et ça me gêne aussi. Merci de ne pas en faire un spectacle. »"
+        },
+        {
+          "condition": {
+            "et": [
+              {
+                "fait": "f-tobie-dans-la-roulotte"
+              },
+              {
+                "pnj": {
+                  "id": "tobie-pivoine",
+                  "attitudeMax": -1
+                }
+              }
+            ]
+          },
+          "texte": "« Partez, dit-il à demi-voix, je ne sors pas, et vous ne me trouverez pas. »"
+        },
+        {
+          "condition": {
+            "et": [
+              {
+                "fait": "f-tobie-dans-la-roulotte"
+              },
+              {
+                "pnj": {
+                  "id": "tobie-pivoine",
+                  "attitudeMin": 20
+                }
+              }
+            ]
+          },
+          "texte": "« Chut… parlez bas. Vous êtes du côté de ma mère, alors je vous écoute, mais pas trop fort. »"
+        }
+      ]
+    }
+  },
+  {
+    "id": "forains-du-camp",
+    "nom": "Les forains du camp",
+    "espece": "humain",
+    "sexe": "N",
+    "role": "Les forains de la troupe, réunis autour du feu et des roulottes : ils se ferment aux étrangers hostiles.",
+    "lieu": "pon-camp",
+    "apparence": "Un petit groupe de forains, humains, réunis autour d'un feu de pierres, les mains tendues vers la flamme. Ils portent des vêtements de toile rayée, crème et rouge brique, usés aux genoux et aux manches. Aucun visage ne se détache : c'est une troupe, pas un portrait.",
+    "personnalite": {
+      "traits": [
+        "rieurs",
+        "méfiants envers les étrangers",
+        "solidaires"
+      ],
+      "voix": "Plusieurs voix qui se coupent, rieuses, et qui s'arrêtent net quand un étranger approche.",
+      "valeurs": [
+        "la troupe avant tout",
+        "la foire qui fait vivre les siens"
+      ],
+      "desir": "Une belle foire demain, avec du monde et de l'argent dans les poches.",
+      "peur": "Qu'on touche à l'un des leurs.",
+      "defaut": "Ils jugent un étranger sur sa première parole et ne reviennent pas dessus."
+    },
+    "attitude": 0,
+    "savoir": [],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "fc-preparation",
+        "mots": [
+          "foire",
+          "demain",
+          "répétitions",
+          "costumes",
+          "accordéon"
+        ],
+        "question": "Que préparez-vous pour demain ?",
+        "reponse": "« Demain, c'est la foire, alors tout le monde répète, même le feu a l'air pressé. Ici, sous le pont brisé, on a de la place, et personne ne vient nous marcher sur les pieds. Regardez près de la roulotte de tête : les costumes sont sortis de leur caisse, et l'on rentre les coutures qui ont lâché. Derrière les roulottes, l'accordéon répète la même phrase depuis ce matin ; vous finirez par la siffler sans le vouloir. On fera d'abord la corde, puis les numéros d'équilibre, et la musique jusqu'à la nuit. Vous voulez voir ? Mais pas de mains baladeuses sur les costumes, s'il vous plaît. »",
+        "condition": {
+          "pnj": {
+            "id": "forains-du-camp",
+            "attitudeMin": 0
+          }
+        }
+      },
+      {
+        "id": "fc-tobie",
+        "mots": [
+          "Tobie",
+          "funambule",
+          "un des nôtres",
+          "sa mère"
+        ],
+        "question": "Qui est Tobie, au juste ?",
+        "reponse": "« Tobie ? C'est un des nôtres, et le meilleur sur la corde, on ne le dira jamais assez. Mais il ne sort plus de la roulotte de sa mère depuis cette nuit, et nous ne le forçons pas à descendre. Sa mère est dans la roulotte, à l'écart, contre la berge. Elle a ses humeurs, et elle n'a pas besoin qu'on lui pose des questions au sujet de son fils. Alors on le laisse tranquille. Quand il sera prêt, il reviendra vers la corde, et le feu sera là. Ne vous fâchez pas si l'on ne vous répond pas tout de suite : ici, on se méfie des étrangers qui ont l'air pressé. »",
+        "condition": {
+          "pnj": {
+            "id": "forains-du-camp",
+            "attitudeMin": 0
+          }
+        }
+      },
+      {
+        "id": "fc-camp",
+        "mots": [
+          "camp",
+          "rive",
+          "pont brisé",
+          "effondrement",
+          "pourquoi"
+        ],
+        "question": "Pourquoi installer votre camp ici ?",
+        "reponse": "« Parce que la ville nous laisse la rive, chaque automne, depuis que le pont s'est effondré. Personne n'a envie de se battre pour un bout de berge qui ne sert à rien, et nous avons besoin d'un endroit plat et d'un peu d'eau. Les roulottes forment un demi-cercle, portes tournées vers la rivière, pour que le vent passe par-dessus le feu plutôt qu'à travers les toiles. Les piles, là-bas, coupent un peu le vent. Ce n'est pas un palais, mais la marmite tient sur son trépied. Chaque automne, on se dit que c'est la dernière fois, et chaque automne, on revient. Asseyez-vous donc, la fumée vous fera du bien. »",
+        "condition": {
+          "pnj": {
+            "id": "forains-du-camp",
+            "attitudeMin": 0
+          }
+        }
+      },
+      {
+        "id": "fc-corde",
+        "mots": [
+          "corde",
+          "poteau",
+          "monter",
+          "funambules"
+        ],
+        "question": "Et cette corde, à quoi sert-elle ?",
+        "reponse": "« La corde, c'est notre école. On y monte à tour de rôle, d'abord la main sur le poteau, puis un pas, puis un autre, jusqu'à ce que les pieds sachent où ils vont. Le chanvre tendu chante quand le vent passe, et le petit apprend à l'écouter avant de regarder ses chevilles. Ce poteau-là, vous le voyez : le chêne est lisse et noirci à hauteur d'épaule, à force de s'y appuyer avant de monter. Les petits commencent par rester immobiles, les bras écartés, pendant que les grands leur disent quoi regarder. Vous voulez essayer ? Posez d'abord la main sur le chêne, puis levez le pied. »",
+        "condition": {
+          "pnj": {
+            "id": "forains-du-camp",
+            "attitudeMin": 0
+          }
+        }
+      }
+    ],
+    "salutations": {
+      "neutre": "« Vous passez ou vous restez ? Le feu est là, mais ne marchez pas sur les répétitions. »",
+      "amical": "« Ah, des visages qu'on ne connaît pas ! Approchez, la marmite est presque chaude. »",
+      "hostile": "« Vous n'êtes pas du camp. Gardez vos questions pour vous, et laissez la corde tranquille. »",
+      "variantes": []
+    }
+  }
+]

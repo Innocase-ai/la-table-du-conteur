@@ -107,7 +107,7 @@ Pour chacun : **voix**, **désir**, **peur**, **sujets** (≥ 4, dont ≥ 2 sur 
 | --- | --- | --- | --- |
 | 1 | « Que vendez-vous ? » | cordes, rations, bijoux de foire ; boutique. | boutique |
 | 2 ★ | « Auriez-vous vendu une corde fine ? » (les cordes) | Elle a vendu une corde fine de soie à un funambule, il y a peu ; elle ne donne pas son nom (« un client est un client »). | révèle `f-corde-fine-vendue` |
-| 3 | « Qui vient à votre étal ? » | Les forains, surtout ; elle passe ses jours au camp du Pont-Cassé. | — |
+| 3 | « Qui vient à votre étal ? » | Les forains, surtout ; elle rejoint le camp du Pont-Cassé le soir (P2 du Pont-Cassé, 20/11/2026 : « ses jours » devient « le soir »). | — |
 | 4 | « Un mot sur le bourg ? » | Avis sur Brun, Colombe, Aubin, Gédéon (« il ne marchande jamais, c'est louche »). | — |
 | 5 ★ (secret) | Le nom de l'acheteur | Persuasion DD 11 ou l'objet « bout de corde » montré : elle dit que c'était **Tobie** (mais sans dire qu'il a volé la clé). | ajoute le fait `f-corde-vendue-a-tobie` : « Mathilde a vendu la corde fine à Tobie Pivoine » |
 

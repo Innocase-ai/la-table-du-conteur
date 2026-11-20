@@ -62,7 +62,7 @@
           "accuser"
         ],
         "question": "Qui soupçonnez-vous ?",
-        "reponse": "« Personne, et je ne veux l'entendre dans aucun coin de la place. Les forains ont assez de soucis sans qu'on les montre du doigt. Je ne veux salir personne sans preuve, ni un forain, ni un marchand.Pour des gens de confiance, je citerai Gédéon Marchebise, le plus fidèle des marchands, qui n'a jamais manqué une foire. » Il tapote la table du bout de l'index. « Mais pas de racontars. Je veux des preuves, pas des commérages, et qui les apportera sera bien reçu. »"
+        "reponse": "« Personne, et je ne veux l'entendre dans aucun coin de la place. Les forains ont assez de soucis sans qu'on les montre du doigt. Je ne veux salir personne sans preuve, ni un forain, ni un marchand. Pour des gens de confiance, je citerai Gédéon Marchebise, le plus fidèle des marchands, qui n'a jamais manqué une foire. » Il tapote la table du bout de l'index. « Mais pas de racontars. Je veux des preuves, pas des commérages, et qui les apportera sera bien reçu. »"
       },
       {
         "id": "aubin-foire",
@@ -492,7 +492,7 @@
           "forains"
         ],
         "question": "Qui vient à votre étal ?",
-        "reponse": "« Qui vient à mon étal ? Les forains, mon bijou, surtout les forains : ils ont tous une corde à reprendre ou une ration à remplir avant le départ. Je passe mes jours au camp du Pont-Cassé, de l'autre côté de la rivière, et je rentre le soir avec la caisse un peu plus lourde et les pieds un peu plus fatigués. Les gens du bourg viennent aussi, un peu moins, et toujours avec un air de quelqu'un qui n'est pas venu. Pourtant un pot de miel ne fait tort à personne. Alors achetez, ou dites-moi ce qui vous amène, car je n'ai pas toute la journée. »"
+        "reponse": "« Qui vient à mon étal ? Les forains, mon bijou, surtout les forains : ils ont tous une corde à reprendre ou une ration à remplir avant le départ. Le jour, je tiens mon étal ici, mon bijou ; le soir, je rejoins le camp du Pont-Cassé, de l'autre côté de la rivière, les pieds un peu plus fatigués. Les gens du bourg viennent aussi, un peu moins, et toujours avec un air de quelqu'un qui n'est pas venu. Pourtant un pot de miel ne fait tort à personne. Alors achetez, ou dites-moi ce qui vous amène, car je n'ai pas toute la journée. »"
       },
       {
         "id": "mathilde-bourg",
@@ -563,7 +563,13 @@
         }
       ],
       "rachat": 0.5
-    }
+    },
+    "presences": [
+      {
+        "lieu": "pon-camp",
+        "moment": "soir"
+      }
+    ]
   },
   {
     "id": "brun-forgefer",

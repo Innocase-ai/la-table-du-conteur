@@ -250,7 +250,15 @@
     "arrivee": "Le pont de pierre claire s'avance au-dessus de l'eau, trois arches rondes qui se reflètent dans une rivière si calme qu'elle semble immobile. La brume du matin traîne encore sur l'eau, et les piles plongent dans un courant lent, brun et doux. Le long du parapet, la pierre est usée à hauteur de main, lisse, marquée de petites entailles. Plus bas, un ponton de planches de chêne descend au pied de la pile sud, où des cordes sont amarrées à des anneaux, et une caisse de bois attend sous une bâche. Une odeur de vase et de cordage monte de la rive, mêlée à celle du pain qui vient de la place. Un cri de batelier s'élève et se perd sous les arches. Sur le parapet, un avis aux bateliers, délavé, tient encore par un clou.",
     "visuel": "Un pont de pierre claire à trois arches, dont les piles plongent dans une eau calme et brune, avec des marques de crue creusées dans la pile nord. Un ponton de planches de chêne descend au pied de la pile sud, où des cordes et une caisse de bateliers attendent sous une bâche. La lumière de la brume se lève sur l'eau, et des reflets dorés glissent sous les arches.",
     "accroche": "Au sud de la place, un pont de pierre claire enjambe la rivière ; ses piles plongent dans une eau lente et brune.",
-    "liens": []
+    "liens": [
+      {
+        "vers": "pon-camp",
+        "type": "chemin",
+        "heures": 0.5,
+        "description": "Un sentier piétiné quitte le ponton et longe la rive vers l'aval, entre les saules, jusqu'au Pont-Cassé.",
+        "retour": "Le sentier remonte la rive en longeant les saules, jusqu'au ponton des bateliers et ses marques de crue."
+      }
+    ]
   },
   {
     "id": "moulin",
@@ -387,6 +395,40 @@
     "resume": "À écrire : le site de quête du Pont-Cassé.",
     "description": "À écrire : ce qu’on y trouve, factuel (pour le MJ).",
     "visuel": "À écrire : ce qu’on voit, sans nommer les personnages.",
+    "liens": []
+  },
+  {
+    "id": "pon-camp",
+    "nom": "Le camp des forains",
+    "type": "camp",
+    "parent": "pont-casse",
+    "resume": "Le camp des forains, clairière de roulottes peintes autour d'un feu, face à la rivière et au pont brisé.",
+    "description": "Clairière de terre battue, une quarantaine de pas sur vingt, au pied des piles du pont brisé. Au centre, un feu de pierres porte une marmite de fer. Cinq roulottes en demi-cercle, bleu rivière, ocre, vert mousse et rouge brique, portes tournées vers l'eau. Sous l'auvent de la roulotte la plus à l'est, une caisse de costumes contient 10 po. Les affiches de la troupe sont fixées au montant de la roulotte de tête, près du feu. Mathilde Pot-de-Miel rejoint le camp le soir et s'assoit près du feu. À l'est, la corde de chanvre est tendue entre deux poteaux de chêne gris ; le chêne du poteau ouest est poli et noirci à hauteur d'épaule. À l'écart, contre la berge, la roulotte de Mère Pivoine a sa porte fermée par une bâche. Si le groupe se montre hostile, les forains se ferment et ne parlent plus.",
+    "ambiance": "Roulottes peintes, corde tendue, feu de camp",
+    "arrivee": "Le sentier de rive débouche sur une clairière de terre battue, où l'herbe est écrasée par les roues et les pas. Devant vous, cinq roulottes peintes en bleu rivière, en ocre, en vert mousse et en rouge brique forment un demi-cercle autour d'un feu de pierres, et leurs toiles rayées pendent sous les auvents. L'odeur de fumée de bois se mêle à celle de la cire chaude et du chanvre mouillé. À l'est, une corde tendue entre deux poteaux de chêne gris coupe l'angle, et le vent y fait chanter les fibres. Au nord-est, au-dessus de la berge, les piles d'un pont de pierre claire se dressent dans l'eau, et entre elles, deux arches sont tombées dans la rivière. Quelque part derrière les roulottes, un accordéon répète la même phrase, puis s'arrête. Il fait frais, plus doux près du feu, et la lumière dorée d'automne glisse sur les toiles. Le camp semble plus silencieux que d'habitude, comme s'il se préparait à la foire sans se presser.",
+    "visuel": "Une clairière de terre battue, bordée par la berge au nord et les piles du pont brisé au nord-est, où cinq roulottes bleu rivière, ocre, vert mousse et rouge brique forment un demi-cercle autour d'un feu de pierres. Une corde de chanvre tendue entre deux poteaux de chêne gris coupe l'angle est, et des toiles rayées crème et rouge brique pendent sous les auvents. La lumière dorée de l'automne, filtrée par la brume, glisse sur les cerclages de fer, et l'ombre des roulottes s'étire vers l'ouest.",
+    "accroche": "Sous le pont brisé, un demi-cercle de roulottes peintes se dessine dans l'herbe, avec la fumée d'un feu et une corde tendue entre deux poteaux.",
+    "liens": [
+      {
+        "vers": "pon-roulotte",
+        "type": "porte",
+        "heures": 0,
+        "description": "Une bâche rayée, rouge brique et crème, ferme la porte d'une roulotte bleu rivière, à l'écart contre la berge ; trois marches de bois y mènent.",
+        "retour": "Depuis le seuil, la bâche relevée laisse voir le camp : le feu, les roulottes en demi-cercle et la corde tendue entre ses poteaux."
+      }
+    ]
+  },
+  {
+    "id": "pon-roulotte",
+    "nom": "La roulotte de Mère Pivoine",
+    "type": "salle",
+    "parent": "pon-camp",
+    "resume": "La roulotte de Mère Pivoine, la plus vieille du camp, à l'écart contre la berge, pleine de bougies et d'objets de foire.",
+    "description": "Roulotte de sapin peint, quatre pas sur deux et demi, la plus vieille et la plus petite du camp, posée contre la berge. Une bâche rayée, tendue sur une corde de chanvre à mi-longueur, coupe la pièce en deux ; côté porte, un banc de chêne et une table pliante. Au mur ouest, une lampe à huile de cuivre pend sous une tablette où une poupée de bois, pareille à celles du sanctuaire, porte un ruban crème. Contre le mur est, un coffre à costumes peint se tient sous la petite fenêtre, dont le montant porte sept étoiles ocre. La fenêtre nord est bouchée par une toile cirée. Mère Pivoine, doyenne des forains, reçoit ici le colis de Brun et remet le reçu. Le plancher de chêne est usé en sentier devant la porte.",
+    "ambiance": "Sapin bleu, bougies, toile rayée",
+    "arrivee": "La porte de la roulotte est ouverte sur une pièce plus petite que vous ne l'imaginiez, où l'air sent la cire chaude et l'huile de lampe. Une bâche rayée, rouge brique et crème, est tendue au milieu de la pièce sur une corde de chanvre, et sa toile frémit quand le vent passe par la porte. Sur la gauche, une lampe de cuivre pend au mur, près d'une tablette où une poupée de bois, peinte en bleu, porte un ruban de toile crème. Contre le mur est, un coffre peint se tient sous une petite fenêtre, et sur le montant, des étoiles ocre attirent le regard. Une vieille femme au visage fin, assise sur un banc, ne lève pas tout de suite les yeux de son ouvrage. Par la fenêtre, une lumière grise tombe sur le plancher, et l'on entend au-dehors le camp, le feu, l'eau contre la berge. Tout reste à sa place, calme et un peu serré, comme une maison qui a beaucoup voyagé.",
+    "visuel": "Une roulotte de sapin peint en bleu rivière, plus petite et plus ancienne que les autres, avec une porte ouverte sur trois marches. Une bâche rayée rouge brique et crème, tendue sur une corde de chanvre, coupe la pièce en deux ; une lampe de cuivre pend au mur ouest, sous une tablette où une poupée de bois porte un ruban crème. Par la petite fenêtre est, une lumière grise tombe sur un coffre peint et sur des étoiles ocre peintes au montant.",
+    "accroche": "Contre la berge, à l'écart du demi-cercle, une roulotte bleu rivière, plus petite et plus usée que les autres, a sa porte fermée par une toile rayée.",
     "liens": []
   }
 ]

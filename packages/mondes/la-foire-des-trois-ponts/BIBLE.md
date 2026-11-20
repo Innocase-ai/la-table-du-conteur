@@ -2,7 +2,7 @@
 
 Document de référence pour tous ceux qui écrivent des données de ce monde. **Les identifiants du registre (§7) sont fixes** : les zones s'y réfèrent entre elles. Ne rien inventer qui contredise ce canon.
 
-> **Statut** : épisode pilote de la saga (F7 de `docs/PRD-SAGA.md`). **V1 (pitch), V2 (canon), V3 (plan) V4 (lieux par zone : village, moulin, Pont-Cassé) et V5 (fiches détaillées des 17 pièces, voir `LIEUX.md`) validés par l'utilisateur le 20/11/2026 ; **V6 du village (`V6-village.md`) et V6 du moulin (`V6-moulin.md`) validés le 20/11/2026** (reste V6 du Pont-Cassé)** : ce qui est marqué « Validé » est **gelé** (changer un élément gelé demande un nouveau oui). Ce qui est marqué « Proposé » (identifiants, espèces, âges, peuples) n'est pas encore validé : il se tranche à V3 et V6.
+> **Statut** : épisode pilote de la saga (F7 de `docs/PRD-SAGA.md`). **V1 (pitch), V2 (canon), V3 (plan) V4 (lieux par zone : village, moulin, Pont-Cassé) et V5 (fiches détaillées des 17 pièces, voir `LIEUX.md`) validés par l'utilisateur le 20/11/2026 ; **V6 du village (`V6-village.md`) V6 du moulin (`V6-moulin.md`) et V6 du Pont-Cassé (`V6-pont-casse.md`) validés le 20/11/2026** (V6 terminé ; reste V7 à V8)** : ce qui est marqué « Validé » est **gelé** (changer un élément gelé demande un nouveau oui). Ce qui est marqué « Proposé » (identifiants, espèces, âges, peuples) n'est pas encore validé : il se tranche à V3 et V6.
 
 ## 1. Pitch — *Validé le 20/11/2026 (V1)*
 
@@ -23,7 +23,7 @@ Verdelle, bourg de rivière au pied des collines, tient chaque automne une foire
 
 **Fait intermédiaire du moulin (V6, M1, validé le 20/11/2026)** : `f-gedeon-a-engage-la-bande` (« Gédéon Marchebise a engagé Rouquin Lamefine et ses hommes pour retrouver la clé de la foire, sans se montrer »), révélé par l'homme de main du pont (après une victoire ou une négociation) et par Rouquin (levier montré) ; c'est la source « témoignage d'un homme de main » du scandale (V7 : condition `f-gedeon-et-la-dette` ou `f-gedeon-a-engage-la-bande`).
 
-**Faits clés (chacun à trois sources jouables : un PNJ, un lieu à fouiller, un objet)** : `f-tobie-a-vole-la-cle` (Pervenche, Mathilde et la corde, la serrure forcée) ; `f-cle-au-grenier` (Tobie, Mère Pivoine, les traces de corde sur la poutre) ; `f-gedeon-et-la-dette` (un homme de main qui parle, la **reconnaissance de dette** dans le coffre de la boutique du grain, Tobie).
+**Faits clés (chacun à trois sources jouables : un PNJ, un lieu à fouiller, un objet)** : `f-tobie-a-vole-la-cle` (Pervenche, Mathilde et la corde, la serrure forcée) ; `f-cle-au-grenier` (Tobie, Mère Pivoine, les traces de corde sur la poutre) ; `f-gedeon-et-la-dette` (la **reconnaissance de dette** dans le coffre de la boutique du grain, Gédéon qui cède, Tobie ; depuis M1 de V6 le témoignage d'un homme de main est le fait voisin `f-gedeon-a-engage-la-bande`).
 
 ## 3. Les fins — *Validé le 20/11/2026 (V2)*
 

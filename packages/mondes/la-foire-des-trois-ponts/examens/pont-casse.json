@@ -1,0 +1,89 @@
+[
+  {
+    "id": "exa-pon-affiches",
+    "lieu": "pon-camp",
+    "nom": "Les affiches de la troupe",
+    "apercu": "Des affiches de la troupe, collées au montant de la roulotte de tête, côté feu.",
+    "texte": "Les affiches sont collées au montant de la roulotte de tête, à hauteur de main, du côté du feu. Le papier, d'un crème jauni, porte des lettres rouge brique en gros caractères. Il y est question de la foire de demain et de numéros d'équilibre sur la corde. Une coulée de cire de bougie a glissé sur le bord, puis s'est figée en gouttes. Un coin s'est décollé, et quelqu'un l'a recollé avec un morceau de ruban de toile crème. Plus bas, la peinture bleu rivière de la roulotte s'écaille un peu, et la fumée du feu a noirci le bas de la page.",
+    "effets": [],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-pon-poteau",
+    "lieu": "pon-camp",
+    "nom": "Le poteau ouest de la corde",
+    "apercu": "Le poteau ouest de la corde : un chêne gris, poli et noirci à hauteur d'épaule.",
+    "texte": "Le poteau ouest de la corde est un tronc de chêne qui a grisé avec les années. À hauteur d'épaule, pourtant, le bois est devenu lisse comme un galet. Il est noirci à cet endroit, d'un brun presque luisant, et les fibres ont disparu sous la paume. Les marques sont larges, comme si des mains s'y étaient appuyées l'une après l'autre, à la même place, pendant des saisons. Le chanvre de la corde est noué au tronc un peu plus bas. Quand le soleil frappe le chêne, la chaleur monte doucement du bois. Vous passez la main sur le poteau, et votre paume glisse sans une seule écharde.",
+    "effets": [],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-pon-piles",
+    "lieu": "pon-camp",
+    "nom": "Les piles du pont brisé",
+    "apercu": "Les piles du pont brisé, dressées dans l'eau brune, entre les arches tombées.",
+    "texte": "Les piles du pont se dressent dans la rivière, en pierre claire usée par l'eau. On voit encore, sur leurs flancs, les traces des cintres qui portaient les arches. Entre les piles, deux arches sont tombées d'un bloc ; ses pierres gisent sous l'eau brune, couvertes de boue et de mousse verte. La brume monte de l'eau le matin et se déchire contre les pierres. Au pied de la pile la plus proche, le courant fait un bruit continu, sans rythme. L'ombre froide des piles couvre la berge, et le soleil, qui ne passe pas entre elles, laisse une bande d'herbe grise sur la rive.",
+    "effets": [],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-pon-bache",
+    "lieu": "pon-roulotte",
+    "nom": "La bâche rayée",
+    "apercu": "La bâche rayée, tendue sur sa corde de chanvre au milieu de la pièce.",
+    "texte": "La bâche est rouge brique et crème, tendue sur une corde de chanvre qui coupe la pièce en deux. Elle ne pend pas droit : elle bombe un peu, comme poussée de l'autre côté. Sous son bord, à quelques pouces du plancher usé, apparaît le bout d'un soulier souple de funambule, en cuir fin, immobile. Plus haut, la toile monte et descend doucement, au rythme d'une respiration qui ne cherche pas à se cacher. Le vent qui entre par la porte la fait claquer par moments, puis elle retombe, et le soulier reste à sa place. De ce côté-ci de la toile, personne ne parle.",
+    "effets": [
+      {
+        "fait": "f-tobie-dans-la-roulotte"
+      }
+    ],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-pon-poupee",
+    "lieu": "pon-roulotte",
+    "nom": "La poupée de bois",
+    "apercu": "Une poupée de bois peinte en bleu, un ruban crème noué au cou, sur la tablette.",
+    "texte": "Sur la tablette, au-dessus de la lampe, une poupée de bois est assise, les jambes croisées. Elle est peinte en bleu rivière, la peinture encore vive sur les joues et le front, et un ruban de toile crème est noué autour de son cou, bien serré. Le bois est lisse, sans la moindre écaille, et la poupée paraît posée là depuis peu. Son regard de bois tombe sur la porte, et la lumière grise glisse sur sa peinture bleue, sans la faire briller.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-pon-poupee-jumelle",
+        "condition": {
+          "lieu": "ver-sanctuaire"
+        },
+        "texte": "Sur la tablette, au-dessus de la lampe, une poupée de bois est assise, les jambes croisées. Elle est peinte en bleu rivière, la peinture encore vive sur les joues et le front, et un ruban de toile crème est noué autour de son cou, bien serré. Le bois est lisse, sans la moindre écaille, et la poupée paraît posée là depuis peu. Son regard de bois tombe sur la porte, et la lumière grise glisse sur sa peinture bleue, sans la faire briller. Vous reconnaissez ce bleu et ce ruban : les ex-voto du sanctuaire de la Rive en portent de semblables, trait pour trait.",
+        "effets": [
+          {
+            "fait": "f-poupee-jumelle"
+          }
+        ]
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-pon-coffre",
+    "lieu": "pon-roulotte",
+    "nom": "Le coffre à costumes",
+    "apercu": "Le coffre à costumes, en bois peint, contre le mur est, sous la petite fenêtre.",
+    "texte": "Le coffre à costumes est contre le mur est, juste sous la petite fenêtre, et la lumière grise y tombe en biais. Il est en bois peint, d'un ocre passé sur un fond vert mousse, et ses arêtes sont renforcées de cerclages de fer rouillés. Des traces de pas usent la peinture du bas, là où l'on s'agenouille pour l'ouvrir. Le couvercle est bombé, et les charnières ont été graissées récemment. Quand le vent entre par la porte, le couvercle tremble un peu dans son berceau de bois. Vous sentez la poussière et la cire chaude, et rien d'autre que le bois qui reste tiède.",
+    "effets": [],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-pon-etoiles",
+    "lieu": "pon-roulotte",
+    "nom": "Les sept étoiles",
+    "apercu": "Sept étoiles ocre peintes en rang sur le montant de la petite fenêtre.",
+    "texte": "Sept étoiles ocre sont peintes en rang sur le montant de la petite fenêtre. Elles ont à peu près la même taille, et la même pointe, comme si une seule main les avait tracées l'une après l'autre, sans se presser. La lumière grise les rend presque mates, et le bois autour, du sapin bleu, est écaillé par le soleil. Rien n'est écrit à côté, aucune lettre, aucune date. Vous comptez une deuxième fois, pour être sûr : il y en a bien sept.",
+    "effets": [],
+    "variantes": [],
+    "regards": []
+  }
+]

@@ -124,7 +124,7 @@ Services : Une chambre pour la nuit (2 po)
 
 **mathilde-etal** — *Qui vient à votre étal ?*
 
-> « Qui vient à mon étal ? Les forains, mon bijou, surtout les forains : ils ont tous une corde à reprendre ou une ration à remplir avant le départ. Je passe mes jours au camp du Pont-Cassé, de l'autre côté de la rivière, et je rentre le soir avec la caisse un peu plus lourde et les pieds un peu plus fatigués. Les gens du bourg viennent aussi, un peu moins, et toujours avec un air de quelqu'un qui n'est pas venu. Pourtant un pot de miel ne fait tort à personne. Alors achetez, ou dites-moi ce qui vous amène, car je n'ai pas toute la journée. »
+> « Qui vient à mon étal ? Les forains, mon bijou, surtout les forains : ils ont tous une corde à reprendre ou une ration à remplir avant le départ. Le jour, je tiens mon étal ici, mon bijou ; le soir, je rejoins le camp du Pont-Cassé, de l'autre côté de la rivière, les pieds un peu plus fatigués. Les gens du bourg viennent aussi, un peu moins, et toujours avec un air de quelqu'un qui n'est pas venu. Pourtant un pot de miel ne fait tort à personne. Alors achetez, ou dites-moi ce qui vous amène, car je n'ai pas toute la journée. »
 
 **mathilde-bourg** — *Un mot sur le bourg ?*
 
