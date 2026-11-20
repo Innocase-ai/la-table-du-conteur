@@ -197,6 +197,7 @@ describe.each(listerMondesEcrits())('revue de « %s »', (id) => {
     const d = revoirMonde(dm, CANON_VIDE);
     expect(d.filter((x) => x.code === 'revue.secret' || x.code === 'revue.personnage')).toEqual([]);
     expect(d.filter((x) => x.code === 'revue.nom-inconnu').length).toBeLessThan(15);
-    expect(champsLibres(dm).length).toBeGreaterThan(100);
+    // Un monde en brouillon que l'on écrit lieu par lieu (l'épisode pilote, F7) n'a pas encore ses 100 champs de texte : seul un monde publié doit les avoir.
+    if (dm.monde.statut === 'publie') expect(champsLibres(dm).length).toBeGreaterThan(100);
   });
 });

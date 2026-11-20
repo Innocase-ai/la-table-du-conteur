@@ -1,0 +1,104 @@
+{
+  "secrets": [
+    {
+      "id": "secret-voleur-de-la-cle",
+      "texte": "Tobie Pivoine, funambule, a volé la clé du coffre de la foire pour payer en douce sa dette à Gédéon, puis a perdu courage.",
+      "fait": "f-tobie-a-vole-la-cle",
+      "motsTabou": [
+        "Tobie a volé",
+        "le funambule a volé",
+        "voleur de la clé"
+      ],
+      "autorise": [
+        "savoirs:tobie-pivoine",
+        "savoirs:mere-pivoine",
+        "savoirs:soeur-pervenche",
+        "savoirs:mathilde-pot-de-miel",
+        "savoirs:gedeon-marchebise",
+        "savoirs:rouquin-lamefine",
+        "dilemmes"
+      ]
+    },
+    {
+      "id": "secret-cle-au-grenier",
+      "texte": "Tobie a caché la clé au grenier du moulin, sous une poutre ; Rouquin Lamefine et sa bande tiennent le moulin sans l'avoir trouvée.",
+      "fait": "f-cle-au-grenier",
+      "motsTabou": [
+        "la clé est au grenier",
+        "clé cachée au grenier"
+      ],
+      "autorise": [
+        "savoirs:tobie-pivoine",
+        "savoirs:mere-pivoine",
+        "savoirs:gedeon-marchebise",
+        "savoirs:rouquin-lamefine"
+      ]
+    },
+    {
+      "id": "secret-gedeon-et-la-dette",
+      "texte": "Gédéon Marchebise est derrière la bande de Rouquin Lamefine ; Tobie lui devait 90 po et il menaçait de faire saisir la roulotte de sa mère.",
+      "fait": "f-gedeon-et-la-dette",
+      "motsTabou": [
+        "dette de Tobie",
+        "90 po",
+        "Gédéon a engagé",
+        "Gédéon est derrière"
+      ],
+      "autorise": [
+        "savoirs:gedeon-marchebise",
+        "savoirs:rouquin-lamefine",
+        "savoirs:tobie-pivoine",
+        "savoirs:mere-pivoine",
+        "dilemmes",
+        "savoirs:homme-de-main-du-pont"
+      ]
+    }
+  ],
+  "noms": {
+    "lexique": [
+      "Verdelle"
+    ]
+  },
+  "personnages": [
+    {
+      "id": "aubin-cerfeuil",
+      "nom": "Aubin Cerfeuil"
+    },
+    {
+      "id": "colombe-tisserand",
+      "nom": "Colombe Tisserand"
+    },
+    {
+      "id": "gedeon-marchebise",
+      "nom": "Gédéon Marchebise"
+    },
+    {
+      "id": "tobie-pivoine",
+      "nom": "Tobie Pivoine"
+    },
+    {
+      "id": "mere-pivoine",
+      "nom": "Mère Pivoine"
+    },
+    {
+      "id": "soeur-pervenche",
+      "nom": "Sœur Pervenche"
+    },
+    {
+      "id": "brun-forgefer",
+      "nom": "Brun Forgefer"
+    },
+    {
+      "id": "mathilde-pot-de-miel",
+      "nom": "Mathilde Pot-de-Miel"
+    },
+    {
+      "id": "rouquin-lamefine",
+      "nom": "Rouquin Lamefine"
+    },
+    {
+      "id": "homme-de-main-du-pont",
+      "nom": "L’homme de main du pont"
+    }
+  ]
+}
