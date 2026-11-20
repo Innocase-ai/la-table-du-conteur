@@ -9,6 +9,8 @@ Un lieu mal décrit se paie trois fois : une scène plate (le MJ n'a rien à rac
 
 Le moteur ne lit pas l'atlas (comme `BIBLE.md` et `CANON-PERSONNAGES.md`, c'est un document de travail) : il sert de **source unique**. Quand un texte du monde et l'atlas se contredisent, on corrige d'abord l'atlas, puis on re-dérive.
 
+> **Avant de décrire les pièces d'un lieu de départ** : lire `docs/REGISTRE-DECORS.md` (F8). Une pièce courante (taverne, chambre, sanctuaire, maison du chef, forge, marché, boutique, intérieur modeste, cave ou grenier, place du village) peut prendre un décor de la réserve (`commun:lieux/<id>`) : sa description (`visuel`) doit alors s'accorder avec ce décor, ou la pièce reste propre à l'épisode et se dessine.
+
 ## Les trois niveaux (toujours dans cet ordre)
 
 | Niveau | Quoi | Qui l'écrit | Ce qui en sort |

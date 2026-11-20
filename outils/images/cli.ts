@@ -8,7 +8,8 @@
 //   pnpm images monde <monde> --lieu <id> [--service klein] [--go]   génère les images d'un lieu (sans --go : simulation)
 //   pnpm images cartes <monde>              lieux qui méritent une carte illustrée (≥ 5 enfants), avec les cartes faites / à faire
 //   pnpm images cartes <monde> --lieu <id> | --tous [--service klein] [--go]   génère la carte d'un lieu (ou de tous les candidats ; sans --go : simulation)
-//   pnpm images communs extraire | proposer <monde> [--appliquer]   bibliothèque commune de portraits de PNJ et d'objets venus des histoires
+//   pnpm images communs extraire | proposer <monde> [--appliquer] | registre   bibliothèque commune de portraits de PNJ et d'objets venus des histoires ; `registre` réécrit la partie générée de docs/REGISTRE-DECORS.md
+//   pnpm images decors [--ids a,b] [--max N] [--go]   le lot générique de la réserve de décors (F8) : sans --go, simulation et coût annoncé ; payant seulement avec --go, après accord
 //   pnpm images galerie [--service klein] [--max N] [--go]   génère les 54 portraits du créateur (communs à tous les mondes)
 //   pnpm images bestiaire [--profils a,b] [--max N] [--go]   une image par profil de monstre du SRD (combat, tous mondes) ; --profils : seulement ceux-là
 //   pnpm images equipement [--ids a,b] [--max N] [--partie i/n] [--go]          une image par arme et par armure du SRD (équipement commun à tous les mondes)
@@ -30,6 +31,7 @@ import { elementsBestiaire, elementsEquipement, elementsInterface, elementsTerra
 import { chargerCharte, construireElements, RACINE, type Element } from './charte';
 import { construirePageComparaison } from './comparer';
 import { lancerCommuns } from './communs';
+import { coutAnnonce, elementsDecors, lireCatalogueDecors, lireLotDecors } from './decors';
 import { CLE_OPENROUTER, SERVICES, trouverService, utilisationCle, type Env, type Reference, type Service } from './services';
 import { lireFichierEnv } from '../cle';
 
@@ -244,6 +246,17 @@ ${candidats.length} carte(s) proposée(s). Génère-en une avec --lieu <id> (n'i
     await genererLot(service, part, lireEnv(), args.includes('--go'), Number(option('--max') ?? 40), undefined, join(SORTIES, commande));
     return;
   }
+  if (commande === 'decors') {
+    const service = trouverService(option('--service') ?? 'klein');
+    if (!service) throw new Error(`Service inconnu « ${option('--service')} ».`);
+    const lot = lireLotDecors().lieux;
+    const faits = new Set(lireCatalogueDecors().map((e) => e.id));
+    const elements = elementsDecors(charte, lot, option('--ids')?.split(',').map((x) => x.trim()).filter(Boolean), faits);
+    console.log(`Réserve de décors : ${elements.length} image(s) à générer, ≈ ${coutAnnonce(elements.length)} $ (≈ 0,009 $ l'image, FLUX Klein).`);
+    // Sortie : sorties/images/decors/ ; à installer ensuite dans apps/jeu/src/communs/lieux/ (installer.py decors) et à inscrire au catalogue.
+    await genererLot(service, elements, lireEnv(), args.includes('--go'), Number(option('--max') ?? 12), undefined, join(SORTIES, 'decors'));
+    return;
+  }
   if (commande === 'depense') {
     const cle = lireEnv()[CLE_OPENROUTER];
     if (!cle) throw new Error(`Variable ${CLE_OPENROUTER} absente (voir .env.example).`);
@@ -258,7 +271,7 @@ ${candidats.length} carte(s) proposée(s). Génère-en une avec --lieu <id> (n'i
     console.log(`Page écrite : ${page}`);
     return;
   }
-  console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--refs service] [--max N] [--go] | monde <monde> | cartes <monde> | galerie | bestiaire | equipement | terrains | interface | comparer | depense');
+  console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--refs service] [--max N] [--go] | monde <monde> | cartes <monde> | galerie | bestiaire | equipement | decors | terrains | interface | comparer | depense');
 }
 
 // Seulement quand ce fichier est le programme lancé (pas quand un autre outil l'importe, comme outils/voix).

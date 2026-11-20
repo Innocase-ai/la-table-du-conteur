@@ -6,12 +6,12 @@ import { z } from 'zod';
 import type { DonneesMonde } from './schemas';
 
 const Fichiers = z.record(z.string().regex(/^[a-z0-9-]+\.(webp|png|jpg)$/));
-// Un PNJ ou un objet peut aussi prendre l'image d'un asset commun (`commun:pnj/<id>`, `commun:objets/<id>` : bibliothèque commune venue
-// des histoires, voir `communs.ts`) au lieu d'un fichier du monde.
-const FichiersOuCommuns = z.record(z.string().regex(/^([a-z0-9-]+\.(webp|png|jpg)|commun:(pnj|objets)\/[a-z0-9-]+)$/));
+// Un PNJ, un objet ou un lieu peut aussi prendre l'image d'un asset commun (`commun:pnj/<id>`, `commun:objets/<id>` : bibliothèque commune venue
+// des histoires ; `commun:lieux/<id>` : la réserve de décors génériques, F8 ; voir `communs.ts`) au lieu d'un fichier du monde.
+const FichiersOuCommuns = z.record(z.string().regex(/^([a-z0-9-]+\.(webp|png|jpg)|commun:(pnj|objets|lieux)\/[a-z0-9-]+)$/));
 
 export const ManifesteImages = z.object({
-  lieux: Fichiers.default({}),
+  lieux: FichiersOuCommuns.default({}),
   pnj: FichiersOuCommuns.default({}),
   /** Clé : profil de monstre (SRD), partagé par toutes les rencontres qui l'utilisent. */
   monstres: Fichiers.default({}),
@@ -36,10 +36,12 @@ export interface BilanImages {
   sansPosition: string[];
 }
 
-/** Les ids de la bibliothèque commune (tables `packages/donnees/visuel/pnj-communs.json` et `objets-histoires.json`), pour vérifier les références. */
+/** Les ids de la bibliothèque commune (tables `packages/donnees/visuel/pnj-communs.json` et `objets-histoires.json`, catalogue des décors `apps/jeu/src/communs/lieux/catalogue.json`), pour vérifier les références. */
 export interface IdsCommuns {
   pnj: ReadonlySet<string>;
   objets: ReadonlySet<string>;
+  /** La réserve de décors (F8). Absent : une référence `commun:lieux/…` n'est pas vérifiée. */
+  lieux?: ReadonlySet<string>;
 }
 
 export function verifierImages(dm: DonneesMonde, manifeste: ManifesteImages, communs?: IdsCommuns): BilanImages {
@@ -56,10 +58,10 @@ export function verifierImages(dm: DonneesMonde, manifeste: ManifesteImages, com
     for (const id of Object.keys(manifeste[groupe])) if (!connus[groupe].has(id)) inconnues.push(`${groupe}/${id}`);
   }
   if (communs) {
-    for (const groupe of ['pnj', 'objets'] as const) {
+    for (const groupe of ['pnj', 'objets', 'lieux'] as const) {
       for (const [id, f] of Object.entries(manifeste[groupe])) {
-        const ref = /^commun:(pnj|objets)\/(.+)$/.exec(f);
-        if (ref && (ref[1] !== groupe || !communs[groupe].has(ref[2]!))) inconnues.push(`${groupe}/${id} → ${f} (asset commun inconnu)`);
+        const ref = /^commun:(pnj|objets|lieux)\/(.+)$/.exec(f);
+        if (ref && (ref[1] !== groupe || (communs[groupe] && !communs[groupe]!.has(ref[2]!)))) inconnues.push(`${groupe}/${id} → ${f} (asset commun inconnu)`);
       }
     }
   }

@@ -60,13 +60,16 @@ describe('références communes dans un manifeste', () => {
     expect(referenceCommune('pnj', 'garde-x')).toBe('commun:pnj/garde-x');
     expect(lireReferenceCommune('commun:objets/chope')).toEqual({ groupe: 'objets', id: 'chope' });
     expect(lireReferenceCommune('lieu-x.webp')).toBeUndefined();
-    expect(lireReferenceCommune('commun:lieux/x')).toBeUndefined();
+    // La réserve de décors (F8, 20/11/2026) : `commun:lieux/<id>` se lit aussi (voir decors-communs.test.ts).
+    expect(lireReferenceCommune('commun:lieux/x')).toEqual({ groupe: 'lieux', id: 'x' });
+    expect(lireReferenceCommune('commun:decors/x')).toBeUndefined();
   });
 
-  it('un PNJ ou un objet peut citer un asset commun ; un lieu ne le peut pas', () => {
+  it('un PNJ, un objet ou un lieu (décor de la réserve) peut citer un asset commun ; un groupe inconnu est refusé', () => {
     const ok = ManifesteImages.safeParse({ pnj: { a: 'commun:pnj/garde-x' }, objets: { o: 'commun:objets/chope' } });
     expect(ok.success).toBe(true);
-    expect(ManifesteImages.safeParse({ lieux: { l: 'commun:pnj/garde-x' } }).success).toBe(false);
+    expect(ManifesteImages.safeParse({ lieux: { l: 'commun:lieux/taverne-foyer-et-chopes' } }).success).toBe(true);
+    expect(ManifesteImages.safeParse({ lieux: { l: 'commun:autre/x' } }).success).toBe(false);
     expect(ManifesteImages.safeParse({ pnj: { a: 'commun:autre/x' } }).success).toBe(false);
   });
 

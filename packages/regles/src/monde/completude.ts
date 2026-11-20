@@ -36,7 +36,7 @@ export interface EntreesCompletude {
   estimationPresente: boolean;
   /** Fichiers présents dans le dossier `images/` du monde (noms avec extension) : une image citée par le manifeste et absente est un manque. Sans cette liste, rien n'est vérifié sur le disque. */
   fichiersImages?: ReadonlySet<string>;
-  /** Ids de la bibliothèque commune : une référence `commun:pnj/…` ou `commun:objets/…` inconnue est un manque. */
+  /** Ids de la bibliothèque commune : une référence `commun:pnj/…`, `commun:objets/…` ou `commun:lieux/…` inconnue est un manque. */
   communs?: IdsCommuns;
 }
 
@@ -66,9 +66,10 @@ export function verifierCompletude(e: EntreesCompletude): Ecart[] {
   if (manifeste) {
     for (const groupe of Object.keys(manifeste) as (keyof ManifesteImages)[]) {
       for (const [id, f] of Object.entries(manifeste[groupe])) {
-        const ref = /^commun:(pnj|objets)\/(.+)$/.exec(f);
+        const ref = /^commun:(pnj|objets|lieux)\/(.+)$/.exec(f);
         if (ref) {
-          if (e.communs && (ref[1] !== groupe || !e.communs[ref[1] as 'pnj' | 'objets'].has(ref[2]!))) manque('images', id, `référence commune inconnue « ${f} » (${groupe}/${id} : aucun asset de ce nom dans la bibliothèque commune)`);
+          const ids = e.communs?.[ref[1] as 'pnj' | 'objets' | 'lieux'];
+          if (e.communs && (ref[1] !== groupe || (ids && !ids.has(ref[2]!)))) manque('images', id, `référence commune inconnue « ${f} » (${groupe}/${id} : aucun asset de ce nom dans la bibliothèque commune)`);
         } else if (e.fichiersImages && !e.fichiersImages.has(f)) manque('images', f, `fichier absent du dossier images/ (cité par ${groupe}/${id} dans le manifeste)`);
       }
     }

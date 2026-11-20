@@ -3,6 +3,7 @@
 //
 //   pnpm images communs extraire            lit tous les mondes, écrit les tables communes (`packages/donnees/visuel/`) et copie les
 //                                           images dans `apps/jeu/src/communs/` ; relançable (le résultat ne dépend que des mondes)
+//   pnpm images communs registre            réécrit la partie générée du registre des décors (docs/REGISTRE-DECORS.md : catalogue, types incomplets, usages)
 //   pnpm images communs proposer <monde>    pour chaque PNJ et objet du monde sans image, les assets communs les plus proches
 //                                           (espèce, sexe, âge, métier) ; `--appliquer` écrit les références `commun:…` au manifeste
 //
@@ -13,6 +14,7 @@ import { join } from 'node:path';
 import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { ageApproximatif, FichierOuvertures, voixDuPnj } from '../../apps/jeu/src/ouvertures-regles';
 import { cleParole, texteDeParole } from '../../apps/jeu/src/paroles-regles';
+import { mettreAJourRegistre } from './decors';
 import { lireReferenceCommune, proposerObjets, proposerPortraits, referenceCommune, TableObjetsHistoires, TablePnjCommuns, type EntreeObjetCommun, type EntreePnjCommun, type EntreeSalutationCommune, type TrancheAge } from '../../packages/regles/src/monde/communs';
 
 const RACINE = join(import.meta.dirname, '..', '..');
@@ -239,5 +241,8 @@ export async function lancerCommuns(args: string[]): Promise<void> {
   const [sous, monde] = args;
   if (sous === 'extraire') extraire();
   else if (sous === 'proposer' && monde) proposer(monde, args.includes('--appliquer'));
-  else console.log('Usage : pnpm images communs extraire | proposer <monde> [--appliquer]');
+  else if (sous === 'registre') {
+    const r = mettreAJourRegistre(RACINE_MONDES);
+    console.log(r.ecrit ? 'Registre des décors réécrit (partie générée) : docs/REGISTRE-DECORS.md' : 'Registre des décors à jour : docs/REGISTRE-DECORS.md (rien à changer)');
+  } else console.log('Usage : pnpm images communs extraire | proposer <monde> [--appliquer] | registre');
 }

@@ -6,6 +6,7 @@
                                                       → packages/mondes/<monde>/images/<id>.webp + manifeste.json
   python3 outils/images/installer.py bestiaire        → apps/jeu/src/bestiaire/<profil>.webp (images de combat, tous mondes)
   python3 outils/images/installer.py equipement       → apps/jeu/src/equipement/<id>.webp (armes et armures du SRD, tous mondes)
+  python3 outils/images/installer.py decors           → apps/jeu/src/communs/lieux/<id>.webp (réserve de décors génériques, 960 px ; à inscrire ensuite à catalogue.json)
   python3 outils/images/installer.py terrains         → apps/jeu/src/terrains/<ambiance>-<type>.webp (raccordables)
   python3 outils/images/installer.py interface        → apps/jeu/src/interface/<id>.webp (écran titre…, 1600 px)
 
@@ -74,6 +75,15 @@ def equipement() -> None:
     for png in pngs:
         reduire(png, cible / f"{png.stem}.webp", 384, 80)
     print(f"{len(pngs)} image(s) d'équipement installées dans {cible.relative_to(RACINE)}")
+
+
+def decors() -> None:
+    source, cible = RACINE / "sorties/images/decors", RACINE / "apps/jeu/src/communs/lieux"
+    cible.mkdir(parents=True, exist_ok=True)
+    pngs = sorted(source.glob("*.png"))
+    for png in pngs:
+        reduire(png, cible / f"{png.stem}.webp", 960, 80)
+    print(f"{len(pngs)} décor(s) installés dans {cible.relative_to(RACINE)} : à inscrire à catalogue.json (voir docs/BIBLIOTHEQUE-COMMUNE.md)")
 
 
 def terrains() -> None:
@@ -172,6 +182,8 @@ if __name__ == "__main__":
         bestiaire()
     elif sys.argv[1:2] == ["equipement"]:
         equipement()
+    elif sys.argv[1:2] == ["decors"]:
+        decors()
     elif sys.argv[1:2] == ["terrains"]:
         terrains()
     elif sys.argv[1:2] == ["interface"]:

@@ -8,7 +8,7 @@ import { Canon, Revue } from '../../packages/regles/src/monde/canon';
 import { resumerCompletude, verifierCompletude, type Ecart } from '../../packages/regles/src/monde/completude';
 import { diagnostiquerMonde } from '../../packages/regles/src/monde/diagnostiquer';
 import { Estimation, estimerCampagne } from '../../packages/regles/src/monde/estimation';
-import { TableObjetsHistoires, TablePnjCommuns } from '../../packages/regles/src/monde/communs';
+import { TableLieuxCommuns, TableObjetsHistoires, TablePnjCommuns } from '../../packages/regles/src/monde/communs';
 import { ManifesteImages, type IdsCommuns } from '../../packages/regles/src/monde/images';
 import { cleDeRevue, listerRevue, revoirMonde } from '../../packages/regles/src/monde/revue';
 import { diagnosticDeMessage, estDefautDeJeu, type Diagnostic } from '../../packages/regles/src/monde/diagnostics';
@@ -50,12 +50,17 @@ export function completudeDuMonde(dossier: string, dm: DonneesMonde): Ecart[] {
   });
 }
 
-/** Les ids de la bibliothèque commune (`packages/donnees/visuel/pnj-communs.json` et `objets-histoires.json`). */
+/** Les ids de la bibliothèque commune (`packages/donnees/visuel/pnj-communs.json` et `objets-histoires.json`, et le catalogue des décors `apps/jeu/src/communs/lieux/catalogue.json`). */
 function idsCommuns(): IdsCommuns {
   const visuel = join(RACINE_MONDES, '../donnees/visuel');
   const pnj = TablePnjCommuns.safeParse(lireJson(join(visuel, 'pnj-communs.json')));
   const objets = TableObjetsHistoires.safeParse(lireJson(join(visuel, 'objets-histoires.json')));
-  return { pnj: new Set(pnj.success ? pnj.data.pnj.map((e) => e.id) : []), objets: new Set(objets.success ? objets.data.objets.map((e) => e.id) : []) };
+  const lieux = TableLieuxCommuns.safeParse(lireJson(join(RACINE_MONDES, '../../apps/jeu/src/communs/lieux/catalogue.json')));
+  return {
+    pnj: new Set(pnj.success ? pnj.data.pnj.map((e) => e.id) : []),
+    objets: new Set(objets.success ? objets.data.objets.map((e) => e.id) : []),
+    lieux: new Set(lieux.success ? lieux.data.lieux.map((e) => e.id) : []),
+  };
 }
 
 export type StatutRubrique = 'ok' | 'avis' | 'echec' | 'saute';

@@ -205,6 +205,10 @@ Référence des auteurs : **`docs/GABARIT-LIEU-DE-DEPART.md`** (emplacements, ba
 - **Le barème** (indicatif) : 2 à 4 **couches** par pièce du lieu de départ parmi PNJ, contenant, verrou ou piège, adversaire avec butin, service, objet ou détail. Avis `densite` : pièce vide ou à une seule couche ; rien au-delà de 4.
 - **Sorties** : `pnpm monde manque <monde>` (rubriques `densite` et `gabarit`, **toujours des avis** : le code de sortie reste 0) et la ligne « Complétude » de `pnpm monde verifier` (⚠️, jamais ❌). Jamais une erreur de `valider`. Quand le gabarit est déclaré, le profil « épisode » ne répète plus son avis « pièces vides » (le nombre de pièces, 10 à 13, reste le sien ; le gabarit le dit à sa place pour un monde sans `format: "episode"`).
 
+## Réserve de décors : `commun:lieux/<id>` dans le manifeste d'images (F8 du 20/11/2026)
+
+Une pièce courante d'un lieu de départ (taverne, chambre, sanctuaire, maison du chef, forge, marché, boutique, intérieur modeste, cave ou grenier, place du village) peut prendre une image de la réserve commune au lieu d'un fichier du monde : `images/manifeste.json`, `"lieux": { "<id-du-lieu>": "commun:lieux/<id-du-décor>" }`. Même mécanisme que `commun:pnj/…` et `commun:objets/…` : le schéma l'accepte pour `lieux`, le client la résout, `pnpm monde manque` la compte comme une image et signale une référence inconnue (**manque**), l'installateur d'images la garde. **Opt-in** : un manifeste qui n'en cite aucune est inchangé. Catalogue, registre à lire avant d'écrire les lieux et lot à générer : `docs/BIBLIOTHEQUE-COMMUNE.md` « Réserve de décors » et `docs/REGISTRE-DECORS.md`. Les lieux de quête, de boss et mémorables gardent des images propres à l'épisode.
+
 ## Gabarit de quête : la fiche, les avis, la preuve par le parcours (F3 du 20/11/2026)
 
 Code : `packages/regles/src/monde/quete-fiche.ts` (le générateur), `parole.ts` (qui sait parler), `quetes-avis.ts` (les avis) ; CLI : `outils/monde/quetes-cli.ts` ; tests : `tests/quete-fiche.test.ts`, `tests/quete-durcissement.test.ts`, `outils/monde/quetes-cli.test.ts`. Décision F3-D1 (prérequis) : `docs/FICHES-F3.md`.

@@ -36,7 +36,8 @@ export function histoires(): Histoire[] {
       const manifeste = Object.entries(MANIFESTES).find(([c]) => dossier(c) === id)?.[1];
       // Couverture : l'image du lieu qui porte le nom du monde, sinon celle du lieu de départ.
       const fichier = manifeste?.lieux[r.data.id] ?? manifeste?.lieux[r.data.depart.lieu];
-      const chargeur = fichier ? IMAGES[`../../../packages/mondes/${id}/images/${fichier}`] : undefined;
+      // Un lieu peut citer un décor de la réserve commune (`commun:lieux/<id>`, F8) : `urlImage` résout les deux formes.
+      const chargeur = fichier ? () => urlImage(id, fichier) ?? Promise.resolve("") : undefined;
       const brute = Object.entries(ESTIMATIONS).find(([c]) => dossier(c) === id)?.[1];
       const estimation = brute ? Estimation.safeParse(brute) : undefined;
       const monde = r.data.statut === 'publie' ? r.data : { ...r.data, nom: `${r.data.nom} (brouillon)` };
@@ -66,13 +67,13 @@ export function manifesteDe(id: string): ManifesteImages | undefined {
   return Object.entries(MANIFESTES).find(([c]) => dossier(c) === id)?.[1];
 }
 
-// Bibliothèque commune venue des histoires (portraits de PNJ et objets propres) : `communs/pnj|objets/<id>.webp`, citée par un manifeste
-// sous la forme `commun:pnj/<id>` ou `commun:objets/<id>` (`pnpm images communs`).
+// Bibliothèque commune venue des histoires (portraits de PNJ et objets propres) et réserve de décors génériques : `communs/pnj|objets|lieux/<id>.webp`,
+// citée par un manifeste sous la forme `commun:pnj/<id>`, `commun:objets/<id>` ou `commun:lieux/<id>` (`pnpm images communs`).
 const COMMUNS_HISTOIRES = import.meta.glob<string>('./communs/*/*.webp', { query: '?url', import: 'default' });
 
 /** URL d'une image du monde (chargée à la demande), ou de l'asset commun qu'il cite. */
 export function urlImage(id: string, fichier: string): Promise<string> | undefined {
-  const commun = /^commun:(pnj|objets)\/([a-z0-9-]+)$/.exec(fichier);
+  const commun = /^commun:(pnj|objets|lieux)\/([a-z0-9-]+)$/.exec(fichier);
   if (commun) return COMMUNS_HISTOIRES[`./communs/${commun[1]}/${commun[2]}.webp`]?.();
   return IMAGES[`../../../packages/mondes/${id}/images/${fichier}`]?.();
 }

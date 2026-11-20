@@ -56,13 +56,53 @@ export const EntreeSalutationCommune = z.object({
 export type EntreeSalutationCommune = z.infer<typeof EntreeSalutationCommune>;
 export const TableSalutationsReprises = z.object({ version: z.literal(1), salutations: z.array(EntreeSalutationCommune) });
 
+// ---------------------------------------------------------------------------------------------------------------------------------
+// La réserve de décors (F8 du 20/11/2026) : des images de LIEUX génériques, réutilisables d'un épisode à l'autre pour les pièces courantes
+// d'un lieu de départ. Le catalogue vit avec les images (`apps/jeu/src/communs/lieux/catalogue.json`) ; un manifeste y renvoie par `commun:lieux/<id>`.
+// Les lieux de quête, les sites de boss et tout lieu mémorable restent générés et propres à leur épisode.
+// ---------------------------------------------------------------------------------------------------------------------------------
+
+/** Les types de pièces courantes d'un lieu de départ (PRD-SAGA F8) : la réserve en garde au moins 3 variantes chacun. */
+export const TYPES_DE_DECOR = ['taverne', 'chambre', 'sanctuaire', 'maison-du-chef', 'forge', 'marche', 'boutique', 'interieur-modeste', 'cave-ou-grenier', 'place-du-village'] as const;
+export type TypeDeDecor = (typeof TYPES_DE_DECOR)[number];
+/** Le nombre de variantes attendu par type (limite la répétition visible d'un même décor). */
+export const VARIANTES_PAR_TYPE = 3;
+
+export const EntreeLieuCommun = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  type: z.enum(TYPES_DE_DECOR),
+  /** Ce qu'on y voit, en une phrase (sans nom propre ni personnage) : sert à choisir, et au registre des décors. */
+  description: z.string().min(1),
+  /** Le ton de l'image (lumière, saison, état) : à varier d'un épisode à l'autre. */
+  ambiance: z.string().min(1),
+  interieur: z.boolean(),
+  /** D'où vient l'image : une histoire existante (sélection manuelle) ou le lot générique de la réserve. */
+  origine: z.union([z.object({ monde: z.string(), lieu: z.string() }), z.object({ lot: z.string() })]),
+});
+export type EntreeLieuCommun = z.infer<typeof EntreeLieuCommun>;
+export const TableLieuxCommuns = z.object({ version: z.literal(1), lieux: z.array(EntreeLieuCommun) });
+
+/** Un décor encore à générer (le lot générique, après accord sur la dépense) : mêmes champs que le catalogue, plus le prompt. */
+export const EntreeLieuAGenerer = EntreeLieuCommun.omit({ origine: true }).extend({ prompt: z.string().min(1) });
+export type EntreeLieuAGenerer = z.infer<typeof EntreeLieuAGenerer>;
+export const TableLieuxAGenerer = z.object({ version: z.literal(1), lot: z.string(), lieux: z.array(EntreeLieuAGenerer) });
+
+/** Les types qui n'ont pas encore leurs 3 variantes : ce qui est dans le catalogue, ce qui est prévu au lot à générer, ce qui manque encore. */
+export function typesIncomplets(catalogue: readonly { type: string }[], aGenerer: readonly { type: string }[] = []): { type: string; presentes: number; prevues: number; manque: number }[] {
+  return TYPES_DE_DECOR.map((type) => {
+    const presentes = catalogue.filter((e) => e.type === type).length;
+    const prevues = aGenerer.filter((e) => e.type === type).length;
+    return { type, presentes, prevues, manque: Math.max(0, VARIANTES_PAR_TYPE - presentes) };
+  }).filter((x) => x.manque > 0);
+}
+
 /** Les préfixes d'une référence commune dans un manifeste. */
 export const PREFIXE_COMMUN = 'commun:';
-export type GroupeCommun = 'pnj' | 'objets';
+export type GroupeCommun = 'pnj' | 'objets' | 'lieux';
 
 /** `commun:pnj/garde-f-2` → { groupe: 'pnj', id: 'garde-f-2' } ; autre chose : undefined. */
 export function lireReferenceCommune(fichier: string): { groupe: GroupeCommun; id: string } | undefined {
-  const m = /^commun:(pnj|objets)\/([a-z0-9-]+)$/.exec(fichier);
+  const m = /^commun:(pnj|objets|lieux)\/([a-z0-9-]+)$/.exec(fichier);
   return m ? { groupe: m[1] as GroupeCommun, id: m[2]! } : undefined;
 }
 export const referenceCommune = (groupe: GroupeCommun, id: string) => `${PREFIXE_COMMUN}${groupe}/${id}`;

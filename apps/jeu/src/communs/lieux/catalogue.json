@@ -1,0 +1,335 @@
+{
+  "version": 1,
+  "lieux": [
+    {
+      "id": "taverne-foyer-et-chopes",
+      "type": "taverne",
+      "description": "Salle d'auberge de bois sombre : âtre allumé, tables basses, chopes de terre et lanterne posée.",
+      "ambiance": "soirée de pluie, lueur d’âtre, bois sombre",
+      "interieur": true,
+      "origine": {
+        "monde": "dime-des-roseaux",
+        "lieu": "mir-auberge-des-roseaux"
+      }
+    },
+    {
+      "id": "taverne-grande-cheminee",
+      "type": "taverne",
+      "description": "Grande salle commune à l’immense cheminée de pierre, tables rondes, sol de terre cuite usé.",
+      "ambiance": "feu vif, fumée, sol piétiné",
+      "interieur": true,
+      "origine": {
+        "monde": "marche-d-ombrefiel",
+        "lieu": "ald-auberge-salle-commune"
+      }
+    },
+    {
+      "id": "taverne-longues-tables",
+      "type": "taverne",
+      "description": "Salle à longues tables et bancs de bois, bougies, grande cheminée blanchie.",
+      "ambiance": "chandelles, calme du soir",
+      "interieur": true,
+      "origine": {
+        "monde": "le-medaillon-de-la-soeur-endormie",
+        "lieu": "le-sanglier-dore"
+      }
+    },
+    {
+      "id": "taverne-refectoire-voute",
+      "type": "taverne",
+      "description": "Réfectoire voûté de pierre claire, hautes fenêtres, longues tables dressées, âtre au fond.",
+      "ambiance": "lumière du jour, vaste et calme",
+      "interieur": true,
+      "origine": {
+        "monde": "tombe-des-rois-serpents",
+        "lieu": "fort-auberge"
+      }
+    },
+    {
+      "id": "sanctuaire-nef-et-vasque",
+      "type": "sanctuaire",
+      "description": "Chapelle de pierre blanche à voûtes, bancs de bois, vasque d’eau au centre, vitraux bleus.",
+      "ambiance": "froid clair, recueillement",
+      "interieur": true,
+      "origine": {
+        "monde": "tombe-des-rois-serpents",
+        "lieu": "fort-chapelle"
+      }
+    },
+    {
+      "id": "sanctuaire-vitraux-et-cierges",
+      "type": "sanctuaire",
+      "description": "Nef à colonnes de bois, vitraux colorés, cierges posés au sol.",
+      "ambiance": "pénombre colorée, cierges",
+      "interieur": true,
+      "origine": {
+        "monde": "le-medaillon-de-la-soeur-endormie",
+        "lieu": "sanctuaire-de-sainte-odile"
+      }
+    },
+    {
+      "id": "sanctuaire-salle-de-soins-aux-herbes",
+      "type": "sanctuaire",
+      "description": "Salle de soins : lits blancs, bouquets d’herbes séchées au plafond, fioles et table de travail.",
+      "ambiance": "lumière douce, herbes séchées",
+      "interieur": true,
+      "origine": {
+        "monde": "tombe-des-rois-serpents",
+        "lieu": "fort-infirmerie"
+      }
+    },
+    {
+      "id": "maison-du-chef-demeure-de-pierre",
+      "type": "maison-du-chef",
+      "description": "Demeure de pierre à deux étages couverte de lierre, fenêtres éclairées, sous un ciel d’orage.",
+      "ambiance": "crépuscule menaçant",
+      "interieur": false,
+      "origine": {
+        "monde": "le-medaillon-de-la-soeur-endormie",
+        "lieu": "demeure-du-sire-bertrand"
+      }
+    },
+    {
+      "id": "maison-du-chef-halle-couverte",
+      "type": "maison-du-chef",
+      "description": "Halle de bois au toit de chaume, bancs et planche d’affichage vierge, ouverte sur la boue du village.",
+      "ambiance": "pluie fine, lanternes",
+      "interieur": false,
+      "origine": {
+        "monde": "dime-des-roseaux",
+        "lieu": "mir-halle-du-conseil"
+      }
+    },
+    {
+      "id": "maison-du-chef-cabinet-aux-parchemins",
+      "type": "maison-du-chef",
+      "description": "Salle de travail claire : pupitres, parchemins, encrier et plume, coffre dans un coin.",
+      "ambiance": "jour clair, poussière de papier",
+      "interieur": true,
+      "origine": {
+        "monde": "tombe-des-rois-serpents",
+        "lieu": "fort-scriptorium"
+      }
+    },
+    {
+      "id": "forge-enclume-et-armes",
+      "type": "forge",
+      "description": "Forge intérieure : enclume, foyer, râteliers d’armes et mannequin d’armure.",
+      "ambiance": "lumière rasante, braises",
+      "interieur": true,
+      "origine": {
+        "monde": "tombe-des-rois-serpents",
+        "lieu": "fort-forge"
+      }
+    },
+    {
+      "id": "forge-atelier-d-etabli",
+      "type": "forge",
+      "description": "Atelier de pierre : établi chargé d’outils, petite enclume, panneau vierge au mur.",
+      "ambiance": "lampe vacillante, pierre nue",
+      "interieur": true,
+      "origine": {
+        "monde": "dime-des-roseaux",
+        "lieu": "gro-atelier-du-mineur"
+      }
+    },
+    {
+      "id": "marche-place-aux-etals",
+      "type": "marche",
+      "description": "Place boueuse avec puits, étal à balance sous un auvent, village aux toits de chaume au fond.",
+      "ambiance": "aube humide, brume basse",
+      "interieur": false,
+      "origine": {
+        "monde": "dime-des-roseaux",
+        "lieu": "mir-place-du-marche"
+      }
+    },
+    {
+      "id": "boutique-comptoir-et-armes",
+      "type": "boutique",
+      "description": "Comptoir renforcé de pierre, râteliers d’armes, tonneaux et cuivres.",
+      "ambiance": "lumière tamisée, métal",
+      "interieur": true,
+      "origine": {
+        "monde": "marche-d-ombrefiel",
+        "lieu": "ald-auberge-comptoir-et-cellier"
+      }
+    },
+    {
+      "id": "interieur-modeste-escalier-de-planches",
+      "type": "interieur-modeste",
+      "description": "Palier et escalier de planches, porte épaisse, fenêtre ouverte sur la nuit.",
+      "ambiance": "nuit, planches humides",
+      "interieur": true,
+      "origine": {
+        "monde": "marche-d-ombrefiel",
+        "lieu": "ald-auberge-etage-et-combles"
+      }
+    },
+    {
+      "id": "interieur-modeste-chaumiere",
+      "type": "interieur-modeste",
+      "description": "Chaumière de terre et de chaume, bouquets d’herbes séchées, lueur verte par la porte.",
+      "ambiance": "fin de jour, herbes séchées",
+      "interieur": false,
+      "origine": {
+        "monde": "le-medaillon-de-la-soeur-endormie",
+        "lieu": "chaumiere-de-la-vieille-mahaut"
+      }
+    },
+    {
+      "id": "cave-tonneaux-et-bocaux",
+      "type": "cave-ou-grenier",
+      "description": "Cave voûtée : tonneaux, étagères de bocaux, baquet d’eau.",
+      "ambiance": "lanterne, humidité",
+      "interieur": true,
+      "origine": {
+        "monde": "dime-des-roseaux",
+        "lieu": "mir-cave-de-l-auberge"
+      }
+    },
+    {
+      "id": "grenier-sur-pilotis",
+      "type": "cave-ou-grenier",
+      "description": "Grenier de planches sur pilotis, toit de chaume, sacs au pied.",
+      "ambiance": "ciel bas, chaume mouillé",
+      "interieur": false,
+      "origine": {
+        "monde": "dime-des-roseaux",
+        "lieu": "mir-grenier"
+      }
+    },
+    {
+      "id": "place-village-puits-et-barques",
+      "type": "place-du-village",
+      "description": "Village de chaume autour d’un puits, barques tirées sur la rive, fumées de cheminées.",
+      "ambiance": "crépuscule, fumée",
+      "interieur": false,
+      "origine": {
+        "monde": "dime-des-roseaux",
+        "lieu": "mireval"
+      }
+    },
+    {
+      "id": "place-cour-au-puits",
+      "type": "place-du-village",
+      "description": "Cour de ferme boueuse : puits à treuil, écurie et forge au fond, palissade de bois.",
+      "ambiance": "sol boueux, ciel couvert",
+      "interieur": false,
+      "origine": {
+        "monde": "marche-d-ombrefiel",
+        "lieu": "ald-auberge-cour-et-ecuries"
+      }
+    },
+    {
+      "id": "chambre-lit-et-coffre",
+      "type": "chambre",
+      "description": "Petite chambre d’auberge : lit étroit aux couvertures rêches, coffre de voyage au pied, volet clos, bougie sur un tabouret.",
+      "ambiance": "bougie, nuit calme",
+      "interieur": true,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    },
+    {
+      "id": "chambre-mansarde-sous-les-poutres",
+      "type": "chambre",
+      "description": "Mansarde sous les poutres : deux paillasses, cuvette sur une caisse, lucarne ronde.",
+      "ambiance": "matin gris, poutres basses",
+      "interieur": true,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    },
+    {
+      "id": "chambre-dortoir-commun",
+      "type": "chambre",
+      "description": "Dortoir commun d’une auberge : rangée de lits superposés simples, patères au mur, lanterne suspendue.",
+      "ambiance": "lanterne, longue pièce",
+      "interieur": true,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    },
+    {
+      "id": "forge-soufflet-et-trempe",
+      "type": "forge",
+      "description": "Forge de village vue de la porte : grand soufflet, bac de trempe, foyer rougeoyant, marteaux et tenailles au mur.",
+      "ambiance": "braises, contre-jour",
+      "interieur": true,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    },
+    {
+      "id": "marche-etals-couverts",
+      "type": "marche",
+      "description": "Ruelle de marché couverte d’auvents rayés : étals de bois, cageots de légumes, poissons et herbes séchés suspendus.",
+      "ambiance": "jour de marché, pavés mouillés",
+      "interieur": false,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    },
+    {
+      "id": "marche-halle-de-bois",
+      "type": "marche",
+      "description": "Halle de marché en charpente ouverte : sacs de grain empilés, tréteaux et balances, lanternes suspendues.",
+      "ambiance": "lumière dorée de fin d’après-midi",
+      "interieur": false,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    },
+    {
+      "id": "boutique-etageres-et-bocaux",
+      "type": "boutique",
+      "description": "Boutique générale : étagères de bocaux, tissus pliés, rouleaux de corde, comptoir de bois avec balance de cuivre, clochette.",
+      "ambiance": "lumière dorée de fenêtre",
+      "interieur": true,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    },
+    {
+      "id": "boutique-apothicaire",
+      "type": "boutique",
+      "description": "Échoppe d’apothicaire : flacons de verre, bouquets d’herbes séchées, mortier sur le comptoir, mur de petits tiroirs.",
+      "ambiance": "verre coloré, herbes",
+      "interieur": true,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    },
+    {
+      "id": "interieur-modeste-foyer-et-table",
+      "type": "interieur-modeste",
+      "description": "Intérieur de chaumière : âtre de pierre et marmite, table rustique et deux tabourets, rouet, herbes aux poutres.",
+      "ambiance": "feu doux, pièce unique",
+      "interieur": true,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    },
+    {
+      "id": "grenier-poutres-et-sacs",
+      "type": "cave-ou-grenier",
+      "description": "Grenier sous les poutres : sacs de grain, bottes de foin, échelle de bois, poussière dans un rai de lumière.",
+      "ambiance": "rai de soleil poussiéreux",
+      "interieur": true,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    },
+    {
+      "id": "place-fontaine-et-arbre",
+      "type": "place-du-village",
+      "description": "Place de village : fontaine de pierre, vieil arbre, maisons à colombages aux volets, panneau d’affichage.",
+      "ambiance": "matin clair",
+      "interieur": false,
+      "origine": {
+        "lot": "decors-generiques-1"
+      }
+    }
+  ]
+}
