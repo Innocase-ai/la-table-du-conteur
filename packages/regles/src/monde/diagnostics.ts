@@ -75,6 +75,12 @@ export function codeDuMessage(message: string, gravite: Gravite): string {
   if (/est exigé mais n'est révélé nulle part/.test(message)) return 'fait.introuvable';
   if (/rien ne la propose ni ne l'active/.test(message)) return 'quete.jamais-proposee';
   if (/^Fait clé/.test(message)) return 'fait.cle-source-unique';
+  // Avis de quêtes de la fiche F3 (`quetes-avis.ts`).
+  if (/^Quête « [^»]+ », étape « [^»]+ » : elle exige la rencontre/.test(message)) return 'quete.tue-qui-parle';
+  if (/^Rencontre « [^»]+ », alternative « [^»]+ » : une négociation contre des adversaires/.test(message)) return 'rencontre.parole-muette';
+  if (/^Quête « [^»]+ » : pas d'`annonce` de récompense/.test(message)) return 'quete.sans-annonce';
+  if (/^Quête « [^»]+ » : la dernière étape ne se rend pas à son donneur/.test(message)) return 'quete.sans-retour';
+  if (/^Quête « [^»]+ » : (l'accomplissement de l'étape|son prérequis ne peut jamais)/.test(message)) return 'quete.etape-impossible';
   const debut = /^(Richesse|Rythme|Tension|Enjeu|PX|Butin|Choix|Pertes|Réactivité|Repos|Passages|Dialogues|Accroches) ?:/.exec(message);
   if (debut) return `conseil.${debut[1]!.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')}`;
   return gravite === 'erreur' ? 'validation.erreur' : 'validation.autre';

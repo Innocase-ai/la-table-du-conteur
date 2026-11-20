@@ -30,6 +30,8 @@ Elle liste, avec un code de sortie 1 s'il manque quelque chose :
 | `contrats` | des lieux annoncent des contrats que personne n'a écrits | skill `creer-contrats` |
 | `publication` | monde publié sans `estimation.json` ; aucun chapitre ne liste ses quêtes ; monde encore en brouillon | `pnpm monde estimer <monde>`, `chapitres[].quetes`, puis `statut` à `publie` après accord |
 
+**Les quêtes** (F3, 20/11/2026) ne sont pas dans `manque` : `pnpm monde quetes <monde>` donne leur nombre (3 à 8 pour un épisode) et les avis `quete.*` / `rencontre.parole-muette` (annonce de récompense, retour au donneur, étape impossible, adversaire qui parle sans alternative, négociation contre un adversaire muet), jamais bloquants ; avec `--parcours`, le joueur automatique **termine chaque quête** (code 1 si l'une ne l'est pas avec ce budget : ce n'est pas une preuve d'impossibilité). À lancer avec `manque` à la fin de chaque lieu de quête et avant tout bilan.
+
 Un **manque** bloque la livraison ; un **avis** se lit et se décide (les avis `densite` et `gabarit` n'ont jamais fait échouer une commande).
 
 ## Étape 2 : ce que la commande ne voit pas (à vérifier soi-même)

@@ -268,14 +268,25 @@ export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde
     if (effet.quete.statut === 'terminee' && def) terminerQuete(effet.quete.id, e, dm);
     else if (effet.quete.statut === 'echouee' && def) echouerQuete(effet.quete.id, e, dm);
     else {
-      const q = (e.quetes[effet.quete.id] ??= { statut: effet.quete.statut, actives: [], accomplies: [] });
+      // Le prérequis protège aussi un lancement direct (F3-D1, 20/11/2026) : une quête pas encore en cours dont le prérequis est faux n'est
+      // que PROPOSÉE (le joueur la voit grisée, et l'acceptera quand il sera vrai), comme pour « Accepter ». Une quête déjà lancée ne recule pas.
+      const dejaLancee = !!e.quetes[effet.quete.id] && e.quetes[effet.quete.id]!.statut !== 'proposee';
+      const statut = effet.quete.statut === 'active' && def?.prerequis && !dejaLancee && !evaluerCondition(def.prerequis, e) ? 'proposee' : effet.quete.statut;
+      const q = (e.quetes[effet.quete.id] ??= { statut, actives: [], accomplies: [] });
       // Une quête ne recule jamais : close (accomplie ou échouée), elle ne se rouvre pas ; en cours, la reproposer (un sujet de PNJ répété,
       // une scène qui l'a déjà lancée) ne la remet pas « proposée » (le joueur devait alors l'accepter une seconde fois).
-      if (RANG_STATUT[effet.quete.statut] < RANG_STATUT[q.statut]) return;
-      q.statut = effet.quete.statut;
-      if (effet.quete.statut === 'active' && def && !q.actives.length && !q.accomplies.length) q.actives.push(def.debut);
+      if (RANG_STATUT[statut] < RANG_STATUT[q.statut]) return;
+      q.statut = statut;
+      if (statut === 'active' && def && !q.actives.length && !q.accomplies.length) q.actives.push(def.debut);
     }
   } else if ('etape' in effet) {
+    // Forcer une étape d'une quête pas encore lancée dont le prérequis est faux ne la lance pas : elle reste (ou devient) proposée (F3-D1).
+    const defE = dm.quetes.get(effet.etape.quete);
+    const lanceeE = !!e.quetes[effet.etape.quete] && e.quetes[effet.etape.quete]!.statut !== 'proposee';
+    if (defE?.prerequis && !lanceeE && !evaluerCondition(defE.prerequis, e)) {
+      e.quetes[effet.etape.quete] ??= { statut: 'proposee', actives: [], accomplies: [] };
+      return;
+    }
     const q = (e.quetes[effet.etape.quete] ??= { statut: 'active', actives: [], accomplies: [] });
     // Une quête close ne reçoit plus d'étape ; une quête seulement proposée qu'on force à une étape est en cours.
     if (q.statut === 'terminee' || q.statut === 'echouee') return;
@@ -308,10 +319,16 @@ export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde
  */
 export function appliquerEffets(effets: EffetMonde[], e: EtatMonde, dm: DonneesMonde): void {
   const clotures: EffetMonde[] = [];
+  // Un lancement direct d'une quête à prérequis (`active`, `etape`) se juge APRÈS les autres effets du lot : le drapeau que le prérequis lit, posé plus bas
+  // dans le même sujet, compte (F3-D1) ; l'ordre d'écriture des effets ne change pas le résultat.
+  const lancements: EffetMonde[] = [];
+  const aPrerequis = (id: string) => !!dm.quetes.get(id)?.prerequis;
   for (const effet of effets) {
     if ('quete' in effet && (effet.quete.statut === 'terminee' || effet.quete.statut === 'echouee')) clotures.push(effet);
+    else if (('quete' in effet && effet.quete.statut === 'active' && aPrerequis(effet.quete.id)) || ('etape' in effet && aPrerequis(effet.etape.quete))) lancements.push(effet);
     else appliquerEffet(effet, e, dm);
   }
+  for (const effet of lancements) appliquerEffet(effet, e, dm);
   avancerQuetes(e, dm);
   if (!clotures.length) return;
   for (const effet of clotures) appliquerEffet(effet, e, dm);
@@ -343,13 +360,76 @@ export function echouerQuete(id: string, e: EtatMonde, dm: DonneesMonde): void {
   for (const eff of def.echec.effets) appliquerEffet(eff, e, dm);
 }
 
-/** Ce qu'une quête rapporte, tout compris : ses récompenses et les PX, l'or et les objets que donnent ses étapes. */
-export function recompensesDeQuete(def: Quete): { xp: number; pieces: number; objets: string[]; annonce?: string } {
-  const effets = [...def.recompenses.effets, ...def.etapes.flatMap((x) => x.effets)];
-  let xp = def.recompenses.xp;
-  let pieces = def.recompenses.pieces;
-  const objets = [...def.recompenses.objets];
-  for (const f of effets) {
+interface GainsEtapes {
+  xp: number;
+  pieces: number;
+  objets: string[];
+}
+
+/** Ce que donnent les effets d'une liste d'étapes (PX, or, objets reçus). */
+function gainsDesEtapes(def: Quete, ids: Iterable<string>): GainsEtapes {
+  const g: GainsEtapes = { xp: 0, pieces: 0, objets: [] };
+  for (const id of ids) {
+    for (const f of def.etapes.find((x) => x.id === id)?.effets ?? []) {
+      if ('xp' in f) g.xp += f.xp;
+      else if ('pieces' in f && f.pieces > 0) g.pieces += f.pieces;
+      else if ('objet' in f && !f.objet.retirer) g.objets.push(f.objet.id);
+    }
+  }
+  return g;
+}
+
+/**
+ * Ce que donnent les étapes d'une quête selon son déroulé le plus généreux (F3, 20/11/2026). Les étapes en parallèle (plusieurs `suivantes`)
+ * s'accomplissent toutes ; mais une étape finale (`termine`) clôt la quête aussitôt, et les branches que le groupe n'a pas suivies ne
+ * donnent rien : additionner toutes les étapes annonçait trop de PX pour des fins exclusives. On parcourt donc les déroulés possibles et on
+ * garde le plus riche (PX d'abord, puis or). Au-delà de 20 000 états explorés, on retombe sur l'ancienne somme de toutes les étapes.
+ */
+function gainsDuMeilleurDeroule(def: Quete): GainsEtapes {
+  const parId = new Map(def.etapes.map((e) => [e.id, e]));
+  const memo = new Map<string, GainsEtapes>();
+  let visites = 0;
+  const mieux = (a: GainsEtapes, b: GainsEtapes) => (b.xp > a.xp || (b.xp === a.xp && b.pieces > a.pieces) ? b : a);
+  const explorer = (actives: string[], faites: string[]): GainsEtapes => {
+    const cle = `${[...actives].sort().join(',')}|${[...faites].sort().join(',')}`;
+    const connu = memo.get(cle);
+    if (connu) return connu;
+    if (++visites > 20_000) throw new Error('trop-d-etats');
+    let meilleur: GainsEtapes | undefined;
+    for (const a of actives) {
+      const etape = parId.get(a);
+      if (!etape) continue;
+      const faites2 = [...faites, a];
+      let g: GainsEtapes;
+      if (etape.termine) g = gainsDesEtapes(def, faites2);
+      else {
+        const actives2 = [...actives.filter((x) => x !== a), ...etape.suivantes.filter((s) => !faites2.includes(s) && !actives.includes(s) && parId.has(s))];
+        g = actives2.length ? explorer(actives2, faites2) : gainsDesEtapes(def, faites2);
+      }
+      meilleur = meilleur ? mieux(meilleur, g) : g;
+    }
+    const res = meilleur ?? gainsDesEtapes(def, faites);
+    memo.set(cle, res);
+    return res;
+  };
+  try {
+    return explorer([def.debut], []);
+  } catch {
+    return gainsDesEtapes(def, def.etapes.map((e) => e.id));
+  }
+}
+
+/**
+ * Ce qu'une quête rapporte, tout compris : ses récompenses et les PX, l'or et les objets que donnent ses étapes. Sans `accomplies`, c'est
+ * ce que promet la quête (son déroulé le plus généreux : des fins exclusives ne s'additionnent pas) ; avec la liste des étapes accomplies
+ * par la partie, c'est ce que cette partie a vraiment gagné (la branche suivie seulement).
+ */
+export function recompensesDeQuete(def: Quete, accomplies?: readonly string[]): { xp: number; pieces: number; objets: string[]; annonce?: string } {
+  const etapes = accomplies ? gainsDesEtapes(def, accomplies.filter((id, i) => accomplies.indexOf(id) === i)) : gainsDuMeilleurDeroule(def);
+  let xp = def.recompenses.xp + etapes.xp;
+  let pieces = def.recompenses.pieces + etapes.pieces;
+  const objets = [...def.recompenses.objets, ...etapes.objets];
+  for (const f of def.recompenses.effets) {
     if ('xp' in f) xp += f.xp;
     else if ('pieces' in f && f.pieces > 0) pieces += f.pieces;
     else if ('objet' in f && !f.objet.retirer) objets.push(f.objet.id);

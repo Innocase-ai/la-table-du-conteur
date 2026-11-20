@@ -15,6 +15,8 @@
 //   pnpm monde importer-forge <fichier.forge.json> <id-monde> [--niveaux 1-2] [--heures 1]
 //                                     convertit une conception de la Forge d'Histoires (RPGMakerStory) en NOUVEAU monde brouillon, avec RAPPORT-FORGE.md (docs/FORGE.md)
 //   pnpm monde campagne              le registre des échos de campagne (émis et lus) de tous les épisodes, et son contrôle entre épisodes ; code 1 s'il y a une erreur (F5)
+//   pnpm monde quete <fiche.json> [monde] [--ecrire]   la fiche de quête (but, donneur, cible, verbes, butin) produit le JSON des étapes et les sujets des PNJ ; --ecrire écrit la quête dans quetes/ (F3)
+//   pnpm monde quetes [monde] [--parcours] [--etats N] [--ms N]   avis de quêtes (fiche F3) ; --parcours joue chaque quête avec le parcours automatique ; code 1 si l'une n'est pas terminée
 //   pnpm monde calibrer <temps-de-jeu.json>   compare le temps de jeu mesuré (export de l'écran Options) à la durée estimée de chaque histoire
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -26,6 +28,7 @@ import { resumerCompletude } from '../../packages/regles/src/monde/completude';
 import { problemesDeChargement } from '../../packages/regles/src/monde/assemblage';
 import { estimerCampagne } from '../../packages/regles/src/monde/estimation';
 import { auditerEnigmes, bilanAudit } from '../../packages/regles/src/verification/enigmes';
+import { bilanDesQuetes, genererDepuisFichier } from './quetes-cli';
 import { explorerParcours } from '../../packages/regles/src/verification/parcours';
 import { calibrer, texteCalibrage } from './calibrer';
 import { COMMANDES, lignesParcours, lireOptions, USAGE } from './cli-aide';
@@ -133,6 +136,27 @@ if (commande === 'campagne') {
   process.exit(erreurs.length || invalides.length ? 1 : 0);
 }
 
+if (commande === 'quete') {
+  // La fiche de quête : `pnpm monde quete <fiche.json> [monde] [--ecrire]` (le monde est facultatif : sans lui, la structure seule).
+  if (!cible) {
+    console.error('Usage : pnpm monde quete <fiche.json> [monde] [--ecrire]');
+    process.exit(1);
+  }
+  let dm;
+  if (nomMonde) {
+    const r = chargerMonde(join(RACINE_MONDES, nomMonde));
+    if (!r.ok) {
+      console.error(`❌ ${nomMonde} : fichiers invalides`);
+      for (const e of r.erreurs) console.error(`  ${e.fichier} — ${e.message}`);
+      process.exit(1);
+    }
+    dm = r.monde;
+  }
+  const res = genererDepuisFichier(cible, { ...(dm ? { dm, srd: chargerDonneesSrd(), dossierMonde: join(RACINE_MONDES, nomMonde!) } : {}), ecrire: opt.ecrire });
+  for (const l of res.lignes) console.log(l);
+  process.exit(res.echec ? 1 : 0);
+}
+
 if (commande === 'lister' || !commande) {
   for (const id of listerMondes(RACINE_MONDES)) console.log(id);
   if (!commande) console.log(USAGE);
@@ -162,6 +186,12 @@ for (const id of mondes) {
         continue;
       }
     }
+  }
+  if (commande === 'quetes') {
+    const res = bilanDesQuetes(id, r.monde, srd, { parcours: opt.parcours, ...(opt.etats ? { etats: opt.etats } : {}), ...(opt.ms ? { ms: opt.ms } : {}), ...(opt.graines ? { graines: opt.graines } : {}) });
+    for (const l of res.lignes) console.log(l);
+    if (res.echec) echec = true;
+    continue;
   }
   if (commande === 'verifier') {
     const b = verifierMonde(id, join(RACINE_MONDES, id), r.monde, srd, { parcours: !opt.sansParcours, ...(opt.etats ? { etats: opt.etats } : {}), ...(opt.ms ? { ms: opt.ms } : {}), ...(opt.graines ? { graines: opt.graines } : {}) });

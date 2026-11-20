@@ -1,0 +1,32 @@
+[
+  {
+    "id": "q-les-rats-de-la-cave",
+    "nom": "Les rats de la cave",
+    "type": "secondaire",
+    "but": "tuer",
+    "donneur": "maitre-foulques",
+    "niveau": { "min": 1, "max": 1 },
+    "resume": "Des rats ravagent la cave de l'auberge ; Maître Foulques en a assez.",
+    "cible": { "rencontre": "r-rats-de-la-cave", "nom": "les rats de la cave" },
+    "resolution": ["combat"],
+    "butin": { "xp": 25, "pieces": 10, "annonce": "10 po et une tournée offerte." },
+    "mots": ["rats", "cave"],
+    "textes": {
+      "question": "On dit que la cave est infestée ?",
+      "retour": "Retournez voir Maître Foulques : la cave est nettoyée, il tiendra parole."
+    }
+  },
+  {
+    "id": "q-le-colis-de-brun",
+    "nom": "Le colis de Brun",
+    "type": "secondaire",
+    "but": "apporter",
+    "donneur": "maitre-foulques",
+    "niveau": { "min": 1, "max": 2 },
+    "resume": "Un colis attend, caché, pour le forgeron.",
+    "cible": { "objet": "colis-de-brun", "destinataire": "brun" },
+    "resolution": ["fouille"],
+    "butin": { "xp": 40, "annonce": "Une dague de la forge." },
+    "reperes": {}
+  }
+]

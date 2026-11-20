@@ -1,10 +1,11 @@
 // Les petites règles du CLI `pnpm monde`, hors de `cli.ts` pour qu'on puisse les tester : la liste des commandes, la lecture stricte des
 // options (une valeur mal écrite est refusée, jamais ignorée en silence) et ce que dit `parcours` (audit du 18/11/2026, O1, O7, O8, O9).
 
-export const COMMANDES = ['lister', 'valider', 'verifier', 'manque', 'parcours', 'enigmes', 'doc', 'estimer', 'nouveau', 'importer-forge', 'calibrer', 'campagne'] as const;
+export const COMMANDES = ['lister', 'valider', 'verifier', 'manque', 'parcours', 'enigmes', 'doc', 'estimer', 'nouveau', 'importer-forge', 'calibrer', 'campagne', 'quete', 'quetes'] as const;
 
 export const USAGE = `Usage : pnpm monde ${COMMANDES.join(' | ')} [monde]
   nouveau <id> "<Nom>" · importer-forge <fichier.forge.json> <id> [--niveaux 1-2] [--heures 1] · calibrer <temps-de-jeu.json> · campagne (le registre des échos de tous les épisodes, et son contrôle)
+  quete <fiche.json> [monde] [--ecrire] (la fiche de quête produit le JSON des étapes et les sujets des PNJ ; F3) · quetes [monde] [--parcours] (avis de quêtes et preuve par le parcours automatique)
   parcours et verifier : [--etats N] [--ms N] [--graines a,b] ; parcours : [--chemin] [--couvrir] [--frontiere N] ; verifier : [--sans-parcours]`;
 
 export interface OptionsCli {
@@ -17,9 +18,13 @@ export interface OptionsCli {
   chemin: boolean;
   sansParcours: boolean;
   couvrir: boolean;
+  /** `quete` : écrire la quête produite dans `quetes/<id>.json` du monde. */
+  ecrire: boolean;
+  /** `quetes` : jouer chaque quête avec le parcours automatique. */
+  parcours: boolean;
 }
 
-const BOOLEENNES = new Set(['chemin', 'sans-parcours', 'couvrir']);
+const BOOLEENNES = new Set(['chemin', 'sans-parcours', 'couvrir', 'ecrire', 'parcours']);
 const AVEC_VALEUR = new Set(['etats', 'frontiere', 'ms', 'graines', 'niveaux', 'heures']);
 
 /** Un nombre strictement positif écrit en entier ou en décimal (pas « abc », pas « 12x », pas « -5 »). */
@@ -34,7 +39,7 @@ function nombrePositif(nom: string, v: string | undefined): number {
  * Une valeur absente, non numérique, négative ou nulle, des niveaux qui ne sont pas « 1-2 » et une option inconnue lèvent une erreur.
  */
 export function lireOptions(args: string[]): { options: OptionsCli; positionnels: string[] } {
-  const options: OptionsCli = { chemin: false, sansParcours: false, couvrir: false };
+  const options: OptionsCli = { chemin: false, sansParcours: false, couvrir: false, ecrire: false, parcours: false };
   const positionnels: string[] = [];
   for (let i = 0; i < args.length; i++) {
     const a = args[i]!;
@@ -46,6 +51,8 @@ export function lireOptions(args: string[]): { options: OptionsCli; positionnels
     if (BOOLEENNES.has(nom)) {
       if (nom === 'chemin') options.chemin = true;
       else if (nom === 'couvrir') options.couvrir = true;
+      else if (nom === 'ecrire') options.ecrire = true;
+      else if (nom === 'parcours') options.parcours = true;
       else options.sansParcours = true;
       continue;
     }

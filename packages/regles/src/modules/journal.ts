@@ -27,7 +27,8 @@ function ficheDeQuete(ctx: ContexteJeu, p: Partie, def: Quete, statut: keyof typ
   const lieu = def.lieu ? ctx.dm.lieux.get(def.lieu) : undefined;
   if (lieu && p.etat.lieuxVisites.includes(lieu.id)) proprietes.push({ libelle: 'Lieu', valeur: lieu.nom });
   proprietes.push({ libelle: 'Niveaux', valeur: def.niveau.min === def.niveau.max ? String(def.niveau.min) : `${def.niveau.min} à ${def.niveau.max}` });
-  const total = recompensesDeQuete(def);
+  // Une quête rendue dit ce que la partie a reçu (les étapes réellement accomplies) ; une quête à faire, ce qu'elle promet.
+  const total = recompensesDeQuete(def, statut === 'terminee' ? accomplies : undefined);
   const recompense = [total.xp ? `${total.xp} PX` : '', total.pieces ? `${total.pieces} po` : '', ...total.objets.map((o) => ctx.dm.objets.get(o)?.nom ?? o), total.annonce ?? ''].filter(Boolean);
   if (recompense.length && statut !== 'echouee') proprietes.push({ libelle: statut === 'terminee' ? 'Reçu' : 'Récompense', valeur: recompense.join(', ') });
   const etapes = actives.map((e) => ligneEtape(ctx, def, e)).filter((x): x is string => !!x);

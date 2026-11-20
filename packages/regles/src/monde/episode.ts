@@ -7,6 +7,7 @@ import { tableDe } from './butin-commun';
 import { conseilsButinEpisode } from './butin-niveau';
 import { examensDe } from './examens-donnees';
 import { evenementsChoixDe } from './evenements-choix-donnees';
+import { avisQuetes } from './quetes-avis';
 import type { DonneesMonde, Lieu } from './schemas';
 
 /** Les cibles d'un épisode (PRD-SAGA §2 et F2-F4, CLAUDE.md « Règles de RPG du 16/11/2026 », textes riches du 10/11/2026). */
@@ -48,6 +49,20 @@ export function piecesDuDepart(dm: DonneesMonde): Lieu[] {
   return res;
 }
 
+/** Ce que dit le profil « épisode » du nombre et de la nature des quêtes, et de leurs `lieu` d'étape (le texte d'avant F3, extrait pour `pnpm monde quetes`). */
+export function conseilsQuetes(dm: DonneesMonde): string[] {
+  const avis: string[] = [];
+  const quetes = [...dm.quetes.values()];
+  if (quetes.length < EPISODE.quetes.min || quetes.length > EPISODE.quetes.max) avis.push(`Épisode : ${quetes.length} quêtes (visé : ${EPISODE.quetes.min} à ${EPISODE.quetes.max}, dont une principale ; le premier épisode peut en avoir 2 ou 3).`);
+  const principales = quetes.filter((q) => q.type === 'principale').map((q) => q.id);
+  if (principales.length > 1) avis.push(`Épisode : ${principales.length} quêtes principales (une seule attendue : le fil rouge de l'épisode) : ${liste(principales)}.`);
+  const autonomes = quetes.filter((q) => q.type === 'personnelle' || q.type === 'faction').map((q) => q.id);
+  if (autonomes.length) avis.push(`Épisode : quêtes personnelles ou de faction (un épisode n'en a pas d'autonomes : en faire des secondaires) : ${liste(autonomes)}.`);
+  const reperes = quetes.flatMap((q) => q.etapes.filter((e) => e.lieu).map((e) => `${q.id}/${e.id}`));
+  if (reperes.length) avis.push(`Épisode : étapes de quête avec un \`lieu\` (losange sur la carte et « ◆ » sur la sortie : le joueur doit chercher, règle du 16/11/2026) : ${liste(reperes)}.`);
+  return avis;
+}
+
 export function conseilsEpisode(dm: DonneesMonde, srd: Donnees): string[] {
   const avis: string[] = [];
   const { min: nivMin, max: nivMax } = dm.monde.niveaux;
@@ -69,15 +84,8 @@ export function conseilsEpisode(dm: DonneesMonde, srd: Donnees): string[] {
   const vides = dm.monde.depart.gabarit ? [] : pieces.filter((l) => !occupe.has(l.id) && !l.rencontres.length && !l.services.length && !l.faits.length).map((l) => l.id);
   if (vides.length) avis.push(`Épisode : pièces vides du lieu de départ (ni PNJ, ni contenant, ni service, ni rencontre, ni détail à examiner : visez 2 à 4 « couches » par pièce) : ${liste(vides)}.`);
 
-  // 2. Les quêtes (PRD-SAGA §2.2 et F3) : 3 à 8, dont une seule principale, sans quête personnelle ni de faction autonome.
-  const quetes = [...dm.quetes.values()];
-  if (quetes.length < EPISODE.quetes.min || quetes.length > EPISODE.quetes.max) avis.push(`Épisode : ${quetes.length} quêtes (visé : ${EPISODE.quetes.min} à ${EPISODE.quetes.max}, dont une principale ; le premier épisode peut en avoir 2 ou 3).`);
-  const principales = quetes.filter((q) => q.type === 'principale').map((q) => q.id);
-  if (principales.length > 1) avis.push(`Épisode : ${principales.length} quêtes principales (une seule attendue : le fil rouge de l'épisode) : ${liste(principales)}.`);
-  const autonomes = quetes.filter((q) => q.type === 'personnelle' || q.type === 'faction').map((q) => q.id);
-  if (autonomes.length) avis.push(`Épisode : quêtes personnelles ou de faction (un épisode n'en a pas d'autonomes : en faire des secondaires) : ${liste(autonomes)}.`);
-  const reperes = quetes.flatMap((q) => q.etapes.filter((e) => e.lieu).map((e) => `${q.id}/${e.id}`));
-  if (reperes.length) avis.push(`Épisode : étapes de quête avec un \`lieu\` (losange sur la carte et « ◆ » sur la sortie : le joueur doit chercher, règle du 16/11/2026) : ${liste(reperes)}.`);
+  // 2. Les quêtes (PRD-SAGA §2.2 et F3) : leur nombre, leur nature, leurs `lieu` d'étape, puis les avis de la fiche F3 (`quetes-avis.ts`).
+  avis.push(...conseilsQuetes(dm), ...avisQuetes(dm, srd).map((a) => a.message));
 
   // 3. Parler vraiment (règle du 16/11/2026) : au moins 4 sujets par PNJ qui parle (qui a un sujet, ou qui se trouve au lieu de départ).
   const dansLeHub = new Set(pieces.map((l) => l.id));

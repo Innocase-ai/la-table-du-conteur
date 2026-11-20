@@ -269,6 +269,7 @@ Les champs « À écrire » du squelette, puis tout ce que l'atlas prévoit, s'�
    - les pistes, les impasses, les recoupements ;
    - le lieu final qui se déduit ;
    - les dilemmes, les échos, les épilogues ;
+   - **les quêtes régulières par fiche** (F3) : `pnpm monde quete <fiche.json> <id>` (tuer, trouver, apporter, libérer ; retour au donneur et `annonce` produits ; aucun `lieu` d'étape) ; puis `pnpm monde quetes <id> --parcours` : chaque quête terminée par le joueur automatique, avis de quêtes (adversaire qui parle sans alternative, négociation contre un muet…) décidés. Référence : `creer-intrigue` point 7 bis et `docs/MONDES.md` « Gabarit de quête » ;
    - **puis seulement** les `salutations.variantes` qui citent les drapeaux de choix **ou lisent la mémoire du groupe** (`rencontre`, `parle`, `temoin` : un PNJ réagit à un combat gagné, à une visite, à ce qu'il a vu ; voir `creer-personnages`).
 5. **Le décor qui raconte et le mystère** : examens (`references/brief-examens.md`, un examen par élément remarquable de l'atlas), codex (`brief-codex.md`), regards et salutations d'origine (`brief-origines.md`), apparitions de l'antagoniste (`brief-antagoniste.md`), événements à choix (`creer-evenements-choix`). Ces briefs sont des **exemples tirés de la Citadelle** : adapte-les (voir leur en-tête).
 6. **Rattacher les « patchs »** que certains briefs écrivent dans le dossier temporaire de la session (sujets, regards, salutations, rencontres de lieu) : Claude les applique à la main, fiche par fiche, puis revalide.

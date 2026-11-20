@@ -55,6 +55,14 @@ export interface OptionsParcours {
   squelette?: boolean;
   /** Nombre d'états que la recherche guidée explore seule avant de lancer le squelette (1 000 par défaut ; 0 : le squelette d'abord). */
   trancheAvantSquelette?: number;
+  /**
+   * Jouer aussi chaque QUÊTE (F3, 20/11/2026) : la recherche ne s'arrête que quand toutes les fins ET toutes les quêtes ont un parcours qui les termine (ou que le
+   * budget est épuisé). Le rapport donne alors `quetes` : un parcours rejouable par quête prouvée, et celles qu'il n'a pas pu terminer (avec ce budget : pas une preuve
+   * d'impossibilité). Absent : le comportement d'avant, qui ne cherche que les fins.
+   */
+  quetes?: boolean | string[];
+  /** Avec `quetes` : ne chercher que les quêtes (les fins ne guident ni n'arrêtent la recherche). Le jeu s'arrête toujours à une fin : un parcours de quête ne la dépasse pas. */
+  sansFins?: boolean;
   /** Appelé de temps en temps (états explorés, fins trouvées) ; renvoyer `true` pour arrêter. */
   progres?: (p: { etats: number; fins: string[]; ms: number }) => boolean | void;
 }
@@ -82,6 +90,8 @@ export interface RapportExploration {
   /** Le plus court parcours trouvé pour chaque fin atteinte. */
   parcours: Parcours[];
   finsNonAtteintes: string[];
+  /** Avec l'option `quetes` : un parcours par quête terminée (`fin` = l'identifiant de la quête) et les quêtes que la recherche n'a pas terminées. */
+  quetes?: { prouvees: Parcours[]; nonProuvees: string[] };
   /** Pourquoi la recherche s'est arrêtée : `toutes-atteintes`, `epuise` (plus d'état à explorer), `budget`, `temps`, `arret` (demandé). */
   arret: 'toutes-atteintes' | 'epuise' | 'budget' | 'temps' | 'arret';
   etats: number;
@@ -288,6 +298,13 @@ interface Ancetre {
 function ancetresDe(moteur: Moteur, finId: string, index: ReturnType<typeof indexerReferences>): Ancetre[] {
   const g = grapheDependancesFin(moteur.ctx.dm, index, finId, { profondeur: 4, max: 400 });
   return g.noeuds.flatMap((n) => (n.ref && ['fait', 'flag', 'objet', 'quete', 'etape'].includes(n.ref.genre) ? [n.ref] : []));
+}
+
+/** Ce dont dépend l'accomplissement des étapes d'une quête (faits, drapeaux, objets) : le squelette y va, comme aux ancêtres d'une fin. */
+function ancetresDeQuete(dm: DonneesMonde, quete: string): Ancetre[] {
+  const res: Ancetre[] = [];
+  for (const e of dm.quetes.get(quete)?.etapes ?? []) refsCondition(e.completion, (genre, id) => { if (genre === 'fait' || genre === 'flag' || genre === 'objet') res.push({ genre, id }); });
+  return res;
 }
 
 function ancetreAtteint(a: Ancetre, e: EtatMonde): boolean {
@@ -604,10 +621,17 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
   const depart = maintenant();
   const couvrir = opts.couvrir ?? false;
 
-  const fins = [...dm.fins.values()];
+  const fins = opts.sansFins ? [] : [...dm.fins.values()];
   const pertinence = pertinenceDe(dm);
   const aEviter = atomesAEviter(dm);
   const trouvees = new Map<string, Parcours>();
+  // Les quêtes à terminer (option `quetes`) : leur parcours, comme celui des fins.
+  const objectifsQuetes = Array.isArray(opts.quetes) ? opts.quetes.filter((id) => dm.quetes.has(id)) : opts.quetes ? [...dm.quetes.keys()] : [];
+  const quetesTrouvees = new Map<string, Parcours>();
+  const toutTrouve = () => trouvees.size === fins.length && quetesTrouvees.size === objectifsQuetes.length;
+  const noterQuetes = (p: Partie, noeud: Noeud, graine: number) => {
+    for (const id of objectifsQuetes) if (!quetesTrouvees.has(id) && p.etat.quetes[id]?.statut === 'terminee') quetesTrouvees.set(id, { fin: id, graine, niveau, ...carnet, etapes: cheminDe(noeud) });
+  };
   const vus = { lieux: new Set<string>(), pnj: new Set<string>(), rencontres: new Set<string>(), evenements: new Set<string>(), faits: new Set<string>(), enigmes: new Set<string>(), quetes: new Set<string>() };
   let etats = 0;
   let arret: RapportExploration['arret'] = 'epuise';
@@ -626,7 +650,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
 
   for (const [numero, graine] of graines.entries()) {
     const poids = poidsAncetres[numero] ?? 4;
-    if ((!couvrir && trouvees.size === fins.length) || arretGlobal) break;
+    if ((!couvrir && toutTrouve()) || arretGlobal) break;
     const file = new File();
     const connus = new Set<string>();
     let ordreArrivee = 0;
@@ -645,6 +669,12 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
         for (const a of ancetresParFin.get(f.id) ?? []) ancetres.set(`${a.genre}:${a.id}`, a);
       }
       for (const a of ancetres.values()) if (ancetreAtteint(a, p.etat)) s += poids;
+      // Les quêtes pas encore terminées : chaque étape accomplie compte (l'avancement d'une quête n'est pas dans les conditions des fins).
+      for (const id of objectifsQuetes) {
+        if (quetesTrouvees.has(id)) continue;
+        const q = p.etat.quetes[id];
+        if (q) s += (q.statut === 'active' ? 16 : q.statut === 'proposee' ? 8 : 0) + 25 * q.accomplies.length;
+      }
       return s;
     };
     const racine: Noeud = { partie: initiale, lieu: initiale.etat.lieu, parent: null, actions: [], profondeur: 0, score: evaluer(initiale), ordreArrivee: ordreArrivee++ };
@@ -660,6 +690,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
       squeletteFait = true;
       const ancetres = new Map<string, Ancetre>();
       for (const f of fins) if (!trouvees.has(f.id)) for (const a of ancetresParFin.get(f.id) ?? []) if (!aEviter.has(`${a.genre}:${a.id}`)) ancetres.set(`${a.genre}:${a.id}`, a);
+      for (const id of objectifsQuetes) if (!quetesTrouvees.has(id)) for (const a of ancetresDeQuete(dm, id)) if (!aEviter.has(`${a.genre}:${a.id}`)) ancetres.set(`${a.genre}:${a.id}`, a);
       // Le nœud de départ du squelette garde sa partie (celui de la recherche l'a libérée en étant exploré).
       const depart0: Noeud = { ...racine, partie: initiale, parent: null };
       const paliers = squelette(
@@ -670,6 +701,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
         { etatsParPalier: Math.min(budgetEtats, 2_500), enMs: () => maintenant() - depart > budgetMs * 0.6 || etatsGraine >= budgetEtats },
         (fin, noeud) => {
           noter(noeud.partie!);
+          noterQuetes(noeud.partie!, noeud, graine);
           if (!trouvees.has(fin)) trouvees.set(fin, { fin, graine, niveau, ...carnet, etapes: cheminDe(noeud) });
         },
         // Les états du squelette comptent dans le budget de la graine et dans le total.
@@ -684,14 +716,15 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
         connus.add(k);
         pal.score = evaluer(pal.partie!);
         noter(pal.partie!);
+        noterQuetes(pal.partie!, pal, graine);
         file.pousser(pal);
       }
     };
 
-    while (file.taille && !(!couvrir && trouvees.size === fins.length)) {
+    while (file.taille && !(!couvrir && toutTrouve())) {
       if (!squeletteFait && etatsGraine >= tranche) {
         lancerSquelette();
-        if (!couvrir && trouvees.size === fins.length) break;
+        if (!couvrir && toutTrouve()) break;
       }
       if (maintenant() - depart > budgetMs) {
         arret = 'temps';
@@ -722,10 +755,11 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
         const finAtteinte = finDe(enfant);
         const cleEnfant = cle(enfant);
         const noeud: Noeud = { partie: enfant, lieu: enfant.etat.lieu, parent: n, actions: essais, profondeur: n.profondeur + 1, score: 0, ordreArrivee: ordreArrivee++ };
+        noterQuetes(enfant, noeud, graine);
         if (finAtteinte) {
           noter(enfant);
           if (!trouvees.has(finAtteinte)) trouvees.set(finAtteinte, { fin: finAtteinte, graine, niveau, ...carnet, etapes: cheminDe(noeud) });
-          if (!couvrir && trouvees.size === fins.length) break;
+          if (!couvrir && toutTrouve()) break;
           continue;
         }
         if (connus.has(cleEnfant)) continue;
@@ -733,7 +767,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
         noeud.score = evaluer(enfant);
         file.pousser(noeud);
       }
-      if (!couvrir && trouvees.size === fins.length) {
+      if (!couvrir && toutTrouve()) {
         arret = 'toutes-atteintes';
         break;
       }
@@ -741,7 +775,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
       n.partie = null;
       elagues += file.elaguer(frontiereMax);
     }
-    if (!couvrir && trouvees.size === fins.length) arret = 'toutes-atteintes';
+    if (!couvrir && toutTrouve()) arret = 'toutes-atteintes';
     // Des états ont été jetés : « tous les états ont été explorés » ne serait plus vrai.
     if (elagues > 0 && arret === 'epuise') arret = 'budget';
   }
@@ -751,6 +785,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
   return {
     parcours: [...trouvees.values()],
     finsNonAtteintes: fins.map((f) => f.id).filter((id) => !trouvees.has(id)),
+    ...(opts.quetes ? { quetes: { prouvees: [...quetesTrouvees.values()], nonProuvees: objectifsQuetes.filter((id) => !quetesTrouvees.has(id)) } } : {}),
     arret,
     etats,
     ms: Math.round(maintenant() - depart),
