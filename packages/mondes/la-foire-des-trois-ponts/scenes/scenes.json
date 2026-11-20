@@ -1,0 +1,177 @@
+[
+  {
+    "id": "ouverture",
+    "nom": "La Foire des Trois Ponts",
+    "declencheur": {
+      "debut": true
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "verdelle-region"
+        },
+        "mouvement": "recul",
+        "texte": "Trois ponts enjambent la rivière, et la vallée s'éveille sous une brume d'automne. Chaque année, Verdelle y tient sa foire de trois jours, et toute la région accourt."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "verdelle"
+        },
+        "mouvement": "approche",
+        "texte": "Sur la place, la veille de l'ouverture, les lanternes ocre s'allument une à une au-dessus des étals encore vides. Les forains déroulent leurs toiles rayées, et les rires montent le long de la rivière."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ver-bailli-salle"
+        },
+        "mouvement": "fixe",
+        "texte": "Dans la halle du bailli, la grande table croule sous les registres, et la cloche de l'ouverture attend, muette, au-dessus de la porte. Tout le bourg sait qu'elle ne sonnera qu'à l'aube."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "aubin-cerfeuil"
+        },
+        "mouvement": "approche",
+        "texte": "Aubin Cerfeuil, le bailli de la foire, n'a pas fermé l'œil. Il répète les mêmes mots depuis l'aube, comme s'ils pouvaient ramener ce qui manque, et ses doigts cherchent sur la table une chose qui n'y est plus."
+      },
+      {
+        "image": {
+          "groupe": "objets",
+          "id": "cle-du-coffre-de-la-foire"
+        },
+        "mouvement": "fixe",
+        "texte": "La clé du coffre de la foire a disparu pendant la nuit. Dans ce coffre dorment les droits de place et la bourse du concours, trois cents pièces d'or que tout Verdelle attend. Sans elle, le coffre reste scellé."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ver-pont-des-marchands"
+        },
+        "mouvement": "recul",
+        "texte": "Le bourg ne dort plus : on cloue les étals, on tend les cordes, et chacun regarde son voisin de travers. À l'aube, la foire ouvrira, clé ou pas. Mais dans cette affaire, une question reste en suspens : qui doit payer ?"
+      }
+    ]
+  },
+  {
+    "id": "arrivee-moulin",
+    "nom": "Le Pont-du-Meunier",
+    "declencheur": {
+      "lieu": "mou-pont-du-meunier"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "mou-pont-du-meunier"
+        },
+        "mouvement": "approche",
+        "texte": "Le pont de bois du meunier a vu de meilleurs jours. Ses planches sont vermoulues, et une barrière de bois, clouée en travers, en bloque l'entrée. Quelqu'un ne veut pas que l'on passe."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "moulin"
+        },
+        "mouvement": "fixe",
+        "texte": "La roue du moulin ne tourne plus. L'eau passe dessous sans la faire bouger, et le bruit de la rivière semble plus fort que d'habitude."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "mou-pont-du-meunier"
+        },
+        "mouvement": "recul",
+        "texte": "Au bout du pont, une guérite de planches abrite des hommes immobiles, qui gardent la rive sans un mot. Ils regardent la route, puis vos mains, et ne répondent à aucun salut."
+      }
+    ]
+  },
+  {
+    "id": "fin-scandale",
+    "nom": "Le scandale",
+    "declencheur": {
+      "fin": "fin-scandale"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ver-bailli-salle"
+        },
+        "mouvement": "fixe",
+        "texte": "Dans la halle du bailli, les bancs se vident peu à peu, et le silence reste plus longtemps que les cris. Sur la grande table, le registre est ouvert à la page du coffre, et personne n'ose plus le fermer."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "gedeon-marchebise"
+        },
+        "mouvement": "approche",
+        "texte": "Gédéon Marchebise ne crie plus. Son comptoir est vide, ses sacs de grain sont empilés sans acheteur, et il range ses poids un à un, comme on range des souvenirs."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "pon-camp"
+        },
+        "mouvement": "recul",
+        "texte": "Sur la route de la rive, une seule roulotte s'éloigne, la plus vieille et la plus petite, les roues grinçant sur les pierres. Le reste du camp la regarde partir en silence, sans un geste."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "verdelle"
+        },
+        "mouvement": "approche",
+        "texte": "Pourtant, à l'aube, la foire ouvre quand même. Les lanternes s'allument, les enfants courent entre les étals, et quelqu'un relance un air de vielle. La fête a besoin de peu pour reprendre."
+      }
+    ]
+  },
+  {
+    "id": "fin-silence",
+    "nom": "Le silence",
+    "declencheur": {
+      "fin": "fin-silence"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ver-bailli-salle"
+        },
+        "mouvement": "recul",
+        "texte": "Dans la halle du bailli, la clé n'est plus sur la table. Le registre est refermé sur sa dernière page, et la cloche attend, muette, qu'on lui donne le signal."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "verdelle"
+        },
+        "mouvement": "approche",
+        "texte": "Sur la place, les premiers forains poussent leurs charrettes vers la rivière. Le pain chaud embaume, un marchand chante faux, et la brume se déchire au-dessus des ponts."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "tobie-pivoine"
+        },
+        "mouvement": "fixe",
+        "texte": "Tobie Pivoine se tient au pied de sa corde, les yeux levés vers le fil tendu au-dessus de la place. Il ne dit rien, mais ses doigts frottent le chanvre comme on caresse une promesse."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "verdelle-region"
+        },
+        "mouvement": "recul",
+        "texte": "Le soir tombe sur la vallée et ses trois ponts. Les lanternes de Verdelle s'éteignent une à une, et la rivière garde pour elle ce qu'elle a entendu. Certaines dettes se règlent sans bruit, d'autres traînent longtemps sur les pierres."
+      }
+    ]
+  }
+]

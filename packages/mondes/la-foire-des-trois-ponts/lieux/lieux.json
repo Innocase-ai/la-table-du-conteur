@@ -117,7 +117,11 @@
         "retour": "Un escalier raide monte vers une trappe de chêne ouverte ; la lumière de la salle tombe en bande sur les marches, et le bruit des bols s'entend."
       }
     ],
-    "repos": "sur"
+    "repos": "sur",
+    "position": {
+      "x": 9,
+      "y": 38
+    }
   },
   {
     "id": "ver-heron-cave",
@@ -158,7 +162,11 @@
         "description": "Au fond de la halle, une porte de planches peinte en vert mousse mène à l'arrière-pièce du bailli, dont la fenêtre donne sur la rivière.",
         "retour": "La porte de planches du cabinet donne sur la halle ; de ce côté, la peinture verte est usée à hauteur de main, à force de passages."
       }
-    ]
+    ],
+    "position": {
+      "x": 62,
+      "y": 20
+    }
   },
   {
     "id": "ver-bailli-cabinet",
@@ -184,7 +192,11 @@
     "arrivee": "Une porte cintrée s'ouvre sous une arche de pierre claire, et la nef vous accueille dans une fraîcheur d'eau. Au centre, une vasque de pierre reçoit une eau si claire que le fond est visible, et l'eau déborde doucement sur des galets gris. La lumière tombe bleue des vitraux du fond, deux lancettes où la rivière est peinte en traits fins, et elle glisse sur des bancs de chêne clair. Des tablettes de bois courent le long du mur nord, chargées de rubans de toile crème et rouge brique qui pendent comme des cordes à linge. Une lampe à huile brûle devant un autel bas, sans un bruit. On entend le clapotis de la vasque, et plus loin, derrière le mur, le murmure de la rivière. Une odeur de cire et d'herbes sèches monte doucement vers la voûte, et le silence est épais, presque tendre.",
     "visuel": "Chapelle de pierre blanche à voûtes, bancs de bois, vasque d’eau au centre, vitraux bleus.",
     "accroche": "À l'est de la place, une petite nef de pierre claire au bord de l'eau, derrière une porte cintrée et des rubans qui flottent.",
-    "liens": []
+    "liens": [],
+    "position": {
+      "x": 27,
+      "y": 58
+    }
   },
   {
     "id": "ver-forge",
@@ -197,7 +209,11 @@
     "arrivee": "Une chaleur sèche vous frappe dès le seuil, et l'odeur de charbon et de fer chaud vous prend à la gorge. La porte à mi-battant laisse entrer la lumière du jour, qui s'arrête net sur les dalles, comme si elle n'osait pas aller plus loin. Au fond, la braise de la forge luit d'un rouge profond sous une hotte noire, et chaque coup de soufflet la fait gonfler en étincelles. Une enclume de fer repose sur un billot de chêne, couverte de marques de marteau, et son tintement résonne entre les murs de pierre claire noircie de suie. Le long du mur, un soufflet de bois et de toile attend, près d'un établi où s'entassent fers, barres et outils. Au-dessus du linteau, un fer à cheval est cloué à l'envers, la pointe vers le bas.",
     "visuel": "Un atelier de pierre claire noircie de suie, avec une enclume de fer sur un billot de chêne au centre et une forge au fond, sous une hotte. Un soufflet de bois et de toile est appuyé au mur, près d'un établi couvert de fers et de barres. La braise de la forge éclaire la pièce d'une lueur rouge, et la lumière du jour entre par la porte à mi-battant.",
     "accroche": "Au sud-ouest de la place, une grande porte à mi-battant laisse voir une braise rouge et entendre le marteau sur l'enclume.",
-    "liens": []
+    "liens": [],
+    "position": {
+      "x": 31,
+      "y": 77
+    }
   },
   {
     "id": "ver-boutique-grain",
@@ -210,7 +226,11 @@
     "arrivee": "La porte de chêne grince et laisse entrer une odeur de grain, de sacs et de cordes mouillées. Une lanterne de papier ocre pend au plafond et répand une lumière chaude sur des étagères hautes, couvertes de bocaux de verre aux étiquettes écrites à la main. Le mur ouest disparaît sous des rouleaux de tissu crème et de toile rayée, et des cordes s'enroulent sur des chevilles de bois. Au centre, un comptoir de chêne, marqué de coups de couteau, porte une balance de cuivre aux plateaux bien frottés, qui tinte doucement à chaque mouvement d'air. Contre le mur est, des sacs de grain sont alignés, leurs cols pliés, et une poussière fine flotte dans la lumière. Une ardoise de prix est accrochée près de la porte, les chiffres à la craie, serrés. Au fond, derrière le comptoir, un coffre-fort de fer cerclé se dresse contre le mur, et le sol de planches gonfle sous vos pas.",
     "visuel": "Boutique générale : étagères de bocaux, tissus pliés, rouleaux de corde, comptoir de bois avec balance de cuivre, clochette.",
     "accroche": "Au nord de la place, une maison de pierre claire et une porte de chêne sous un auvent ocre, avec des sacs de grain sur le seuil.",
-    "liens": []
+    "liens": [],
+    "position": {
+      "x": 40,
+      "y": 16
+    }
   },
   {
     "id": "ver-marche",
@@ -231,7 +251,11 @@
         "description": "La ruelle du marché descend vers le pont, entre les étals ; le bruit de la rivière remonte sous les toiles.",
         "retour": "Une ruelle de pierre claire remonte du ponton vers le marché, bordée de caisses et de cordages."
       }
-    ]
+    ],
+    "position": {
+      "x": 84,
+      "y": 80
+    }
   },
   {
     "id": "ver-ecuries",
@@ -244,7 +268,11 @@
     "arrivee": "Le portail de bois s'ouvre sur une allée de terre battue, et l'air sent le foin sec et l'huile de graissage. Cinq boxes s'alignent de chaque côté, leurs claies de chêne clair patinées par les mains. Les mangeoires sont vides, mais le foin s'entasse en tas doux dans le box le plus grand, au fond. Des selles reposent sur des tréteaux près de l'entrée, leurs courroies de toile raides de poussière. Une lucarne laisse entrer une lumière poussiéreuse qui tombe en bandes dorées sur la terre. Le troisième box, seul, a une claie couverte de noms gravés au couteau, des noms de chevaux, certains si anciens qu'on ne les lit plus. Quelque part au fond, une goutte d'eau tombe de la toiture, à intervalles réguliers. Le bois des planches a gonflé avec l'humidité de la rivière, et les portes grincent au moindre souffle.",
     "visuel": "Un bâtiment de bois long et bas, avec cinq boxes de chaque côté d'une allée de terre battue et des selles posées sur des tréteaux près de la porte. Au fond, le troisième box a une claie couverte de noms gravés, et du foin s'entasse dans le box le plus grand. La lumière du jour entre par le portail ouvert, et une lanterne de papier ocre pend à un poteau.",
     "accroche": "Au sud-est de la place, un portail de bois ouvert sur une cour de terre et une odeur de foin.",
-    "liens": []
+    "liens": [],
+    "position": {
+      "x": 92,
+      "y": 55
+    }
   },
   {
     "id": "ver-pont-des-marchands",
@@ -265,7 +293,11 @@
         "description": "Un sentier piétiné quitte le ponton et longe la rive vers l'aval, entre les saules, jusqu'au Pont-Cassé.",
         "retour": "Le sentier remonte la rive en longeant les saules, jusqu'au ponton des bateliers et ses marques de crue."
       }
-    ]
+    ],
+    "position": {
+      "x": 55,
+      "y": 93
+    }
   },
   {
     "id": "moulin",
