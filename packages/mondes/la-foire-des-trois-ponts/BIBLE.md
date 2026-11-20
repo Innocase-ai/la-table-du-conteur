@@ -2,7 +2,7 @@
 
 Document de référence pour tous ceux qui écrivent des données de ce monde. **Les identifiants du registre (§7) sont fixes** : les zones s'y réfèrent entre elles. Ne rien inventer qui contredise ce canon.
 
-> **Statut** : épisode pilote de la saga (F7 de `docs/PRD-SAGA.md`). **V1 (pitch), V2 (canon), V3 (plan) et V4 (lieux par zone : village, moulin, Pont-Cassé, voir `LIEUX.md`) validés par l'utilisateur le 20/11/2026** : ce qui est marqué « Validé » est **gelé** (changer un élément gelé demande un nouveau oui). Ce qui est marqué « Proposé » (identifiants, espèces, âges, peuples) n'est pas encore validé : il se tranche à V3 et V6.
+> **Statut** : épisode pilote de la saga (F7 de `docs/PRD-SAGA.md`). **V1 (pitch), V2 (canon), V3 (plan) V4 (lieux par zone : village, moulin, Pont-Cassé) et V5 (fiches détaillées des 17 pièces, voir `LIEUX.md`) validés par l'utilisateur le 20/11/2026** : ce qui est marqué « Validé » est **gelé** (changer un élément gelé demande un nouveau oui). Ce qui est marqué « Proposé » (identifiants, espèces, âges, peuples) n'est pas encore validé : il se tranche à V3 et V6.
 
 ## 1. Pitch — *Validé le 20/11/2026 (V1)*
 
