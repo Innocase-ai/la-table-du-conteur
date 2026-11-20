@@ -368,7 +368,7 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
   if (aTrait(c, 'inspiration-bardique')) {
     const faces = r.deInspiration ?? 6;
     const cibles = allies(etat, c)
-      .filter((x) => distanceMetres(x.position, c.position) <= 18 && !x.modificateurs.some((m) => m.type === 'de_inspiration'))
+      .filter((x) => distanceMetres(x, c) <= 18 && !x.modificateurs.some((m) => m.type === 'de_inspiration'))
       .map((x) => x.id);
     const k = carte({ id: 'aptitude:inspiration-bardique', nom: 'Inspiration bardique', description: `Un allié à 18 m reçoit un d${faces} : une fois, il l'ajoute à un jet d'attaque ou de sauvegarde raté, ce qui peut le transformer en réussite.`, categorie: 'aptitude', cout: 'bonus', ciblage: 'allie', portee: 18, cibles, ressource: `${r.inspiration ?? 0} utilisation(s)` });
     res.push(r.inspiration ? verifier(k, 'bonus') : refuser(k, "Plus d'inspiration."));
@@ -443,7 +443,7 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
   // les monstres ont leurs propres actions (empoignade, renversement) dans leur profil.
   if (c.camp === 'heros') {
     const voisins = ennemis(etat, c).filter(
-      (e) => distanceMetres(e.position, c.position) <= 1.5 && TAILLES.indexOf(e.taille) <= TAILLES.indexOf(c.taille) + 1,
+      (e) => distanceMetres(e, c) <= 1.5 && TAILLES.indexOf(e.taille) <= TAILLES.indexOf(c.taille) + 1,
     );
     const dd = 8 + c.mods.for + c.bonusMaitrise;
     const ajouterCoup = (id: string, nom: string, description: string, cibles: Combattant[]) => {
@@ -459,10 +459,10 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
   }
   // Aider (SRD 5.2.1) : faciliter l'attaque d'un allié contre un adversaire à 1,5 m de soi, ou stabiliser un allié tombé à 0 PV.
   if (allies(etat, c).length) {
-    const aidables = ennemis(etat, c).filter((e) => distanceMetres(e.position, c.position) <= 1.5 && !e.modificateurs.some((m) => m.id === 'aide-attaque'));
+    const aidables = ennemis(etat, c).filter((e) => distanceMetres(e, c) <= 1.5 && !e.modificateurs.some((m) => m.id === 'aide-attaque'));
     res.push(verifier(carte({ id: 'base:aider', nom: 'Aider', description: "Un adversaire à 1,5 m de vous : la prochaine attaque d'un allié contre lui a l'Avantage, jusqu'au début de votre prochain tour.", categorie: 'base', cout: 'action', ciblage: 'ennemi', portee: 1.5, cibles: aidables.map((e) => e.id) }), 'action'));
   }
-  const tombes = etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !x.mort && !x.enFuite && x.pv <= 0 && !x.stable && distanceMetres(x.position, c.position) <= 1.5);
+  const tombes = etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !x.mort && !x.enFuite && x.pv <= 0 && !x.stable && distanceMetres(x, c) <= 1.5);
   if (tombes.length) {
     res.push(verifier(carte({ id: 'base:stabiliser', nom: 'Stabiliser', description: 'Un allié à 0 PV à 1,5 m : test de Sagesse (Médecine) DD 10 ; réussi, il est stabilisé (plus de jets contre la mort).', categorie: 'base', cout: 'action', ciblage: 'allie', portee: 1.5, cibles: tombes.map((x) => x.id) }), 'action'));
   }
@@ -471,7 +471,7 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
     const cout: CoutCarte = 'bonus';
     // Un allié à 0 PV (inconscient, pas mort) peut recevoir la potion : c'est même son usage le plus utile (SRD : on la fait boire à une créature inconsciente).
     const proches = etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !x.mort && !x.enFuite);
-    const cibles = [c, ...proches].filter((x) => distanceMetres(x.position, c.position) <= 1.5 && x.pv < x.pvMax).map((x) => x.id);
+    const cibles = [c, ...proches].filter((x) => distanceMetres(x, c) <= 1.5 && x.pv < x.pvMax).map((x) => x.id);
     res.push(verifier(carte({ id: 'base:potion', nom: 'Potion de soins', description: 'Rend 2d4 + 2 PV à vous ou à un allié au contact, même tombé à 0 PV.', categorie: 'base', cout, ciblage: 'allie', cibles, ressource: `${r.potions} potion(s)` }), cout));
   }
   // Les autres objets confiés au héros (potions de guérison plus fortes, antidote, élixirs…) : une carte chacun, par une action Bonus,
@@ -486,7 +486,7 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
     const jet = jetDe(objet.actions);
     if (jet) {
       // Un objet de jet se lance à la place d'une attaque, sur un ennemi à portée (6 m) en vue.
-      const visees = adversairesCiblables(etat, c).filter((x) => !horsCombat(x) && visePar(jet, x) && distanceMetres(c.position, x.position) <= jet.portee && ligneDeVue(etat.grille, c.position, x.position)).map((x) => x.id);
+      const visees = adversairesCiblables(etat, c).filter((x) => !horsCombat(x) && visePar(jet, x) && distanceMetres(c, x) <= jet.portee && ligneDeVue(etat.grille, c.position, x.position)).map((x) => x.id);
       const k = carte({
         id: `base:objet-${idObjet}`,
         nom: objet.nom,
@@ -505,7 +505,7 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
     }
     const cout: CoutCarte = 'bonus';
     const proches = etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !x.mort && !x.enFuite);
-    const voisins = pourSoiSeul(objet.actions) ? [c] : [c, ...proches].filter((x) => distanceMetres(x.position, c.position) <= 1.5);
+    const voisins = pourSoiSeul(objet.actions) ? [c] : [c, ...proches].filter((x) => distanceMetres(x, c) <= 1.5);
     const cibles = voisins.filter((x) => utileA(objet.actions, x)).map((x) => x.id);
     const k = carte({
       id: `base:objet-${idObjet}`,
@@ -746,7 +746,7 @@ function executerAptitude(etat: EtatCombat, ctx: Contexte, c: Combattant, id: st
       r.conduit! -= 1;
       let reserve = 5 * c.niveau;
       const blesses = [c, ...allies(etat, c)]
-        .filter((x) => distanceMetres(x.position, c.position) <= 9 && x.pv < x.pvMax / 2)
+        .filter((x) => distanceMetres(x, c) <= 9 && x.pv < x.pvMax / 2)
         .sort((a, b) => a.pv / a.pvMax - b.pv / b.pvMax);
       for (const x of blesses) {
         const don = Math.min(reserve, Math.floor(x.pvMax / 2) - x.pv);

@@ -30,6 +30,7 @@ import {
   couvert,
   distanceCases,
   distanceMetres,
+  casesOccupees,
   ligneDeVue,
   TAILLE_CASE,
   type Chemin,
@@ -177,7 +178,7 @@ function debutTour(etat: EtatCombat): void {
   for (const e of [...c.etats]) {
     if (e.etat !== 'empoigne' || !e.source) continue;
     const source = etat.combattants.find((x) => x.id === e.source);
-    if (!source || !peutAgir(source) || distanceMetres(source.position, c.position) > 3) c.etats = c.etats.filter((x) => x !== e);
+    if (!source || !peutAgir(source) || distanceMetres(source, c) > 3) c.etats = c.etats.filter((x) => x !== e);
   }
   // Libéré d'une empoignade à l'instant, il retrouve toute sa Vitesse (le mouvement a été calculé empoigné, donc à 0).
   c.tour.mouvement = vitesse(c);
@@ -434,7 +435,7 @@ export function situationAttaque(
 ): { avantage: boolean; desavantage: boolean } {
   let avantage = false;
   let desavantage = false;
-  const dist = distanceMetres(attaquant.position, cible.position);
+  const dist = distanceMetres(attaquant, cible);
   if (aEtat(cible, 'a-terre')) {
     if (dist <= TAILLE_CASE) avantage = true;
     else desavantage = true;
@@ -449,13 +450,13 @@ export function situationAttaque(
   if (aEtat(attaquant, 'invisible')) avantage = true;
   if (mode === 'distance') {
     if (porteeNormale !== undefined && dist > porteeNormale) desavantage = true;
-    if (ennemis(etat, attaquant).some((e) => peutAgir(e) && distanceMetres(e.position, attaquant.position) <= TAILLE_CASE)) {
+    if (ennemis(etat, attaquant).some((e) => peutAgir(e) && distanceMetres(e, attaquant) <= TAILLE_CASE)) {
       desavantage = true;
     }
   }
   if (attaquant.tour.temeraire && mode === 'corps-a-corps') avantage = true;
   if (cible.tour.temeraire) avantage = true;
-  if (aTrait(attaquant, 'tactique-de-meute') && allies(etat, attaquant).some((a) => peutAgir(a) && distanceMetres(a.position, cible.position) <= TAILLE_CASE)) {
+  if (aTrait(attaquant, 'tactique-de-meute') && allies(etat, attaquant).some((a) => peutAgir(a) && distanceMetres(a, cible) <= TAILLE_CASE)) {
     avantage = true;
   }
   if (attaquant.modificateurs.some((m) => m.type === 'avantage_attaque' && (!m.contre || m.contre === cible.id))) avantage = true;
@@ -497,7 +498,7 @@ export function jetAttaque(
   const seuilCritique = aTrait(attaquant, 'critique-ameliore') ? 19 : 20;
   // Toute attaque qui touche, à 1,5 m ou moins, une cible paralysée ou inconsciente est un critique (SRD 5.2.1).
   const critiqueAuto =
-    distanceMetres(attaquant.position, cible.position) <= TAILLE_CASE &&
+    distanceMetres(attaquant, cible) <= TAILLE_CASE &&
     cible.etats.some((e) => e.etat === 'paralyse' || e.etat === 'inconscient');
   const bonusCouvert = couvert(etat.grille, attaquant.position, cible.position);
   let caCible = ca(cible) + bonusCouvert;
@@ -750,15 +751,18 @@ export function occupation(etat: EtatCombat, c: Combattant): { bloquees: Set<str
   const occupees = new Set<string>();
   for (const x of etat.combattants) {
     if (x.id === c.id || x.mort || x.enFuite) continue;
-    occupees.add(cle(x.position));
-    // Une créature hostile bloque le passage, même inconsciente (un héros à 0 PV) : on ne traverse pas sa case.
-    if (x.camp !== c.camp) bloquees.add(cle(x.position));
+    // Une grande créature (F6) occupe toute son empreinte ; les autres, leur case.
+    for (const p of casesOccupees(x)) {
+      occupees.add(cle(p));
+      // Une créature hostile bloque le passage, même inconsciente (un héros à 0 PV) : on ne traverse pas sa case.
+      if (x.camp !== c.camp) bloquees.add(cle(p));
+    }
   }
   return { bloquees, occupees };
 }
 
 export function deplacementsPossibles(etat: EtatCombat, c: Combattant): Map<string, Chemin> {
-  return cheminsAtteignables(etat.grille, c.position, c.tour.mouvement, occupation(etat, c));
+  return cheminsAtteignables(etat.grille, c.position, c.tour.mouvement, occupation(etat, c), c.taille);
 }
 
 /** Allonge de corps à corps la plus grande du combattant (pour les attaques d'opportunité). */
@@ -769,9 +773,10 @@ export function allonge(c: Combattant): number {
 }
 
 /** Un pas de `de` vers `vers` sort-il `c` de l'allonge de l'ennemi `e`, qui a sa réaction et peut s'en servir ? (règle commune au déplacement et à son aperçu) */
-function quitteAllonge(e: Combattant, de: Position, vers: Position): boolean {
+function quitteAllonge(e: Combattant, mobile: Combattant, de: Position, vers: Position): boolean {
   const portee = allonge(e);
-  return portee > 0 && !!e.ressources.reaction && peutAgir(e) && distanceMetres(e.position, de) <= portee && distanceMetres(e.position, vers) > portee;
+  // La distance se mesure entre les empreintes : une grande créature qui bouge garde sa taille sur chaque case d'ancrage.
+  return portee > 0 && !!e.ressources.reaction && peutAgir(e) && distanceMetres(e, { position: de, taille: mobile.taille }) <= portee && distanceMetres(e, { position: vers, taille: mobile.taille }) > portee;
 }
 
 /**
@@ -786,7 +791,7 @@ export function opportunitesSurChemin(etat: EtatCombat, c: Combattant, etapes: P
   let de = c.position;
   for (const etape of etapes) {
     for (const e of ennemis(etat, c)) {
-      if (dejaUtilises.has(e.id) || !quitteAllonge(e, de, etape)) continue;
+      if (dejaUtilises.has(e.id) || !quitteAllonge(e, c, de, etape)) continue;
       dejaUtilises.add(e.id);
       const k = cle(etape);
       res.set(k, [...(res.get(k) ?? []), e.id]);
@@ -811,7 +816,7 @@ export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boole
   for (const [i, etape] of chemin.etapes.entries()) {
     if (!c.tour.desengage) {
       for (const e of ennemis(etat, c)) {
-        if (quitteAllonge(e, c.position, etape)) {
+        if (quitteAllonge(e, c, c.position, etape)) {
           publierSegment();
           attaqueDOpportunite(etat, e, c);
           if (horsCombat(c) || aEtat(c, 'inconscient') || etat.vainqueur) {
@@ -856,7 +861,7 @@ function attaqueDOpportunite(etat: EtatCombat, attaquant: Combattant, cible: Com
   attaquant.ressources.reaction = 0;
   journaliser(etat, { type: 'attaque', texte: `${attaquant.nom} profite d'une ouverture (attaque d'opportunité).`, acteur: attaquant.id, cible: cible.id });
   // L'arme qui atteint la cible là où elle se trouvait (une épée ne frappe pas à l'allonge d'une pique).
-  const distance = distanceMetres(attaquant.position, cible.position);
+  const distance = distanceMetres(attaquant, cible);
   const arme = attaquant.attaques.find((a) => a.mode === 'corps-a-corps' && a.allonge >= distance);
   if (arme) {
     attaqueArme(etat, attaquant, cible, arme, { opportunite: true });
@@ -878,11 +883,11 @@ export function portee(arme: AttaqueArme): { normale: number; longue: number } {
 }
 
 export function aPortee(etat: EtatCombat, a: Combattant, cible: Combattant, metres: number): boolean {
-  return distanceMetres(a.position, cible.position) <= metres && ligneDeVue(etat.grille, a.position, cible.position);
+  return distanceMetres(a, cible) <= metres && ligneDeVue(etat.grille, a.position, cible.position);
 }
 
 function allieAuContact(etat: EtatCombat, attaquant: Combattant, cible: Combattant): boolean {
-  return allies(etat, attaquant).some((a) => peutAgir(a) && distanceMetres(a.position, cible.position) <= TAILLE_CASE);
+  return allies(etat, attaquant).some((a) => peutAgir(a) && distanceMetres(a, cible) <= TAILLE_CASE);
 }
 
 export function attaqueArme(
@@ -991,7 +996,7 @@ function appliquerBotte(
     case 'enchainement': {
       if (options.enchainement || options.opportunite || attaquant.tour.enchainementUtilise) break;
       const seconde = ennemis(etat, attaquant).find(
-        (e) => e.id !== cible.id && distanceMetres(e.position, cible.position) <= TAILLE_CASE && distanceMetres(e.position, attaquant.position) <= arme.allonge,
+        (e) => e.id !== cible.id && distanceMetres(e, cible) <= TAILLE_CASE && distanceMetres(e, attaquant) <= arme.allonge,
       );
       if (!seconde) break;
       attaquant.tour.enchainementUtilise = true;

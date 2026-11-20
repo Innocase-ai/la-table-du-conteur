@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactElement } from 'react';
-import { cle, couvert, etatApparent, reliefDe, typeCase, type Combattant, type EtatCombat, type Position, type Relief, type Terrain } from '@crpg/regles';
+import { casesDeTaille, cle, couvert, etatApparent, reliefDe, typeCase, type Combattant, type EtatCombat, type Position, type Relief, type Terrain } from '@crpg/regles';
 import { LIBELLES_APPARENT, nomClasse } from '../libelles';
 import type { Donnees } from '@crpg/regles';
 import type { Effet } from '../animations';
@@ -277,6 +277,9 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
           const aCouvert = valide && surcouches.modeCible === 'cibles' && !!positionActif && c.id !== actifId && couvert(etat.grille, positionActif, c.position) > 0;
           const choisie = surcouches.ciblesChoisies.get(c.id);
           const dansZone = surcouches.zone.has(cle(c.position));
+          // Une grande créature (3 × 3, 4 × 4) couvre toute son empreinte : le jeton part de sa case en haut à gauche et s'étend sur n cases.
+          const n = casesDeTaille(c.taille);
+          const decalage = Math.floor((n - 1) / 2);
           const classes = ['emplacement-jeton'];
           if (c.id === actifId) classes.push('jeton-actif');
           if (valide) classes.push(c.camp === 'heros' ? 'cible-allie' : 'cible-ennemie');
@@ -296,13 +299,13 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
               }}
               className={classes.join(' ')}
               style={{
-                left: c.position.x * g.cote,
-                top: g.marge + c.position.y * g.hc,
-                width: g.cote,
-                height: g.hc,
+                left: (c.position.x - decalage) * g.cote,
+                top: g.marge + (c.position.y - decalage) * g.hc,
+                width: n * g.cote,
+                height: n * g.hc,
                 // Un jeton passe devant le relief du mur situé juste au sud (z = 10 + 3 × (y + 1) = 13 + 3y : il dépasse d'une
                 // demi-case sur la rangée du jeton) ; les morts passent aussi devant les murs, mais sous les vivants.
-                zIndex: (c.mort ? 14 : 15) + c.position.y * 3 + (c.id === actifId ? 1 : 0),
+                zIndex: (c.mort ? 14 : 15) + (c.position.y - decalage + n - 1) * 3 + (c.id === actifId ? 1 : 0),
               }}
               onMouseEnter={() => {
                 setInfobulle(c.id);
@@ -318,7 +321,7 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
                 onClicJeton(c);
               }}
             >
-              <Jeton c={c} taille={Math.round(g.cote * (['G', 'TG', 'Gig'].includes(c.taille) ? TAILLE_JETON_GRAND : TAILLE_JETON))} details />
+              <Jeton c={c} taille={Math.round(g.cote * (n > 1 ? n * 0.95 : ['G', 'TG', 'Gig'].includes(c.taille) ? TAILLE_JETON_GRAND : TAILLE_JETON))} details />
               {choisie !== undefined && <span className="compteur-cible">{choisie > 1 ? `×${choisie}` : '✓'}</span>}
               {valide && surcouches.chances?.get(c.id) && (
                 <span className={`badge-chances${surcouches.chances.get(c.id)!.fort ? ' fort' : ''}`} title={surcouches.chances.get(c.id)!.titre}>

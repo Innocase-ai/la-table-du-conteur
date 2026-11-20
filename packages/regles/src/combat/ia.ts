@@ -7,7 +7,7 @@
 import { cartesDisponibles, executer, type Carte, type Commande, type Contexte } from './cartes';
 import { actif, aEtat, cloner, combattant, ennemis, horsCombat, journaliser, peutAgir, type Camp, type Combattant, type EtatCombat } from './etat';
 import type { Etat } from '../schemas';
-import { casesZone, cle, couvert, distanceCases, distanceMetres, ligneDeVue, TAILLE_CASE, typeCase, type Position } from './grille';
+import { casesOccupees, casesZone, cle, couvert, distanceCases, distanceMetres, ligneDeVue, TAILLE_CASE, typeCase, type Position } from './grille';
 import { DOCTRINE_PAR_DEFAUT, doctrineDe, type Doctrine } from './doctrine';
 import { deplacementsPossibles, deplacer, etatApparent, finTour } from './moteur';
 
@@ -118,7 +118,7 @@ export function vueDe(etat: EtatCombat, camp: Camp): EtatCombat {
 // ---------------------------------------------------------------------------
 
 function plusProche(etat: EtatCombat, c: Combattant): Combattant | undefined {
-  return ennemis(etat, c).sort((a, b) => distanceCases(a.position, c.position) - distanceCases(b.position, c.position))[0];
+  return ennemis(etat, c).sort((a, b) => distanceCases(a, c) - distanceCases(b, c))[0];
 }
 
 function meilleureCarteOffensive(cartes: Carte[]): Carte | undefined {
@@ -172,9 +172,9 @@ export function jouerTourSimple(etat: EtatCombat, ctx: Contexte): void {
       const cible = plusProche(etat, c);
       if (!cible) break;
       let meilleure: Position | undefined;
-      let dist = distanceCases(c.position, cible.position);
+      let dist = distanceCases(c, cible);
       for (const ch of deplacementsPossibles(etat, c).values()) {
-        const d = distanceCases(ch.arrivee, cible.position);
+        const d = distanceCases(sur(ch.arrivee, c), cible);
         if (d < dist) {
           dist = d;
           meilleure = ch.arrivee;
@@ -196,6 +196,9 @@ interface Etape {
   libelle: string;
 }
 
+/** Le combattant `c` s'il se tenait en `p` : sa taille compte pour toute distance (une grande créature a des cases tout autour de son ancrage). */
+const sur = (p: Position, c: Combattant) => ({ position: p, taille: c.taille });
+
 function destinations(etat: EtatCombat, c: Combattant): Position[] {
   const chemins = [...deplacementsPossibles(etat, c).values()];
   if (!chemins.length) return [];
@@ -203,12 +206,12 @@ function destinations(etat: EtatCombat, c: Combattant): Position[] {
   const res = new Map<string, Position>();
   const ajouter = (p: Position | undefined) => p && res.set(cle(p), p);
   // Au contact de chacun des ennemis les plus proches.
-  for (const e of [...adversaires].sort((a, b) => distanceCases(a.position, c.position) - distanceCases(b.position, c.position)).slice(0, 4)) {
-    ajouter(chemins.filter((ch) => distanceCases(ch.arrivee, e.position) === 1).sort((a, b) => a.cout - b.cout)[0]?.arrivee);
+  for (const e of [...adversaires].sort((a, b) => distanceCases(a, c) - distanceCases(b, c)).slice(0, 4)) {
+    ajouter(chemins.filter((ch) => distanceCases(sur(ch.arrivee, c), e) === 1).sort((a, b) => a.cout - b.cout)[0]?.arrivee);
   }
-  const distMin = (p: Position) => Math.min(99, ...adversaires.map((e) => distanceMetres(p, e.position)));
+  const distMin = (p: Position) => Math.min(99, ...adversaires.map((e) => distanceMetres(sur(p, c), e)));
   // Position de tir : loin du contact, avec une ligne de vue sur un ennemi à moins de 18 m.
-  const tirs = chemins.filter((ch) => adversaires.some((e) => distanceMetres(ch.arrivee, e.position) <= 18 && ligneDeVue(etat.grille, ch.arrivee, e.position)));
+  const tirs = chemins.filter((ch) => adversaires.some((e) => distanceMetres(sur(ch.arrivee, c), e) <= 18 && ligneDeVue(etat.grille, ch.arrivee, e.position)));
   ajouter(tirs.sort((a, b) => distMin(b.arrivee) - distMin(a.arrivee))[0]?.arrivee);
   // Tir à couvert : une position de tir où un obstacle bas protège des ennemis qui pourraient tirer en retour.
   // La simulation du round dira si elle vaut mieux que les autres.
@@ -218,7 +221,7 @@ function destinations(etat: EtatCombat, c: Combattant): Position[] {
   ajouter(chemins.sort((a, b) => distMin(b.arrivee) - distMin(a.arrivee))[0]?.arrivee);
   // Rapprochement à mi-chemin.
   const proche = plusProche(etat, c);
-  if (proche) ajouter(chemins.sort((a, b) => distanceCases(a.arrivee, proche.position) - distanceCases(b.arrivee, proche.position))[0]?.arrivee);
+  if (proche) ajouter(chemins.sort((a, b) => distanceCases(sur(a.arrivee, c), proche) - distanceCases(sur(b.arrivee, c), proche))[0]?.arrivee);
   return [...res.values()];
 }
 
@@ -231,7 +234,7 @@ function choixCibles(etat: EtatCombat, c: Combattant, k: Carte): string[][] {
     if (allie) return ca.pv / ca.pvMax - cb.pv / cb.pvMax;
     // Un héros tombé (0 PV) ne se vise qu'à défaut d'adversaire debout : achever passe après menacer.
     const tombe = (x: Combattant) => (horsCombat(x) ? 1 : 0);
-    return tombe(ca) - tombe(cb) || ca.pv - cb.pv || distanceCases(ca.position, c.position) - distanceCases(cb.position, c.position);
+    return tombe(ca) - tombe(cb) || ca.pv - cb.pv || distanceCases(ca, c) - distanceCases(cb, c);
   });
   if (k.nbCibles > 1 && k.categorie !== 'monstre') return [tries.slice(0, k.nbCibles)];
   return tries.slice(0, 3).map((x) => [x]);
@@ -243,7 +246,7 @@ function touchesParZone(etat: EtatCombat, c: Combattant, k: Carte, point: Positi
   // Un sort « personnel » (cône, cube) part du lanceur, le point ne donne que la direction.
   const origine = k.portee || k.origine ? point : c.position;
   const cases = new Set(casesZone(etat.grille, z.forme as Parameters<typeof casesZone>[1], z.taille, origine, point).map(cle));
-  return etat.combattants.filter((x) => !x.mort && !x.enFuite && x.id !== c.id && cases.has(cle(x.position)));
+  return etat.combattants.filter((x) => !x.mort && !x.enFuite && x.id !== c.id && casesOccupees(x).some((q) => cases.has(cle(q))));
 }
 
 /**
@@ -361,7 +364,7 @@ function valeurDistance(etat: EtatCombat, id: string, d: Doctrine): number {
   if (!d.garderDistance) return 0;
   const c = combattant(etat, id);
   if (horsCombat(c)) return 0;
-  const proche = Math.min(DISTANCE_DE_CONFORT, ...ennemis(etat, c).map((e) => distanceMetres(c.position, e.position)));
+  const proche = Math.min(DISTANCE_DE_CONFORT, ...ennemis(etat, c).map((e) => distanceMetres(c, e)));
   return (d.garderDistance * proche) / DISTANCE_DE_CONFORT;
 }
 
@@ -430,7 +433,7 @@ export function doitFuir(etat: EtatCombat, c: Combattant, d: Doctrine = doctrine
 function fuir(etat: EtatCombat, ctx: Contexte, c: Combattant): void {
   if (c.tour.action) executer(etat, ctx, { type: 'jouer', carte: 'base:foncer' });
   const adversaires = ennemis(etat, c);
-  const distMin = (p: Position) => Math.min(99, ...adversaires.map((e) => distanceMetres(p, e.position)));
+  const distMin = (p: Position) => Math.min(99, ...adversaires.map((e) => distanceMetres(sur(p, c), e)));
   const chemins = [...deplacementsPossibles(etat, c).values()].sort((a, b) => distMin(b.arrivee) - distMin(a.arrivee));
   if (chemins[0]) deplacer(etat, c, chemins[0].arrivee);
   if (!c.mort && distMin(c.position) >= 12) {

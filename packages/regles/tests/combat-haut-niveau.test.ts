@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { chargerDonneesSrd } from '../src/donnees-node';
 import { IA_RAPIDE, jouerTourIA } from '../src/combat/ia';
 import { horsCombat, RESISTANCE_LEGENDAIRE, type EtatCombat } from '../src/combat/etat';
+import { casesOccupees } from '../src/combat/grille';
 import { creerCombat, sauvegarde } from '../src/combat/moteur';
 import { preparerRencontre, RENCONTRES, type Rencontre } from '../src/combat/prototype';
 import { groupeDeTest, heroCombatDe } from '../src';
@@ -31,10 +32,14 @@ function violations(etat: EtatCombat): string[] {
     if (c.position.x < 0 || c.position.y < 0 || c.position.x >= etat.grille.largeur || c.position.y >= etat.grille.hauteur) v.push(`${ou} : hors de la grille`);
     else if (etat.grille.cases[c.position.y * etat.grille.largeur + c.position.x] === 'mur') v.push(`${ou} : dans un mur`);
     // Deux combattants encore dans le combat ne partagent pas une case (un fuyard, hors de combat, peut s'arrêter sur la case d'un autre).
+    // Une grande créature occupe toute son empreinte (F6) : aucune de ses cases n'est dans un mur ni partagée.
     if (c.pv > 0 && !horsCombat(c)) {
-      const cle = `${c.position.x},${c.position.y}`;
-      if (occupees.has(cle)) v.push(`${ou} et ${occupees.get(cle)} sur la même case ${cle}`);
-      occupees.set(cle, ou);
+      for (const p of casesOccupees(c)) {
+        const cle = `${p.x},${p.y}`;
+        if (etat.grille.cases[p.y * etat.grille.largeur + p.x] === 'mur') v.push(`${ou} : empreinte dans un mur en ${cle}`);
+        if (occupees.has(cle)) v.push(`${ou} et ${occupees.get(cle)} sur la même case ${cle}`);
+        occupees.set(cle, ou);
+      }
     }
   }
   return v;

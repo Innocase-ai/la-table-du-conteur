@@ -100,12 +100,46 @@ export function cle(p: Position): string {
   return `${p.x},${p.y}`;
 }
 
-/** Distance en cases (diagonale = 1). */
-export function distanceCases(a: Position, b: Position): number {
-  return Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y));
+/**
+ * Le nombre de cases de côté qu'occupe une créature selon sa taille (F6, grandes créatures) : Très grande 3 × 3, Gigantesque 4 × 4 (SRD 5.2.1 : 4,5 m
+ * et 6 m). Les créatures Grandes (2 × 2) tiennent encore sur une case : à venir, car elles changeraient toutes les rencontres déjà jouées.
+ */
+export const CASES_PAR_TAILLE: Readonly<Record<string, number>> = { TG: 3, Gig: 4 };
+
+/** Les cases de côté d'une créature de cette taille (1 pour toutes celles qui tiennent sur une case). */
+export const casesDeTaille = (taille: string): number => CASES_PAR_TAILLE[taille] ?? 1;
+
+/** Qui occupe de la place : une simple case, ou une créature (sa case d'ancrage `position` et sa `taille`). */
+export type Occupant = Position | { position: Position; taille: string };
+
+/**
+ * La boîte des cases qu'occupe l'occupant : l'ancrage est la case centrale d'une créature de côté impair (3 × 3), et la case de gauche du centre
+ * pour un côté pair (4 × 4 : de −1 à +2). Pour une case ou une créature d'une case, c'est cette case.
+ */
+function boite(o: Occupant): { x0: number; x1: number; y0: number; y1: number } {
+  const p = 'position' in o ? o.position : o;
+  const n = 'position' in o ? casesDeTaille(o.taille) : 1;
+  const x0 = p.x - Math.floor((n - 1) / 2);
+  const y0 = p.y - Math.floor((n - 1) / 2);
+  return { x0, x1: x0 + n - 1, y0, y1: y0 + n - 1 };
 }
 
-export function distanceMetres(a: Position, b: Position): number {
+/** Toutes les cases qu'occupe l'occupant. */
+export function casesOccupees(o: Occupant): Position[] {
+  const b = boite(o);
+  const res: Position[] = [];
+  for (let y = b.y0; y <= b.y1; y++) for (let x = b.x0; x <= b.x1; x++) res.push({ x, y });
+  return res;
+}
+
+/** Distance en cases (diagonale = 1) ; entre deux créatures, celle de leurs deux cases les plus proches. */
+export function distanceCases(a: Occupant, b: Occupant): number {
+  const A = boite(a);
+  const B = boite(b);
+  return Math.max(0, B.x0 - A.x1, A.x0 - B.x1, B.y0 - A.y1, A.y0 - B.y1);
+}
+
+export function distanceMetres(a: Occupant, b: Occupant): number {
   return distanceCases(a, b) * TAILLE_CASE;
 }
 
@@ -199,7 +233,8 @@ export interface Chemin {
  * Toutes les cases atteignables depuis `depart` avec `budget` mètres de déplacement
  * (Dijkstra ; terrain difficile = coût double). Renvoie le chemin le moins cher vers chacune.
  */
-export function cheminsAtteignables(grille: Grille, depart: Position, budget: number, occ: Occupation): Map<string, Chemin> {
+export function cheminsAtteignables(grille: Grille, depart: Position, budget: number, occ: Occupation, taille = 'M'): Map<string, Chemin> {
+  const grande = casesDeTaille(taille) > 1;
   const meilleurs = new Map<string, { cout: number; precedent?: string; position: Position }>();
   meilleurs.set(cle(depart), { cout: 0, position: depart });
   // Les coûts sont des multiples de 1,5 m : une file par palier suffit (pas besoin de tas).
@@ -213,7 +248,11 @@ export function cheminsAtteignables(grille: Grille, depart: Position, budget: nu
       for (const v of voisins(grille, courant.position)) {
         const kv = cle(v);
         if (occ.bloquees.has(kv)) continue;
-        const cout = courant.cout + (typeCase(grille, v) === 'difficile' ? 2 : 1) * TAILLE_CASE;
+        // Une grande créature (F6) ne passe que si toute son empreinte est libre de mur, d'obstacle et d'ennemi ; un terrain difficile sous elle double le coût.
+        const cases = grande ? casesOccupees({ position: v, taille }) : undefined;
+        if (cases && !cases.every((p) => franchissable(typeCase(grille, p)) && !occ.bloquees.has(cle(p)))) continue;
+        const difficile = cases ? cases.some((p) => typeCase(grille, p) === 'difficile') : typeCase(grille, v) === 'difficile';
+        const cout = courant.cout + (difficile ? 2 : 1) * TAILLE_CASE;
         if (cout > budget + 1e-9) continue;
         const connu = meilleurs.get(kv);
         if (!connu || cout < connu.cout) {
@@ -227,6 +266,8 @@ export function cheminsAtteignables(grille: Grille, depart: Position, budget: nu
   const res = new Map<string, Chemin>();
   for (const [k, info] of meilleurs) {
     if (k === cle(depart) || occ.occupees.has(k)) continue;
+    // Une grande créature ne s'arrête pas sur la case d'une autre : aucune case de son empreinte n'est occupée.
+    if (grande && casesOccupees({ position: info.position, taille }).some((p) => occ.occupees.has(cle(p)))) continue;
     const etapes: Position[] = [];
     let c: string | undefined = k;
     while (c && c !== cle(depart)) {

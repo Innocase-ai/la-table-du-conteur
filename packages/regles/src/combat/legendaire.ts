@@ -10,7 +10,7 @@ import type { ActionMonstre, Sort } from '../schemas';
 // Cycle d'import voulu (cartes.ts importe moteur.ts, qui appelle ce module) : appelés à l'exécution seulement.
 import { cartesDisponibles, executer, type Contexte } from './cartes';
 import { ACTIONS_LEGENDAIRES, ACTIONS_LEGENDAIRES_MAX, ennemis, estActionLegendaire, horsCombat, journaliser, peutAgir, type Combattant, type EtatCombat } from './etat';
-import { casesZone, distanceMetres, ligneDeVue, TAILLE_CASE, type Position } from './grille';
+import { casesOccupees, casesZone, distanceMetres, ligneDeVue, TAILLE_CASE, type Position } from './grille';
 // Cycle d'import voulu (moteur.ts appelle ce module à chaque fin de tour) : `attaqueMonstre` n'est appelé qu'à l'exécution.
 import { attaqueMonstre, deplacementsPossibles, deplacer, vitesse } from './moteur';
 
@@ -72,9 +72,9 @@ function planSort(etat: EtatCombat, c: Combattant, a: ActionMonstre, ctx: Contex
     const porteeSort = k.portee ?? 0;
     let meilleur: Plan | undefined;
     for (const e of adversaires) {
-      if (distanceMetres(c.position, e.position) > porteeSort || !ligneDeVue(etat.grille, c.position, e.position)) continue;
+      if (distanceMetres(c, e) > porteeSort || !ligneDeVue(etat.grille, c.position, e.position)) continue;
       const cases = casesZone(etat.grille, k.zone.forme as 'sphere' | 'cube' | 'cylindre' | 'emanation', k.zone.taille, c.position, e.position);
-      const dedans = (x: Combattant) => cases.some((p) => p.x === x.position.x && p.y === x.position.y);
+      const dedans = (x: Combattant) => casesOccupees(x).some((q) => cases.some((p) => p.x === q.x && p.y === q.y));
       const touches = adversaires.filter(dedans);
       const allies = etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !horsCombat(x) && dedans(x)).length;
       const score = (touches.length - allies) * unite;
@@ -119,7 +119,7 @@ function planDeplacerEtAttaquer(etat: EtatCombat, c: Combattant, a: ActionMonstr
   const portee = Math.max(porteeDe(attaque), 1.5);
   const visibles = ennemis(etat, c);
   const unite = moyenne(attaque) * 0.65;
-  const dejaLa = visibles.filter((e) => distanceMetres(c.position, e.position) <= portee && (attaque.portee?.type !== 'distance' || ligneDeVue(etat.grille, c.position, e.position)));
+  const dejaLa = visibles.filter((e) => distanceMetres(c, e) <= portee && (attaque.portee?.type !== 'distance' || ligneDeVue(etat.grille, c.position, e.position)));
   if (dejaLa.length) return { action: a, cibles: [[...dejaLa].sort((x, y) => x.pv - y.pv)[0]!], score: unite, attaque: attaque.id };
   const part = a.legendaire!.deplacement ?? 0;
   if (part <= 0) return undefined;
@@ -133,7 +133,8 @@ function planDeplacerEtAttaquer(etat: EtatCombat, c: Combattant, a: ActionMonstr
     const arrivee = chemin.etapes[chemin.etapes.length - 1];
     if (!arrivee) continue;
     for (const e of visibles) {
-      if (distanceMetres(arrivee, e.position) > portee) continue;
+      // La portée se mesure depuis l'empreinte du monstre arrivé là (une grande créature a des cases tout autour de son ancrage).
+      if (distanceMetres({ position: arrivee, taille: c.taille }, e) > portee) continue;
       if (!meilleur || chemin.cout < meilleur.cout || (chemin.cout === meilleur.cout && e.pv < meilleur.cible.pv)) meilleur = { cible: e, vers: arrivee, cout: chemin.cout };
     }
   }
@@ -150,11 +151,11 @@ function planDe(etat: EtatCombat, c: Combattant, a: ActionMonstre, ctx?: Context
   if (a.zone && (a.zone.forme === 'sphere' || a.zone.forme === 'emanation')) {
     const forme = a.zone.forme;
     // Une émanation part du monstre ; une sphère est centrée sur un point qu'il voit à portée : on essaie la case de chaque ennemi.
-    const centres = forme === 'emanation' ? [c.position] : visibles.filter((e) => distanceMetres(c.position, e.position) <= portee && ligneDeVue(etat.grille, c.position, e.position)).map((e) => e.position);
+    const centres = forme === 'emanation' ? [c.position] : visibles.filter((e) => distanceMetres(c, e) <= portee && ligneDeVue(etat.grille, c.position, e.position)).map((e) => e.position);
     let meilleur: Plan | undefined;
     for (const centre of centres) {
       const cases = casesZone(etat.grille, forme, a.zone.taille, c.position, centre);
-      const dedans = (x: Combattant) => cases.some((p) => p.x === x.position.x && p.y === x.position.y);
+      const dedans = (x: Combattant) => casesOccupees(x).some((q) => cases.some((p) => p.x === q.x && p.y === q.y));
       const touchesEnnemis = visibles.filter(dedans);
       // Ses alliés pris dans la zone comptent contre ce centre (les actions légendaires les frappent aussi).
       const touchesAllies = etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !horsCombat(x) && dedans(x)).length;
@@ -163,7 +164,7 @@ function planDe(etat: EtatCombat, c: Combattant, a: ActionMonstre, ctx?: Context
     }
     return meilleur;
   }
-  const atteignables = visibles.filter((e) => distanceMetres(c.position, e.position) <= Math.max(portee, 1.5) && (a.portee?.type !== 'distance' || ligneDeVue(etat.grille, c.position, e.position)));
+  const atteignables = visibles.filter((e) => distanceMetres(c, e) <= Math.max(portee, 1.5) && (a.portee?.type !== 'distance' || ligneDeVue(etat.grille, c.position, e.position)));
   if (!atteignables.length) return undefined;
   const cible = [...atteignables].sort((x, y) => x.pv - y.pv)[0]!;
   return { action: a, cibles: [cible], score: unite };

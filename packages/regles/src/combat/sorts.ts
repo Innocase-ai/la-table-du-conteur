@@ -2,7 +2,7 @@
 // et gestionnaires dédiés pour les sorts marqués `special`.
 import type { Sort } from '../schemas';
 import { aEtat, ennemis, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat, type ZonePersistante } from './etat';
-import { casesZone, cle, distanceCases, distanceMetres, ligneDeVue, typeCase, type Position } from './grille';
+import { casesOccupees, casesZone, cle, distanceCases, distanceMetres, ligneDeVue, typeCase, type Position } from './grille';
 import { ajouterEtat, couvertSauvegarde, detailsJet, finConcentration, infligerDegats, jetAttaque, occupation, retirerEtat, sauvegarde, soigner, emplacementDisponible, vitesse, declencherZone, dansZone } from './moteur';
 import { franchissable, TAILLE_CASE } from './grille';
 
@@ -154,7 +154,7 @@ function casesDeZone(etat: EtatCombat, lanceur: Combattant, sort: Sort, point: P
 
 function ciblesDeZone(etat: EtatCombat, lanceur: Combattant, sort: Sort, point: Position): Combattant[] {
   const cases = new Set(casesDeZone(etat, lanceur, sort, point).map(cle));
-  return etat.combattants.filter((c) => !c.mort && !c.enFuite && c.id !== lanceur.id && cases.has(cle(c.position)));
+  return etat.combattants.filter((c) => !c.mort && !c.enFuite && c.id !== lanceur.id && casesOccupees(c).some((q) => cases.has(cle(q))));
 }
 
 function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, niveau: number, cible: CibleSort): void {
@@ -325,7 +325,7 @@ const SPECIAUX: Record<string, Gestionnaire> = {
     const des = desAmeliores(sort, sort.degats[0]!.des, niveau);
     const montant = lancerDes(etat, des);
     for (const c of etat.combattants) {
-      if (c.mort || c.enFuite || !cases.has(cle(c.position))) continue;
+      if (c.mort || c.enFuite || !casesOccupees(c).some((q) => cases.has(cle(q)))) continue;
       const bonusCouvert = couvertSauvegarde(etat, c, 'dex', point);
       const reussite = sauvegarde(etat, c, 'dex', inc.dd, bonusCouvert);
       journaliser(etat, { type: 'sort', texte: `${c.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}${bonusCouvert ? ' (à couvert, +2)' : ''}.`, acteur: lanceur.id, cible: c.id, details: { sort: sort.id, sauvegarde: reussite ? 'reussie' : 'ratee', distance: false } });
@@ -539,8 +539,8 @@ export function ciblesPossibles(etat: EtatCombat, lanceur: Combattant, sort: Sor
   return pool.filter((c) => {
     if (sort.id === 'immobilisation-de-personne' && !c.type.toLowerCase().includes('humanoïde')) return false;
     if (sort.soins && c.pv >= c.pvMax) return false;
-    if (sort.portee.type === 'personnel') return SORTS_AU_CONTACT.has(sort.id) ? distanceMetres(lanceur.position, c.position) <= 1.5 : c.id === lanceur.id;
-    return distanceMetres(lanceur.position, c.position) <= portee && ligneDeVue(etat.grille, lanceur.position, c.position);
+    if (sort.portee.type === 'personnel') return SORTS_AU_CONTACT.has(sort.id) ? distanceMetres(lanceur, c) <= 1.5 : c.id === lanceur.id;
+    return distanceMetres(lanceur, c) <= portee && ligneDeVue(etat.grille, lanceur.position, c.position);
   });
 }
 

@@ -226,3 +226,17 @@ Décision de l'utilisateur du 19/11/2026 : la simulation de référence de `pnpm
 | les quatre autres | inchangées | inchangées |
 
 Le banc de haut niveau (`pnpm simuler:haut`) est **inchangé** (aucun de ses monstres n'a de réaction jouée). Les tests : `tests/combat-reactions-monstres.test.ts`.
+
+### Grandes créatures sur plusieurs cases (F6, lot 6)
+
+**Modèle** (`combat/grille.ts`) : une créature **Très grande** (`TG`) occupe **3 × 3** cases, une **Gigantesque** (`Gig`) **4 × 4** ; `position` reste sa case d'**ancrage** (la case centrale pour 3 × 3, la case de gauche du centre pour 4 × 4 : de −1 à +2), `casesOccupees(c)` donne toutes ses cases, `CASES_PAR_TAILLE` la table. Les créatures **Grandes** (`G`, 2 × 2) tiennent **encore sur une case** : les passer à 2 × 2 est une ligne de la table, mais elle changerait toutes les rencontres déjà jouées (107 monstres Grands, dont les ogres et les loups de la simulation de référence), à décider à part. **Distances** : `distanceCases` et `distanceMetres` acceptent une case, ou un combattant : entre deux créatures, c'est la distance de leurs cases les plus proches (une case contre une case : inchangée). **Occupation** : toute l'empreinte est occupée et, pour un ennemi, bloquante. **Déplacement** (`cheminsAtteignables(…, taille)`) : on ne passe, et on ne s'arrête, que si toute l'empreinte est libre de mur, d'obstacle et d'autre créature ; un terrain difficile sous un bord de l'empreinte double le pas ; un couloir de largeur 2 est fermé à un dragon. **Portée et attaques d'opportunité** : mesurées d'empreinte à empreinte (un héros collé à un bord du dragon l'atteint au corps à corps ; la sortie de son allonge se mesure depuis l'empreinte du mobile). **Zones** (sorts, actions légendaires, IA) : une créature est touchée si une case de son empreinte est dans la zone. **Placement au départ** (`preparerRencontre`) : une grande créature part de sa case de départ ou de la plus proche qui laisse toute son empreinte libre ; une case de départ prise par l'empreinte d'une grande créature cède aussi sa place. **IA** : les destinations (contact, tir, repli, rapprochement) se calculent avec l'empreinte du monstre arrivé là. **Écran** (`apps/jeu/src/composants/Plateau.tsx`) : le jeton couvre n × n cases ; **non vérifié à l'écran** (aucun combat de boss lancé dans le navigateur). Tests : `tests/combat-grandes-creatures.test.ts` (12) ; le filet d'invariants du lot 1 vérifie les empreintes.
+
+**Référence** : `pnpm simuler 10 rapide` **inchangée** (aucun monstre de ces six rencontres n'est Très grand ou Gigantesque). `pnpm simuler:haut` (10 parties, IA rapide) change, comme prévu — les dragons et le kraken, qui n'étaient qu'un point sur la carte, se rapprochent maintenant avec toute leur masse et sont nettement plus durs :
+
+| Monstre | Avant (lot 5) | Après (lot 6) |
+|---|---|---|
+| Dragon blanc adulte (niv. 12) | 80 %, 11,0 rounds, 33 % des PV | **50 %**, 14,9 rounds, 18 % |
+| Dragon d'airain adulte (niv. 12) | 100 %, 8,4 rounds, 53 % | **60 %**, 12,1 rounds, 30 % |
+| Dragon rouge adulte (niv. 15) | 60 %, 10,3 rounds, 19 % | **20 %**, 16,1 rounds, 5 % |
+| Kraken (niv. 17) | 90 %, 16,2 rounds, 48 % | **30 %**, 26,9 rounds, 40 % |
+| Aboleth, vampire, liche | inchangés | inchangés |

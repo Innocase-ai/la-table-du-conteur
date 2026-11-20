@@ -3,7 +3,7 @@ import type { Donnees } from '../donnees';
 import { calculerFiche, type ChoixPersonnage, type Fiche } from '../fiche';
 import { heroDepuisFiche, monstreDepuisProfil, type Kit } from './creation';
 import type { Combattant } from './etat';
-import { grilleDepuisTexte, type Grille, type Position, type Terrain } from './grille';
+import { casesOccupees, casesDeTaille, cle, franchissable, grilleDepuisTexte, typeCase, type Grille, type Position, type Terrain } from './grille';
 
 export interface HeroPreTire {
   choix: ChoixPersonnage;
@@ -320,12 +320,27 @@ export function preparerRencontre(rencontre: Rencontre, donnees: Donnees, heros?
     const m = donnees.monstres.get(profil);
     if (!m) throw new Error(`Monstre inconnu : ${profil}`);
     for (let k = 0; k < nombre; k++) {
-      const position = casesMonstres[i++];
+      let position = casesMonstres[i++];
       if (!position) throw new Error(`${rencontre.id} : pas assez de cases de départ pour les monstres.`);
+      // Une grande créature (3 × 3, 4 × 4) a besoin de toute son empreinte libre : on part de la case marquée et on cherche la plus proche qui convient.
+      // Une case de départ prise par l'empreinte d'une grande créature déjà posée cède aussi sa place à la plus proche libre.
+      const prise = combattants.some((c) => casesOccupees(c).some((q) => q.x === position!.x && q.y === position!.y));
+      if (casesDeTaille(m.taille) > 1 || prise) position = ancreLibre(grille, combattants, m.taille, position, rencontre.id);
       const n = (deja.get(profil) ?? 0) + 1;
       deja.set(profil, n);
       combattants.push(monstreDepuisProfil(m, `${profil}-${n}`, position, total.get(profil)! > 1 ? `${m.nom} ${n}` : m.nom));
     }
   }
   return { grille, combattants };
+}
+
+/** L'ancrage libre le plus proche de `depart` pour une grande créature : toute son empreinte dans la grille, sur le sol, sans autre combattant. */
+function ancreLibre(grille: Grille, combattants: Combattant[], taille: string, depart: Position, rencontre: string): Position {
+  const prises = new Set(combattants.flatMap((c) => casesOccupees(c).map(cle)));
+  const convient = (p: Position) => casesOccupees({ position: p, taille }).every((q) => q.x >= 0 && q.y >= 0 && q.x < grille.largeur && q.y < grille.hauteur && franchissable(typeCase(grille, q)) && !prises.has(cle(q)));
+  const candidates: Position[] = [];
+  for (let y = 0; y < grille.hauteur; y++) for (let x = 0; x < grille.largeur; x++) candidates.push({ x, y });
+  const proches = candidates.filter(convient).sort((a, b) => Math.max(Math.abs(a.x - depart.x), Math.abs(a.y - depart.y)) - Math.max(Math.abs(b.x - depart.x), Math.abs(b.y - depart.y)));
+  if (!proches[0]) throw new Error(`${rencontre} : aucune place pour une créature de taille ${taille} sur la carte.`);
+  return proches[0];
 }

@@ -211,12 +211,13 @@ describe('lot 3b : se déplacer puis attaquer (Assaut incisif, Balayage caudal, 
     const { etat, monstre, heros } = combat('dragon-blanc-adulte');
     monstre.ressources[`${VERROU_LEGENDAIRE}decharge-de-gel`] = 1;
     for (const h of heros.slice(1)) placer(etat, h, monstre, 'loin');
-    placer(etat, heros[0]!, monstre, 5);
-    const avant = distanceCases(monstre.position, heros[0]!.position);
+    // À l'est du dragon (la carte d'essai a des murs au sud-ouest de lui) : 5 cases d'ancrage à ancrage, 4 du bord de son empreinte à lui.
+    heros[0]!.position = { x: monstre.position.x + 5, y: monstre.position.y };
+    const avant = distanceCases(monstre, heros[0]!);
     const tour = { mouvement: monstre.tour.mouvement, aBouge: monstre.tour.aBouge };
     actionsLegendairesApres(etat, heros[1]!);
-    expect(distanceCases(monstre.position, heros[0]!.position)).toBeLessThan(avant);
-    expect(distanceCases(monstre.position, heros[0]!.position)).toBeLessThanOrEqual(2);
+    expect(distanceCases(monstre, heros[0]!)).toBeLessThan(avant);
+    expect(distanceCases(monstre, heros[0]!)).toBeLessThanOrEqual(2);
     expect(dit(etat, /Dragon blanc adulte attaque .* \(Sai/).length).toBeGreaterThanOrEqual(1);
     expect(monstre.tour.mouvement).toBe(tour.mouvement);
     expect(monstre.tour.aBouge).toBe(tour.aBouge);
