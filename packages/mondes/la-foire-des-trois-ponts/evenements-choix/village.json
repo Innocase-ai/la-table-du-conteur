@@ -37,6 +37,36 @@
           }
         ],
         "resultat": "Vous vous approchez du poteau de chêne et examinez les nœuds de près. Au pied du poteau, l'un d'eux attire votre regard : une boucle serrée, à la forme particulière, qu'on appelle un nœud de funambule. Vous retenez ce nœud, qui ne ressemble à aucun autre, et vous le gardez en tête pour la suite de votre visite."
+      },
+      {
+        "id": "halfelin",
+        "libelle": "« Je passe en trottant sur la corde. »",
+        "condition": {
+          "heros": {
+            "espece": "halfelin"
+          }
+        },
+        "effets": [
+          {
+            "pieces": 2
+          }
+        ],
+        "resultat": "Un halfelin s'élance sur la corde tendue au-dessus de la vasque de la fontaine, et la traverse d'un pas léger, presque en trottant. Il ne regarde ni le vide ni la foule. Arrivé de l'autre côté, il salue d'un petit geste, et la place éclate de rire. Deux pièces d'or lui sont glissées en pourboire, et il les fait sauter dans sa paume avec un clin d'œil."
+      },
+      {
+        "id": "barde",
+        "libelle": "« Je monte sur la corde en chantant. »",
+        "condition": {
+          "heros": {
+            "classe": "barde"
+          }
+        },
+        "effets": [
+          {
+            "pieces": 2
+          }
+        ],
+        "resultat": "Un barde s'élance sur la corde tendue au-dessus de la vasque de la fontaine, et la traverse en chantant, la voix claire et le pas assuré. Il ne regarde ni le vide ni la foule, il regarde la note suivante. Arrivé de l'autre côté, il salue d'une révérence, et la place applaudit à tout rompre. Deux pièces d'or lui sont tendues en pourboire, et il les garde en chantant encore un refrain."
       }
     ],
     "partir": "Passer son chemin."

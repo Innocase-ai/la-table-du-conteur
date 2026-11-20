@@ -51,5 +51,23 @@
   "auteurs": [],
   "format": "episode",
   "piegesACherche": true,
-  "butinPlafonne": true
+  "butinPlafonne": true,
+  "campagne": {
+    "emet": [
+      {
+        "id": "epi1-gedeon-vengeur",
+        "quand": {
+          "flag": "choix-qui-doit-payer-scandale"
+        },
+        "phrase": "Gédéon Marchebise, ruiné à Verdelle, n'a pas oublié qui l'a dénoncé."
+      },
+      {
+        "id": "epi1-tobie-reconnaissant",
+        "quand": {
+          "flag": "choix-qui-doit-payer-silence"
+        },
+        "phrase": "Tobie Pivoine, funambule de Verdelle, se souvient de qui a payé sa dette."
+      }
+    ]
+  }
 }

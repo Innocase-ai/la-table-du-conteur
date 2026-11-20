@@ -38,7 +38,15 @@
           "foire"
         ],
         "question": "Que se passe-t-il ?",
-        "reponse": "« Vous voulez savoir ce qui se passe ? Cette nuit, la clé du coffre a disparu. Ce coffre garde les droits de place et la bourse du concours : trois cents pièces d'or. » Il rajuste sa chaîne de bailli, puis pose la main sur une colonne de chêne, polie par tant de mains.« Il n'est pas question de crier au scandale. Je n'accuse personne. Rapportez-moi la clé, et je vous verserai soixante pièces d'or, même si la foire est déjà ouverte. » Sa voix se fêle. « Discrètement, je vous prie. La cloche d'ouverture sonnera à l'aube, et je tiens à ce qu'elle sonne sur une foire en règle. »"
+        "reponse": "« Vous voulez savoir ce qui se passe ? Cette nuit, la clé du coffre a disparu. Ce coffre garde les droits de place et la bourse du concours : trois cents pièces d'or. » Il rajuste sa chaîne de bailli, puis pose la main sur une colonne de chêne, polie par tant de mains.« Il n'est pas question de crier au scandale. Je n'accuse personne. Rapportez-moi la clé, et je vous verserai soixante pièces d'or, même si la foire est déjà ouverte. » Sa voix se fêle. « Discrètement, je vous prie. La cloche d'ouverture sonnera à l'aube, et je tiens à ce qu'elle sonne sur une foire en règle. »",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-la-cle-de-la-foire",
+              "statut": "active"
+            }
+          }
+        ]
       },
       {
         "id": "aubin-cabinet",
@@ -87,13 +95,55 @@
         ],
         "question": "Où campent les forains ?",
         "reponse": "« Sur l'autre rive, au Pont-Cassé, là où le pont est brisé. Il n'y a pas d'autre chemin que le détour : vous passerez par le Pont-des-Marchands, au bout de la place, puis par le sentier qui longe la rive, jusqu'aux toiles du camp. » Il replie une feuille de comptes avec soin. « Les forains se méfient des gens pressés, et ils ont raison de l'être. Présentez-vous poliment, prenez le temps de les écouter, et vous serez accueillis. »"
+      },
+      {
+        "id": "aubin-rendre",
+        "mots": [
+          "rendre la clé",
+          "clé retrouvée",
+          "rapporter la clé",
+          "soixante pièces"
+        ],
+        "question": "Lui rendre la clé du coffre.",
+        "reponse": "« Ah, la voilà enfin ! » Il ouvre la main, et la clé tombe sur son registre avec un petit bruit de fer. Il la pose sous la poutre où pend la cloche de cuivre, puis il souffle longuement, la chaîne de bailli se soulevant avec son souffle. Il compte les soixante pièces dans votre paume, une à une, à voix basse. « Une, deux… soixante. Ma parole tient, et la cloche sonnera sur un coffre en règle. » Puis sa voix redevient grave. « Maintenant, dites-moi ce que vous avez appris. Une foire ne s'ouvre pas sur un mensonge, et je préfère une vérité désagréable à un silence qui pourrit. »",
+        "condition": {
+          "objet": "cle-du-coffre-de-la-foire"
+        },
+        "effets": [
+          {
+            "quete": {
+              "id": "q-la-cle-de-la-foire",
+              "statut": "active"
+            }
+          },
+          {
+            "objet": {
+              "id": "cle-du-coffre-de-la-foire",
+              "retirer": true
+            }
+          },
+          {
+            "pieces": 60
+          },
+          {
+            "flag": "cle-rendue"
+          }
+        ],
+        "unique": true
       }
     ],
     "salutations": {
       "neutre": "« Ah, vous voilà. Je n'ai guère le temps, la foire me tient éveillé. Que voulez-vous ? »",
       "amical": "« Ah, des visages de bonne volonté ! Approchez, je vous en prie, mais parlez bas. »",
       "hostile": "« Vous auriez mieux fait de rester sur la route. Je n'ai rien à vous dire tant que vous ne me montrez pas de respect. »",
-      "variantes": []
+      "variantes": [
+        {
+          "condition": {
+            "flag": "cle-rendue"
+          },
+          "texte": "« Enfin ! Je n'osais plus l'espérer. Vous me rendez le sommeil, et la foire tiendra son rang. »"
+        }
+      ]
     }
   },
   {
@@ -135,7 +185,15 @@
           "farine"
         ],
         "question": "Un souci ?",
-        "reponse": "« Un souci, mon bijou ? Il y en a un, et il ronge ma cave ! Trois rats géants ont fait leur trou sous une planche rongée, au pied du mur sud, et le sac de farine est déjà éventré. Qui dort avec les rats se réveille avec des puces, c'est bien connu. Débarrassez-moi de ces bêtes, et la nuit vous est offerte, dans une chambre de l'étage, sans rien payer. Trois rats pour une nuit, ça ne se refuse pas, voyons ! »"
+        "reponse": "« Un souci, mon bijou ? Il y en a un, et il ronge ma cave ! Trois rats géants ont fait leur trou sous une planche rongée, au pied du mur sud, et le sac de farine est déjà éventré. Qui dort avec les rats se réveille avec des puces, c'est bien connu. Débarrassez-moi de ces bêtes, et la nuit vous est offerte, dans une chambre de l'étage, sans rien payer. Trois rats pour une nuit, ça ne se refuse pas, voyons ! »",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-les-rats-de-la-cave",
+              "statut": "active"
+            }
+          }
+        ]
       },
       {
         "id": "colombe-rumeurs",
@@ -188,6 +246,47 @@
         ],
         "question": "Que sert-on ?",
         "reponse": "« On sert ce qui tient au ventre et réchauffe les doigts : soupe de légumes, pain chaud, et bière tiède pour qui la veut. Vous mangerez près de la cheminée, si vous arrivez avant la foule. Pour la nuit, deux chambres sont louées à l'étage, par l'escalier étroit au fond à gauche : deux pièces d'or, et des portes qui ferment. Un bon lit vaut mieux qu'un mauvais souper, comme on dit. » Elle essuie une chope du revers de la main. « Et si l'heure du souper vous semble lointaine, demandez-moi une tranche de pain, tout de suite. »"
+      },
+      {
+        "id": "colombe-rats-fait",
+        "mots": [
+          "rats",
+          "cave",
+          "rats chassés",
+          "nuit offerte",
+          "vaincre les rats"
+        ],
+        "question": "Les rats de la cave sont partis.",
+        "reponse": "« Partis ? Vous les avez vraiment chassés ? Que le ciel vous garde, mon bijou ! » Elle pose sa louche sur le comptoir et essuie ses mains sur son tablier, comme pour effacer la cave tout entière. « Plus une planche rongée au pied du mur sud, plus une miette dans le sac de farine. Vous méritez mieux qu'une soupe : la meilleure chambre de l'étage est à vous, pour la nuit, sans rien payer. » Elle désigne l'escalier étroit au fond à gauche. « Allez vous installer, et ne me dites pas non. »",
+        "condition": {
+          "et": [
+            {
+              "rencontre": {
+                "id": "r-rats-de-la-cave"
+              }
+            },
+            {
+              "non": {
+                "flag": "q-les-rats-de-la-cave-rendue"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "quete": {
+              "id": "q-les-rats-de-la-cave",
+              "statut": "active"
+            }
+          },
+          {
+            "flag": "q-les-rats-de-la-cave-rendue"
+          },
+          {
+            "flag": "nuit-offerte"
+          }
+        ],
+        "unique": true
       }
     ],
     "salutations": {
@@ -212,6 +311,16 @@
         "resume": "Une chambre de l'étage pour la nuit, pour 2 pièces d'or.",
         "prix": 2,
         "type": "nuit"
+      },
+      {
+        "id": "chambre-offerte",
+        "nom": "Une nuit offerte",
+        "resume": "La nuit offerte par Colombe Tisserand, dans la meilleure chambre de l'étage du Héron Gris.",
+        "prix": 0,
+        "type": "nuit",
+        "condition": {
+          "flag": "nuit-offerte"
+        }
       }
     ]
   },
@@ -612,7 +721,15 @@
           "travail"
         ],
         "question": "Un travail à confier ?",
-        "reponse": "« Un travail, oui, et il est fait. Mère Pivoine m'a commandé des ferrures et des clous neufs pour l'essieu de sa roulotte ; je les ai forgés hier soir. Ils sont dans le coffre de chêne, sous l'établi, bien enveloppés. Je ne peux pas laisser ma forge aujourd'hui, le fourneau est en route et ne se reprend pas. Portez-les-lui, elle les attend avant l'aube de demain, et rapportez-moi son reçu, un papier signé de sa main. Je viens de refermer le coffre ; la serrure est délicate, prenez-la doucement. Ce n'est pas pour moi que je vous demande ça, c'est pour la vieille. »"
+        "reponse": "« Un travail, oui, et il est fait. Mère Pivoine m'a commandé des ferrures et des clous neufs pour l'essieu de sa roulotte ; je les ai forgés hier soir. Ils sont dans le coffre de chêne, sous l'établi, bien enveloppés. Je ne peux pas laisser ma forge aujourd'hui, le fourneau est en route et ne se reprend pas. Portez-les-lui, elle les attend avant l'aube de demain, et rapportez-moi son reçu, un papier signé de sa main. Je viens de refermer le coffre ; la serrure est délicate, prenez-la doucement. Ce n'est pas pour moi que je vous demande ça, c'est pour la vieille. »",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-le-colis-du-forgeron",
+              "statut": "active"
+            }
+          }
+        ]
       },
       {
         "id": "brun-moulin",
@@ -666,13 +783,47 @@
         ],
         "question": "Parlez-moi de Mère Pivoine.",
         "reponse": "« La vieille ? La doyenne des forains, et ma meilleure cliente depuis que j'ai ouvert cette forge. Elle compte ses pièces sur mon établi, une à une, sans se tromper d'un sou, et elle ne me doit jamais rien. Quand elle commande des fers, c'est que sa roulotte en a besoin, et qu'elle ne peut pas attendre. Cette année, elle n'a pas souri en passant commande, et je n'ai pas insisté. Un forgeron sait quand une cliente a un poids sur le cœur. »"
+      },
+      {
+        "id": "brun-recu",
+        "mots": [
+          "reçu",
+          "reçu signé",
+          "Mère Pivoine",
+          "rapporter le reçu",
+          "colis remis"
+        ],
+        "question": "Lui rapporter le reçu de Mère Pivoine.",
+        "reponse": "« Un reçu, et signé de sa main, en plus ! » Il le tourne vers la braise pour le lire, puis le replie en quatre, avec le soin qu'il met à un bon fer. « Ça, c'est du travail fait. » Il plonge la main dans le coffre de chêne sous l'établi et pose dix pièces d'or sur l'enclume, en les frappant du plat du marteau. « Pour votre peine. Et tenez, prenez aussi ça : une corde de soie de funambule, que je garde en réserve pour les pas qui comptent. » Il vous la tend enroulée serrée. « Maintenant, laissez-moi frapper, le fer n'attend pas. »",
+        "condition": {
+          "objet": "recu-de-mere-pivoine"
+        },
+        "effets": [
+          {
+            "objet": {
+              "id": "recu-de-mere-pivoine",
+              "retirer": true
+            }
+          },
+          {
+            "flag": "q-le-colis-du-forgeron-rendue"
+          }
+        ],
+        "unique": true
       }
     ],
     "salutations": {
       "neutre": "« Vous voulez quelque chose, ou vous restez là à regarder la braise ? La porte ne se referme pas toute seule. »",
       "amical": "« Entrez, entrez, la braise ne mord pas aujourd'hui. Dites-moi ce qui vous amène, mais soyez bref, le fer n'attend pas. »",
       "hostile": "« Je n'ai pas le temps pour vos histoires. Mon marteau est lourd, et mon humeur aussi. Dehors. »",
-      "variantes": []
+      "variantes": [
+        {
+          "condition": {
+            "flag": "q-le-colis-du-forgeron-rendue"
+          },
+          "texte": "« Le reçu. Bien. Vous ne l'avez pas perdu, c'est déjà rare. Merci, sincèrement. »"
+        }
+      ]
     },
     "boutique": {
       "modele": "forgeron",

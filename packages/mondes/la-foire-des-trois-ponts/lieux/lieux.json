@@ -81,7 +81,13 @@
         "type": "route",
         "heures": 1,
         "description": "Par le nord-est, une route de terre quitte le bourg entre deux haies de noisetiers et file vers les collines.",
-        "retour": "La route descend des collines vers le bourg, entre les haies ; de là-haut, on aperçoit les toits rouges de Verdelle et la fumée des cheminées."
+        "retour": "La route descend des collines vers le bourg, entre les haies ; de là-haut, on aperçoit les toits rouges de Verdelle et la fumée des cheminées.",
+        "condition": {
+          "quete": {
+            "id": "q-la-cle-de-la-foire",
+            "statut": "active"
+          }
+        }
       }
     ],
     "repos": "sur",
@@ -198,7 +204,7 @@
     "type": "batiment",
     "parent": "verdelle",
     "resume": "La boutique du grain, où l'on vend sacs, rations et cordes sous une balance de cuivre, et où l'on tient les comptes.",
-    "description": "Boutique de neuf pas sur cinq : comptoir de chêne à l'entrée, étagères de bocaux à l'ouest, sacs de grain alignés à l'est. La balance de cuivre pèse le grain, les rations et les cordes ; l'ardoise des prix est tenue à la craie. Gédéon Marchebise, marchand de grain, tient la boutique et a quatre sujets. Premier contact : il offre 30 po au groupe pour « oublier l'affaire » ; accepter n'affecte ni la quête ni la fin. Au fond, derrière le comptoir, un coffre-fort de fer : verrou DD 14 et piège à chercher avant de l'ouvrir, avec 40 po (voir Contenu prévu). Si le groupe crochète le coffre devant Gédéon, il part chez le bailli : la boutique reste vide.",
+    "description": "Boutique de neuf pas sur cinq : comptoir de chêne à l'entrée, étagères de bocaux à l'ouest, sacs de grain alignés à l'est. La balance de cuivre pèse le grain, les rations et les cordes ; l'ardoise des prix est tenue à la craie. Gédéon Marchebise, marchand de grain, tient la boutique et a quatre sujets. Premier contact : il offre 30 po au groupe pour « oublier l'affaire » ; accepter n'affecte ni la quête ni la fin. Au fond, derrière le comptoir, un coffre-fort de fer : verrou DD 14 et piège à chercher avant de l'ouvrir, avec 40 po (voir Contenu prévu). Si le dard du couvercle se déclenche, Gédéon court chez le bailli : la boutique reste vide.",
     "ambiance": "Sacs de grain, cordes, balance qui tinte",
     "arrivee": "La porte de chêne grince et laisse entrer une odeur de grain, de sacs et de cordes mouillées. Une lanterne de papier ocre pend au plafond et répand une lumière chaude sur des étagères hautes, couvertes de bocaux de verre aux étiquettes écrites à la main. Le mur ouest disparaît sous des rouleaux de tissu crème et de toile rayée, et des cordes s'enroulent sur des chevilles de bois. Au centre, un comptoir de chêne, marqué de coups de couteau, porte une balance de cuivre aux plateaux bien frottés, qui tinte doucement à chaque mouvement d'air. Contre le mur est, des sacs de grain sont alignés, leurs cols pliés, et une poussière fine flotte dans la lumière. Une ardoise de prix est accrochée près de la porte, les chiffres à la craie, serrés. Au fond, derrière le comptoir, un coffre-fort de fer cerclé se dresse contre le mur, et le sol de planches gonfle sous vos pas.",
     "visuel": "Une boutique de pierre claire à porte de chêne, avec un comptoir de chêne et une balance de cuivre à l'entrée. Des étagères de bocaux, des rouleaux de tissu et des cordes couvrent le mur ouest, et des sacs de grain sont alignés contre le mur est. Une lanterne de papier ocre pend au plafond et éclaire les plateaux de la balance.",
@@ -327,7 +333,12 @@
         "type": "porte",
         "heures": 0,
         "description": "Au centre du mur nord, une porte de chêne clair s'ouvre sur une marche de pierre usée ; une odeur de braise sort de l'ouverture.",
-        "retour": "De la salle, la porte ouvre sur la cour : la roue, les sacs pâles de farine et le ciel gris."
+        "retour": "De la salle, la porte ouvre sur la cour : la roue, les sacs pâles de farine et le ciel gris.",
+        "condition": {
+          "rencontre": {
+            "id": "r-hommes-de-main"
+          }
+        }
       }
     ]
   },

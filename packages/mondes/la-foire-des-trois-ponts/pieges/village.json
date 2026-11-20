@@ -51,7 +51,15 @@
       }
     ],
     "resume": "Sous le couvercle du coffre-fort est logé un dard d'acier, relié au ressort de la charnière. Il ne part qu'une seule fois, quand le couvercle se soulève sans précaution.",
-    "declenchement": "Clac ! Le ressort de la charnière se détend d'un coup sec, avec une précision de mécanicien, et un dard d'acier jaillit de sous le couvercle, pointu et luisant, à hauteur de poitrine."
+    "declenchement": "Clac ! Le ressort de la charnière se détend d'un coup sec, avec une précision de mécanicien, et un dard d'acier jaillit de sous le couvercle, pointu et luisant, à hauteur de poitrine.",
+    "effets": [
+      {
+        "deplacer": {
+          "pnj": "gedeon-marchebise",
+          "lieu": "ver-bailli-salle"
+        }
+      }
+    ]
   },
   {
     "id": "ver-pie-filet-ecuries",

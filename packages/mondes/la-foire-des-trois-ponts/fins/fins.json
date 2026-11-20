@@ -1,0 +1,44 @@
+[
+  {
+    "id": "fin-scandale",
+    "nom": "Le scandale",
+    "condition": {
+      "flag": "choix-qui-doit-payer-scandale"
+    },
+    "epilogue": "La halle se remplit en un instant. Les anciens se lèvent, les forains se pressent contre les piliers, et la voix de Gédéon Marchebise se brise lorsque vous exposez ce que vous savez. Le marchand de grain, ruiné en une matinée, baisse les bras et ne sourit plus. Plus loin, Tobie Pivoine serre la main de sa mère, baisse la tête et traverse la foule sans lever les yeux. Ils quittent Verdelle sur la route, bannis de la foire qu'ils aimaient. La dette de Tobie est effacée, mais personne n'applaudit. Le groupe garde sur la langue un goût de cendre, celui d'une vérité rendue publique au prix de deux familles.",
+    "variantes": [],
+    "consequences": [
+      "Gédéon Marchebise est ruiné et interdit de foire.",
+      "Tobie et sa mère sont bannis de la foire.",
+      "Gédéon devient un ennemi du groupe."
+    ]
+  },
+  {
+    "id": "fin-silence",
+    "nom": "Le silence",
+    "condition": {
+      "ou": [
+        {
+          "flag": "choix-qui-doit-payer-silence"
+        },
+        {
+          "flag": "choix-qui-doit-payer-abstention"
+        }
+      ]
+    },
+    "epilogue": "La foire s'ouvre à l'aube. La cloche sonne, et les étals se découvrent un à un sous le soleil d'automne. Au-dessus de la place, la corde est tendue, et Tobie Pivoine y remonte, les bras en croix. Gédéon Marchebise sourit derrière son comptoir, comme si de rien n'était, et compte ses sacs de grain. Le groupe s'éloigne dans la foule, plus léger de trente pièces d'or, et garde pour soi ce qu'il sait. Les bannières claquent, et la foire commence sans que personne ne pose de question.",
+    "variantes": [
+      {
+        "condition": {
+          "flag": "choix-qui-doit-payer-abstention"
+        },
+        "epilogue": "La foire s'ouvre, mais la dette n'est pas payée. Les étals se déploient sous la toile, la cloche sonne, et la corde reste tendue au-dessus de la place. Tobie Pivoine regarde par la fenêtre de la roulotte, sans monter sur la corde, en sachant qu'il n'est pas sauvé. Gédéon Marchebise sourit derrière son comptoir, compte ses sacs de grain et ne doit rien à personne. Le groupe s'en va sans rien dire, la clé rendue, avec la certitude que la dette ne disparaîtra pas toute seule."
+      }
+    ],
+    "consequences": [
+      "Gédéon reste impuni, sans que personne le sache.",
+      "Tobie et sa mère restent à la foire.",
+      "Le groupe garde le secret de l'affaire."
+    ]
+  }
+]

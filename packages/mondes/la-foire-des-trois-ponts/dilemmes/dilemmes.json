@@ -1,0 +1,99 @@
+[
+  {
+    "id": "qui-doit-payer",
+    "titre": "Qui doit payer ?",
+    "situation": "Dans la halle du bailli, Aubin Cerfeuil tient la clé du coffre au creux de sa main, puis recule d'un pas. La foire doit s'ouvrir à l'aube, et les étals sont déjà dressés sous la toile. Ce que vous savez pèse sur le funambule, sa mère et le marchand de grain. Aubin attend. Il attend que vous lui disiez tout, ou que vous ne disiez rien. Le calme de la halle est lourd, et chacun guette votre réponse.",
+    "quand": {
+      "flag": "cle-rendue"
+    },
+    "lieu": "ver-bailli-salle",
+    "options": [
+      {
+        "id": "scandale",
+        "libelle": "Dire la vérité devant tous.",
+        "couts": [
+          "Deux familles brisées : celle du funambule bannie, celle du marchand ruinée.",
+          "Un ennemi, qui ne l'oubliera pas."
+        ],
+        "gains": [
+          "Gédéon payé de ce qu'il a fait.",
+          "La dette de Tobie est annulée, enfin."
+        ],
+        "condition": {
+          "ou": [
+            {
+              "objet": "reconnaissance-de-dette"
+            },
+            {
+              "fait": "f-gedeon-a-engage-la-bande"
+            }
+          ]
+        },
+        "effets": [
+          {
+            "pnjEtat": {
+              "pnj": "gedeon-marchebise",
+              "etat": "parti"
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "tobie-pivoine",
+              "etat": "parti"
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "mere-pivoine",
+              "etat": "parti"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "gedeon-marchebise",
+              "delta": -100
+            }
+          }
+        ],
+        "epilogue": "Devant les anciens, la vérité tombe comme une pierre, et Gédéon Marchebise plie les épaules."
+      },
+      {
+        "id": "silence",
+        "libelle": "Payer la dette de Tobie, et ne rien dire.",
+        "couts": [
+          "90 po de votre poche, moins la prime : net −30 po.",
+          "Gédéon reste impuni, et personne ne le saura."
+        ],
+        "gains": [
+          "Tobie et sa mère restent à la foire.",
+          "La dette est payée, la roulotte gardée."
+        ],
+        "condition": {
+          "fait": "f-gedeon-et-la-dette"
+        },
+        "requis": {
+          "pieces": {
+            "min": 90
+          }
+        },
+        "requisTexte": "Il vous faut 90 pièces d'or.",
+        "effets": [
+          {
+            "pieces": -90
+          }
+        ],
+        "epilogue": "Vous réglez la dette en secret, et personne au bailli n'apprendra jamais votre nom."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne dis rien et je m'en vais.",
+      "couts": [
+        "Gédéon reste impuni, et la dette demeure.",
+        "Tobie reste menacé, et sa mère avec lui."
+      ],
+      "effets": [],
+      "epilogue": "Vous posez la clé sur la table, tournez les talons, et quittez la halle sans un mot."
+    },
+    "echos": []
+  }
+]

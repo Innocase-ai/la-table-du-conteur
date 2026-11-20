@@ -35,3 +35,7 @@ Les quêtes (`q-la-cle-de-la-foire`, `q-le-colis-du-forgeron`, `q-les-rats-de-la
 - **Écho** : `tobie-confie` (porte-bonheur donné) est le drapeau de l'indice de `epi1-tobie-reconnaissant` ; les fins et les échos se décident en V7.
 - **Tobie muet** : listé dans la roulotte, muet (salutation narrée) jusqu'à `f-tobie-dans-la-roulotte` ; à vérifier en jeu que l'interface ne le propose pas comme interlocuteur avant la bâche.
 - **Chronologie** : le vol date de la nuit dernière ; Tobie se terre « depuis cette nuit » ; Pervenche l'a vu prier « la nuit dernière » ; Brun voit la serrure du moulin forcée « ce matin à l'aube ».
+
+## Fait en V7 (20/11/2026)
+
+Tout ce qui précède est branché : effets de quête des sujets, `aubin-rendre`, `brun-recu`, `colombe-rats-fait`, salutations d'Aubin et de Brun, route du moulin et cour → salle conditionnées, trésors du colis et de la clé, piège du coffre-fort qui déplace Gédéon, événement de recoupement, dilemme `qui-doit-payer`, fins, échos, choix d'origine de la corde. **Abandonnés** (I11, I12) : Mathilde « volée », Colombe « attaquée », la salutation « au camp » de Mathilde. **Restent à V8** : texte de présentation (`resume`, `accroche`, `depart.intro`, `direction`, `teasing`), `chapitres[0].quetes`, récits d'arrivée du moulin et du Pont-Cassé, images, voix, scènes, preuve de chaque fin et de la quête du colis par un test déterministe.

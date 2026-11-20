@@ -1,0 +1,178 @@
+[
+  {
+    "id": "q-la-cle-de-la-foire",
+    "nom": "La clé de la foire",
+    "type": "principale",
+    "donneur": "aubin-cerfeuil",
+    "lieu": "ver-bailli-salle",
+    "resume": "La clé du coffre de la foire a disparu dans la nuit, et la cloche d'ouverture sonnera à l'aube. Le bailli Aubin Cerfeuil promet soixante pièces d'or à qui la rapporte, discrètement.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "debut": "trouver-la-cle",
+    "etapes": [
+      {
+        "id": "trouver-la-cle",
+        "texte": "Retrouvez la clé du coffre de la foire, sans éclat. Aubin Cerfeuil n'accuse personne, et il vous laisse chercher à votre façon.",
+        "completion": {
+          "ou": [
+            {
+              "objet": "cle-du-coffre-de-la-foire"
+            },
+            {
+              "flag": "cle-rendue"
+            }
+          ]
+        },
+        "suivantes": [
+          "rendre-la-cle"
+        ],
+        "termine": false,
+        "effets": []
+      },
+      {
+        "id": "rendre-la-cle",
+        "texte": "Vous tenez la clé du coffre de la foire. Il ne reste qu'à la rapporter à Aubin Cerfeuil, dans sa halle, pour que le coffre s'ouvre sur les droits de place.",
+        "completion": {
+          "flag": "cle-rendue"
+        },
+        "suivantes": [
+          "trancher"
+        ],
+        "termine": false,
+        "effets": []
+      },
+      {
+        "id": "trancher",
+        "texte": "La clé est rendue au bailli. Reste à décider ce qu'on dit de ce qu'on a appris, et qui doit payer pour cette affaire.",
+        "completion": {
+          "flag": "choix-qui-doit-payer"
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": []
+      }
+    ],
+    "recompenses": {
+      "xp": 235,
+      "pieces": 0,
+      "objets": [
+        "perche-d-equilibriste"
+      ],
+      "effets": [],
+      "annonce": "60 po de prime et la perche d’équilibriste"
+    }
+  },
+  {
+    "id": "q-le-colis-du-forgeron",
+    "nom": "Le colis du forgeron",
+    "type": "secondaire",
+    "donneur": "brun-forgefer",
+    "lieu": "ver-forge",
+    "resume": "Brun Forgefer a préparé un colis pour Mère Pivoine, la doyenne des forains, qu'elle attend avant l'aube. Il l'a enfermé dans le coffre de chêne de sa forge, dont la serrure est délicate.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "debut": "recuperer-le-colis",
+    "etapes": [
+      {
+        "id": "recuperer-le-colis",
+        "texte": "Ouvrez le coffre de chêne de la forge sans abîmer le colis. La serrure est délicate : prenez-la doucement, et sortez le paquet intact.",
+        "completion": {
+          "ou": [
+            {
+              "objet": "colis-de-brun"
+            },
+            {
+              "flag": "colis-remis-a-mere-pivoine"
+            }
+          ]
+        },
+        "suivantes": [
+          "livrer-le-colis"
+        ],
+        "termine": false,
+        "effets": []
+      },
+      {
+        "id": "livrer-le-colis",
+        "texte": "Le colis est en main. Trouvez Mère Pivoine, la doyenne des forains, et remettez-le-lui en mains propres.",
+        "completion": {
+          "flag": "colis-remis-a-mere-pivoine"
+        },
+        "suivantes": [
+          "rapporter-le-recu"
+        ],
+        "termine": false,
+        "effets": []
+      },
+      {
+        "id": "rapporter-le-recu",
+        "texte": "Mère Pivoine a signé un reçu pour le colis. Rapportez ce papier à Brun Forgefer, qui l'attend de sa main.",
+        "completion": {
+          "flag": "q-le-colis-du-forgeron-rendue"
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": []
+      }
+    ],
+    "recompenses": {
+      "xp": 40,
+      "pieces": 10,
+      "objets": [
+        "corde-de-funambule"
+      ],
+      "effets": [],
+      "annonce": "10 po et une corde de funambule"
+    }
+  },
+  {
+    "id": "q-les-rats-de-la-cave",
+    "nom": "Les rats de la cave",
+    "type": "secondaire",
+    "donneur": "colombe-tisserand",
+    "lieu": "ver-heron-salle",
+    "resume": "Trois rats géants ravagent la cave du Héron Gris, et le sac de farine est déjà éventré. Colombe Tisserand offre une nuit à qui débarrasse sa cave de ces bêtes.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "debut": "vaincre-les-rats",
+    "etapes": [
+      {
+        "id": "vaincre-les-rats",
+        "texte": "Descendez à la cave et débarrassez-la des trois rats géants. Il n'y a rien à négocier avec des bêtes pareilles.",
+        "completion": {
+          "rencontre": {
+            "id": "r-rats-de-la-cave"
+          }
+        },
+        "suivantes": [
+          "retour-chez-colombe"
+        ],
+        "termine": false,
+        "effets": []
+      },
+      {
+        "id": "retour-chez-colombe",
+        "texte": "Les rats ont quitté la cave. Revenez l'annoncer à Colombe Tisserand, qui tient sa parole.",
+        "completion": {
+          "flag": "q-les-rats-de-la-cave-rendue"
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": []
+      }
+    ],
+    "recompenses": {
+      "xp": 25,
+      "pieces": 0,
+      "objets": [],
+      "effets": [],
+      "annonce": "Une nuit offerte au Héron Gris"
+    }
+  }
+]
