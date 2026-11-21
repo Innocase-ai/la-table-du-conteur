@@ -3085,3 +3085,12 @@ Lu dans le code ; aucune ligne de code ni de donnée modifiée. Fiche : `docs/PR
 - **Décors peints dans le jeu** (`apps/jeu/src/decors/`, 8 images détourées, 220 Ko) : arbres (2 variantes), rocher, rocher bas (tas de pierres), tronc, caisse, tonneaux (2) ; centrés sur leur case, ombre vers le sud-est, variante tirée de la position ; sur la neige et sans image, le dessin en vecteur reste. Vérifié dans le jeu (escarmouche du gué).
 - **Coût** : 0,126 $ pour ce chantier (6 décors vus de dessus, 6 textures, 2 tonneaux ; un rocher plat refusé, encore de biais), plus 0,171 $ d'essais de vue en 3/4 ; la clé OpenRouter a atteint sa limite de 20 $ en cours de route (relevée par l'utilisateur).
 - **Vérifications** : typecheck propre ; `pnpm test` 3 147 verts / 6 ignorés (223 fichiers, dont `ambiances.test.ts` et `decors-peints.test.ts`) ; `pnpm monde verifier` : Tombe 5/5 fins, Marche 2/2, Dîme 4/4, « Rien ne bloque » ; La Foire : 0 erreur ; `pnpm simuler 10 rapide` identique à la référence (le combat ne change pas).
+
+### 21/11/2026 — Combat d'histoire : l'image du lieu derrière le plateau
+
+Demande de l'utilisateur : une image de fond derrière le plateau. Trois pistes proposées (paysage peint par ambiance ≈ 0,06 $, image du lieu, texture du sol agrandie) ; choix : **l'image du lieu**, gratuite.
+
+- `fichierFondCombat` (`apps/jeu/src/aventure/fond-combat.ts`) : le lieu de la rencontre, sinon celui du groupe ; sans image, le premier ancêtre illustré ; un décor de la réserve (`commun:lieux/…`) compte. `App.tsx` la passe au combat (`imageFond`), `Combat.tsx` la pose sous le plateau (`.plateau-fond` : couverture, léger flou, assombrie, vignette sur les bords). Une escarmouche n'a pas de lieu : fond sombre habituel.
+- Vérifié dans le jeu, sur une partie d'essai de La Foire effacée ensuite : les rats de la cave (sol de cave, tonneaux et bocaux de la cave du Héron Gris autour du plateau) et Rouquin dans la salle des meules (plancher et colombages, meules et fenêtre autour). C'est aussi la première vue en jeu des ambiances plancher et cave.
+- Piège : le serveur de développement n'avait pas vu une modification d'`App.tsx` (servi à l'ancienne) ; `touch` sur le fichier l'a relu.
+- Test : `fond-combat.test.ts` (3 tests) ; `pnpm test` 3 150 verts / 6 ignorés (224 fichiers), typecheck propre.

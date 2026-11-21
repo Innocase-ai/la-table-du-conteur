@@ -872,6 +872,25 @@ button:disabled {
 
 /* Plateau --------------------------------------------------------------- */
 
+/* Combat d'histoire : l'illustration du lieu derrière le plateau, floutée et assombrie pour que les cases restent lisibles. */
+.plateau-fond {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+
+.plateau-fond::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(2px) brightness(0.75) saturate(0.9);
+  background: radial-gradient(ellipse at center, rgba(10, 8, 7, 0.1) 45%, rgba(10, 8, 7, 0.55) 100%);
+}
+
 .plateau-conteneur {
   position: absolute;
   inset: 0;

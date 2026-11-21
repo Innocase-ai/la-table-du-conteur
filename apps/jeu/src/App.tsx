@@ -12,7 +12,8 @@ import { noterAction } from './mesure/mesure-temps';
 import { useMesureTemps } from './mesure/useMesureTemps';
 import { EcranAventure } from './aventure/EcranAventure';
 import { demarrerAventure, partieSauvegardee, rencontreDeMonde, reprendreAventure, sauverPartie, type Aventure } from './aventure/partie';
-import { chargerHistoire, histoires } from './mondes';
+import { chargerHistoire, histoires, manifesteDe } from './mondes';
+import { fichierFondCombat } from './aventure/fond-combat';
 import { continuerSaga } from './aventure/saga';
 import { suitesPossibles } from './aventure/saga-regles';
 import { definirSceneMusique } from './musique';
@@ -147,6 +148,9 @@ export function App() {
       bonus: (defRencontre?.effetsVictoire ?? []).reduce((s, e) => s + ('xp' in e && typeof e.xp === 'number' ? e.xp : 0), 0),
       dejaFaite: !!rencontreId && aventure.partie.etat.rencontresFaites.includes(rencontreId),
     };
+    // Derrière le plateau : l'illustration du lieu du combat (celui de la rencontre, sinon celui du groupe), voir `fichierFondCombat`.
+    const mondeId = aventure.moteur.ctx.dm.monde.id;
+    const fichierFond = fichierFondCombat(manifesteDe(mondeId), aventure.moteur.ctx.dm.lieux, defRencontre?.lieu ?? aventure.partie.etat.lieu);
     return (
       <Combat
         key={combatHistoire.graine}
@@ -159,6 +163,7 @@ export function App() {
         onRetour={() => setCombatHistoire(null)}
         onFinHistoire={finCombat}
         xpHistoire={xpHistoire}
+        {...(fichierFond ? { imageFond: { monde: mondeId, fichier: fichierFond } } : {})}
       />
     );
   }

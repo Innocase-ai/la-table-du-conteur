@@ -34,6 +34,7 @@ import { ecrireRapide, lireRapide } from '../combat-rapide';
 import { ciblesRepetables, formatMetres } from '../libelles';
 import { carteDeTouche, sectionsDeMain, texteApercu, toutEstJoue, touchesDeCartes } from '../main-cartes-regles';
 import { arreterMusique, demarrerMusique } from '../musique';
+import { urlImage } from '../mondes';
 import { Fiche } from './Fiche';
 import { Illustration } from './Illustration';
 import { FinCombat } from './FinCombat';
@@ -59,6 +60,8 @@ interface Props {
   etatInitial?: EtatCombat;
   /** Combat d'une histoire : appelé au début puis après chaque action (la sauvegarde du combat en cours). */
   onProgres?: (etat: EtatCombat) => void;
+  /** Combat d'une histoire : l'illustration du lieu, assombrie derrière le plateau (absente : le fond sombre habituel). */
+  imageFond?: { monde: string; fichier: string };
 }
 
 interface Selection {
@@ -70,8 +73,17 @@ interface Selection {
 const DELAI_IA = 280;
 const DELAI_IA_RAPIDE = 90;
 
-export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHistoire, xpHistoire, etatInitial, onProgres }: Props) {
+export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHistoire, xpHistoire, etatInitial, onProgres, imageFond }: Props) {
   const ctx = useMemo(() => ({ sorts: donnees.sorts }), [donnees]);
+  const [urlFond, setUrlFond] = useState<string>();
+  useEffect(() => {
+    let actif = true;
+    setUrlFond(undefined);
+    if (imageFond) urlImage(imageFond.monde, imageFond.fichier)?.then((u) => actif && u && setUrlFond(u));
+    return () => {
+      actif = false;
+    };
+  }, [imageFond?.monde, imageFond?.fichier]);
   // Le moteur mute l'état en place : on le garde dans une ref et on force le rendu avec `version`.
   const etatRef = useRef<EtatCombat | null>(null);
   if (!etatRef.current && etatInitial) etatRef.current = structuredClone(etatInitial);
@@ -490,6 +502,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
       </aside>
 
       <main className="zone-plateau">
+        {urlFond && <div className="plateau-fond" style={{ backgroundImage: `url("${urlFond}")` }} aria-hidden />}
         <Plateau
           etat={vue}
           donnees={donnees}

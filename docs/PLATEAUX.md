@@ -67,6 +67,7 @@ La rencontre la déclare (`terrain`), sinon son lieu la donne (`ambianceDuLieu`,
 - **Arbres et rochers** (dessin de secours) : dessinés en vecteur par le jeu (`apps/jeu/src/composants/Reliefs.tsx`), sans fond, sur le sol de l'ambiance ; chacun un peu différent de son voisin (forme, taille, teinte, tirées de sa position, donc stables d'un rendu à l'autre). De la neige se pose dessus sur un plateau enneigé, de la mousse sur certains rochers en forêt. Ils passent toujours **sous** les jetons : on ne perd jamais un personnage derrière un arbre.
 - **Eau, boue, neige** : des plaques qui remplacent le sol de la case, avec une texture continue d'une case à l'autre et un liseré sombre là où la plaque s'arrête. L'eau a des reflets qui glissent (arrêtés avec « mouvement réduit »). Textures peintes : `relief-eau`, `relief-boue`, `relief-neige` (une par plaque, communes à toutes les ambiances) ; sans elles, un dégradé.
 - Dans l'aperçu des cartes (choix d'une escarmouche), chaque élément a sa couleur.
+- **Fond derrière le plateau** (combat d'histoire, 21/11/2026) : l'illustration du lieu du combat (celui de la rencontre, sinon celui du groupe ; sans image, le premier ancêtre illustré), légèrement floutée et assombrie (`fichierFondCombat`, `.plateau-fond`). Une escarmouche garde le fond sombre.
 
 ## Les cartes livrées
 
