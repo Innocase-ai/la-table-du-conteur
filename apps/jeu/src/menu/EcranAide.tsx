@@ -315,7 +315,7 @@ const SECTIONS_ECRITES: Section[] = [
     contenu: (
       <>
         <p>
-          Chaque combat a son décor : une <strong>ambiance</strong> (forêt, souterrain, caverne, camp, neige) donne le sol et les murs du plateau, et des
+          Chaque combat a son décor : une <strong>ambiance</strong> (forêt, crypte, caverne, camp, neige, plancher d’une maison, cave) donne le sol et les murs du plateau, et des
           éléments sont posés sur les cases. Un élément a toujours un effet sur le jeu, jamais seulement un dessin.
         </p>
         <ul>

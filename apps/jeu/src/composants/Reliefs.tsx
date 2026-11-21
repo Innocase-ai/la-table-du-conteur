@@ -2,6 +2,7 @@
 // sol), chacun un peu différent de son voisin ; l'eau, la boue et la neige sont des plaques de terrain, dessinées par
 // `Plateau.tsx` (textures peintes si elles existent, sinon un dégradé).
 import type { Relief, Terrain } from '@crpg/regles';
+import { imagesDecor } from '../visuels';
 
 /** Un nombre entre 0 et 1, toujours le même pour une case et une graine : chaque arbre garde son visage d'un rendu à l'autre. */
 export function alea(x: number, y: number, graine = 0): number {
@@ -154,6 +155,22 @@ export function Caisse({ x, y, terrain }: Props) {
   );
 }
 
+/** Un tonneau debout vu de dessus (dessin de secours, quand l'image peinte manque). */
+export function Tonneau({ x, y }: Props) {
+  const a = (n: number) => alea(x, y, 400 + n);
+  return (
+    <svg viewBox="0 0 100 100" className="relief-svg" aria-hidden>
+      <ellipse cx="55" cy="58" rx="36" ry="34" fill="rgba(0,0,0,0.35)" />
+      <circle cx="50" cy="50" r="36" fill="#7a5230" stroke="#2d1d10" strokeWidth="3" />
+      <circle cx="50" cy="50" r="30" fill="none" stroke="#3b3b3b" strokeWidth="3" />
+      {[-14, 0, 14].map((d) => (
+        <line key={d} x1={22} y1={50 + d} x2={78} y2={50 + d} stroke="#4a3120" strokeWidth="1.5" opacity="0.7" />
+      ))}
+      <circle cx={46 + a(1) * 8} cy={46 + a(2) * 8} r="3" fill="#2d1d10" />
+    </svg>
+  );
+}
+
 /** Taille d'un élément dessiné, en cases (largeur, hauteur) : un arbre déborde, un obstacle bas reste dans sa case. */
 export const TAILLE_SPRITE: Record<Relief, readonly [number, number]> = {
   arbre: [1.35, 1.55],
@@ -161,13 +178,33 @@ export const TAILLE_SPRITE: Record<Relief, readonly [number, number]> = {
   'rocher-bas': [1, 0.95],
   tronc: [1.15, 1],
   caisse: [0.95, 0.95],
+  tonneau: [0.85, 0.85],
   eau: [1, 1],
   boue: [1, 1],
   neige: [1, 1],
 };
 
+/**
+ * Décors peints vus strictement de dessus (21/11/2026), centrés sur leur case : côté du carré qui les contient, en cases
+ * (l'image garde ses proportions : un tronc couvre la largeur d'une case, pas sa hauteur). Un arbre déborde un peu.
+ */
+export const TAILLE_PEINT: Partial<Record<Relief, number>> = { arbre: 1.45, rocher: 1.1, 'rocher-bas': 0.95, tronc: 1, caisse: 0.8, tonneau: 0.8 };
+
+/**
+ * L'image peinte d'un élément sur cette case (une variante tirée de sa position, stable d'un rendu à l'autre), ou rien :
+ * alors le dessin en vecteur. Sur la neige, on garde le dessin, qui pose de la neige sur les arbres et les rochers.
+ */
+export function imagePeinte(relief: Relief, x: number, y: number, terrain?: Terrain): string | undefined {
+  if (terrain === 'neige' || !TAILLE_PEINT[relief]) return undefined;
+  const variantes = imagesDecor(relief);
+  return variantes.length ? variantes[Math.floor(alea(x, y, 500) * variantes.length)] : undefined;
+}
+
 /** Le dessin d'un élément (rien pour une plaque : elle est dessinée par la case elle-même). */
 export function DessinRelief({ relief, x, y, terrain }: Props & { relief: Relief }) {
+  // Jamais tourné ni retourné : la lumière est peinte dans l'image.
+  const peinte = imagePeinte(relief, x, y, terrain);
+  if (peinte) return <img className="relief-peint" src={peinte} alt="" draggable={false} />;
   switch (relief) {
     case 'arbre':
       return <Arbre x={x} y={y} terrain={terrain} />;
@@ -179,6 +216,8 @@ export function DessinRelief({ relief, x, y, terrain }: Props & { relief: Relief
       return <Tronc x={x} y={y} terrain={terrain} />;
     case 'caisse':
       return <Caisse x={x} y={y} terrain={terrain} />;
+    case 'tonneau':
+      return <Tonneau x={x} y={y} terrain={terrain} />;
     default:
       return null;
   }

@@ -13,7 +13,7 @@
 //   pnpm images galerie [--service klein] [--max N] [--go]   génère les 54 portraits du créateur (communs à tous les mondes)
 //   pnpm images bestiaire [--profils a,b] [--max N] [--go]   une image par profil de monstre du SRD (combat, tous mondes) ; --profils : seulement ceux-là
 //   pnpm images equipement [--ids a,b] [--max N] [--partie i/n] [--go]          une image par arme et par armure du SRD (équipement commun à tous les mondes)
-//   pnpm images terrains [--go]            textures du plateau de combat (sol, difficile, mur par ambiance)
+//   pnpm images terrains [--ids a,b] [--go] textures du plateau de combat (sol, difficile, mur par ambiance) ; --ids : seulement celles-là
 //   pnpm images interface [--go]           illustrations de l'interface (écran titre)
 //   pnpm images depense                     dépense cumulée de la clé OpenRouter
 //
@@ -239,7 +239,7 @@ ${candidats.length} carte(s) proposée(s). Génère-en une avec --lieu <id> (n'i
     // --profils a,b,c : seulement ces monstres (essai d'une famille avant de lancer le reste).
     const profils = option('--profils')?.split(',').map((x) => x.trim()).filter(Boolean);
     const lot =
-      commande === 'bestiaire' ? elementsBestiaire(charte, profils) : commande === 'terrains' ? elementsTerrains(charte) : commande === 'equipement' ? elementsEquipement(charte, option('--ids')?.split(',').map((x) => x.trim()).filter(Boolean)) : elementsInterface(charte);
+      commande === 'bestiaire' ? elementsBestiaire(charte, profils) : commande === 'terrains' ? elementsTerrains(charte).filter((e) => !option('--ids') || option('--ids')!.split(',').map((x) => x.trim()).includes(e.id)) : commande === 'equipement' ? elementsEquipement(charte, option('--ids')?.split(',').map((x) => x.trim()).filter(Boolean)) : elementsInterface(charte);
     // --partie i/n : ne fait que le i-ème des n morceaux de la liste, pour lancer plusieurs processus en parallèle (reprise sans doublon : les images déjà faites sont sautées).
     const partie = /^(\d+)\/(\d+)$/.exec(option('--partie') ?? '');
     const part = partie ? lot.filter((_, k) => k % Number(partie[2]) === Number(partie[1]) - 1) : lot;

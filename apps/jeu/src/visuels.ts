@@ -32,6 +32,14 @@ export function textureRelief(relief: Relief): string | undefined {
   return TERRAINS.get(`relief-${relief}`);
 }
 
+// Décors peints vus strictement de dessus (`arbre-1`, `arbre-2`, `tonneau-1`…), détourés, lumière du nord-ouest : voir docs/PLATEAUX.md.
+const DECORS = parNom(import.meta.glob<string>('./decors/*.webp', { eager: true, query: '?url', import: 'default' }));
+
+/** Les variantes peintes d'un élément (`arbre` → `arbre-1`, `arbre-2`) ; vide : le jeu garde son dessin en vecteur. */
+export function imagesDecor(relief: Relief): string[] {
+  return [...DECORS.entries()].filter(([id]) => id.replace(/-\d+$/, '') === relief).sort(([a], [b]) => a.localeCompare(b)).map(([, url]) => url);
+}
+
 /** Illustration de l'interface (`ecran-titre`…), générée par `pnpm images interface`. */
 export function imageInterface(id: string): string | undefined {
   return INTERFACE.get(id);

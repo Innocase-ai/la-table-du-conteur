@@ -43,6 +43,7 @@ const CLASSES_MINI_CARTE: Record<string, string> = {
   r: 'mc-rocher-bas',
   t: 'mc-tronc',
   c: 'mc-caisse',
+  o: 'mc-tonneau',
   H: 'mc-heros',
   m: 'mc-monstre',
 };

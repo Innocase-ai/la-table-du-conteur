@@ -350,7 +350,8 @@ export const RencontreMonde = z.object({
   // Carte de la grille tactique : « . » sol, « # » mur, « ~ » terrain difficile, « H » départ héros, « m » départ monstres.
   carte: z.array(z.string()).optional(),
   // Ambiance du plateau (textures) ; à défaut, le client choisit selon le lieu.
-  terrain: z.enum(['foret', 'souterrain', 'caverne', 'camp']).optional(),
+  // `interieur` (plancher de bois) et `cave` (cellier) depuis le 21/11/2026 ; une cave ne se devine pas au type de lieu, elle se déclare ici.
+  terrain: z.enum(['foret', 'souterrain', 'caverne', 'camp', 'neige', 'interieur', 'cave']).optional(),
   tactique: z.object({ doctrine: z.string().optional(), fuite: z.string().optional(), renforts: z.string().optional() }).optional(),
   // Embuscade : le camp pris par surprise lance son Initiative avec Désavantage (SRD 5.2.1). Absent : personne n'est surpris.
   surprise: z.enum(['heros', 'monstres']).optional(),

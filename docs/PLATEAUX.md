@@ -1,6 +1,6 @@
 # Les plateaux de combat
 
-Un plateau = une **ambiance** (le sol et les murs) + des **éléments** posés sur les cases (arbres, rochers, eau, boue, neige, et les obstacles bas : rochers bas, troncs, caisses). Les deux sont indépendants : une mare peut se trouver en forêt comme en caverne.
+Un plateau = une **ambiance** (le sol et les murs) + des **éléments** posés sur les cases (arbres, rochers, eau, boue, neige, et les obstacles bas : rochers bas, troncs, caisses, tonneaux). Une mare peut se trouver en forêt comme en caverne, mais chaque ambiance n'accepte que les éléments qui y ont leur place (pas d'arbre dans une cave : voir « Décors permis »).
 
 ## Les cartes en texte
 
@@ -19,6 +19,7 @@ Une rencontre écrit sa carte en lignes de texte (`Rencontre.carte`, ou `carte` 
 | `r` | rocher bas | obstacle bas |
 | `t` | tronc couché | obstacle bas |
 | `c` | caisse | obstacle bas |
+| `o` | tonneau (depuis le 21/11/2026) | obstacle bas |
 | `H` | départ d'un héros | sol |
 | `m` | départ d'un monstre | sol |
 
@@ -41,11 +42,29 @@ Mesure sur 6 parties jouées par l'IA (niveau 3, modérée) : au gué, 19 attaqu
 
 ## Les ambiances
 
-`foret`, `souterrain`, `caverne`, `camp`, `neige` (`TERRAINS` dans `grille.ts`). Chacune a trois textures peintes vues de dessus (`<ambiance>-sol`, `-difficile`, `-mur`), décrites dans `packages/donnees/visuel/terrains.json`, générées par `pnpm images terrains` et installées par `python3 outils/images/installer.py terrains` (`apps/jeu/src/terrains/`). Sans texture, le plateau retombe sur des dégradés : le jeu ne casse jamais pour une image absente.
+`foret` (extérieur), `souterrain` (crypte, donjon), `caverne` (grotte), `camp`, `neige`, et depuis le 21/11/2026 `interieur` (plancher de bois d'une maison, d'une auberge, d'un moulin) et `cave` (cellier de terre battue et de dalles) (`TERRAINS` dans `grille.ts`). Chacune a trois textures peintes vues de dessus (`<ambiance>-sol`, `-difficile`, `-mur`), décrites dans `packages/donnees/visuel/terrains.json`, générées par `pnpm images terrains` et installées par `python3 outils/images/installer.py terrains` (`apps/jeu/src/terrains/`). Sans texture, le plateau retombe sur des dégradés : le jeu ne casse jamais pour une image absente.
+
+### L'ambiance d'un combat d'histoire
+
+La rencontre la déclare (`terrain`), sinon son lieu la donne (`ambianceDuLieu`, `packages/regles/src/monde/ambiance.ts`, la même règle pour le jeu et la validation) : on remonte du lieu vers ses parents jusqu'au premier type qui décide. Bâtiment → `interieur` ; donjon, niveau, ruine → `souterrain` ; grotte → `caverne` ; camp → `camp`. Une salle sans ancêtre qui décide, dans un lieu extérieur (la salle des meules d'un moulin), est un `interieur` ; tout le reste est `foret`. **Une cave ne se devine pas** (c'est une salle de bâtiment) : la rencontre déclare `"terrain": "cave"`.
+
+### Décors permis
+
+`DECORS_PERMIS` (`grille.ts`) dit quels éléments ont leur place dans chaque ambiance ; `pnpm monde valider` refuse une carte qui pose, par exemple, un arbre dans une cave (`decorsHorsAmbiance`), et les tests vérifient les cartes du prototype.
+
+| Ambiance | Éléments permis |
+| --- | --- |
+| foret, camp | arbre, rocher, eau, boue, rocher bas, tronc, caisse, tonneau |
+| neige | arbre, rocher, eau, neige, rocher bas, tronc, caisse |
+| caverne | rocher, eau, boue, rocher bas, caisse, tonneau |
+| souterrain | rocher, eau, rocher bas, caisse, tonneau |
+| cave | eau, rocher bas, caisse, tonneau |
+| interieur | caisse, tonneau |
 
 ## Les éléments à l'écran
 
-- **Arbres et rochers** : dessinés en vecteur par le jeu (`apps/jeu/src/composants/Reliefs.tsx`), sans fond, sur le sol de l'ambiance ; chacun un peu différent de son voisin (forme, taille, teinte, tirées de sa position, donc stables d'un rendu à l'autre). De la neige se pose dessus sur un plateau enneigé, de la mousse sur certains rochers en forêt. Ils passent toujours **sous** les jetons : on ne perd jamais un personnage derrière un arbre.
+- **Décors peints vus strictement de dessus** (21/11/2026) : arbres (2 variantes), rocher, rocher bas (un tas de pierres), tronc, caisse, tonneaux (2 variantes), détourés, dans `apps/jeu/src/decors/<élément>-<n>.webp` (`imagesDecor`, `imagePeinte` dans `Reliefs.tsx`). Chacun est **centré sur sa case**, avec une ombre portée vers le sud-est ; la lumière vient du nord-ouest et elle est peinte dans l'image : **une image peinte ne se tourne ni ne se retourne jamais** (seule la variante change d'une case à l'autre). Les prompts imposent la vue zénithale (« strictly top-down orthographic view from the zenith ») et un fond magenta uni, détouré ensuite ; relire chaque image : le modèle repasse parfois de biais (le rocher plat a été refusé pour cela). Sur la neige, le dessin en vecteur reste (il pose de la neige sur les arbres) ; une image absente rend la main au dessin.
+- **Arbres et rochers** (dessin de secours) : dessinés en vecteur par le jeu (`apps/jeu/src/composants/Reliefs.tsx`), sans fond, sur le sol de l'ambiance ; chacun un peu différent de son voisin (forme, taille, teinte, tirées de sa position, donc stables d'un rendu à l'autre). De la neige se pose dessus sur un plateau enneigé, de la mousse sur certains rochers en forêt. Ils passent toujours **sous** les jetons : on ne perd jamais un personnage derrière un arbre.
 - **Eau, boue, neige** : des plaques qui remplacent le sol de la case, avec une texture continue d'une case à l'autre et un liseré sombre là où la plaque s'arrête. L'eau a des reflets qui glissent (arrêtés avec « mouvement réduit »). Textures peintes : `relief-eau`, `relief-boue`, `relief-neige` (une par plaque, communes à toutes les ambiances) ; sans elles, un dégradé.
 - Dans l'aperçu des cartes (choix d'une escarmouche), chaque élément a sa couleur.
 

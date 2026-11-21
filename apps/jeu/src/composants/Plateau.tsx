@@ -6,7 +6,7 @@ import type { Effet } from '../animations';
 import { COULEURS_FAMILLES, type Famille } from '../effets-visuels';
 import { textureRelief, textureTerrain } from '../visuels';
 import { Jeton } from './Jeton';
-import { DessinRelief, TAILLE_SPRITE } from './Reliefs';
+import { DessinRelief, imagePeinte, TAILLE_PEINT, TAILLE_SPRITE } from './Reliefs';
 
 export interface Surcouches {
   /** Cases atteignables par le héros actif (clé « x,y » → coût en mètres). */
@@ -214,14 +214,17 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
       if (relief && !plaque) {
         // Plus large et plus haut que la case : la couronne d'un arbre dépasse un peu ; un obstacle bas reste dans sa case.
         // Toujours sous les jetons (lisibilité d'abord).
-        const [fl, fh] = TAILLE_SPRITE[relief];
+        // Peint (vu de dessus) : centré sur la case. Dessiné en vecteur (un peu de côté) : posé sur le bas de la case.
+        const peint = !!imagePeinte(relief, x, y, terrain);
+        const [fl, fh] = peint ? [TAILLE_PEINT[relief]!, TAILLE_PEINT[relief]!] : TAILLE_SPRITE[relief];
         const largeur = Math.round(g.cote * fl);
         const hauteur = Math.round(g.cote * fh);
+        const haut = peint ? g.marge + Math.round((y + 0.5) * g.hc - hauteur / 2) : g.marge + (y + 1) * g.hc - hauteur + Math.round(g.hc * 0.06);
         reliefsDessines.push(
           <div
             key={`r${k}`}
-            className={`relief relief-${relief}`}
-            style={{ left: Math.round((x + 0.5) * g.cote - largeur / 2), top: g.marge + (y + 1) * g.hc - hauteur + Math.round(g.hc * 0.06), width: largeur, height: hauteur, zIndex: 7 + y * 3 }}
+            className={`relief relief-${relief}${peint ? ' relief-est-peint' : ''}`}
+            style={{ left: Math.round((x + 0.5) * g.cote - largeur / 2), top: haut, width: largeur, height: hauteur, zIndex: 7 + y * 3 }}
           >
             <DessinRelief relief={relief} x={x} y={y} terrain={terrain} />
           </div>,

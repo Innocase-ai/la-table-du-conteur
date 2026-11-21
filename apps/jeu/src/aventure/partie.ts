@@ -1,5 +1,5 @@
 // Une aventure dans le client : le moteur (monde chargé + modules) et la partie en cours, sauvegardée telle quelle.
-import { bilanPersonnage, creerMoteur, MODULES_STANDARD, personnageComplet, personnageDepuisFiche, type Personnage, type DonneesMonde, type Donnees, type Groupe, type Moteur, type Partie, type Rencontre, type Terrain, sauvegarderPartie } from '@crpg/regles';
+import { ambianceDeRencontre, bilanPersonnage, creerMoteur, MODULES_STANDARD, personnageComplet, personnageDepuisFiche, type Personnage, type DonneesMonde, type Donnees, type Groupe, type Moteur, type Partie, type Rencontre, sauvegarderPartie } from '@crpg/regles';
 import { herosDuGroupe } from '../groupe/stockage';
 
 export interface Aventure {
@@ -40,14 +40,6 @@ export function demarrerAventure(dm: DonneesMonde, groupe: Groupe, donnees: Donn
   return { moteur, partie };
 }
 
-/** Ambiance du plateau d'une rencontre de l'histoire : la sienne, sinon celle du type de lieu. */
-function terrainDuLieu(type: string | undefined): Terrain {
-  if (type === 'grotte') return 'caverne';
-  if (type && ['donjon', 'niveau', 'salle', 'ruine', 'batiment'].includes(type)) return 'souterrain';
-  if (type === 'camp') return 'camp';
-  return 'foret';
-}
-
 /** Carte par défaut quand l'auteur n'en a pas dessiné : une clairière de 16 × 10. */
 function carteParDefaut(nombreMonstres: number): string[] {
   const largeur = 16;
@@ -66,14 +58,14 @@ function carteParDefaut(nombreMonstres: number): string[] {
 /** Une rencontre de l'histoire, au format du combat. */
 export function rencontreDeMonde(dm: DonneesMonde, id: string): Rencontre {
   const r = dm.rencontres.get(id)!;
-  const lieu = r.lieu ? dm.lieux.get(r.lieu) : undefined;
   const nombre = r.monstres.reduce((s, m) => s + m.nombre, 0);
   return {
     id: r.id,
     nom: r.nom,
     description: r.intro,
     difficulte: r.difficulte,
-    terrain: r.terrain ?? terrainDuLieu(lieu?.type),
+    // La sienne, sinon celle du lieu (une salle de bâtiment : plancher ; de donjon : crypte) ; voir `ambianceDuLieu`.
+    terrain: ambianceDeRencontre(dm, r),
     carte: r.carte ?? carteParDefaut(nombre),
     monstres: r.monstres.map((m) => ({ profil: m.profil, nombre: m.nombre })),
     ...(r.surprise ? { surprise: r.surprise } : {}),

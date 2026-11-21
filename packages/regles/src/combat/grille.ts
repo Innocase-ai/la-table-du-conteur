@@ -13,8 +13,11 @@ export function franchissable(t: TypeCase): boolean {
   return t !== 'mur' && t !== 'obstacle';
 }
 
-/** Ambiances de plateau : chacune a ses textures (sol, difficile, mur), communes à tous les mondes. */
-export const TERRAINS = ['foret', 'souterrain', 'caverne', 'camp', 'neige'] as const;
+/**
+ * Ambiances de plateau : chacune a ses textures (sol, difficile, mur), communes à tous les mondes. `interieur` (plancher de
+ * bois d'une maison, d'une auberge) et `cave` (cellier de terre battue et de dalles) depuis le 21/11/2026.
+ */
+export const TERRAINS = ['foret', 'souterrain', 'caverne', 'camp', 'neige', 'interieur', 'cave'] as const;
 export type Terrain = (typeof TERRAINS)[number];
 
 export interface Position {
@@ -26,7 +29,7 @@ export interface Position {
  * Éléments posés sur les cases, indépendants de l'ambiance du plateau (un arbre ou de l'eau peuvent se trouver sur
  * n'importe quel sol). Chacun reprend les règles d'un type de case existant : l'apparence est libre, le jeu ne change pas.
  */
-export const RELIEFS = ['arbre', 'rocher', 'eau', 'boue', 'neige', 'rocher-bas', 'tronc', 'caisse'] as const;
+export const RELIEFS = ['arbre', 'rocher', 'eau', 'boue', 'neige', 'rocher-bas', 'tronc', 'caisse', 'tonneau'] as const;
 export type Relief = (typeof RELIEFS)[number];
 
 export interface InfoRelief {
@@ -46,7 +49,34 @@ export const INFO_RELIEFS: Record<Relief, InfoRelief> = {
   'rocher-bas': { lettre: 'r', type: 'obstacle', libelle: 'Rocher bas' },
   tronc: { lettre: 't', type: 'obstacle', libelle: 'Tronc couché' },
   caisse: { lettre: 'c', type: 'obstacle', libelle: 'Caisse' },
+  tonneau: { lettre: 'o', type: 'obstacle', libelle: 'Tonneau' },
 };
+
+/**
+ * Les éléments qui ont leur place dans chaque ambiance (pas d'arbre dans une cave ni sur un plancher). Le moteur applique les
+ * règles de n'importe quel élément partout ; cette table sert la validation des mondes (`pnpm monde valider`) et les tests des
+ * cartes livrées.
+ */
+export const DECORS_PERMIS: Record<Terrain, readonly Relief[]> = {
+  foret: ['arbre', 'rocher', 'eau', 'boue', 'rocher-bas', 'tronc', 'caisse', 'tonneau'],
+  camp: ['arbre', 'rocher', 'eau', 'boue', 'rocher-bas', 'tronc', 'caisse', 'tonneau'],
+  neige: ['arbre', 'rocher', 'eau', 'neige', 'rocher-bas', 'tronc', 'caisse'],
+  caverne: ['rocher', 'eau', 'boue', 'rocher-bas', 'caisse', 'tonneau'],
+  souterrain: ['rocher', 'eau', 'rocher-bas', 'caisse', 'tonneau'],
+  cave: ['eau', 'rocher-bas', 'caisse', 'tonneau'],
+  interieur: ['caisse', 'tonneau'],
+};
+
+/** Les éléments d'une carte en texte qui n'ont pas leur place dans l'ambiance (un arbre dans une cave), sans doublon. */
+export function decorsHorsAmbiance(lignes: readonly string[], terrain: Terrain): Relief[] {
+  const permis = new Set(DECORS_PERMIS[terrain]);
+  const vus = new Set<Relief>();
+  for (const ligne of lignes) for (const c of ligne) {
+    const r = RELIEF_PAR_LETTRE.get(c);
+    if (r && !permis.has(r)) vus.add(r);
+  }
+  return [...vus];
+}
 
 const RELIEF_PAR_LETTRE = new Map(RELIEFS.map((r) => [INFO_RELIEFS[r].lettre, r]));
 
@@ -61,7 +91,7 @@ export interface Grille {
 /**
  * Construit une grille à partir de lignes de texte : « . » sol, « # » mur, « ~ » terrain difficile, et les éléments
  * « T » arbre, « R » rocher (comme des murs), « e » eau peu profonde, « b » boue, « n » neige (terrain difficile),
- * « r » rocher bas, « t » tronc couché, « c » caisse (obstacles bas : on ne passe pas, on voit et on tire par-dessus).
+ * « r » rocher bas, « t » tronc couché, « c » caisse, « o » tonneau (obstacles bas : on ne passe pas, on voit et on tire par-dessus).
  */
 export function grilleDepuisTexte(lignes: string[]): Grille {
   const hauteur = lignes.length;

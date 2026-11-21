@@ -318,6 +318,9 @@ button:disabled {
 .mc-caisse {
   background: #a77a47;
 }
+.mc-tonneau {
+  background: #8a5a32;
+}
 .mc-heros {
   background: var(--heros);
 }
@@ -7196,6 +7199,15 @@ kbd {
 .relief {
   position: absolute;
   pointer-events: none;
+}
+
+/* Décor peint vu strictement de dessus (21/11/2026) : jamais tourné ni retourné (la lumière vient du nord-ouest, peinte dans l'image). */
+.relief-peint {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(4px 6px 3px rgba(0, 0, 0, 0.55));
 }
 
 .relief-svg {

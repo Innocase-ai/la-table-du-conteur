@@ -30,6 +30,7 @@ export * from './creation/progression';
 export * from './creation/preparation';
 export * from './creation/grimoire';
 export * from './monde/schemas';
+export * from './monde/ambiance';
 export * from './monde/salutations-communes';
 export * from './monde/presentation';
 export * from './monde/etat';

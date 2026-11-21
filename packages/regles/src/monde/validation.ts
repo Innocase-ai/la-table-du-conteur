@@ -20,6 +20,8 @@ import { avisLieuxEtPnj } from './lieux-pnj';
 import { etatInitial, evaluerCondition } from './etat';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
 import { conditionsImpossibles, lieuxSansRetour } from './garde-fous';
+import { ambianceDeRencontre } from './ambiance';
+import { decorsHorsAmbiance, INFO_RELIEFS } from '../combat/grille';
 import { avisPassagesCaches } from './passages-caches';
 import { avisCompagnonsNommes, avisRenvoisVersPnj, avisVariantesMortes, drapeauVoisin } from './textes-pnj';
 import { typeDeService } from './services';
@@ -419,6 +421,11 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       // Le combat place chaque héros (6) et chaque monstre sur sa case ; celles qui manquent sont prises sur le sol le plus proche des cases marquées.
       else if (compte('m') < nb) avis(`${ou} : ${compte('m')} case(s) de départ (m) pour ${nb} monstres : les autres partent du sol le plus proche.`);
       if (compte('H') >= 1 && compte('H') < 6) avis(`${ou} : ${compte('H')} case(s) de départ des héros (H) pour un groupe de 6 : les autres partent du sol le plus proche.`);
+      // Pas d'arbre dans une cave ni sur un plancher : chaque décor doit avoir sa place dans l'ambiance du plateau.
+      const ambiance = ambianceDeRencontre(dm, r);
+      const deplaces = decorsHorsAmbiance(r.carte, ambiance);
+      if (deplaces.length)
+        err(`${ou} : la carte pose ${deplaces.map((d) => `« ${INFO_RELIEFS[d].libelle.toLowerCase()} » (${INFO_RELIEFS[d].lettre})`).join(', ')} dans l'ambiance « ${ambiance} », où ils n'ont pas leur place (voir DECORS_PERMIS, docs/PLATEAUX.md).`);
     }
     // Difficulté déclarée contre le budget de PX d'un groupe de 6.
     if (r.type === 'combat' || r.type === 'mixte') {
